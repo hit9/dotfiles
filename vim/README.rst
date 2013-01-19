@@ -14,4 +14,4 @@ Install::
 截图
 ----
 
-.. image:: https://github.com/hit9/dotfiles/blob/master/vim/gvim.png
+.. image:: https://raw.github.com/hit9/dotfiles/master/vim/gvim.png
