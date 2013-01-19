@@ -43,6 +43,8 @@ if len(sys.argv) == 2:
     if k not in dct:
         help()
     install_one(k)
+    print "See Readme.rst under directory " + k
 else:
     for i in dct.keys():
         install_one(i)
+    print "See Readme.rst under each sub directory."

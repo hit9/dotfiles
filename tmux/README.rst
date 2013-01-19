@@ -1,8 +1,9 @@
-Install::
+需要继续安装tmux-powerline::
 
     #install tmux-powerline
     git clone git://github.com/erikw/tmux-powerline.git
-    cp .tmux.conf ~/
+
+然后编辑~/.tmux.conf
 
     #edit .tmux.conf:
     edit 
