@@ -9,8 +9,6 @@ syntax on
 set showcmd
 "关闭报警声音
 set noeb
-"设置gvim的字体
-set guifont=Inconsolata-g:h12
 "开启鼠标定位
 set mouse=a
 "关闭报警声音
@@ -33,7 +31,7 @@ hi CursorLine term=none cterm=none ctermbg=3
 set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
-set guifont=Inconsolata-g:h12
+set guifont=Inconsolata-g\ 12
 
 "-------------------- 编码 ---------------------------------
 
