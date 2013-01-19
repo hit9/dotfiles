@@ -1,1 +1,0 @@
-/home/hit9/.vimrc
