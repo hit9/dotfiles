@@ -1,0 +1,88 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 1
+
+imlib_cache_size 0
+double_buffer yes
+no_buffers yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Ubuntu:size=9
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#own_window_argb_visual yes
+#own_window_argb_value 100
+
+alignment tr
+gap_x -2
+gap_y 180
+minimum_size 350 300
+
+
+default_bar_size 60 8
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+
+default_color efefef
+default_shade_color 1d1d1d
+color0 ffffff
+color1 ffffff
+color2 ffffff
+
+
+#lua_load ~/.conky/conkybg.lua
+#lua_draw_hook_pre conky_draw_bg
+
+TEXT
+${voffset 5}
+${goto 92}CPU1 usage: ${font Ubuntu:style=Bold:size=9}${color1}${cpu cpu1}%${font}${color} ${alignr 20}CPU2 usage: ${font Ubuntu:style=Bold:size=9}${color1}${cpu cpu2}%${font}${color}
+
+${goto 92}CPU3 usage: ${font Ubuntu:style=Bold:size=9}${color1}${cpu cpu3}%${font}${color} ${alignr 20}CPU4 usage: ${font Ubuntu:style=Bold:size=9}${color1}${cpu cpu4}%${font}${color}
+
+
+${goto 92}RAM:${color1} ${font Ubuntu:style=Bold:size=9}${memperc}%${font}${color}${font Ubuntu:style=Bold:size=9}${font}     Free: ${font Ubuntu:style=Bold:size=9}${color2}${memeasyfree}${color} ${font}${alignr 22}Used: ${font Ubuntu:style=Bold:size=9}${color2}${mem}${color}${font}
+
+${goto 92}HDD:${color1} ${font Ubuntu:style=Bold:size=9}${fs_used_perc /home}%${font}${color}     Free: ${color2}${font Ubuntu:style=Bold:size=9}${fs_free /home}${color}${font} ${alignr 22}Used: ${font Ubuntu:style=Bold:size=9}${color2}${fs_used /home}${color}${font}
+
+${if_up wlan0}
+${voffset -4}${goto 92}${voffset -6}Upload: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed wlan0}${color}${font} ${goto 230}Insgesamt: ${font Ubuntu:style=Bold:size=9}${color2}${totalup wlan0}${color}${font}
+${voffset 4}${goto 92}Signal:   ${font Ubuntu:style=Bold:size=9}${color1}${wireless_link_qual wlan0}%${color}${font} ${alignr 15}
+${voffset 4}${goto 92}Down:   ${font Ubuntu:style=Bold:size=9}${color1}${downspeed wlan0}${color}${font} ${goto 230}Insgesamt: ${font Ubuntu:style=Bold:size=9}${color2}${totaldown wlan0}${color}${font}
+
+
+
+# |--ETH0
+${else}${if_up eth0}
+${voffset -13}${color0}${font}${color}${goto 92}${voffset 10}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed eth0}${color}${goto 235}Total up: ${color2}${totalup eth0}${color}
+${voffset -2}${color0}${font}${color}${goto 92}${voffset 16}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed eth0}${color}${goto 223}Total down: ${color2}${totaldown eth0}${color}
+#${voffset -2}${color0}${font Poky:size=13}w${font}${color}${goto 92}${voffset -4}Lokale IP: ${alignr 15}${color2}${addr eth0}${color}
+#${goto 92}Öffentliche IP: ${alignr 15}${color2}${execi 10800 ~/.conkycolors/bin/conkyIp}${color}
+# |--PPP0
+${endif}${else}${if_up ppp0}
+${voffset -13}${color0}${font}${color}${goto 92}${voffset -6}Up: ${font Ubuntu:style=Bold:size=9}${color1}${upspeed ppp0}${color}${font} ${alignr 15}${color2}${upspeedgraph ppp0 8,60 92B6F1 CCDFFF}${color}
+${goto 92}Insgesamt: ${color2}${totalup ppp0}${color}
+${voffset -2}${color0}${font}${color}${goto 92}${voffset -6}Down: ${font Ubuntu:style=Bold:size=9}${color1}${downspeed ppp0}${color}${font} ${alignr 15}${color2}${downspeedgraph ppp0 8,60 92B6F1 CCDFFF}${color}
+${goto 92}Insgesamt: ${color2}${totaldown ppp0}${color}
+#${voffset -2}${color0}${font Poky:size=13}w${font}${color}${goto 92}${voffset -4}Lokale IP: ${alignr 15}${color2}${addr ppp0}${color}
+${endif}${else}${voffset 4}${color0}${font}${color}${goto 92}No internet connection${endif}
+
+${image ~/.conky/base.png -p 10,0 -s 339x86}${image ~/.conky/base.png -p 10,146 -s 339x86}${image ~/.conky/base.png -p 10,73 -s 339x86}${image ~/.conky/Task_Manager.png -p 32,20 -s 45x45}${image ~/.conky/Memory.png -p 32,93 -s 45x45}${image ~/.conky/wlan100.png -p 32,166 -s 45x45}
