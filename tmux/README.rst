@@ -1,14 +1,11 @@
 Install::
 
+    #install tmux-powerline
+    git clone git://github.com/erikw/tmux-powerline.git
     cp .tmux.conf ~/
-    # mkdir ~
-    cp tmux-powerline/ ~/dotfiles/tmux/tmux-powerline -r
 
-or::
-
-    cp .tmux.conf ~/
     #edit .tmux.conf:
     edit 
-        ~/dotfiles/tmux/tmux-powerline/ 
+        ~/tmux-powerline/ 
     to 
         your-path-to-tmux-powerline
