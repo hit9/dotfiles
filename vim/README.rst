@@ -1,15 +1,14 @@
 安装
 ----
 
-Install::
+ `python setup.py vim` 后需要安装 `vundle` 和 `vim-powerline` ::
 
     # install vundle
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     # install vim-powerline
     git clone --branch=develop https://github.com/Lokaltog/vim-powerline ~/.vim/bundle/
-    cp .vimrc ~
-    cp .gvimrc ~
-    # vim :BundleInstall
+
+然后打开vim,输入命令 `BundleInstall` 来安装各个插件
 
 截图
 ----
