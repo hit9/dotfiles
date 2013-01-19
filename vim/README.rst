@@ -14,4 +14,4 @@ Install::
 截图
 ----
 
-.. image::gvim.png
+.. image:: gvim.png
