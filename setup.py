@@ -17,6 +17,7 @@ dct = {
     "git": (".gitconfig", ),
     "tmux": (".tmux.conf", ),
     "conky": (".conkyrc", ".conky"),
+    "sakura": (".config/sakura/sakura.conf",)
 }
 
 
@@ -26,6 +27,10 @@ def install_one(k):
     for i in v:
         src_abs = os.path.join(abs_path, os.path.join(k, i))
         des_abs = os.path.join(home_abs_path, i)
+        des_dir=os.path.dirname(des_abs)
+        if not os.path.exists(des_dir):
+            os.makedirs(des_dir)
+
         try:
             print " Create Symbol Link from ", src_abs, " to ", des_abs, " ..."
             os.symlink(src_abs, des_abs)
