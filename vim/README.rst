@@ -7,5 +7,11 @@ Install::
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     # install vim-powerline
     git clone --branch=develop https://github.com/Lokaltog/vim-powerline ~/.vim/bundle/
-    cp .vimrc ~/.vimrc
+    cp .vimrc ~
+    cp .gvimrc ~
     # vim :BundleInstall
+
+截图
+----
+
+.. image::gvim.png
