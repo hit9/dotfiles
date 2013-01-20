@@ -19,8 +19,6 @@ set autoread
 set nocompatible
 "关闭启动时的救助贫困儿童的提示消息
 set shortmess=atI
-"状态栏
-set laststatus=2
 "高亮当前行
 set cul
 "合适的高亮当前行的颜色
@@ -31,7 +29,7 @@ hi CursorLine term=none cterm=none ctermbg=3
 set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
-set guifont=Inconsolata-g\ 12
+set guifont=Inconsolata-g\ for\ Powerline\ 13
 
 "-------------------- 编码 ---------------------------------
 
@@ -153,8 +151,10 @@ let g:nerdtree_tabs_open_on_console_startup=1
 Bundle "rson/vim-conque"
 
 "Powerline
+"状态栏
+set laststatus=2
+"你需要提前装powerline  : pip install https://github.com/Lokaltog/powerline/tarball/develop
 Bundle "Lokaltog/vim-powerline"
-let g:Powerline_colorscheme='solarized256'
 "Jquery
 Bundle "jQuery"
 "Python Model
