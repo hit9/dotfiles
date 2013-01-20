@@ -19,5 +19,3 @@ Powerline是一个python写的工具，为bash,tmux,zsh,vim等提供了一致的
 然后注意：终端用户需要在自己的终端中选择这个字体: Inconsolata-g for Powerline 
 
 我用的sakura终端，在dotfiles/sakura/../sakura.conf中已经配置好了！不用手工选择了。
-
-
