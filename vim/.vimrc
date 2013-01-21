@@ -159,6 +159,9 @@ python from powerline.bindings.vim import source_plugin; source_plugin()
 Bundle "jQuery"
 "Python Model
 "Bundle "klen/python-mode"
+"pep8, ctrl-k作为检查快捷键
+Bundle "pep8"
+let g:pep8_map='<C-k>' 
 
 
 
