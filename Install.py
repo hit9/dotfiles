@@ -23,7 +23,8 @@ dct = {
     "tmux": (".tmux.conf", ),
     "conky": (".conkyrc", ".conky"),
     "sakura": (".config/sakura/sakura.conf",),
-    "fonts": (".fonts", )
+    "fonts": (".fonts", ),
+    "bash": (".bashrc",)
 }
 
 force_install = False
@@ -113,11 +114,28 @@ def install_one(k):
             color_output("red", "Failed to clone tmux-powerline.")
             exit()
 
-        tmux_powerline_abs = os.path.join(home_abs_path, "tmux-powerline")
-        print tmux_powerline_abs
-        rm_if_exists(tmux_powerline_abs)
-        os.symlink(os.path.abspath("tmux-powerline"), tmux_powerline_abs)
+        dst_abs = os.path.join(home_abs_path, "tmux-powerline")
+        src_abs = os.path.abspath("tmux-powerline")
+        rm_if_exists(dst_abs)
+        os.symlink(src_abs, dst_abs)
+        color_output('green', "Symbol link:" + src_abs + " -> " + dst_abs)
         powerline_installed = True
+
+    # install powerline-shell
+    if k == "bash":
+        color_output(
+            'yellow',
+            'pip install git+git://github.com/hit9/powerline-shell'
+        )
+
+        code = os.system(
+            "pip install git+git://github.com/hit9/powerline-shell"
+        )
+
+        if code is not 0:
+            color_output("red", "Failed to clone powerline-shell.")
+            exit()
+            powerline_installed = True
 
     if k in ("vim", "tmux", "sakura") and not fonts_installed:
         install_one("fonts")

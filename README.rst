@@ -3,15 +3,9 @@ vim, tmux, git ,conky 等工具的配置文件。为了快速的安装和备份�
 安装
 ----
 
-克隆下这个repo来，然后::
+注意，不要删掉这个repo目录.
 
-    python setup.py
-
-安装vim的配置文件(同样对其它工具), 安装脚本只是简单的把配置文件创建了个软链接到用户目录::
-
-    python setup.py vim 
-
-(注意，不要删掉这个repo目录.)
+配置文件都在这么目录中,安装只是建立了软链接.安装脚本为`Install.py`,使用方法见`Install.py help`
 
 安装配置文件后需要看下相应目录下的README.rst(比如vim/README.rst),看看还有需要进行的安装工作没有。
 
