@@ -20,7 +20,7 @@ home_abs_path = os.path.expandvars("$HOME")
 dct = {
     "vim": (".vimrc", ),
     "git": (".gitconfig", ),
-    "tmux": (".tmux.conf", "tmux-powerline"),
+    "tmux": (".tmux.conf", ),
     "conky": (".conkyrc", ".conky"),
     "sakura": (".config/sakura/sakura.conf",),
     "fonts": (".fonts", )
@@ -64,8 +64,8 @@ def rm_if_exists(path):
         if x == 'yes':
             color_output('yellow', 'Remove ' + path + ' ...')
             try:
-                os.unlink(path)
-            except OSError:
+                os.remove(path)
+            except:
                 try:
                     import shutil
                     shutil.rmtree(path)
@@ -114,6 +114,7 @@ def install_one(k):
             exit()
 
         tmux_powerline_abs = os.path.join(home_abs_path, "tmux-powerline")
+        print tmux_powerline_abs
         rm_if_exists(tmux_powerline_abs)
         os.symlink(os.path.abspath("tmux-powerline"), tmux_powerline_abs)
         powerline_installed = True
