@@ -1,8 +1,6 @@
 安装
 ----
     
-需要提前安装 `powerline` ,见 Powerline-Install-Guide.rst
-
 `python setup.py vim` 后需要安装 `vundle` 来管理插件 ::
 
     # install vundle
