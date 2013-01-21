@@ -18,7 +18,7 @@ home_abs_path = os.path.expandvars("$HOME")
 dct = {
     "vim": (".vimrc", ),
     "git": (".gitconfig", ),
-    "tmux": (".tmux.conf", ),
+    "tmux": (".tmux.conf", "tmux-powerline"),
     "conky": (".conkyrc", ".conky"),
     "sakura": (".config/sakura/sakura.conf",),
     "fonts": (".fonts", )
@@ -38,19 +38,38 @@ def color_output(color, msg):
 
 
 def install_powerline():
-    os.system("pip install https://github.com/Lokaltog/powerline/tarball/develop")
+    color_output('yellow', "install powerline from https://github.com/Lokaltog/powerline ...")
+    code = os.system("pip install git+git://github.com/Lokaltog/powerline")
+    if code is not 0:
+        color_output("red", "Failed to install powerline.")
+        exit()
     global powerline_installed
     powerline_installed = True
-
 
 def install_one(k):
 
     global fonts_installed
     global powerline_installed
 
-    if k in ("vim", "tmux") and not powerline_installed:
-        color_output("yellow", "install powerline via pip from github...")
-        install_powerline()
+    # install powerline for vim
+    if k in ("vim", ) and not powerline_installed:
+        try:
+            import powerline
+        except ImportError:
+            install_powerline()
+    
+    # install tmux-powerline for tmux
+
+    if k == "tmux":
+        color_output('yellow','Clone tmux-powerline from https://github.com/erikw/tmux-powerline ...')
+        code = os.system("git clone https://github.com/erikw/tmux-powerline")
+        if code is not 0:
+            color_output("red", "Failed to clone tmux-powerline.")
+            exit()
+        tmux_powerline_abs = os.path.join(home_abs_path, "tmux-powerline")
+        if os.path.exists(tmux_powerline_abs):
+            os.remove(tmux_powerline_abs)
+        os.symlink(os.path.abspath("tmux-powerline"), tmux_powerline_abs)
 
     if k in ("vim", "tmux", "sakura") and not fonts_installed:
         install_one("fonts")
