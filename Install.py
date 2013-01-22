@@ -108,7 +108,7 @@ def install_one(k):
 
         rm_if_exists("tmux-powerline")
 
-        code = os.system("git clone https://github.com/erikw/tmux-powerline")
+        code = os.system("git clone https://github.com/erikw/tmux-powerline.git")
 
         if code is not 0:
             color_output("red", "Failed to clone tmux-powerline.")
