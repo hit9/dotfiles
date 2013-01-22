@@ -1,4 +1,3 @@
 - macubuntu-10.04 install script
 - nginx config
-- Powerline-Install-Guide.rst complete
-- force install for setup.py
+- replace all the powerline with the new powerline project until the stable version release
