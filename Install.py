@@ -85,13 +85,12 @@ def install_one(k):
         try:
             import powerline
         except ImportError:
+            cmd = "pip install git+git://github.com/Lokaltog/powerline"
             color_output(
                 'yellow',
-                "pip install git+git://github.com/Lokaltog/powerline"
+                cmd
             )
-            code = os.system(
-                "pip install git+git://github.com/Lokaltog/powerline"
-            )
+            code = os.system(cmd)
             if code is not 0:
                 color_output("red", "Failed to install powerline.")
                 exit()
@@ -101,14 +100,15 @@ def install_one(k):
 
     if k == "tmux":
 
+        cmd = "git clone https://github.com/erikw/tmux-powerline.git"
         color_output(
             'yellow',
-            'Clone tmux-powerline...'
+            cmd
         )
 
         rm_if_exists("tmux-powerline")
 
-        code = os.system("git clone https://github.com/erikw/tmux-powerline.git")
+        code = os.system(cmd)
 
         if code is not 0:
             color_output("red", "Failed to clone tmux-powerline.")
@@ -121,21 +121,42 @@ def install_one(k):
         color_output('green', "Symbol link:" + src_abs + " -> " + dst_abs)
         powerline_installed = True
 
-    # install powerline-shell
     if k == "bash":
+        # install powerline-shell
+        cmd = "pip install git+git://github.com/hit9/powerline-shell"
         color_output(
             'yellow',
-            'pip install git+git://github.com/hit9/powerline-shell'
+            cmd
         )
 
-        code = os.system(
-            "pip install git+git://github.com/hit9/powerline-shell"
-        )
+        code = os.system(cmd)
 
         if code is not 0:
-            color_output("red", "Failed to clone powerline-shell.")
+            color_output("red", "Failed to install powerline-shell.")
             exit()
             powerline_installed = True
+
+        # install dircolors-solarized
+        cmd = "git clone https://github.com/seebi/dircolors-solarized"
+        color_output(
+            'yellow',
+            cmd
+        )
+            
+        rm_if_exists("dircolors-solarized")
+
+        code = os.system(cmd)
+
+        if code is not 0:
+            color_output("red", "Failed to clone dircolors-solarized.")
+            exit()
+
+        dst_abs = os.path.join(home_abs_path, "dircolors-solarized")
+        src_abs = os.path.abspath("dircolors-solarized")
+        rm_if_exists(dst_abs)
+        os.symlink(src_abs, dst_abs)
+        color_output('green', "Symbol link:" + src_abs + " -> " + dst_abs)
+
 
     if k in ("vim", "tmux", "sakura") and not fonts_installed:
         install_one("fonts")
