@@ -142,7 +142,7 @@ def install_one(k):
             'yellow',
             cmd
         )
-            
+
         rm_if_exists("dircolors-solarized")
 
         code = os.system(cmd)
@@ -156,7 +156,6 @@ def install_one(k):
         rm_if_exists(dst_abs)
         os.symlink(src_abs, dst_abs)
         color_output('green', "Symbol link:" + src_abs + " -> " + dst_abs)
-
 
     if k in ("vim", "tmux", "sakura") and not fonts_installed:
         install_one("fonts")
