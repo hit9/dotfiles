@@ -1,3 +1,4 @@
 - macubuntu-10.04 install script
 - nginx config
 - replace all the powerline with the new powerline project until the stable version release
+- new script to manage these configurations, use sh module and docopt module
