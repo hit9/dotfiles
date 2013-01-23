@@ -116,6 +116,6 @@ function _update_ps1() {
 }
 export PROMPT_COMMAND="_update_ps1"
 # dircolors-solarized : https://github.com/seebi/dircolors-solarized
-eval `dircolors ~/dircolors-solarized/dircolors.256dark`
+eval `dircolors ~/dircolors.256dark`
 
 TERM=screen-256color
