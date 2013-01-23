@@ -7,7 +7,6 @@ Usage:
 if __name__ == '__main__':
 
     from docopt import docopt
-
     import item
     from item import color
 
@@ -20,7 +19,7 @@ if __name__ == '__main__':
     items = dict(
         (k.name, k) for k in conf.__dict__.values() if isinstance(k, item.item)
     )
-
+    
     for i in items_to_install:
         if i not in items:
             exit(color("red", "Unknown item: "+i))
@@ -34,3 +33,9 @@ if __name__ == '__main__':
         # install this item
         v.install()
         v.installed = True
+
+    # after messages..
+    for i in items_to_install:
+        k = items[i]
+        if k.after_install_msg:
+            print color("green", str(k.after_install_msg))

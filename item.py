@@ -25,14 +25,14 @@ class item(object):
 
     # ln -s files to home
     def lns_to_home(self):
-        for path in self.files:
-            src_abs = os.path.join(cur_abs_path, path)
-            des_abs = os.path.join(home_abs_path, path)
+        for f in self.files:
+            src_abs = os.path.join(cur_abs_path, os.path.join(self.name, f))
+            des_abs = os.path.join(home_abs_path, f)
             des_dir = os.path.dirname(des_abs)
             if not os.path.exists(des_dir):
                 os.makedirs(des_dir)
             rm_if_exists(des_abs)
-            print color('green', "Symbol link:" + path + " -> " + des_abs)
+            print color('green', "Symbol link:" + f + " -> " + des_abs)
             os.symlink(src_abs, des_abs)
 
 
