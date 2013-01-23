@@ -118,10 +118,10 @@ filetype plugin indent on    " 启用自动补全
 
 "solarized
 Bundle "altercation/vim-colors-solarized"
+let g:solarized_termcolors=256  " 一定要这行在colorscheme solarized 之前
 "背景:暗色
 set background=dark
 colorscheme solarized
-let g:solarized_termcolors=256
 "使vim在终端保持透明
 hi Normal ctermbg=NONE
 "neocomplcache插件
@@ -167,6 +167,7 @@ let g:pep8_map='<C-k>'
 
 " ----------------------------- :R 命令快速运行程序  ---------------------
 :command -range=% R :call Runit()
+
 func! Runit()
 	exec "w"
 	if &filetype == 'c'
