@@ -40,6 +40,7 @@ tmux: fonts
 bash: fonts
 
 	git submodule update --init dircolors-solarized
+	ln -s $(CURDIR)/dircolors-solarized/dircolors.256dark ~/dircolors.256dark
 	pip install --user --upgrade git+git://github.com/hit9/powerline-shell
 	ln -s $(CURDIR)/bash/.bashrc ~/.bashrc
 
