@@ -130,7 +130,7 @@ let g:neocomplcache_enable_at_startup = 1
 "jsbeautify
 Bundle 'jsbeautify'
 "-------autoclose ------ 自动关闭括号
-Bundle "Townk/vim-autoclose"
+Bundle "jiangmiao/auto-pairs"
 
 " -------------- snipmate 插件--- 
 "依赖
@@ -160,10 +160,12 @@ Bundle "jQuery"
 "Python Model
 "Bundle "klen/python-mode"
 "Python.vim
-Bundle "python.vim"
+Bundle "python.vim--Vasiliev"
 "pep8, ctrl-k作为检查快捷键
 Bundle "pep8"
 let g:pep8_map='<C-k>' 
+
+Bundle "auto"
 
 
 
