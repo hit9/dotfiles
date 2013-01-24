@@ -1,5 +1,5 @@
 # vim:set noet: 
-.PHONY : usage vim conky fonts
+.PHONY : usage vim conky fonts git
 
 usage:
 

@@ -8,7 +8,7 @@
     # 更新vundle
     git submodule update --init vim/vundle
     # 安装powerline
-    pip install --user --upgrade git+git://github.com/Lokaltog/powerline 
+    pip install --upgrade git+git://github.com/Lokaltog/powerline 
     # 按照绝对路径创建符号链接
     ln -s $(readlink -e vim/.vimrc) ~/.vimrc   
     # 创建.vim/bundle目录
