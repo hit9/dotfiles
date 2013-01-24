@@ -17,7 +17,7 @@ fonts:
 vim: fonts
 
 	git submodule update --init vim/vundle
-	pip install --user --upgrade git+git://github.com/Lokaltog/powerline
+	pip install --upgrade git+git://github.com/Lokaltog/powerline
 	ln -s $(CURDIR)/vim/.vimrc ~/.vimrc
 	mkdir -p ~/.vim/bundle/ 
 	ln -s $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
@@ -41,7 +41,7 @@ bash: fonts
 
 	git submodule update --init dircolors-solarized
 	ln -s $(CURDIR)/dircolors-solarized/dircolors.256dark ~/dircolors.256dark
-	pip install --user --upgrade git+git://github.com/hit9/powerline-shell
+	pip install --upgrade git+git://github.com/hit9/powerline-shell
 	ln -s $(CURDIR)/bash/.bashrc ~/.bashrc
 
 sakura: fonts
