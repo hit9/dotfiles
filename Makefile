@@ -18,21 +18,26 @@ ifdef force
 	endif
 endif
 
+submodule:
+
+	@echo "Update submodules .. "
+	git submodule init
+	git submodule update 
+
 fonts:
 
 	mkdir -p ~/.fonts
 	cp $(CURDIR)/fonts/.fonts/*  ~/.fonts
 
-powerline: fonts
+powerline: fonts submodule
 
-	git submodule update --init Lokaltog-powerline
-	cd Lokaltog-powerline; python setup.py install
+	cd Lokaltog-powerline; git checkout develop; git pull ; python setup.py install
 	mkdir -p ~/.config/powerline/themes
 	mkdir -p ~/.config/powerline/colorschemes
 
-vim: powerline
+vim: powerline submodule
 
-	git submodule update --init vim/vundle
+	cd vim/vundle ; git checkout master ; git pull;
 	mkdir -p ~/.vim/bundle/ 
 	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
 	ln $(LNSOPT) $(CURDIR)/vim/.vimrc ~/.vimrc
@@ -53,11 +58,11 @@ git:
 
 	ln $(LNSOPT) $(CURDIR)/git/.gitconfig ~/.gitconfig
 
-bash: fonts
+bash: fonts submodule
 
-	git submodule update --init dircolors-solarized
+	cd dircolors-solarized; git checkout master ; git pull ;
 	ln $(LNSOPT) $(CURDIR)/dircolors-solarized/dircolors.256dark ~/dircolors.256dark
-	pip install --upgrade git+git://github.com/hit9/powerline-shell
+	cd powerline-shell; git checkout master; git pull ; python setup.py install
 	ln $(LNSOPT) $(CURDIR)/bash/.bashrc ~/.bashrc
 
 sakura: fonts

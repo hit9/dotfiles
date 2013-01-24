@@ -7,3 +7,6 @@
 [submodule "Lokaltog-powerline"]
 	path = Lokaltog-powerline
 	url = https://github.com/Lokaltog/powerline/
+[submodule "powerline-shell"]
+	path = powerline-shell
+	url = https://github.com/hit9/powerline-shell
