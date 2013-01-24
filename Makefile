@@ -28,6 +28,7 @@ fonts:
 
 	mkdir -p ~/.fonts
 	cp $(CURDIR)/fonts/.fonts/*  ~/.fonts
+	fc-cache -vf ~/.fonts 
 
 powerline: fonts submodule
 

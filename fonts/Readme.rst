@@ -7,3 +7,5 @@
 
     mkdir -p ~/.fonts
     cp fonts/.fonts/* ~/.fonts/
+    #更新字体缓存
+    fc-cache -vf ~/.fonts 

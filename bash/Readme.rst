@@ -13,9 +13,10 @@ Dircolors:
 
 安装bashrc::
 
+    git submodule update --init
     #更新dircolors-solarized
-    git submodule update --init dircolors-solarized
+    cd dircolors-solarized; git checkout master ; git pull ;
     ln -s $(readlink dircolors-solarized/dircolors.256dark) ~/dircolors.256dark
     #安装powerline-shell
-    pip install --upgrade git+git://github.com/hit9/powerline-shell
+    cd powerline-shell; git checkout master; git pull ; python setup.py install
     ln -s $(readlink bash/.bashrc) ~/.bashrc

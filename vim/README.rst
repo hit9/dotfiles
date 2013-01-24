@@ -5,8 +5,9 @@
 
 安装依赖后::
 
+    git submodule update --init 
     # 更新vundle
-    git submodule update --init vim/vundle
+    cd vim/vundle ; git checkout master ; git pull;
     # 创建.vim/bundle目录
     mkdir -p ~/.vim/bundle/  
     # 创建vundle的符号链接
