@@ -24,7 +24,7 @@ vim: fonts submodule_update
 	ln -s $(CURDIR)/vim/.vimrc ~/.vimrc
 	mkdir -p ~/.vim/bundle/ 
 	ln -s $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
-	@echo "Run this command in your vim: BundleInstall"
+	vim -c "BundleInstall"
 
 conky:
 
