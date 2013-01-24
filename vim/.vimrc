@@ -164,9 +164,12 @@ Bundle "python.vim--Vasiliev"
 "pep8, ctrl-k作为检查快捷键
 Bundle "pep8"
 let g:pep8_map='<C-k>' 
-
+"好插件啊：自动在类似==两边添加空格
 Bundle "auto"
+"依赖于ctags, ubuntu下apt-get install ctags安装。这个插件适合面向对象程序员
 Bundle "majutsushi/tagbar"
+"Oh,一个评论插件
+Bundle "tpope/vim-commentary"
 
 
 
