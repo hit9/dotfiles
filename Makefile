@@ -48,7 +48,7 @@ tmux: powerline
 bash: fonts
 
 	git submodule update --init dircolors-solarized
-	ln -s $(CURDIR)/dircolors-solarized/dircolors.256dark ~/dircolors.256dark
+	ln -fs $(CURDIR)/dircolors-solarized/dircolors.256dark ~/dircolors.256dark
 	pip install --upgrade git+git://github.com/hit9/powerline-shell
 	ln -s $(CURDIR)/bash/.bashrc ~/.bashrc
 

@@ -115,6 +115,7 @@ function _update_ps1() {
    export PS1="$(powerline-bash.py)"
 }
 export PROMPT_COMMAND="_update_ps1"
+
 # dircolors-solarized : https://github.com/seebi/dircolors-solarized
 eval `dircolors ~/dircolors.256dark`
 
