@@ -1,6 +1,3 @@
-[submodule "tmux-powerline"]
-	path = tmux-powerline
-	url = https://github.com/erikw/tmux-powerline.git
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git

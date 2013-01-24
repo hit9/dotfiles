@@ -14,13 +14,19 @@ fonts:
 	mkdir -p ~/.fonts
 	cp $(CURDIR)/fonts/.fonts/*  ~/.fonts
 
-vim: fonts
+powerline: fonts
 
-	git submodule update --init vim/vundle
 	pip install --upgrade git+git://github.com/Lokaltog/powerline
-	ln -s $(CURDIR)/vim/.vimrc ~/.vimrc
+	mkdir -p ~/.config/powerline/themes
+
+vim: fonts powerline
+
+	# install vundle 
+	git submodule update --init vim/vundle
 	mkdir -p ~/.vim/bundle/ 
 	ln -s $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
+	# vimrc
+	ln -s $(CURDIR)/vim/.vimrc ~/.vimrc
 	vim -c "BundleInstall"
 
 conky:
@@ -32,9 +38,11 @@ git:
 
 	ln -s $(CURDIR)/git/.gitconfig ~/.gitconfig
 
-tmux: fonts
+tmux: fonts powerline
 
-	git submodule update --init tmux-powerline
+	# powerline for tmux
+	mkdir -p ~/.config/powerline/themes/tmux
+	ln -s $(CURDIR)/powerline/themes/tmux/default.json  ~/.config/powerline/themes/tmux/default.json
 	ln -s $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 
 bash: fonts
