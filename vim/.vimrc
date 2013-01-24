@@ -166,6 +166,7 @@ Bundle "pep8"
 let g:pep8_map='<C-k>' 
 
 Bundle "auto"
+Bundle "majutsushi/tagbar"
 
 
 

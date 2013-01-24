@@ -17,6 +17,19 @@
     # 进入vim 后 :BundleInstall
     vim  -c "BundleInstall"
 
+配置文件使用说明
+----------------
+
+- :R 命令会运行当前文件(对于C文件会gcc后再运行，对于python文件直接python执行 etc.)
+- :PEP8 需要安装autopep8 ( ``pip install autopep8`` ), 会直接对正在编辑的py文件pep8转化
+- :T 会打开NerdTree
+
+插件说明
+--------
+
+- tagbar依赖ctags , ubuntu下: ``sudo apt-get install ctags``
+
+
 截图
 ----
 
