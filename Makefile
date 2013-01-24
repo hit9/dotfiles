@@ -1,5 +1,4 @@
 # vim:set noet: 
-
 .PHONY : usage vim conky fonts
 
 usage:
@@ -8,7 +7,6 @@ usage:
 	@echo "items can be :"
 	@echo "  vim fonts conky git tmux sakura bash"
 	@echo "use 'make all' to setup all."
-	@echo "use 'make rmall' to remove all target path."
 
 submodule_update:
 
@@ -16,7 +14,8 @@ submodule_update:
 
 fonts:
 
-	ln  -s $(CURDIR)/fonts/.fonts ~/.fonts
+	mkdir -p ~/.fonts
+	cp $(CURDIR)/fonts/.fonts/*  ~/.fonts
 
 vim: fonts submodule_update
 
@@ -35,11 +34,11 @@ git:
 
 	ln -s $(CURDIR)/git/.gitconfig ~/.gitconfig
 
-tmux: fonts submodule_update
+tmux: submodule_update fonts
 
 	ln -s $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 
-bash: fonts submodule_update
+bash: submodule_update fonts
 
 	pip install --user --upgrade git+git://github.com/hit9/powerline-shell
 	ln -s $(CURDIR)/bash/.bashrc ~/.bashrc
@@ -48,15 +47,4 @@ sakura: fonts
 
 	ln -s $(CURDIR)/sakura/.config/sakura/sakura.conf  ~/.config/sakura/sakura.conf
 
-rmall:
-
-	rm ~/.fonts
-	rm ~/.config/sakura/sakura.conf
-	rm ~/.tmux.conf
-	rm ~/.vimrc
-	rm ~/.gitconfig
-	rm ~/.bashrc
-	rm ~/.conkyrc
-	rm ~/.conky
-
-all: vim tmux sakura git bash conky
+all: bash vim tmux sakura git conky
