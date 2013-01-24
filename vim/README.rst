@@ -1,12 +1,16 @@
-安装
-----
+手工安装
+--------
+
+依赖：fonts, 首先安装字体,见fonts/Readme.rst
+
+::
     
-`python setup.py vim` 后需要安装 `vundle` 来管理插件 ::
-
-    # install vundle
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
-然后打开vim,输入命令 `BundleInstall` 来安装各个插件
+    git submodule update --init # 更新vundle
+    pip install --user --upgrade git+git://github.com/Lokaltog/powerline # 安装powerline
+    ln -s $(readlink -e vim/.vimrc) ~/.vimrc   # 按照绝对路径创建符号链接
+    mkdir -p ~/.vim/bundle/   # 创建.vim/bundle目录
+    ln -s $(readlink -e vim/vundle) ~/.vim/bundle/vundle  # 创建vundle的符号链接
+    vim # 进入vim 后 :BundleInstall
 
 截图
 ----
