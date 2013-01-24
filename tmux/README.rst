@@ -3,10 +3,12 @@
 手工安装
 --------
 
-依赖: fonts ,请先按照fonts/Readme.rst 安装字体
+依赖: powerline, 参照powerline/Readme.rst
 
 安装::
     
-    # 更新tmux-powerline
-    git submodule update --init tmux-powerline
+    # powerline的tmux扩展的主题配置文件
+    mkdir -p ~/.config/powerline/themes/tmux
+    ln -s $(readlink powerline/themes/tmux/default.json)  ~/.config/powerline/themes/tmux/default.json
+    # tmux.conf
     ln -s $(readlink tmux/.tmux.conf) ~/.tmux.conf

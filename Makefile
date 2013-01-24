@@ -19,7 +19,7 @@ powerline: fonts
 	pip install --upgrade git+git://github.com/Lokaltog/powerline
 	mkdir -p ~/.config/powerline/themes
 
-vim: fonts powerline
+vim: powerline
 
 	# install vundle 
 	git submodule update --init vim/vundle
@@ -38,7 +38,7 @@ git:
 
 	ln -s $(CURDIR)/git/.gitconfig ~/.gitconfig
 
-tmux: fonts powerline
+tmux: powerline
 
 	# powerline for tmux
 	mkdir -p ~/.config/powerline/themes/tmux
