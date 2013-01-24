@@ -3,8 +3,9 @@
 
 usage:
 
-	@echo "Usage: make item(s)"
-	@echo "items can be :"
+	@echo "Usage: "
+	@echo "  make item(s)"
+	@echo "items can be:"
 	@echo "  vim fonts conky git tmux sakura bash"
 	@echo "use 'make all' to setup all."
 
