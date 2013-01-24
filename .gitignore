@@ -4,3 +4,6 @@
 .ropeproject/
 dircolors-solarized/*
 tmux-powerline/*
+build/
+Powerline.egg-info/
+

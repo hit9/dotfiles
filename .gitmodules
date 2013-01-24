@@ -4,3 +4,6 @@
 [submodule "vim/vundle"]
 	path = vim/vundle
 	url = https://github.com/gmarik/vundle
+[submodule "Lokaltog-powerline"]
+	path = Lokaltog-powerline
+	url = https://github.com/Lokaltog/powerline/

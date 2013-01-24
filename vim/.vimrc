@@ -153,8 +153,8 @@ Bundle "rson/vim-conque"
 "Powerline
 "状态栏
 set laststatus=2
-"你需要提前装powerline  : pip install git+git://github.com/Lokaltog/powerline
-python from powerline.bindings.vim import source_plugin; source_plugin()
+"powerline  : pip install git+git://github.com/Lokaltog/powerline
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Jquery
 Bundle "jQuery"
 "Python Model
