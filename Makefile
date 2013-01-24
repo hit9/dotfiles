@@ -1,5 +1,5 @@
 # vim:set noet: 
-.PHONY : usage vim conky fonts git
+.PHONY : usage vim conky fonts git tmux sakura bash
 
 usage:
 
@@ -32,13 +32,17 @@ powerline: fonts
 
 vim: powerline
 
-	# install vundle 
 	git submodule update --init vim/vundle
 	mkdir -p ~/.vim/bundle/ 
 	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
-	# vimrc
 	ln $(LNSOPT) $(CURDIR)/vim/.vimrc ~/.vimrc
 	vim -c "BundleInstall"
+
+tmux: powerline
+
+	mkdir -p ~/.config/powerline/themes/tmux
+	ln $(LNSOPT) $(CURDIR)/powerline/themes/tmux/default.json  ~/.config/powerline/themes/tmux/default.json
+	ln $(LNSOPT) $(CURDIR)/tmux/.tmux.conf  ~/.tmux.conf
 
 conky:
 
@@ -48,13 +52,6 @@ conky:
 git:
 
 	ln $(LNSOPT) $(CURDIR)/git/.gitconfig ~/.gitconfig
-
-tmux: powerline
-
-	# powerline for tmux
-	mkdir -p ~/.config/powerline/themes/tmux
-	ln $(LNSOPT) $(CURDIR)/powerline/themes/tmux/default.json  ~/.config/powerline/themes/tmux/default.json
-	ln $(LNSOPT) $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
 
 bash: fonts
 
@@ -67,4 +64,4 @@ sakura: fonts
 
 	ln $(LNSOPT) $(CURDIR)/sakura/.config/sakura/sakura.conf  ~/.config/sakura/sakura.conf
 
-all: bash vim tmux sakura git conky
+all: sakura git conky bash tmux vim
