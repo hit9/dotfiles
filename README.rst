@@ -14,6 +14,10 @@
 
     make vim conky
 
+强制建立软链接进行安装::
+
+    make vim force=1
+
 安装所有::
 
     make all
