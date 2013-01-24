@@ -8,5 +8,5 @@
 安装::
     
     # 更新tmux-powerline
-    git submodule update --init
+    git submodule update --init tmux-powerline
     ln -s $(readlink tmux/.tmux.conf) ~/.tmux.conf
