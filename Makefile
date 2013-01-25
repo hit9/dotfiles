@@ -1,5 +1,5 @@
 # vim:set noet: 
-.PHONY : usage vim conky fonts git tmux sakura bash
+.PHONY : usage conky fonts git sakura bash vim zsh tmux
 
 usage:
 
@@ -70,4 +70,9 @@ sakura: fonts
 
 	ln $(LNSOPT) $(CURDIR)/sakura/.config/sakura/sakura.conf  ~/.config/sakura/sakura.conf
 
-all: sakura git conky bash tmux vim
+zsh: powerline 
+
+	ln $(LNSOPT) $(CURDIR)/oh-my-zsh ~/.oh-my-zsh
+	ln $(LNSOPT) $(CURDIR)/zsh/.zshrc ~/.zshrc
+
+all: sakura git conky bash tmux vim zsh
