@@ -5,7 +5,8 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="sporty_256"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -40,6 +41,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/hit9/.rvm/bin
 
 export TERM=screen-256color
+
+# dircolors-solarized : https://github.com/seebi/dircolors-solarized
+eval `dircolors ~/dircolors.256dark`
 
 # powerline 
 
