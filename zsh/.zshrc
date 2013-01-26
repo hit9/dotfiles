@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="sporty_256"
+ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,38 +45,19 @@ export TERM=screen-256color
 # dircolors-solarized : https://github.com/seebi/dircolors-solarized
 eval `dircolors ~/dircolors.256dark`
 
-# powerline 
-
-_powerline_precmd() {
-	export PS1="$(powerline-prompt --renderer_module=zsh_prompt --last_exit_code=$? --last_pipe_status="$pipestatus" left)"
-	export RPS1="$(powerline-prompt --renderer_module=zsh_prompt --last_exit_code=$? --last_pipe_status="$pipestatus" right)"
-	_powerline_tmux_set_pwd
+# powerline-shell
+function powerline_precmd() {
+  export PS1="$(powerline-bash.py $? --shell zsh)"
 }
 
-_powerline_tmux_setenv() {
-	if [[ -n "$TMUX" ]]; then
-		tmux setenv TMUX_"$1"_$(tmux display -p "#D" | tr -d %) "$2"
-	fi
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
 }
 
-_powerline_tmux_set_pwd() {
-	_powerline_tmux_setenv PWD "$PWD"
-}
+install_powerline_precmd
 
-_powerline_tmux_set_columns() {
-	_powerline_tmux_setenv COLUMNS "$COLUMNS"
-}
-
-_powerline_install_precmd() {
-	for f in "${precmd_functions[@]}"; do
-		if [[ "$f" = "_powerline_precmd" ]]; then
-			return
-		fi
-	done
-	precmd_functions+=(_powerline_precmd)
-}
-
-trap "_powerline_tmux_set_columns" SIGWINCH
-kill -SIGWINCH $$
-
-_powerline_install_precmd
