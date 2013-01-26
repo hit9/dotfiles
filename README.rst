@@ -24,6 +24,20 @@
 
 手工安装:在各自目录下有安装说明
 
+
+使用的第三方工具(submodule)
+---------------------------
+
+prompt: powerline-shell 
+
+tmux: powerline
+
+vim: vundle
+
+ls: dircolors-solarized
+
+zsh: oh-my-zsh
+
 截图
 ----
 
