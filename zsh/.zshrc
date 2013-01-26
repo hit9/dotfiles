@@ -48,6 +48,9 @@ export TERM=screen-256color
 # dircolors-solarized : https://github.com/seebi/dircolors-solarized
 eval `dircolors ~/dircolors.256dark`
 
+# alias for reload zshrc
+alias reload!='. ~/.zshrc'
+
 # powerline-shell
 function powerline_precmd() {
   export PS1="$(powerline-bash.py $? --shell zsh)"
