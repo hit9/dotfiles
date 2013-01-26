@@ -59,10 +59,14 @@ git:
 
 	ln $(LNSOPT) $(CURDIR)/git/.gitconfig ~/.gitconfig
 
-bash: fonts submodule
+dircolors-solarized:  submodule
 
 	cd dircolors-solarized; git checkout master ; git pull ;
 	ln $(LNSOPT) $(CURDIR)/dircolors-solarized/dircolors.256dark ~/dircolors.256dark
+	
+
+bash: fonts dircolors-solarized
+
 	cd powerline-shell; git checkout master; git pull ; python setup.py install
 	ln $(LNSOPT) $(CURDIR)/bash/.bashrc ~/.bashrc
 
@@ -70,7 +74,7 @@ sakura: fonts
 
 	ln $(LNSOPT) $(CURDIR)/sakura/.config/sakura/sakura.conf  ~/.config/sakura/sakura.conf
 
-zsh: powerline 
+zsh: powerline dircolors-solarized
 
 	ln $(LNSOPT) $(CURDIR)/oh-my-zsh ~/.oh-my-zsh
 	ln $(LNSOPT) $(CURDIR)/zsh/.zshrc ~/.zshrc
