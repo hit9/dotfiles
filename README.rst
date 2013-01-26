@@ -1,7 +1,7 @@
 关于
 ----
 
-托管vim, bash, git, tmux, sakura, conky,配置文件的repo.用于在系统crash之后快速地恢复工作环境。
+托管vim, bash, zsh, git, tmux, sakura, conky,配置文件的repo.用于在系统crash之后快速地恢复工作环境。
 
 安装
 ----
