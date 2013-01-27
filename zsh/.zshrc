@@ -50,6 +50,8 @@ eval `dircolors ~/dircolors.256dark`
 
 # alias for reload zshrc
 alias reload!='. ~/.zshrc'
+# alias for quick server
+alias pyserver='python -m SimpleHTTPServer'
 
 # powerline-shell
 function powerline_precmd() {
