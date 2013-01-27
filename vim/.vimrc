@@ -149,6 +149,15 @@ set list
 "list键的填充字符
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
+"根据文件类型设定缩进,覆盖掉默认的~,来自humiaozuzu
+autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+
 "--------------- 系统剪切板 --------------------------
 
 "注意：以下的ctrl-c,ctrl-v快捷键需要你安装了gvim
