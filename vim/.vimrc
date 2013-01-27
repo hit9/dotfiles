@@ -6,8 +6,10 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-"solarized 主题
+"---------------------------- 配色 -------------------------{{{
+"solarized 配色
 Bundle "altercation/vim-colors-solarized"
+"-----------------------------------------------------------}}}
 "自动补全插件
 Bundle 'neocomplcache'
 "jsbeautify
@@ -51,6 +53,9 @@ Bundle "Lokaltog/vim-easymotion"
 
 "vim git 插件
 Bundle "tpope/vim-fugitive"
+
+"最近流行的插件，用于维护剪切板
+Bundle "YankRing.vim"
 
 "-------------- for Python programmers ------------{{{
 "Python.vim
