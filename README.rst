@@ -43,4 +43,4 @@ zsh: oh-my-zsh
 
 有部分工具有截图，在各自的目录的README中。
 
-.. image:: https://raw.github.com/hit9/dotfiles/master/Screenshot.png
+.. image:: https://raw.github.com/hit9/dotfiles/master/Screenshot.gif

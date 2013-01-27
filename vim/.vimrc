@@ -252,6 +252,7 @@ let g:pep8_map='<C-k>'
 "依赖于ctags, ubuntu下apt-get install ctags安装。这个插件适合面向对象程序员
 let g:tagbar_width=30
 let g:tagbar_autofocus = 1
+:command -range=% TT : TagbarToggle
 "----------------------------------------------------}}}
 "tagbar 宽度
 let g:gundo_width=30
