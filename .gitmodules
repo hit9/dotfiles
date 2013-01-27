@@ -13,3 +13,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh
+[submodule "vim/pyflakes"]
+	path = vim/pyflakes
+	url = https://github.com/kevinw/pyflakes.git

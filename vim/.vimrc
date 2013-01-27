@@ -6,7 +6,6 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-
 "solarized 主题
 Bundle "altercation/vim-colors-solarized"
 "自动补全插件
@@ -33,12 +32,6 @@ Bundle "rson/vim-conque"
 "Jquery
 Bundle "jQuery"
 
-"Python Model 这个插件有点太聪明
-"Bundle "klen/python-mode"
-
-"Python.vim
-Bundle "python.vim--Vasiliev"
-
 Bundle "pep8"
 
 "好插件啊：自动在类似==两边添加空格
@@ -52,6 +45,14 @@ Bundle "tpope/vim-commentary"
 
 "持久化的撤销操作插件, http://sjl.bitbucket.org/gundo.vim/ :GundoToggle
 Bundle 'sjl/gundo.vim'
+
+"-------------- for Python programmers ------------{{{
+"Python.vim
+Bundle "python.vim--Vasiliev"
+"语法错误检查插件,需要安装pyflakes  pip install git+git://github.com/kevinw/pyflakes.git
+Bundle "kevinw/pyflakes-vim"
+"--------------------------------------------------}}}
+
 "-------------------------------------------------------------}}}
 
 
@@ -96,6 +97,10 @@ hi CursorLine term=none cterm=none ctermbg=3
 set autochdir
 "800个字符以上的行不去高亮
 set synmaxcol=800
+set backspace=indent,eol,start
+"搜索
+set hlsearch
+set incsearch
 
 "------------------------------------------------------------------ }}}
 
@@ -173,6 +178,9 @@ set mouse=a
 "可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set selection=exclusive
 set selectmode=mouse,key
+"当敲键盘的时候隐藏鼠标指针
+set mousehide
+set mousemodel=popup
 
 "--------------------------- 折叠 -------------------------
 
@@ -197,6 +205,9 @@ set cpt=.,w,b
 
 " ---------------------------------  solarized {{{
 let g:solarized_termcolors=256  " 一定要这行在colorscheme solarized 之前
+let g:solarized_termtrans=1
+let g:solarized_contrast="high"
+"let g:solarized_visibility="high"
 "背景:暗色
 set background=dark
 colorscheme solarized
@@ -213,7 +224,7 @@ let g:nerdtree_tabs_open_on_gui_startup=1
 let g:nerdtree_tabs_open_on_console_startup=1
 "命令T跳转到左边nerdtree
 :command -range=% T : NERDTreeToggle
-"-------0000000000000000000000000----------------------- }}}
+"---------------------------------------------------------- }}}
 
 " ----------------------------------  Powerline ----------{{{
 "  美化状态栏
@@ -243,32 +254,37 @@ let g:gundo_width=30
 :command -range=% R :call Runit()
 
 func! Runit()
-	exec "w"
-	if &filetype == 'c'
-		exec "!gcc  % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
-	elseif &filetype == 'php'
-		exec "!php %"
-	elseif &filetype =='python'
-		exec "!python %"
-	elseif &filetype=='ruby'
-		exec "!ruby %"
-	elseif &filetype=='javascript'
-		exec "!js %"
-	elseif &filetype=='sh'
-		exec "!sh %"
-	elseif &filetype=='go'
-		exec "!go build %"
-		exec "! ./%<"
-	endif
+    exec "w"
+    if &filetype == 'c'
+        exec "!gcc  % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'java' 
+        exec "!javac %" 
+        exec "!java %<"
+    elseif &filetype == 'php'
+        exec "!php %"
+    elseif &filetype =='python'
+        exec "!python %"
+    elseif &filetype=='ruby'
+        exec "!ruby %"
+    elseif &filetype=='javascript'
+        exec "!js %"
+    elseif &filetype=='sh'
+        exec "!sh %"
+    elseif &filetype=='go'
+        exec "!go build %"
+        exec "! ./%<"
+    endif
 endfunc
 
 :command -range=% PEP8 :!autopep8 -i %
 
 "--------------------------------------------------------------------- }}}
+"-------------------------- 键 map-------------------------------------{{{
+"这样在normal模式下在一行中按下0就跳到了行首,按下9到行尾
+noremap 0 ^
+noremap 9 $
+"----------------------------------------------------------------------}}}
