@@ -32,7 +32,7 @@ prompt: powerline-shell
 
 tmux: powerline
 
-vim: vundle
+vim: vundle, pyflakes
 
 ls: dircolors-solarized
 

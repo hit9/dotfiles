@@ -49,6 +49,9 @@ Bundle 'sjl/gundo.vim'
 "用过vimoperator吗？那里的f键快速跳转叫你印象深刻吧
 Bundle "Lokaltog/vim-easymotion"
 
+"vim git 插件
+Bundle "tpope/vim-fugitive"
+
 "-------------- for Python programmers ------------{{{
 "Python.vim
 Bundle "python.vim--Vasiliev"
