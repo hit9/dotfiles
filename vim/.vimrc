@@ -46,6 +46,9 @@ Bundle "tpope/vim-commentary"
 "持久化的撤销操作插件, http://sjl.bitbucket.org/gundo.vim/ :GundoToggle
 Bundle 'sjl/gundo.vim'
 
+"用过vimoperator吗？那里的f键快速跳转叫你印象深刻吧
+Bundle "Lokaltog/vim-easymotion"
+
 "-------------- for Python programmers ------------{{{
 "Python.vim
 Bundle "python.vim--Vasiliev"
@@ -67,6 +70,8 @@ syntax enable
 se nu  "显示行号
 "终端模式:xterm-256color,这个终端模式支持功能键Home,End等
 set term=xterm-256color
+"终端下名字由vim设置
+set title
 "开启256 color
 set t_Co=256
 "允许有未保存的内容时切换缓冲区
@@ -98,9 +103,12 @@ set autochdir
 "800个字符以上的行不去高亮
 set synmaxcol=800
 set backspace=indent,eol,start
+set gdefault
 "搜索
 set hlsearch
 set incsearch
+
+set ruler
 
 "------------------------------------------------------------------ }}}
 
@@ -244,6 +252,8 @@ let g:tagbar_autofocus = 1
 "----------------------------------------------------}}}
 "tagbar 宽度
 let g:gundo_width=30
+"EasyMotion
+let g:EasyMotion_leader_key = '<Leader>'
 
 "-------------------------------------插件配置end-----------------------------}}}
 
