@@ -8,6 +8,8 @@
     git submodule update --init 
     # 更新vundle
     cd vim/vundle ; git checkout master ; git pull;
+    # 更新pyflakes
+    cd vim/pyflakes ; git checkout master ; git pull;
     # 创建.vim/bundle目录
     mkdir -p ~/.vim/bundle/  
     # 创建vundle的符号链接
@@ -23,6 +25,8 @@
 - :R 命令会运行当前文件(对于C文件会gcc后再运行，对于python文件直接python执行 etc.)
 - :PEP8 需要安装autopep8 ( ``pip install autopep8`` ), 会直接对正在编辑的py文件pep8转化
 - :T 会打开NerdTree
+  0 映射到^
+  9 映射到$
 
 插件说明
 --------

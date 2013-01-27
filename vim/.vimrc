@@ -252,7 +252,7 @@ let g:tagbar_autofocus = 1
 "----------------------------------------------------}}}
 "tagbar 宽度
 let g:gundo_width=30
-"EasyMotion
+"EasyMotion  \键
 let g:EasyMotion_leader_key = '<Leader>'
 
 "-------------------------------------插件配置end-----------------------------}}}
