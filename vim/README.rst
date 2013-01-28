@@ -28,7 +28,9 @@
 
 可以直接看vimrc来了解使用，都有详细的中文注释.
 
-Vim新手请看[VimCheatSheet.rst](https://github.com/hit9/dotfiles/blob/master/vim/VimCheatSheet.rst)
+Vim新手请看VimCheatSheet_
+
+.. _VimCheatSheet: https://github.com/hit9/dotfiles/blob/master/vim/VimCheatSheet.rst
 
 1. 命令
    ``:R`` 快速运行程序
