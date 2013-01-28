@@ -39,7 +39,7 @@ powerline: fonts submodule
 vim: powerline submodule
 
 	cd vim/vundle ; git checkout master ; git pull;
-	cd vim/pyflakes ; git checkout master ;git pull;
+	cd vim/pyflakes ; git checkout master ;git pull;python setup.py install;
 	mkdir -p ~/.vim/bundle/ 
 	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
 	ln $(LNSOPT) $(CURDIR)/vim/.vimrc ~/.vimrc

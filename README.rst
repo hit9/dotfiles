@@ -3,7 +3,9 @@
 
 托管vim, bash, zsh, git, tmux, sakura, conky,配置文件的repo.用于在系统crash之后快速地恢复工作环境。
 
-安装
+这个repo只托管了配置文件，而工具(如vim插件，oh-my-zsh, 用到的py脚本什么的)都是submodule。
+
+使用
 ----
 
 查看帮助::

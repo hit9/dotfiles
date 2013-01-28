@@ -9,7 +9,7 @@
     # 更新vundle
     cd vim/vundle ; git checkout master ; git pull;
     # 更新pyflakes
-    cd vim/pyflakes ; git checkout master ; git pull;
+    cd vim/pyflakes ; git checkout master ; git pull;python setup.py install;
     # 创建.vim/bundle目录
     mkdir -p ~/.vim/bundle/  
     # 创建vundle的符号链接
@@ -28,11 +28,17 @@
   0 映射到^
   9 映射到$
 
+VIM使用CheatSheet
+-----------------
+
+特别制作了一个VIM使用一览表:VimCheatSheet
+
 插件说明
 --------
 
 - tagbar依赖ctags , ubuntu下: ``sudo apt-get install ctags``
-
+    
+  pyflakes-vim 依赖pyflakes: ``pip install git+git://github.com/kevinw/pyflakes.git``
 
 截图
 ----
