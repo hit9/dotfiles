@@ -265,9 +265,10 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 "YankRing
 let g:yankring_enabled=1
-let g:yankring_window_height=7
+let g:yankring_window_height=10
 let g:yankring_window_auto_close=1
-" taglist
+
+"------------------ taglist
 " 只显示当前文件的tag
 let Tlist_Show_One_File = 1
 "taglist是最后一个的时候退出vim
