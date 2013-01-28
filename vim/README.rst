@@ -58,7 +58,7 @@ Vim新手请看VimCheatSheet_
 
    ``w+方向键`` 快速地在各个分割的窗口之间跳转
 
-   ``<leader>+w`` \键后按下w启动快速跳转.类似vimoperater中的f
+   ``<leader>+w`` ``\`` 键后按下w启动快速跳转.类似vimoperater中的f
 
 
 插件依赖
