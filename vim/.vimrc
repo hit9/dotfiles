@@ -184,13 +184,6 @@ autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 soft
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 "-------------------------------------------------------------------1}}}
 
-"--------------- 系统剪切板 --------------------------
-
-"注意：以下的ctrl-c,ctrl-v快捷键需要你安装了gvim
-"ctrl-c复制到系统剪切板
-map <C-c> "+y
-"ctrl-v粘贴到系统粘贴板
-map <C-v> "+p
 
 "-------------------------------鼠标-------------------------
 
@@ -271,9 +264,10 @@ let g:tagbar_width=23
 let g:tagbar_autoclose=1
 let g:tagbar_autoshowtag=1
 "默认程序启动就打开tagbar
-autocmd VimEnter * nested :TagbarOpen
+"autocmd VimEnter * nested :TagbarOpen
+autocmd FileType c,cpp,python,ruby,php,java,scala nested :TagbarOpen
 "在新标签中默认打开tagbar
-autocmd bufenter * nested :call tagbar#autoopen(0)
+"autocmd bufenter * nested :call tagbar#autoopen(0)
 "----------------------------------------------------2}}}
 
 "gundo 宽度
@@ -328,6 +322,13 @@ noremap w<left> <c-w><left>
 noremap w<right> <c-w><right>
 noremap w<down> <c-w><down>
 
+"--------------- 系统剪切板 ---------------
+
+"注意：以下的ctrl-c,ctrl-v快捷键需要你安装了gvim
+"ctrl-c复制到系统剪切板
+map <C-c> "+y
+"ctrl-v粘贴到系统粘贴板
+map <C-v> "+p
 "----------------------------------------------------------------------1}}}
 
 "--------------  用户自定义命令 --------------------------------------{{{1
