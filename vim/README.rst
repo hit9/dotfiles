@@ -23,23 +23,32 @@
     # 进入vim 后 :BundleInstall
     vim  -c "BundleInstall"
 
-使用说明
+使用
+----
+
+可以直接看vimrc来了解使用，都有详细的中文注释.
+
+Vim新手请看[VimCheatSheet.rst](https://github.com/hit9/dotfiles/blob/master/vim/VimCheatSheet.rst)
+
+1. 命令
+   ``:R`` 快速运行程序
+   ``:PEP8`` 对python程序执行PEP8自动修正(依赖autopep8: pip install autopep8)
+   ``:NT`` 打开NERDTree窗口浏览器
+   ``:TG`` 打开taglist窗口
+   ``:YR`` 打开持久化剪切板
+   ``:GD`` 打开Gundo窗口(持久化undo)
+
+2. 快捷键
+   ``Ctrl-C`` 复制到系统剪切板
+   ``Ctrl-V`` 从系统粘贴板粘贴 (注意:vim访问系统剪切板需要安装gvim)
+   ``0`` 普通模式下按下0跳到行首
+   ``9`` 普通模式下按下9跳到行尾
+   ``w+方向键`` 快速地在各个分割的窗口之间跳转
+   ``<leader>+w`` \键后按下w启动快速跳转.类似vimoperater中的f
+
+插件依赖
 --------
 
-- :R 命令会运行当前文件(对于C文件会gcc后再运行，对于python文件直接python执行 etc.)
-- :PEP8 需要安装autopep8 ( ``pip install autopep8`` ), 会直接对正在编辑的py文件pep8转化
-- :T 会打开NerdTree
-  0 映射到^
-  9 映射到$
-
-VIM使用CheatSheet
------------------
-
-特别制作了一个VIM使用一览表:VimCheatSheet
-
-插件说明
---------
-
-- tagbar依赖ctags , ubuntu下: ``sudo apt-get install ctags``
+- taglist依赖ctags , ubuntu下: ``sudo apt-get install ctags``
     
--  pyflakes-vim 依赖pyflakes: ``pip install git+git://github.com/kevinw/pyflakes.git``
+- pyflakes-vim 依赖pyflakes: ``pip install git+git://github.com/kevinw/pyflakes.git``
