@@ -1,29 +1,29 @@
-"首先，加载vundle!  ---------------------------------------{{{
-
+" -------- Bundles  ---------------------------------------{{{1
+"首先，加载vundle!
 set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-"---------------------------- 配色 -------------------------{{{
+"---------------------------- 配色 -------------------------{{{2
 "solarized 配色
 Bundle "altercation/vim-colors-solarized"
-"-----------------------------------------------------------}}}
+"-----------------------------------------------------------2}}}
 "自动补全插件
 Bundle 'neocomplcache'
 "jsbeautify
 Bundle 'jsbeautify'
 "autoclose:自动关闭括号,[],{}等，自动光标置中
 Bundle "jiangmiao/auto-pairs"
-" -------------- snipmate 插件:tab 补全 --- {{{
+" -------------- snipmate 插件:tab 补全 --- {{{2
 "snipmate的依赖
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/snipmate-snippets"
 "snipmate
 Bundle "garbas/vim-snipmate"
-"-----------------------------------}}}
+"-----------------------------------2}}}
 "窗口浏览器
 Bundle "scrooloose/nerdtree"
 
@@ -39,7 +39,7 @@ Bundle "pep8"
 "好插件啊：自动在类似==两边添加空格
 Bundle "auto"
 
-"tags插件~
+"tags插件,适合面向对象程序员
 Bundle "majutsushi/tagbar"
 
 "Oh,一个注释插件,\\注释一行或撤销注释一行
@@ -57,23 +57,25 @@ Bundle "tpope/vim-fugitive"
 "最近流行的插件，用于维护剪切板
 Bundle "YankRing.vim"
 
-"-------------- for Python programmers ------------{{{
+"-------------- for Python programmers ------------{{{2
 "Python.vim
 Bundle "python.vim--Vasiliev"
 "语法错误检查插件,需要安装pyflakes  pip install git+git://github.com/kevinw/pyflakes.git
-Bundle "kevinw/pyflakes-vim"
-"--------------------------------------------------}}}
+"Bundle "kevinw/pyflakes-vim"
+"Python mode
+Bundle "python-mode"
+"--------------------------------------------------2}}}
 
-"-------------------------------------------------------------}}}
+"-------------------------------------------------------------1}}}
 
 
-"-------------------- 根据文件类型 xxx (注意，放在bundle之后)--{{{
+"-------------------- 根据文件类型(注意，放在bundle之后)------{{{1
 " 针对不同的文件类型加载对应的插件
 " 针对不同的文件类型采用不同的缩进格式
 filetype plugin indent on   
-"--------------------------------------------------------------}}}
+"--------------------------------------------------------------1}}}
 
-"-------------- 基本-------------------------------------------{{{
+"-------------- 基本-------------------------------------------{{{1
 syntax enable
 se nu  "显示行号
 "终端模式:xterm-256color,这个终端模式支持功能键Home,End等
@@ -118,18 +120,18 @@ set incsearch
 
 set ruler
 
-"------------------------------------------------------------------ }}}
+"------------------------------------------------------------------ 1}}}
 
-" ------------------ gui ----------------------------{{{
+" ------------------ gui --------------------------------------------{{{1
 
 set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
 set guifont=Inconsolata-g\ for\ Powerline\ 13
 
-"------------------------------------------------------}}}
+"--------------------------------------------------------------------1}}}
 
-"-------------------- 编码 -----------------------------{{{
+"-------------------- 编码 -----------------------------------------{{{1
 
 "vim内部的编码
 set encoding=utf-8
@@ -140,9 +142,9 @@ set termencoding=utf-8
 "vim写入文件的时候采用的编码
 set fileencoding=utf-8
 
-"""-----------------------------------------------------}}}
+"""------------------------------------------------------------------1}}}
 
-"------------------- 缩进 -----------------------------{{{
+"---------------------------------- 缩进 -----------------------------{{{1
 "自动缩进
 set autoindent
 "类似C语言风格的缩进
@@ -152,9 +154,11 @@ set cindent
 "则取消缩进形式。此外还增加了识别C语言关键字的功能。
 "如果一行是以#开头的(比如宏)，那么这种格式将会被特殊对待而不采用缩进格式
 set smartindent
-"----------------------------------------------------------}}}
+"For Python Programmers
+autocmd FileType python set textwidth=79 " PEP-8 Friendly
+"----------------------------------------------------------------------1}}}
 
-"------------------ tab键 --------------------------------
+"------------------ tab键 --------------------------------------------{{{1
 
 "把输入的tab自动转换成空格，Python用户必用~
 set expandtab 
@@ -178,6 +182,7 @@ autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+"-------------------------------------------------------------------1}}}
 
 "--------------- 系统剪切板 --------------------------
 
@@ -217,9 +222,9 @@ set completeopt=longest,menu
 set cpt=.,w,b
 
 
-"- ------------------------ 插件配置 ----------------------------------------  {{{
+"- ------------------------ 插件配置 ----------------------------------------  {{{1
 
-" ---------------------------------  solarized {{{
+" ---------------------------------  solarized {{{2
 let g:solarized_termcolors=256  " 一定要这行在colorscheme solarized 之前
 let g:solarized_termtrans=1
 let g:solarized_contrast="high"
@@ -229,48 +234,59 @@ set background=dark
 colorscheme solarized
 "使vim在终端保持透明
 hi Normal ctermbg=NONE
-"-----------------------------------------------}}}
+"-----------------------------------------------2}}}
 
-"------------------------ neocomplcache插件:自动完成插件 {{{
+"------------------------ neocomplcache插件:自动完成插件 {{{2
 let g:neocomplcache_enable_at_startup = 1
-" ------------------------------------------------------- }}}
+" ------------------------------------------------------- 2}}}
 
-" --------------------- Nerdtree:窗口浏览器:NERDTreeToggle {{{
-let g:nerdtree_tabs_open_on_gui_startup=1
-let g:nerdtree_tabs_open_on_console_startup=1
+" --------------------- Nerdtree:窗口浏览器:NERDTreeToggle {{{2
+"vim启动的时候打开nerdtree
+"autocmd vimenter * NERDTree
+"打开一个未指明的文件时也打开nerdtree
+"autocmd vimenter * if !argc() | NERDTree | endif
+"最后只剩下nerdtree的时候关闭之
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"nerdtree 的宽度
+let NERDTreeWinSize = 23
+"显示行号
+let NERDTreeShowLineNumbers=1
 "命令T跳转到左边nerdtree
-:command -range=% T : NERDTreeToggle
-"---------------------------------------------------------- }}}
+"---------------------------------------------------------- 2}}}
 
-" ----------------------------------  Powerline ----------{{{
-"  美化状态栏
+" ----------------------------------  Powerline ----------{{{2
 "状态栏
 set laststatus=2
 "powerline  : pip install git+git://github.com/Lokaltog/powerline
 python from powerline.bindings.vim import source_plugin; source_plugin()
-" ------------------------------------------------ }}}
+" ------------------------------------------------ 2}}}
 
 "pep8, ctrl-k作为检查快捷键
 let g:pep8_map='<C-k>' 
 
-" - --------------------------------------tagbar {{{
+" - --------------------------------------tagbar {{{2
 "依赖于ctags, ubuntu下apt-get install ctags安装。这个插件适合面向对象程序员
-let g:tagbar_width=30
-let g:tagbar_autofocus = 1
-:command -range=% TT : TagbarToggle
-"----------------------------------------------------}}}
-"tagbar 宽度
-let g:gundo_width=30
+let g:tagbar_autofocus = 0
+let g:tagbar_width=23
+let g:tagbar_autoclose=1
+let g:tagbar_autoshowtag=1
+"默认程序启动就打开tagbar
+autocmd VimEnter * nested :TagbarOpen
+"在新标签中默认打开tagbar
+autocmd bufenter * nested :call tagbar#autoopen(0)
+"----------------------------------------------------2}}}
+
+"gundo 宽度
+let g:gundo_width=23
+
 "EasyMotion  \键
 let g:EasyMotion_leader_key = '<Leader>'
 
-"-------------------------------------插件配置end-----------------------------}}}
-
-" -----------------------------------------------------------------自定义命令 {{{
-
-
-" ----------------------------- :R 命令快速运行程序  ---------------------
-:command -range=% R :call Runit()
+"YankRing
+let g:yankring_enabled=1
+let g:yankring_window_height=7
+let g:yankring_window_auto_close=1
+"-------------------------------------插件配置end-----------------------------1}}}
 
 func! Runit()
     exec "w"
@@ -299,11 +315,32 @@ func! Runit()
     endif
 endfunc
 
-:command -range=% PEP8 :!autopep8 -i %
 
-"--------------------------------------------------------------------- }}}
-"-------------------------- 键 map-------------------------------------{{{
+"-------------------------- 键 map-------------------------------------{{{1
+
 "这样在normal模式下在一行中按下0就跳到了行首,按下9到行尾
 noremap 0 ^
 noremap 9 $
-"----------------------------------------------------------------------}}}
+
+"快速的通过w和方向键在窗口之间跳转
+noremap w<up> <c-w><up>
+noremap w<left> <c-w><left>
+noremap w<right> <c-w><right>
+noremap w<down> <c-w><down>
+
+"----------------------------------------------------------------------1}}}
+
+"--------------  用户自定义命令 --------------------------------------{{{1
+":R快速执行程序
+:command -range=% R :call Runit()
+"自动PEP8修改当前py文件
+:command -range=% PEP8 :!autopep8 -i %
+"打开/关闭Nerdtree
+:command -range=% NT :NERDTreeToggle
+"打开/关闭tagbar
+:command -range=% TG :TagbarToggle
+"打开YankRing
+:command -range=% YR :YRShow
+"打开关闭Gundo
+:command -range=% GD :GundoToggle
+"---------------------------------------------------------------------1}}}
