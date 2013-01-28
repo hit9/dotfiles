@@ -277,7 +277,13 @@ let Tlist_Auto_Open=1
 let Tlist_Auto_Highlight_Tag=1
 let Tlist_Use_Right_Window=1
 let Tlist_WinWidth=27
-"
+
+"---------------------- Conque
+let g:ConqueTerm_TERM = 'xterm-256color'
+let g:ConqueTerm_EscKey = '<Esc>'
+let g:ConqueTerm_ReadUnfocused = 1 " keep updating when not in buffer
+let g:ConqueTerm_CWInsert = 1 " Can <C-w> out of a terminal buffer
+
 "-------------------------------------插件配置end-----------------------------1}}}
 
 func! Runit()
