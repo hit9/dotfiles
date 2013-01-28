@@ -39,8 +39,7 @@ Bundle "pep8"
 "好插件啊：自动在类似==两边添加空格
 Bundle "auto"
 
-"tags插件,适合面向对象程序员
-Bundle "majutsushi/tagbar"
+Bundle "taglist.vim"
 
 "Oh,一个注释插件,\\注释一行或撤销注释一行
 Bundle "tpope/vim-commentary"
@@ -63,7 +62,7 @@ Bundle "python.vim--Vasiliev"
 "语法错误检查插件,需要安装pyflakes  pip install git+git://github.com/kevinw/pyflakes.git
 "Bundle "kevinw/pyflakes-vim"
 "Python mode
-Bundle "python-mode"
+Bundle "klen/python-mode"
 "--------------------------------------------------2}}}
 
 "-------------------------------------------------------------1}}}
@@ -257,18 +256,6 @@ python from powerline.bindings.vim import source_plugin; source_plugin()
 "pep8, ctrl-k作为检查快捷键
 let g:pep8_map='<C-k>' 
 
-" - --------------------------------------tagbar {{{2
-"依赖于ctags, ubuntu下apt-get install ctags安装。这个插件适合面向对象程序员
-let g:tagbar_autofocus = 0
-let g:tagbar_width=23
-let g:tagbar_autoclose=1
-let g:tagbar_autoshowtag=1
-"默认程序启动就打开tagbar
-"autocmd VimEnter * nested :TagbarOpen
-autocmd FileType c,cpp,python,ruby,php,java,scala nested :TagbarOpen
-"在新标签中默认打开tagbar
-"autocmd bufenter * nested :call tagbar#autoopen(0)
-"----------------------------------------------------2}}}
 
 "gundo 宽度
 let g:gundo_width=23
@@ -280,6 +267,17 @@ let g:EasyMotion_leader_key = '<Leader>'
 let g:yankring_enabled=1
 let g:yankring_window_height=7
 let g:yankring_window_auto_close=1
+" taglist
+" 只显示当前文件的tag
+let Tlist_Show_One_File = 1
+"taglist是最后一个的时候退出vim
+let Tlist_Exit_OnlyWindow = 1
+"open taglist on vim startup
+let Tlist_Auto_Open=1
+let Tlist_Auto_Highlight_Tag=1
+let Tlist_Use_Right_Window=1
+let Tlist_WinWidth=27
+"
 "-------------------------------------插件配置end-----------------------------1}}}
 
 func! Runit()
@@ -339,7 +337,7 @@ map <C-v> "+p
 "打开/关闭Nerdtree
 :command -range=% NT :NERDTreeToggle
 "打开/关闭tagbar
-:command -range=% TG :TagbarToggle
+:command -range=% TG :TlistToggle
 "打开YankRing
 :command -range=% YR :YRShow
 "打开关闭Gundo
