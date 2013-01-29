@@ -28,9 +28,7 @@
 
 可以直接看vimrc来了解使用，都有详细的中文注释.
 
-Vim新手请看VimCheatSheet_
-
-.. _VimCheatSheet: https://github.com/hit9/dotfiles/blob/master/vim/VimCheatSheet.rst
+Vim新手请看http://coolshell.cn/articles/5426.html
 
 1. 命令
 
