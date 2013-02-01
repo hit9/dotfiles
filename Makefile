@@ -82,4 +82,8 @@ zsh: fonts dircolors-solarized  powerline-shell
 	ln $(LNSOPT) $(CURDIR)/oh-my-zsh ~/.oh-my-zsh
 	ln $(LNSOPT) $(CURDIR)/zsh/.zshrc ~/.zshrc
 
+ipython: powerline 
+
+	ln $(LNSOPT) $(CURDIR)/ipython/ipython_config.py ~/.ipython/profile_default/
+
 all: sakura git conky bash tmux vim zsh
