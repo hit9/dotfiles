@@ -1,5 +1,5 @@
 # vim:set noet: 
-.PHONY : usage conky fonts git sakura bash vim zsh tmux
+.PHONY : usage conky fonts git sakura bash vim zsh tmux ipython
 
 usage:
 
