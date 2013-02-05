@@ -66,6 +66,8 @@ Bundle "python.vim--Vasiliev"
 "Bundle "kevinw/pyflakes-vim"
 "Python mode
 Bundle "klen/python-mode"
+"pep8 indent.很久以前我就在尋思這個插件，沒有人實現那.現在有啦！好東西哦
+Bundle "hynek/vim-python-pep8-indent"
 "--------------------------------------------------2}}}
 
 "-------------------------------------------------------------1}}}
@@ -292,6 +294,8 @@ let g:ConqueTerm_CWInsert = 1 " Can <C-w> out of a terminal buffer
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+"--------------------  for pythonist, use vim-pep8-indent instead of pymode
+let g:pymode_indent = 0
 
 "-------------------------------------插件配置end-----------------------------1}}}
 
