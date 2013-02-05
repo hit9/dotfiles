@@ -56,6 +56,9 @@ Bundle "tpope/vim-fugitive"
 "最近流行的插件，用于维护剪切板
 Bundle "YankRing.vim"
 
+"for js
+Bundle "pangloss/vim-javascript"
+
 "-------------- for Python programmers ------------{{{2
 "Python.vim
 Bundle "python.vim--Vasiliev"
@@ -284,6 +287,11 @@ let g:ConqueTerm_TERM = 'xterm-256color'
 let g:ConqueTerm_EscKey = '<Esc>'
 let g:ConqueTerm_ReadUnfocused = 1 " keep updating when not in buffer
 let g:ConqueTerm_CWInsert = 1 " Can <C-w> out of a terminal buffer
+
+"---------------------- vim-javascript
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 
 "-------------------------------------插件配置end-----------------------------1}}}
 
