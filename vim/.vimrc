@@ -299,6 +299,11 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 "--------------------  for pythonist, use vim-pep8-indent instead of pymode
 let g:pymode_indent = 0
+" Dont Load rope plugin
+let g:pymode_rope = 0
+" Disable pylint checking every save
+let g:pymode_lint_write = 0
+
 
 "-------------------------------------插件配置end-----------------------------1}}}
 
