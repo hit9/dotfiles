@@ -3,24 +3,35 @@
 
 托管vim, bash, zsh, git, tmux, sakura, conky,配置文件的repo.用于在系统crash之后快速地恢复工作环境。
 
-这个repo只托管了配置文件，而工具(如vim插件，oh-my-zsh, 用到的py脚本什么的)都是submodule的方式.
+管理的方法
+----------
+
+这份dotfiles把所管理项目的配置文件集中放在dotfiles这个目录下(源的目录中). 通过建立指向dotfiles目录下配置文件的软链接来使配置文件生效。比如: vimrc 的文件实际存放在 `dotfiles/vim/.vimrc`, 我们建立如下的软链接来使告诉vim使用这份vimrc:
+
+    ln -s /path/to/dotfiles/vim/.vimrc ~/.vimrc
+
+而我们不必把使用到的工具(比如vim插件，终端增强工具,oh-my-zsh)等copy到这个源里，我们只要使用submodule即可(submodule就像一个指针，指向那个源的地址)
+
+另外，vim的插件全部使用vundle管理的。
 
 支持的工具配置文件
 -----------------
 
-- git: .gitconfig
+(括号中是该配置文件使用了的Submodule)
 
-- vim: .vimrc (vundle，powerline)
+- git: `.gitconfig`
 
-- bash: .bashrc (dircolors-solarized)
+- vim: `.vimrc (vundle，powerline)`
 
-- zsh: .zshrc (oh-my-zsh.dircolors-solarized)
+- bash: `.bashrc (dircolors-solarized)`
 
-- conky: .conky/  .conky
+- zsh: `.zshrc (oh-my-zsh.dircolors-solarized)`
 
-- tmux: .tmux.conf (powerline)
+- conky: `.conky/`, `.conky`
 
-- sakura: .sakura.conf
+- tmux: `.tmux.conf (powerline)`
+
+- sakura: `.sakura.conf`
 
 我如何使用
 ----------
