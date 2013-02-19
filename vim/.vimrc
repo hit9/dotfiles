@@ -72,6 +72,8 @@ Bundle "hynek/vim-python-pep8-indent"
 "----------- for coffee-script---------------------{{{2
 Bundle "vim-coffee-script"
 "---------------------------------------------------2}}}
+"less syntax
+Bundle "groenewege/vim-less"
 
 "-------------------------------------------------------------1}}}
 
