@@ -1,5 +1,5 @@
 # vim:set noet: 
-.PHONY : vim tmux
+.PHONY : vim tmux iterm2
 
 iLNSOPT=-s
 
@@ -20,3 +20,6 @@ vim:
 
 tmux:
 	ln $(LNSOPT) $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
+
+iterm2:
+	ln $(LNSOPT) $(CURDIR)/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
