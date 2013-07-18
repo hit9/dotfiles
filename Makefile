@@ -1,5 +1,5 @@
 # vim:set noet: 
-.PHONY : vim
+.PHONY : vim tmux
 
 iLNSOPT=-s
 
@@ -16,3 +16,7 @@ vim:
 	ln $(LNSOPT) $(CURDIR)/vim/.vimrc ~/.vimrc
 	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
 	vim -c "BundleInstall"
+
+
+tmux:
+	ln $(LNSOPT) $(CURDIR)/tmux/.tmux.conf ~/.tmux.conf
