@@ -7,18 +7,33 @@ Mac branch.
 vim
 ---
 
-系统依赖: ctags
+1. 系统依赖: ctags
 
-mac安装ctags:
+2. mac安装ctags:
 
-- Download ctags from http://ctags.sourceforge.net/
-- extract it, and 
+  - Download ctags from http://ctags.sourceforge.net/
+  - extract it, and 
+
+    ```
+    ./configure
+    sudo make install
+    ```
+
+3. 然后:
 
   ```
-  ./configure
-  sudo make install
+  $ make vim
   ```
 
-然后:
+tmux
+----
 
-    $ make vim
+    $ make tmux
+
+
+iterm2
+------
+
+    $ make iterm2
+
+然后安装iterm2/badwolf.itermcolors
