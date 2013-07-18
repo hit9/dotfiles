@@ -1,7 +1,7 @@
 # vim:set noet: 
 .PHONY : vim tmux iterm2
 
-iLNSOPT=-s
+LNSOPT=-s
 
 ifdef force
 	ifeq ($(force),1)
