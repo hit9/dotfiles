@@ -388,7 +388,7 @@ map <C-v> "+p
 "打开/关闭Nerdtree
 :command NT :NERDTreeToggle
 "打开/关闭tagbar
-:command G :TlistToggle
+:command TG :TlistToggle
 "打开YankRing
 :command YR :YRShow
 "打开关闭Gundo
