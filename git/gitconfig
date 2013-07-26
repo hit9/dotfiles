@@ -1,0 +1,22 @@
+[user]
+	name = hit9
+	email = nz2324@126.com
+[merge]
+    tool = vimdiff
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 296x71+1+58
+	history-view-vpane-position = 549
+	main-window-view = FileView
+    file-view-vpane-position = 538
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+[diff]
+	tool = vimdiff
+[core]
+	editor = /usr/bin/vim
