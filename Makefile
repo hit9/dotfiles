@@ -1,5 +1,5 @@
-# vim:set noet: 
-.PHONY : vim tmux iterm2 zsh git
+# vim:set noet:
+.PHONY : vim tmux iterm2 zsh git conky
 
 LNSOPT=-s
 
@@ -14,7 +14,7 @@ submodule:
 
 vim: submodule
 	cd vim/vundle ; git checkout master ; git pull;
-	mkdir -p ~/.vim/bundle/ 
+	mkdir -p ~/.vim/bundle/
 	ln $(LNSOPT) $(CURDIR)/vim/vimrc ~/.vimrc
 	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
 	vim -c "BundleInstall"
@@ -30,6 +30,10 @@ zsh: submodule
 	ln $(LNSOPT) $(CURDIR)/zsh/zshrc ~/.zshrc
 	ln $(LNSOPT) $(CURDIR)/zsh/oh-my-zsh ~/.oh-my-zsh
 
-
-git: 
+git:
 	ln $(LNSOPT) $(CURDIR)/git/gitconfig ~/.gitconfig
+
+conky:
+
+	ln $(LNSOPT) $(CURDIR)/conky/conkyrc ~/.conkyrc
+	ln $(LNSOPT) $(CURDIR)/conky/conky ~/.conky
