@@ -60,3 +60,7 @@ export EDITOR=vim
 export TERM=screen-256color-bce
 
 source /home/hit9/.rvm/scripts/rvm
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+source ~/.z.sh

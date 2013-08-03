@@ -1,5 +1,5 @@
 # vim:set noet:
-.PHONY : vim tmux iterm2 zsh git conky sakura
+.PHONY : vim tmux iterm2 zsh git conky sakura z
 
 LNSOPT=-s
 
@@ -34,10 +34,12 @@ git:
 	ln $(LNSOPT) $(CURDIR)/git/gitconfig ~/.gitconfig
 
 conky:
-
 	ln $(LNSOPT) $(CURDIR)/conky/conkyrc ~/.conkyrc
 	ln $(LNSOPT) $(CURDIR)/conky/conky ~/.conky
 
 
 sakura:
 	ln $(LNSOPT) $(CURDIR)/sakura/sakura.conf ~/.config/sakura/sakura.conf
+
+z:
+	ln $(LNSOPT) $(CURDIR)/z/z.sh ~/.z.sh
