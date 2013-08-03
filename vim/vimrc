@@ -152,7 +152,7 @@ set nowrap
 set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
-set guifont=Inconsolata-g\ 14
+set guifont=Inconsolata-dz\ for\ Powerline\ 12
 
 "--------------------------------------------------------------------1}}}
 
