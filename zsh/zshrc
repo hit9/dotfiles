@@ -64,3 +64,7 @@ source /home/hit9/.rvm/scripts/rvm
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 source ~/.z.sh
+
+export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
+
+k!(){ack-grep "$*" --color | less -R }
