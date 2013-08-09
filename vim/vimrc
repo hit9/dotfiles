@@ -275,7 +275,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeWinSize = 23
 "显示行号
 let NERDTreeShowLineNumbers=1
-"命令T跳转到左边nerdtree
+let NERDTreeIgnore=['\.pyc$', '\~$']
 "---------------------------------------------------------- 2}}}
 
 " ----------------------------------  Powerline ----------{{{2
