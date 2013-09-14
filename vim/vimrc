@@ -17,9 +17,13 @@ Bundle "tomasr/molokai"
 "sjl/badwolf, nice skin!
 Bundle "sjl/badwolf"
 
-Bundle "Lokaltog/vim-powerline"
+" Bundle "Lokaltog/vim-powerline"
 
 "-----------------------------------------------------------2}}}
+
+"statusline
+Bundle "itchyny/lightline.vim"
+
 "自动补全插件
 Bundle 'neocomplcache'
 "jsbeautify
@@ -142,8 +146,11 @@ set gdefault
 set hlsearch
 set incsearch
 
-set ruler
 set nowrap
+
+"状态栏
+set laststatus=2
+set ruler
 
 "
 "------------------------------------------------------------------ 1}}}
@@ -279,11 +286,6 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeIgnore=['\.pyc$', '\~$']
 "---------------------------------------------------------- 2}}}
 
-" ----------------------------------  Powerline ----------{{{2
-"状态栏
-set laststatus=2
-let g:Powerline_symbols='fancy'
-"----------------------------------------------- 2}}}
 
 "pep8, ctrl-k作为检查快捷键
 let g:pep8_map='<C-k>'
