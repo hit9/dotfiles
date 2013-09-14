@@ -70,3 +70,5 @@ export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 k!(){ack-grep "$*" --color | less -R }
 
 alias todo=~/.todo
+
+set -o emacs
