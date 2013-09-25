@@ -68,7 +68,9 @@ source ~/.z.sh
 
 export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 
-k!(){ack-grep "$*" --color | less -R }
+k!(){ack-grep "$*" --color | less -R }  # ack search on ubuntu
+
+open(){gnome-open "$*"}  # open on ubuntu
 
 alias todo=~/.todo
 
