@@ -68,6 +68,9 @@ Bundle "tpope/vim-fugitive"
 "for js
 Bundle "pangloss/vim-javascript"
 
+"中文用户
+" Bundle "fcitx.vim"
+
 "-------------- for Python programmers ------------{{{2
 "Python.vim
 Bundle "python.vim--Vasiliev"

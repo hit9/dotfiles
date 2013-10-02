@@ -75,3 +75,5 @@ open(){gnome-open "$*"}  # open on ubuntu
 alias todo=~/.todo
 
 set -o emacs
+
+sizeof(){du -h "$*"}
