@@ -77,3 +77,11 @@ alias todo=~/.todo
 set -o emacs
 
 sizeof(){du -h "$*"}
+
+# go
+export GOROOT=$HOME/go
+export GOARCH=386
+export GOOS=linux
+export GOBIN=$GOROOT/bin
+export PATH=.:$PATH:$GOBIN
+export GOPATH=~/gopkgs
