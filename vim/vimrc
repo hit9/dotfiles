@@ -95,6 +95,10 @@ Bundle "tpope/vim-haml"
 ""
 Bundle "terryma/vim-multiple-cursors"
 
+Bundle "basepi/vim-conque"
+
+Bundle "juvenn/mustache.vim"
+
 "-------------------------------------------------------------1}}}
 
 
@@ -355,8 +359,7 @@ func! Runit()
     elseif &filetype=='sh'
         exec "!sh %"
     elseif &filetype=='go'
-        exec "!go build %"
-        exec "! ./%<"
+        exec "!go run %"
     elseif &filetype=='coffee'
         exec "!coffee %"
     elseif &filetype=='less'
