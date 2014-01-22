@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="arrow"
+ZSH_THEME="kennethreitz"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -35,7 +35,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)a
 
 
-plugins=(git python pip compleat  extract)
+plugins=(git python pip compleat  extract zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
