@@ -17,12 +17,14 @@ Bundle "altercation/vim-colors-solarized"
 Bundle "tomasr/molokai"
 "sjl/badwolf, nice skin!
 Bundle "sjl/badwolf"
-
-" Bundle "Lokaltog/vim-powerline"
+"很不错的一款配色
+Bundle "nanotech/jellybeans.vim"
+"blackboard 一直很经典
+Bundle "blackboard.vim"
 
 "-----------------------------------------------------------2}}}
 
-"statusline
+"statusline, 坚决摒弃vim-powerline, 我们不要使用补丁字体
 Bundle "itchyny/lightline.vim"
 
 "自动补全插件
@@ -265,10 +267,16 @@ set cpt=.,w,b
 " let g:solarized_visibility="high"
 "-----------------------------------------------2}}}
 " --------------------------------- molokai {{{2
-colorscheme molokai
-let g:rehash256 = 1
+" colorscheme molokai
+" let g:rehash256 = 1
 let g:molokai_original = 1
 "-----------------------------------------------2}}}
+
+"--------------------------------- lightline {{{2
+let g:lightline = {'colorscheme': 'wombat',}
+" ------------------------------------------- }}}
+
+colorscheme blackboard
 
 "背景:暗色
 set background=dark
