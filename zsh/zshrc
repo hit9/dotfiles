@@ -40,7 +40,7 @@ plugins=(git python pip compleat  extract zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/hit9/.rvm/bin
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.rvm/bin
 
 export TERM=screen-256color
 
@@ -60,11 +60,11 @@ export EDITOR=vim
 #
 export TERM=screen-256color-bce
 
-source /home/hit9/.rvm/scripts/rvm
+source $HOME/.rvm/scripts/rvm
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-source ~/.z.sh
+source $HOME/.z.sh
 
 export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 
