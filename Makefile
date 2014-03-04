@@ -33,9 +33,5 @@ zsh: submodule
 git:
 	ln $(LNSOPT) $(CURDIR)/git/gitconfig ~/.gitconfig
 
-conky:
-	ln $(LNSOPT) $(CURDIR)/conky/conkyrc ~/.conkyrc
-	ln $(LNSOPT) $(CURDIR)/conky/conky ~/.conky
-
 z:
 	ln $(LNSOPT) $(CURDIR)/z/z.sh ~/.z.sh
