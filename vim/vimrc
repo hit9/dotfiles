@@ -22,6 +22,8 @@ Bundle "nanotech/jellybeans.vim"
 "blackboard 一直很经典
 Bundle "blackboard.vim"
 
+Bundle "chriskempson/vim-tomorrow-theme"
+
 "-----------------------------------------------------------2}}}
 
 "statusline, 坚决摒弃vim-powerline, 我们不要使用补丁字体
@@ -276,7 +278,11 @@ let g:molokai_original = 1
 let g:lightline = {'colorscheme': 'wombat',}
 " ------------------------------------------- }}}
 
-colorscheme blackboard
+colorscheme desert
+
+if has("gui_macvim")
+    colorscheme blackboard
+endif
 
 "背景:暗色
 set background=dark
@@ -337,10 +343,9 @@ let g:html_indent_style1 = "inc"
 
 "--------------------  for pythonist, use vim-pep8-indent instead of pymode
 let g:pymode_indent = 0
-" Dont Load rope plugin
 let g:pymode_rope = 0
-" Disable pylint checking every save
-let g:pymode_lint_write = 0
+let g:pymode_lint_write = 1
+let g:pymode_lint = 1
 
 
 "-------------------------------------插件配置end-----------------------------1}}}

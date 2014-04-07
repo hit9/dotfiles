@@ -55,9 +55,8 @@ export LANG=en_US.UTF-8
 
 export EDITOR=vim
 
-# export PATH=$PATH:$(brew --prefix)/share/npm/bin
-#
-#
+export PATH=$PATH:$(brew --prefix)/share/npm/bin
+
 export TERM=screen-256color-bce
 
 source $HOME/.rvm/scripts/rvm
@@ -68,15 +67,12 @@ source $HOME/.z.sh
 
 export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 
-k!(){ack-grep "$*" --color | less -R }  # ack search on ubuntu
-
-open(){gnome-open "$*"}  # open on ubuntu
-
 alias todo=~/.todo
 
 set -o emacs
 
 sizeof(){du -h "$*"}
+procofport(){lsof -n -i4TCP:"$*" | grep LISTEN}
 
 # go
 export GOROOT=$HOME/go
@@ -85,3 +81,5 @@ export GOOS=linux
 export GOBIN=$GOROOT/bin
 export PATH=.:$PATH:$GOBIN
 export GOPATH=~/gopkgs
+
+alias goagent="python2.7 ~/goagent/local/proxy.py"
