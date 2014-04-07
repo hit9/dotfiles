@@ -12,6 +12,9 @@ vim插件使用vundle来安装，oh-my-zsh等其他工具作为submodule.
 
 对应每个工具在makefile中有其安装的脚本。
 
+所有配置文件都被软连接到其应当处于的位置，如`path/to/repo/dotfiles/vim/vimrc` 被软连接到 `~/.vimrc` 等等，这样
+配置文件才会对相应应用生效。
+
 First Step
 ----------
 
