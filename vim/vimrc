@@ -278,6 +278,11 @@ let g:molokai_original = 1
 let g:lightline = {'colorscheme': 'wombat',}
 " ------------------------------------------- }}}
 
+"Python的高亮
+let g:python_highlight_builtin_objs = 1
+let g:python_highlight_builtin_funcs = 1
+let g:python_highlight_exceptions = 1
+
 colorscheme desert
 
 if has("gui_macvim")
@@ -286,6 +291,7 @@ endif
 
 "背景:暗色
 set background=dark
+
 
 "使vim在终端保持透明
 hi Normal ctermbg=NONE
@@ -342,7 +348,7 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
 "--------------------  for pythonist, use vim-pep8-indent instead of pymode
-let g:pymode_indent = 0
+let g:pymode_indent = 1  "currently use pymode's indent
 let g:pymode_rope = 0
 let g:pymode_lint_write = 1
 let g:pymode_lint = 1
