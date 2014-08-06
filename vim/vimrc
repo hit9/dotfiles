@@ -1,5 +1,3 @@
-set rtp+=~/go/misc/vim  " add golang support
-
 " -------- Bundles  ---------------------------------------{{{1
 "首先，加载vundle!
 set nocompatible               " be iMproved
@@ -102,6 +100,19 @@ Bundle "terryma/vim-multiple-cursors"
 Bundle "basepi/vim-conque"
 
 Bundle "juvenn/mustache.vim"
+
+
+"------------------------------------ {{{2  spam
+Bundle "mattn/flappyvird-vim"
+"-------------------------------------- 2}}}
+" Donot use go's vim scripts, use its mirror on github.com
+Bundle "jnwhiteh/vim-golang"
+
+" thrift syntax
+Bundle "johnmorrow/vim-thrift"
+
+"salt files '*.sls'
+Bundle "saltstack/salt-vim"
 
 "-------------------------------------------------------------1}}}
 
