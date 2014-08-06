@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="kennethreitz"
+ZSH_THEME="hit9"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -54,12 +54,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export EDITOR=vim
-
-export PATH=$PATH:$(brew --prefix)/share/npm/bin
-
 export TERM=screen-256color-bce
-
-source $HOME/.rvm/scripts/rvm
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -82,4 +77,15 @@ export GOBIN=$GOROOT/bin
 export PATH=.:$PATH:$GOBIN
 export GOPATH=~/gopkgs
 
-alias goagent="python2.7 ~/goagent/local/proxy.py"
+# alias goagent="python2.7 ~/goagent/local/proxy.py"
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+alias ssdb-server=/usr/local/ssdb/ssdb-server
+alias ssdb-cli=/usr/local/ssdb/ssdb-cli
+
+
+# only mac
+export PATH=$PATH:$(brew --prefix)/share/npm/bin
+# only ruby
+source $HOME/.rvm/scripts/rvm
