@@ -35,7 +35,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)a
 
 
-plugins=(git python pip compleat  extract zsh-syntax-highlighting)
+plugins=(git python pip compleat  extract zsh-syntax-highlighting golang)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -69,14 +69,6 @@ set -o emacs
 sizeof(){du -h "$*"}
 procofport(){lsof -n -i4TCP:"$*" | grep LISTEN}
 
-# go
-export GOROOT=$HOME/go
-export GOARCH=386
-export GOOS=linux
-export GOBIN=$GOROOT/bin
-export PATH=.:$PATH:$GOBIN
-export GOPATH=~/gopkgs
-
 # alias goagent="python2.7 ~/goagent/local/proxy.py"
 
 source /usr/local/bin/virtualenvwrapper.sh
@@ -89,3 +81,6 @@ alias ssdb-cli=/usr/local/ssdb/ssdb-cli
 export PATH=$PATH:$(brew --prefix)/share/npm/bin
 # only ruby
 source $HOME/.rvm/scripts/rvm
+
+#gvm
+source $HOME/.gvm/scripts/gvm
