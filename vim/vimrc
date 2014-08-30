@@ -19,8 +19,13 @@ Bundle "sjl/badwolf"
 Bundle "nanotech/jellybeans.vim"
 "blackboard 一直很经典
 Bundle "blackboard.vim"
-
 Bundle "chriskempson/vim-tomorrow-theme"
+Bundle "noahfrederick/vim-hemisu"
+Bundle "goatslacker/mango.vim"
+Bundle "reedes/vim-colors-pencil"
+Bundle "junegunn/seoul256.vim"
+Bundle "morhetz/gruvbox"
+Bundle "cschlueter/vim-wombat"
 
 "-----------------------------------------------------------2}}}
 
@@ -31,6 +36,8 @@ Bundle "itchyny/lightline.vim"
 Bundle 'neocomplcache'
 "jsbeautify
 Bundle 'jsbeautify'
+"jslint
+Bundle "Shutnik/jshint2.vim"
 "autoclose:自动关闭括号,[],{}等，自动光标置中
 Bundle "jiangmiao/auto-pairs"
 " -------------- snipmate 插件:tab 补全 --- {{{2
@@ -102,9 +109,6 @@ Bundle "basepi/vim-conque"
 Bundle "juvenn/mustache.vim"
 
 
-"------------------------------------ {{{2  spam
-Bundle "mattn/flappyvird-vim"
-"-------------------------------------- 2}}}
 " Donot use go's vim scripts, use its mirror on github.com
 Bundle "jnwhiteh/vim-golang"
 
@@ -183,7 +187,7 @@ set ruler
 set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
-set guifont=Inconsolata-g:h15
+set guifont=Monaco:h14
 
 "--------------------------------------------------------------------1}}}
 
@@ -210,8 +214,6 @@ set cindent
 "则取消缩进形式。此外还增加了识别C语言关键字的功能。
 "如果一行是以#开头的(比如宏)，那么这种格式将会被特殊对待而不采用缩进格式
 set smartindent
-"For Python Programmers
-autocmd FileType python set textwidth=79 " PEP-8 Friendly
 "----------------------------------------------------------------------1}}}
 
 "------------------ tab键 --------------------------------------------{{{1
@@ -231,13 +233,13 @@ set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
 "根据文件类型设定缩进,覆盖掉默认的~,来自humiaozuzu
-autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 "-------------------------------------------------------------------1}}}
 
 
@@ -281,8 +283,8 @@ set cpt=.,w,b
 "-----------------------------------------------2}}}
 " --------------------------------- molokai {{{2
 " colorscheme molokai
-" let g:rehash256 = 1
-let g:molokai_original = 1
+let g:rehash256 = 1
+" let g:molokai_original = 1
 "-----------------------------------------------2}}}
 
 "--------------------------------- lightline {{{2
@@ -297,7 +299,7 @@ let g:python_highlight_exceptions = 1
 colorscheme desert
 
 if has("gui_macvim")
-    colorscheme blackboard
+    colorscheme molokai
 endif
 
 "背景:暗色
@@ -363,6 +365,9 @@ let g:pymode_indent = 1  "currently use pymode's indent
 let g:pymode_rope = 0
 let g:pymode_lint_write = 1
 let g:pymode_lint = 1
+
+"------------------- for js
+let jshint2_save = 1
 
 
 "-------------------------------------插件配置end-----------------------------1}}}
@@ -439,5 +444,8 @@ map <C-v> "+p
 "
 autocmd BufWrite *.c :WS
 autocmd BufWrite *.h :WS
+autocmd BufWrite *.go :WS
+autocmd BufWrite *.js :WS
+
 ":w!! to sudo write file
 cmap w!! w !sudo tee >/dev/null %
