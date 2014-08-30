@@ -84,3 +84,4 @@ source $HOME/.rvm/scripts/rvm
 
 #gvm
 source $HOME/.gvm/scripts/gvm
+export NODE_PATH=/usr/local/lib/node_modules
