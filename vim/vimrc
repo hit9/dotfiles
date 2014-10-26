@@ -187,7 +187,8 @@ set ruler
 set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
-set guifont=Monaco:h14
+" set guifont=Monaco:h14
+set guifont=Inconsolata-g:h14
 
 "--------------------------------------------------------------------1}}}
 
@@ -233,6 +234,7 @@ set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
 "根据文件类型设定缩进,覆盖掉默认的~,来自humiaozuzu
+autocmd FileType text setlocal textwidth=79
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
@@ -390,7 +392,7 @@ func! Runit()
     elseif &filetype=='ruby'
         exec "!ruby %"
     elseif &filetype=='javascript'
-        exec "!js %"
+        exec "!node %"
     elseif &filetype=='sh'
         exec "!sh %"
     elseif &filetype=='go'
