@@ -28,3 +28,7 @@
     ad = add .
 [push]
 	default = matching
+
+[rerere]
+enabled = 1
+autoupdate = 1
