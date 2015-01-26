@@ -80,6 +80,9 @@ Bundle "pangloss/vim-javascript"
 
 "中文用户
 " Bundle "fcitx.vim"
+"
+" CPP
+Bundle "octol/vim-cpp-enhanced-highlight"
 
 "-------------- for Python programmers ------------{{{2
 "Python.vim
@@ -117,6 +120,13 @@ Bundle "johnmorrow/vim-thrift"
 
 "salt files '*.sls'
 Bundle "saltstack/salt-vim"
+
+"markdown
+"Bundle "tpope/vim-markdown"
+"Bundle "jtratner/vim-flavored-markdown"
+"
+"json
+Bundle "elzr/vim-json"
 
 "-------------------------------------------------------------1}}}
 
