@@ -332,7 +332,7 @@ let g:neocomplcache_enable_at_startup = 1
 "最后只剩下nerdtree的时候关闭之
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "nerdtree 的宽度
-let NERDTreeWinSize = 23
+let NERDTreeWinSize = 35
 "显示行号
 let NERDTreeShowLineNumbers=1
 let NERDTreeIgnore=['\.pyc$', '\~$']
@@ -410,6 +410,8 @@ func! Runit()
         exec "!coffee %"
     elseif &filetype=='less'
         exec "!lessc % %<.css"
+    elseif &filetype=='lua'
+        exec "!lua %"
     endif
 endfunc
 
