@@ -26,6 +26,7 @@
     st = status
     cm = commit
     ad = add .
+    diff-last-tag = !git log `git describe --tags --abbrev=0`..HEAD --oneline
 [push]
 	default = matching
 
