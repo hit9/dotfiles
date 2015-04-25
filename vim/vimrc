@@ -26,7 +26,6 @@ Bundle "reedes/vim-colors-pencil"
 Bundle "junegunn/seoul256.vim"
 Bundle "morhetz/gruvbox"
 Bundle "cschlueter/vim-wombat"
-
 "-----------------------------------------------------------2}}}
 
 "statusline, 坚决摒弃vim-powerline, 我们不要使用补丁字体
@@ -87,7 +86,7 @@ Bundle "pangloss/vim-javascript"
 "Python.vim
 Bundle "python.vim--Vasiliev"
 "Python mode
-Bundle "klen/python-mode"
+" Bundle "klen/python-mode"
 "pep8 indent.很久以前我就在尋思這個插件，沒有人實現那.現在有啦！好東西哦
 Bundle "hynek/vim-python-pep8-indent"
 "jinja2 syntax
@@ -293,7 +292,6 @@ set cpt=.,w,b
 " let g:solarized_visibility="high"
 "-----------------------------------------------2}}}
 " --------------------------------- molokai {{{2
-" colorscheme molokai
 let g:rehash256 = 1
 " let g:molokai_original = 1
 "-----------------------------------------------2}}}
@@ -307,14 +305,14 @@ let g:python_highlight_builtin_objs = 1
 let g:python_highlight_builtin_funcs = 1
 let g:python_highlight_exceptions = 1
 
-colorscheme desert
+"背景:暗色
+set background=dark
 
 if has("gui_macvim")
     colorscheme molokai
 endif
 
-"背景:暗色
-set background=dark
+colorscheme molokai
 
 
 "使vim在终端保持透明
