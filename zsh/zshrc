@@ -82,9 +82,11 @@ export PATH=$PATH:$(brew --prefix)/share/npm/bin
 # only ruby
 source $HOME/.rvm/scripts/rvm
 
-#gvm
-source $HOME/.gvm/scripts/gvm
 export NODE_PATH=/usr/local/lib/node_modules
 
 # fuck clang 5.1
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+[[ -s "/Users/hit9/.gvm/scripts/gvm" ]] && source "/Users/hit9/.gvm/scripts/gvm"
+source "/Users/hit9/github/oo/env"
+export GOPATH=/Users/hit9/go-space
