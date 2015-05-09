@@ -89,4 +89,9 @@ export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 [[ -s "/Users/hit9/.gvm/scripts/gvm" ]] && source "/Users/hit9/.gvm/scripts/gvm"
 source "/Users/hit9/github/oo/env"
-export GOPATH=/Users/hit9/go-space
+export GOPATH=/Users/hit9/gospace
+export PATH=$PATH:$GOPATH/bin
+
+export NVM_DIR="/Users/hit9/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
