@@ -30,7 +30,6 @@ zsh: submodule
 	ln $(LNSOPT) $(CURDIR)/zsh/zshrc ~/.zshrc
 	ln $(LNSOPT) $(CURDIR)/zsh/oh-my-zsh ~/.oh-my-zsh
 	ln $(LNSOPT) $(CURDIR)/zsh/hit9.zsh-theme ~/.oh-my-zsh/themes/hit9.zsh-theme
-	ln $(LNSOPT) $(CURDIR)/zsh/fzf ~/.fzf
 
 git:
 	ln $(LNSOPT) $(CURDIR)/git/gitconfig ~/.gitconfig
