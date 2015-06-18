@@ -1,132 +1,75 @@
-" -------- Bundles  ---------------------------------------{{{1
-"首先，加载vundle!
+" -------- Vundle
 set nocompatible               " be iMproved
 filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
-"se git:// as default protocol. I hate that "hung up .."
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+"se git:// as default protocol.
 let g:vundle_default_git_proto="git"
 
-"---------------------------- 配色 -------------------------{{{2
-"solarized 配色
-Bundle "altercation/vim-colors-solarized"
-"molokai
-Bundle "tomasr/molokai"
-"sjl/badwolf, nice skin!
-Bundle "sjl/badwolf"
-"很不错的一款配色
-Bundle "nanotech/jellybeans.vim"
-"blackboard 一直很经典
-Bundle "blackboard.vim"
-Bundle "chriskempson/vim-tomorrow-theme"
-Bundle "noahfrederick/vim-hemisu"
-Bundle "goatslacker/mango.vim"
-Bundle "reedes/vim-colors-pencil"
-Bundle "junegunn/seoul256.vim"
-Bundle "morhetz/gruvbox"
-Bundle "cschlueter/vim-wombat"
-"-----------------------------------------------------------2}}}
+Plugin 'gmarik/Vundle.vim'
 
-"statusline, 坚决摒弃vim-powerline, 我们不要使用补丁字体
-Bundle "itchyny/lightline.vim"
+"--------- Colorschema
+Plugin 'tomasr/molokai'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'ajh17/Spacegray.vim'
 
-"自动补全插件
-Bundle 'neocomplcache'
-"jsbeautify
-Bundle 'jsbeautify'
-"jslint
-"Bundle "Shutnik/jshint2.vim"
-"autoclose:自动关闭括号,[],{}等，自动光标置中
-Bundle "jiangmiao/auto-pairs"
-" -------------- snipmate 插件:tab 补全 --- {{{2
-"snipmate的依赖
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
-"snipmate
-Bundle "garbas/vim-snipmate"
-"-----------------------------------2}}}
-"窗口浏览器
-Bundle "scrooloose/nerdtree"
-"快速查找文件插件CtrlP
-Bundle "kien/ctrlp.vim"
+"--------- UI & Window & Utils
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'taglist.vim'
+Plugin 'basepi/vim-conque'
 
-"Jquery
-Bundle "jQuery"
+"--------- Edit
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-commentary'
+Plugin 'sjl/gundo.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'terryma/vim-multiple-cursors'
 
-"PEP8
-Bundle "pep8"
+"--------- Snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
 
-Bundle "taglist.vim"
+"--------- Javascript
+Plugin 'jsbeautify'
+Plugin 'jQuery'
+Plugin 'pangloss/vim-javascript'
 
-"Oh,一个注释插件,\\注释一行或撤销注释一行
-Bundle "tpope/vim-commentary"
+"-------- Python
+Plugin 'pep8'
+Plugin 'python.vim--Vasiliev'
+Plugin 'hynek/vim-python-pep8-indent'
 
-"持久化的撤销操作插件, http://sjl.bitbucket.org/gundo.vim/ :GundoToggle
-Bundle 'sjl/gundo.vim'
+"-------- Git
+Plugin 'tpope/vim-fugitive'
 
-"用过vimoperator吗？那里的f键快速跳转叫你印象深刻吧
-Bundle "Lokaltog/vim-easymotion"
+"-------- C/C++
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
-"vim git 插件
-Bundle "tpope/vim-fugitive"
+"-------- Go
+Plugin 'fatih/vim-go'
+Plugin 'dgryski/vim-godef'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
-" CPP
-Bundle "octol/vim-cpp-enhanced-highlight"
+"------- Misc Languages
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'vim-coffee-script'
+Plugin 'groenewege/vim-less'
+Plugin 'cespare/vim-toml'
+Plugin 'juvenn/mustache.vim'
+Plugin 'johnmorrow/vim-thrift'
+Plugin 'saltstack/salt-vim'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'elzr/vim-json'
 
-"-------------- for NodeJs programmers ------------{{{2
-"for js
-Bundle "pangloss/vim-javascript"
-" Bundle "jelera/vim-javascript-syntax"
-
-"--------------------------------------------------2}}}
-
-"-------------- for Python programmers ------------{{{2
-"Python.vim
-Bundle "python.vim--Vasiliev"
-"Python mode
-" Bundle "klen/python-mode"
-"pep8 indent.很久以前我就在尋思這個插件，沒有人實現那.現在有啦！好東西哦
-Bundle "hynek/vim-python-pep8-indent"
-"jinja2 syntax
-Bundle "Glench/Vim-Jinja2-Syntax"
-"--------------------------------------------------2}}}
-"----------- for coffee-script---------------------{{{2
-Bundle "vim-coffee-script"
-"---------------------------------------------------2}}}
-"less syntax
-Bundle "groenewege/vim-less"
-
-"toml!
-Bundle "cespare/vim-toml"
-"haml,sass
-Bundle "tpope/vim-haml"
-""
-Bundle "terryma/vim-multiple-cursors"
-
-Bundle "basepi/vim-conque"
-
-Bundle "juvenn/mustache.vim"
-
-
-" Donot use go's vim scripts, use its mirror on github.com
-Bundle "jnwhiteh/vim-golang"
-
-" thrift syntax
-Bundle "johnmorrow/vim-thrift"
-
-"salt files '*.sls'
-Bundle "saltstack/salt-vim"
-
-"markdown
-"Bundle "tpope/vim-markdown"
-"Bundle "jtratner/vim-flavored-markdown"
-"
-"json
-Bundle "elzr/vim-json"
-
-"-------------------------------------------------------------1}}}
+call vundle#end()            " required
 
 
 "-------------------- 根据文件类型(注意，放在bundle之后)------{{{1
@@ -187,7 +130,6 @@ set nowrap
 set laststatus=2
 set ruler
 
-"
 "------------------------------------------------------------------ 1}}}
 
 " ------------------ gui --------------------------------------------{{{1
@@ -285,20 +227,17 @@ set cpt=.,w,b
 
 "- ------------------------ 插件配置 ----------------------------------------  {{{1
 
-" ---------------------------------  solarized {{{2
-" let g:solarized_termcolors=256  " 一定要这行在colorscheme solarized 之前
-" let g:solarized_termtrans=1
-" let g:solarized_contrast="high"
-" let g:solarized_visibility="high"
-"-----------------------------------------------2}}}
 " --------------------------------- molokai {{{2
 let g:rehash256 = 1
-" let g:molokai_original = 1
+let g:molokai_original = 1
 "-----------------------------------------------2}}}
 
 "--------------------------------- lightline {{{2
 let g:lightline = {'colorscheme': 'wombat',}
 " ------------------------------------------- }}}
+
+"YouCompleteMe
+let g:ycm_key_list_select_completion = ['<Enter>', '<Down>']
 
 "Python的高亮
 let g:python_highlight_builtin_objs = 1
@@ -309,10 +248,11 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme molokai
+    colorscheme spacegray
 endif
 
-colorscheme molokai
+" colorscheme molokai
+colorscheme spacegray
 
 
 "使vim在终端保持透明
@@ -336,10 +276,8 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeIgnore=['\.pyc$', '\~$']
 "---------------------------------------------------------- 2}}}
 
-
 "pep8, ctrl-k作为检查快捷键
 let g:pep8_map='<C-k>'
-
 
 "gundo 宽度
 let g:gundo_width=23
@@ -374,10 +312,6 @@ let g:pymode_indent = 1  "currently use pymode's indent
 let g:pymode_rope = 0
 let g:pymode_lint_write = 1
 let g:pymode_lint = 1
-
-"------------------- for js
-let jshint2_save = 1
-
 
 "-------------------------------------插件配置end-----------------------------1}}}
 

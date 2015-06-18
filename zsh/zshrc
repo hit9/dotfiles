@@ -94,4 +94,4 @@ export PATH=$PATH:$GOPATH/bin
 
 export NVM_DIR="/Users/hit9/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
