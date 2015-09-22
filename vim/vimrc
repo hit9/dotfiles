@@ -10,11 +10,12 @@ let g:vundle_default_git_proto="git"
 
 Plugin 'gmarik/Vundle.vim'
 
-"--------- Colorschema
+"--------- Colorscheme
 Plugin 'tomasr/molokai'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'ajh17/Spacegray.vim'
+Plugin 'vim-scripts/xoria256.vim'
 
 "--------- UI & Window & Utils
 Plugin 'itchyny/lightline.vim'
@@ -237,7 +238,7 @@ let g:lightline = {'colorscheme': 'wombat',}
 " ------------------------------------------- }}}
 
 "YouCompleteMe
-let g:ycm_key_list_select_completion = ['<Enter>', '<Down>']
+let g:ycm_key_list_select_completion = ['<Down>']
 
 "Python的高亮
 let g:python_highlight_builtin_objs = 1
@@ -248,11 +249,11 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme spacegray
+    colorscheme iceberg
 endif
 
-" colorscheme molokai
-colorscheme spacegray
+colorscheme iceberg
+"colorscheme desert
 
 
 "使vim在终端保持透明
