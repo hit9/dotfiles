@@ -53,6 +53,7 @@ Plugin 'tpope/vim-fugitive'
 
 "-------- C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'vim-scripts/a.vim'
 
 "-------- Go
 Plugin 'fatih/vim-go'
@@ -249,19 +250,15 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme iceberg
+    colorscheme molokai
 endif
 
-colorscheme iceberg
+colorscheme molokai
 "colorscheme desert
 
 
 "使vim在终端保持透明
 hi Normal ctermbg=NONE
-
-"------------------------ neocomplcache插件:自动完成插件 {{{2
-let g:neocomplcache_enable_at_startup = 1
-" ------------------------------------------------------- 2}}}
 
 " --------------------- Nerdtree:窗口浏览器:NERDTreeToggle {{{2
 "vim启动的时候打开nerdtree
@@ -285,6 +282,9 @@ let g:gundo_width=23
 
 "EasyMotion  \键
 let g:EasyMotion_leader_key = '<Leader>'
+
+"------------------ YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
 
 "------------------ taglist
 "We need to install ctags http://ctags.sourceforge.net/ first
@@ -392,6 +392,7 @@ autocmd BufWrite *.c :WS
 autocmd BufWrite *.h :WS
 autocmd BufWrite *.go :WS
 autocmd BufWrite *.js :WS
+autocmd BufWrite *.html :WS
 
 ":w!! to sudo write file
 cmap w!! w !sudo tee >/dev/null %
