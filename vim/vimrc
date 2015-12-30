@@ -12,24 +12,19 @@ Plugin 'gmarik/Vundle.vim'
 
 "--------- Colorscheme
 Plugin 'tomasr/molokai'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'cocopon/iceberg.vim'
-Plugin 'ajh17/Spacegray.vim'
-Plugin 'vim-scripts/xoria256.vim'
+Plugin 'reedes/vim-colors-pencil'
 
 "--------- UI & Window & Utils
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'taglist.vim'
-Plugin 'basepi/vim-conque'
 
 "--------- Edit
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim'
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'terryma/vim-multiple-cursors'
 
 "--------- Snipmate
@@ -65,7 +60,6 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'vim-coffee-script'
 Plugin 'groenewege/vim-less'
 Plugin 'cespare/vim-toml'
-Plugin 'juvenn/mustache.vim'
 Plugin 'johnmorrow/vim-thrift'
 Plugin 'saltstack/salt-vim'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -254,7 +248,6 @@ if has("gui_macvim")
 endif
 
 colorscheme molokai
-"colorscheme desert
 
 
 "使vim在终端保持透明
@@ -313,6 +306,13 @@ let g:pymode_indent = 1  "currently use pymode's indent
 let g:pymode_rope = 0
 let g:pymode_lint_write = 1
 let g:pymode_lint = 1
+
+"-------------------- for golang users
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 "-------------------------------------插件配置end-----------------------------1}}}
 
@@ -395,4 +395,3 @@ autocmd BufWrite *.js :WS
 autocmd BufWrite *.html :WS
 
 ":w!! to sudo write file
-cmap w!! w !sudo tee >/dev/null %
