@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 "--------- Colorscheme
 Plugin 'tomasr/molokai'
 Plugin 'reedes/vim-colors-pencil'
+Plugin 'w0ng/vim-hybrid'
 
 "--------- UI & Window & Utils
 Plugin 'itchyny/lightline.vim'
@@ -53,7 +54,6 @@ Plugin 'vim-scripts/a.vim'
 "-------- Go
 Plugin 'fatih/vim-go'
 Plugin 'dgryski/vim-godef'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 "------- Misc Languages
 Plugin 'Glench/Vim-Jinja2-Syntax'
@@ -244,10 +244,10 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme molokai
+    colorscheme hybrid
 endif
 
-colorscheme molokai
+colorscheme hybrid
 
 
 "使vim在终端保持透明
