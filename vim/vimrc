@@ -27,6 +27,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim'
 Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'Rip-Rip/clang_complete'
 
 "--------- Snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -244,9 +245,10 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme hybrid
+    colorscheme molokai
 endif
 
+"colorscheme molokai
 colorscheme hybrid
 
 
@@ -278,6 +280,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 "------------------ YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
+let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 
 "------------------ taglist
 "We need to install ctags http://ctags.sourceforge.net/ first
@@ -364,6 +367,9 @@ noremap w<right> <c-w><right>
 noremap wl <c-w><right>
 noremap w<down> <c-w><down>
 noremap wj <c-w><down>
+
+"Type 'gd' on normal mode to goto definition in c/cpp/py files.
+autocmd FileType c,cpp,python noremap gd :split\|YcmCompleter GoTo<CR>
 
 "--------------- 系统剪切板 ---------------
 
