@@ -18,7 +18,7 @@ vim: submodule
 	ln $(LNSOPT) $(CURDIR)/vim/vimrc ~/.vimrc
 	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
 	vim -c "BundleInstall"
-	cd ~/.vim/bundle/YouCompleteMe; git submodule update --init --recursive; ./install.sh
+	cd ~/.vim/bundle/YouCompleteMe;git checkout 0352ed9b1f8f6bb4b9cdc1c164b564573243aecc; git submodule update --init --recursive; ./install.sh
 
 tmux:
 	ln $(LNSOPT) $(CURDIR)/tmux/tmux.conf ~/.tmux.conf
