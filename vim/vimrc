@@ -51,6 +51,7 @@ Plugin 'tpope/vim-fugitive'
 "-------- C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'vim-scripts/a.vim'
+Plugin 'rhysd/vim-clang-format'
 
 "-------- Go
 Plugin 'fatih/vim-go'
@@ -399,5 +400,7 @@ autocmd BufWrite *.h :WS
 autocmd BufWrite *.go :WS
 autocmd BufWrite *.js :WS
 autocmd BufWrite *.html :WS
+
+autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
 
 ":w!! to sudo write file
