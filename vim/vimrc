@@ -57,6 +57,9 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'fatih/vim-go'
 Plugin 'dgryski/vim-godef'
 
+"-------- Rust
+Plugin 'rust-lang/rust.vim'
+
 "------- Misc Languages
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'vim-coffee-script'
@@ -267,7 +270,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeWinSize = 35
 "显示行号
 let NERDTreeShowLineNumbers=1
-let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$']
 "---------------------------------------------------------- 2}}}
 
 "pep8, ctrl-k作为检查快捷键
@@ -282,6 +285,16 @@ let g:EasyMotion_leader_key = '<Leader>'
 "------------------ YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+" let g:clang_format#style_options = {
+"             \ 'BasedOnStyle': 'google',
+"             \ 'IndentWidth': '4',
+"             \ 'DerivePointerAlignment': 'false',
+"             \ 'PointerAlignment': 'Right',
+"             \ }
+let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_format = 1
+
+
 
 "------------------ taglist
 "We need to install ctags http://ctags.sourceforge.net/ first
@@ -349,6 +362,9 @@ func! Runit()
         exec "!lessc % %<.css"
     elseif &filetype=='lua'
         exec "!lua %"
+    elseif &filetype=='rust'
+        exec "!rustc % -o %<"
+        exec "! ./%<"
     endif
 endfunc
 
@@ -400,7 +416,10 @@ autocmd BufWrite *.h :WS
 autocmd BufWrite *.go :WS
 autocmd BufWrite *.js :WS
 autocmd BufWrite *.html :WS
+autocmd BufWrite *.py :WS
 
-autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
+"autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
 
 ":w!! to sudo write file
+"
+let g:rustfmt_autosave = 1
