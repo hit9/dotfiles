@@ -14,9 +14,18 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tomasr/molokai'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'zeis/vim-kolor'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'jnurmine/Zenburn'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'jacoborus/tender.vim'
 
 "--------- UI & Window & Utils
-Plugin 'itchyny/lightline.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'taglist.vim'
@@ -59,7 +68,8 @@ Plugin 'dgryski/vim-godef'
 
 "-------- Rust
 Plugin 'rust-lang/rust.vim'
-Plugin 'hit9/vim-racer'
+"Plugin 'hit9/vim-racer'
+Plugin 'racer-rust/vim-racer'
 
 "------- Misc Languages
 Plugin 'Glench/Vim-Jinja2-Syntax'
@@ -70,6 +80,7 @@ Plugin 'johnmorrow/vim-thrift'
 Plugin 'saltstack/salt-vim'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'elzr/vim-json'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()            " required
 
@@ -234,8 +245,10 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 "-----------------------------------------------2}}}
 
-"--------------------------------- lightline {{{2
-let g:lightline = {'colorscheme': 'wombat',}
+"--------------------------------- airline {{{2
+let g:airline_theme = 'tender'
+let g:airline#extensions#tabline#enabled = 1
+
 " ------------------------------------------- }}}
 
 "YouCompleteMe
@@ -249,12 +262,11 @@ let g:python_highlight_exceptions = 1
 "背景:暗色
 set background=dark
 
-if has("gui_macvim")
-    colorscheme molokai
-endif
+"if has("gui_macvim")
+"    colorscheme hybird
+"endif
 
-"colorscheme molokai
-colorscheme hybrid
+colorscheme tender
 
 
 "使vim在终端保持透明
@@ -271,7 +283,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeWinSize = 35
 "显示行号
 let NERDTreeShowLineNumbers=1
-let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$']
+let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__']
 "---------------------------------------------------------- 2}}}
 
 "pep8, ctrl-k作为检查快捷键
@@ -286,7 +298,6 @@ let g:EasyMotion_leader_key = '<Leader>'
 "------------------ YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = '/usr/bin/python'
-"let g:ycm_rust_src_path = '/Users/hit9/src/rust/src'
 let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 " let g:clang_format#style_options = {
 "             \ 'BasedOnStyle': 'google',
@@ -336,7 +347,8 @@ let g:go_highlight_build_constraints = 1
 
 "------------------- For rust users
 let g:rustfmt_autosave = 1
-let $RUST_SRC_PATH="/Users/hit9/src/rust/src"
+let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
+let $RUST_SRC_PATH='/Users/hit9/src/rust/src/'
 
 "-------------------------------------插件配置end-----------------------------1}}}
 
@@ -427,5 +439,4 @@ autocmd BufWrite *.py :WS
 
 "autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
 
-":w!! to sudo write file
-"
+"Format json
