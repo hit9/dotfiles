@@ -40,8 +40,7 @@ plugins=(zsh-autosuggestions git python pip compleat extract zsh-syntax-highligh
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/.rvm/bin
-
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 export TERM=screen-256color
 
 
@@ -56,9 +55,7 @@ export LANG=en_US.UTF-8
 export EDITOR=vim
 export TERM=screen-256color-bce
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-source $HOME/.z.sh
+source $HOME/github/dotfiles/z/.z.sh
 
 export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 
@@ -67,31 +64,18 @@ set -o emacs
 sizeof(){du -h "$*"}
 procofport(){lsof -n -i4TCP:"$*" | grep LISTEN}
 
-# alias goagent="python2.7 ~/goagent/local/proxy.py"
-
-source /usr/local/bin/virtualenvwrapper.sh
-
-alias ssdb-server=/usr/local/ssdb/ssdb-server
-alias ssdb-cli=/usr/local/ssdb/ssdb-cli
-
-
 # only mac
 export PATH=$PATH:$(brew --prefix)/share/npm/bin
-# only ruby
-source $HOME/.rvm/scripts/rvm
 
 export NODE_PATH=/usr/local/lib/node_modules
 
 # fuck clang 5.1
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
 #export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
-[[ -s "/Users/hit9/.gvm/scripts/gvm" ]] && source "/Users/hit9/.gvm/scripts/gvm"
 source "/Users/hit9/github/oo/env"
 export GOPATH=/Users/hit9/gospace
 export PATH=$PATH:$GOPATH/bin
 
-export NVM_DIR="/Users/hit9/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH=$PATH:/Users/hit9/.cargo/bin
 export PATH=$PATH:/Users/hit9/toolchain/gcc-arm-none-eabi-5_3-2016q1/bin
 eval "$(pyenv init -)"
