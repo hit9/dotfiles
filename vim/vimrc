@@ -151,7 +151,7 @@ set guioptions-=T           " gvim隐藏工具栏
 set guioptions-=m           " gvim隐藏菜单栏
 "设置gvim的字体
 " set guifont=Monaco:h14
-set guifont=Inconsolata-g:h14
+set guifont=Inconsolata-g\ for\ Powerline:h14
 
 "--------------------------------------------------------------------1}}}
 
@@ -247,6 +247,7 @@ let g:molokai_original = 1
 
 "--------------------------------- airline {{{2
 let g:airline_theme = 'tender'
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " ------------------------------------------- }}}
@@ -266,7 +267,8 @@ set background=dark
 "    colorscheme hybird
 "endif
 
-colorscheme tender
+colorscheme hybrid
+
 
 
 "使vim在终端保持透明

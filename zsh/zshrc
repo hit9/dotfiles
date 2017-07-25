@@ -35,7 +35,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)a
 
 
-plugins=(git python pip compleat  extract zsh-syntax-highlighting golang)
+plugins=(zsh-autosuggestions git python pip compleat extract zsh-syntax-highlighting golang)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,8 +62,6 @@ source $HOME/.z.sh
 
 export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 
-alias todo=~/.todo
-
 set -o emacs
 
 sizeof(){du -h "$*"}
@@ -86,7 +84,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 # fuck clang 5.1
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+#export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 [[ -s "/Users/hit9/.gvm/scripts/gvm" ]] && source "/Users/hit9/.gvm/scripts/gvm"
 source "/Users/hit9/github/oo/env"
 export GOPATH=/Users/hit9/gospace
@@ -94,4 +92,7 @@ export PATH=$PATH:$GOPATH/bin
 
 export NVM_DIR="/Users/hit9/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH=$PATH:/Users/hit9/.cargo/bin
+export PATH=$PATH:/Users/hit9/toolchain/gcc-arm-none-eabi-5_3-2016q1/bin
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
