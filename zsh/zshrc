@@ -80,3 +80,6 @@ export PATH=$PATH:/Users/hit9/.cargo/bin
 export PATH=$PATH:/Users/hit9/toolchain/gcc-arm-none-eabi-5_3-2016q1/bin
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Postgresql
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"

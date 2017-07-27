@@ -8,7 +8,7 @@ call vundle#begin()
 "se git:// as default protocol.
 let g:vundle_default_git_proto="git"
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 "--------- Colorscheme
 Plugin 'tomasr/molokai'
