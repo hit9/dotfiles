@@ -13,12 +13,12 @@ submodule:
 	git submodule update --init
 
 vim: submodule
-	cd vim/vundle ; git checkout master ; git pull;
+	cd vim/Vundle.vim ; git checkout master ; git pull;
 	mkdir -p ~/.vim/bundle/
 	ln $(LNSOPT) $(CURDIR)/vim/vimrc ~/.vimrc
-	ln $(LNSOPT) $(CURDIR)/vim/vundle ~/.vim/bundle/vundle
-	vim -c "BundleInstall"
-	cd ~/.vim/bundle/YouCompleteMe;git checkout 0352ed9b1f8f6bb4b9cdc1c164b564573243aecc; git submodule update --init --recursive; ./install.sh
+	ln $(LNSOPT) $(CURDIR)/vim/Vundle.vim ~/.vim/bundle/Vundle.vim
+	vim -c "PluginInstall"
+	cd ~/.vim/bundle/YouCompleteMe;git checkout 998303e2; git submodule update --init --recursive; ./install.sh --clang-completer
 	brew install clang-format
 
 tmux:

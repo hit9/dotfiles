@@ -10,3 +10,6 @@
 [submodule "zsh/fzf"]
 	path = zsh/fzf
 	url = https://github.com/junegunn/fzf
+[submodule "vim/Vundle.vim"]
+	path = vim/Vundle.vim
+	url = git://github.com/VundleVim/Vundle.vim.git
