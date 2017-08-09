@@ -94,7 +94,7 @@ filetype plugin indent on
 "-------------- 基本-------------------------------------------{{{1
 syntax enable
 se nu  "显示行号
-" set term=xterm-256color
+set term=screen-256color
 "终端下名字由vim设置
 set title
 "关闭gui右边边框
@@ -121,12 +121,6 @@ set autoread
 set nocompatible
 "关闭启动时的救助贫困儿童的提示消息
 set shortmess=atI
-"高亮当前行
-set cul
-"合适的高亮当前行的颜色
-hi CursorLine term=none cterm=none ctermbg=3
-"高亮当前列
-set cursorcolumn
 "自动切换当前目录为当前文件所在目录
 set autochdir
 "800个字符以上的行不去高亮
@@ -142,6 +136,12 @@ set nowrap
 "状态栏
 set laststatus=2
 set ruler
+
+
+"Tmux copy issue
+"https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+set clipboard=unnamed
+
 
 "------------------------------------------------------------------ 1}}}
 
@@ -246,7 +246,7 @@ let g:molokai_original = 1
 "-----------------------------------------------2}}}
 
 "--------------------------------- airline {{{2
-let g:airline_theme = 'tender'
+let g:airline_theme = 'luna'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
@@ -263,16 +263,38 @@ let g:python_highlight_exceptions = 1
 "背景:暗色
 set background=dark
 
-"if has("gui_macvim")
-"    colorscheme hybird
-"endif
+if has("gui_macvim")
+    colorscheme iceberg
+else
+    colorscheme hybrid
+endif
 
-colorscheme hybrid
+"高亮当前行
+set cursorline
+"高亮当前列
+set cursorcolumn 
 
-
+if has("gui_macvim")
+    "合适的高亮当前行的颜色
+    hi CursorLine term=none gui=none guibg=#2d2d2d guifg=DarkCyan
+    hi CursorColumn term=none gui=none guibg=#2d2d2d guifg=DarkCyan
+else
+    "合适的高亮当前列的颜色
+    "CursorLine: use iterm cursorline bg color, term vim dosent support custom defined
+    "color codes
+    hi CursorLine term=none cterm=none ctermbg=none ctermfg=DarkCyan
+    hi CursorColumn term=none cterm=none ctermbg=DarkGray ctermfg=DarkCyan
+endif
 
 "使vim在终端保持透明
-hi Normal ctermbg=NONE
+hi Normal ctermbg=none
+
+"Visual模式：选中的块进行高亮
+if has("gui_macvim")
+    hi Visual gui=none guifg=White guibg=#04daf2
+else
+    hi Visual term=none cterm=none ctermfg=LightYellow ctermbg=DarkCyan
+endif
 
 " --------------------- Nerdtree:窗口浏览器:NERDTreeToggle {{{2
 "vim启动的时候打开nerdtree
