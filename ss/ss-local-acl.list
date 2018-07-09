@@ -1,0 +1,5 @@
+[bypass_all]
+
+[proxy_list]
+(^|\.)icloud\.com$
+(^|\.)apple\.com$
