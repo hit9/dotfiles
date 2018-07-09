@@ -45,9 +45,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'
 
 "--------- Javascript
-Plugin 'jsbeautify'
-Plugin 'jQuery'
-Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'JavaScript-Indent'
+Plugin 'maksimr/vim-jsbeautify'
 
 "-------- Python
 Plugin 'pep8'
@@ -264,13 +264,14 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme iceberg
+    colorscheme tender
 else
     colorscheme hybrid
+    "colorscheme tender
 endif
 
 "高亮当前行
-set cursorline
+"set cursorline
 "高亮当前列
 set cursorcolumn 
 
@@ -350,11 +351,6 @@ let Tlist_Auto_Open=1
 let Tlist_Auto_Highlight_Tag=1
 let Tlist_Use_Right_Window=1
 let Tlist_WinWidth=27
-
-"---------------------- vim-javascript
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
 
 "--------------------  for pythonist, use vim-pep8-indent instead of pymode
 let g:pymode_indent = 1  "currently use pymode's indent
