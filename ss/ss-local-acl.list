@@ -1,5 +1,81 @@
 [bypass_all]
 
 [proxy_list]
-(^|\.)icloud\.com$
+
+# Apple
 (^|\.)apple\.com$
+(^|\.)apple\.com\.cn$
+(^|\.)me\.com$
+(^|\.)apple\.co$
+(^|\.)ls\.apple\.com$
+(^|\.)cdn-apple\.com$
+(^|\.)icloud\.com$
+(^|\.)itunes\.com$
+(^|\.)itunes\.apple\.com$
+(^|\.)icloud-content\.com$
+(^|\.)mzstatic\.com$
+(^|\.)push\.apple\.com$
+
+# Amazon
+
+(^|\.)amazon\.com$
+(^|\.)aws\.amazon\.com$
+(^|\.)amazonaws\.com$
+
+# Google
+(^|\.)google\.com$
+(^|\.)google\.com\.hk$
+(^|\.)googleapis\.com$
+(^|\.)fonts\.googleapis\.com$
+(^|\.)goo\.gl$
+(^|\.)gstatic\.com$
+(^|\.)googleemail\.com$
+(^|\.)googlesource\.com$
+(^|\.)googlevideo\.com$
+(^|\.)g\.co$
+
+# Youtube
+(^|\.)youtube\.com$
+(^|\.)youtu\.be$
+(^|\.)yiimg\.com$
+
+# Twitter
+(^|\.)twitter\.com$
+(^|\.)t\.co$
+(^|\.)twimg\.com$
+
+# Dropbox
+(^|\.)dropbox\.com$
+(^|\.)dropboxusercontent\.com$
+(^|\.)dropboxstatic\.com$
+
+# Facebook
+(^|\.)facebook\.com$
+
+# Github
+(^|\.)github\.com$
+(^|\.)gist\.github\.com$
+
+# Microsoft
+(^|\.)live\.com$
+(^|\.)t\.me$
+
+# Medium
+(^|\.)medium\.com$
+
+# Wikipedia
+(^|\.)wikipedia\.org$
+(^|\.)zh\.wikipedia\.org$
+
+# Huobi
+(^|\.)huobipro\.com$
+(^|\.)huobi\.pro$
+
+# Others
+(^|\.)shadowsocks\.org$
+(^|\.)myspace\.com$
+(^|\.)telegram\.org$
+91.108.56.165/24
+91.108.56.130/24
+(^|\.)nydus\.co$
+(^|\.)proxifier\.com$
