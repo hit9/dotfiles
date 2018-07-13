@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "se git:// as default protocol.
-let g:vundle_default_git_proto="git"
+let g:vundle_default_git_proto="https"
 
 Plugin 'VundleVim/Vundle.vim'
 
@@ -254,6 +254,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 "YouCompleteMe
 let g:ycm_key_list_select_completion = ['<Down>']
+
 
 "Python的高亮
 let g:python_highlight_builtin_objs = 1
