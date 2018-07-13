@@ -71,7 +71,6 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 # fuck clang 5.1
 export ARCHFLAGS="-Wno-error=unused-command-line-argument-hard-error-in-future"
-#export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 source "/Users/hit9/github/oo/env"
 export GOPATH=/Users/hit9/gopark
 export PATH=$PATH:$GOPATH/bin
