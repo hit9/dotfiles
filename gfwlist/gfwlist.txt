@@ -1,0 +1,106 @@
+! ## WhiteList
+@@||appleid.apple.com
+
+! ## Apple
+||apple.com
+||apple.com.cn
+||me.com
+||apple.co
+||ls.apple.com
+||cdnapple.com
+||icloud.com
+||itunes.com
+||itunes.apple.com
+||icloudcontent.com
+||mzstatic.com
+||push.apple.com
+||app.smartmailcloud.com
+
+! ## Amazon
+||amazon.com
+||aws.amazon.com
+||amazonaws.com
+
+! ## Google
+||google.com
+||google.com.hk
+||googleapis.com
+||fonts.googleapis.com
+||goo.gl
+||gstatic.com
+||googleemail.com
+||googlesource.com
+||googlevideo.com
+||g.co
+
+! ## Youtube
+||youtube.com
+||youtu.be
+||ytimg.com
+||ggpht.com
+
+! ## Twitter
+||twitter.com
+||t.co
+||twimg.com
+
+! ## Dropbox
+||dropbox.com
+||dropboxusercontent.com
+||dropboxstatic.com
+
+! ## Facebook
+||facebook.com
+||fbcdn.net
+
+! ## Github
+||github.com
+||githubusercontent.com
+||gist.github.com
+
+! ## Microsoft
+||live.com
+||t.me
+||windowsazure.com
+
+! ## Medium
+||medium.com
+
+! ## Sourceforge
+||sourceforge.net
+||dl.sourceforge.net
+
+! ## Wikipedia
+||wikipedia.org
+||zh.wikipedia.org
+
+! ## Huobi
+||huobipro.com
+||huobi.pro
+
+! ## StackOverFlow
+||stackoverflow.com
+
+! ## Wordpress
+||wordpress.com
+
+! ## Telegram
+149.154.167.0/24
+91.108.56.128/24
+
+! ## Opera
+||opera.com
+
+! ## Python
+||pythonhosted.org
+||python.org
+
+! ## Others
+||shadowsocks.org
+||shadowsocks.com
+||myspace.com
+||telegram.org
+||nydus.co
+||proxifier.com
+||nssurge.com
+||conoha.jp
