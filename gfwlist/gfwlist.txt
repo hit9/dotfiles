@@ -104,3 +104,8 @@
 ||proxifier.com
 ||nssurge.com
 ||conoha.jp
+
+!##  Golang
+||golang.org
+||google.golang.org
+||godoc.org
