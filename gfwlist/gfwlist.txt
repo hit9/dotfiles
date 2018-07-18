@@ -104,6 +104,7 @@
 ||proxifier.com
 ||nssurge.com
 ||conoha.jp
+||draw.io
 
 !##  Golang
 ||golang.org
