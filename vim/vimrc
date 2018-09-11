@@ -10,6 +10,10 @@ let g:vundle_default_git_proto="https"
 
 Plugin 'VundleVim/Vundle.vim'
 
+"--- Aynsc
+
+Plugin 'skywind3000/asyncrun.vim'
+
 "--------- Colorscheme
 Plugin 'tomasr/molokai'
 Plugin 'reedes/vim-colors-pencil'
@@ -22,6 +26,7 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'cocopon/iceberg.vim'
 Plugin 'jacoborus/tender.vim'
+Plugin 'sickill/vim-monokai'
 
 "--------- UI & Window & Utils
 Plugin 'vim-airline/vim-airline'
@@ -35,6 +40,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim'
+
 Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'Rip-Rip/clang_complete'
 
@@ -45,9 +51,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'
 
 "--------- Javascript
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'JavaScript-Indent'
-Plugin 'maksimr/vim-jsbeautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'Yggdroot/indentLine'
 
 "-------- Python
 Plugin 'pep8'
@@ -255,7 +260,6 @@ let g:airline#extensions#tabline#enabled = 1
 "YouCompleteMe
 let g:ycm_key_list_select_completion = ['<Down>']
 
-
 "Python的高亮
 let g:python_highlight_builtin_objs = 1
 let g:python_highlight_builtin_funcs = 1
@@ -265,10 +269,9 @@ let g:python_highlight_exceptions = 1
 set background=dark
 
 if has("gui_macvim")
-    colorscheme tender
+    colorscheme PaperColor
 else
     colorscheme hybrid
-    "colorscheme tender
 endif
 
 "高亮当前行
@@ -323,7 +326,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 "------------------ YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
-let g:ycm_python_binary_path = '/usr/bin/python'
+let g:ycm_python_binary_path = 'python'
 let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
 " let g:clang_format#style_options = {
 "             \ 'BasedOnStyle': 'google',
@@ -334,6 +337,10 @@ let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchain
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
 
+"----- indentLine
+let g:indentLine_char = '|'
+let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_leadingSpaceChar = '·'
 
 
 "------------------ taglist
@@ -359,12 +366,20 @@ let g:pymode_rope = 0
 let g:pymode_lint_write = 1
 let g:pymode_lint = 1
 
+"------------------ For Js
+let javascript_enable_domhtmlcss = 1
+
+
 "-------------------- for golang users
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+"Install current directiory as a package into GOPATH, for autocompletion of go
+"code.
+autocmd BufWrite *.go :AsyncRun go install .
 
 "------------------- For rust users
 let g:rustfmt_autosave = 1
@@ -426,7 +441,8 @@ noremap w<down> <c-w><down>
 noremap wj <c-w><down>
 
 "Type 'gd' on normal mode to goto definition in c/cpp/py files.
-autocmd FileType c,cpp,python noremap gd :split\|YcmCompleter GoTo<CR>
+"noremap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 
 "--------------- 系统剪切板 ---------------
 
