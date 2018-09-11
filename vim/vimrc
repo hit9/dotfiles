@@ -10,23 +10,11 @@ let g:vundle_default_git_proto="https"
 
 Plugin 'VundleVim/Vundle.vim'
 
-"--- Aynsc
-
-Plugin 'skywind3000/asyncrun.vim'
-
 "--------- Colorscheme
 Plugin 'tomasr/molokai'
-Plugin 'reedes/vim-colors-pencil'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'zeis/vim-kolor'
-Plugin 'jonathanfilip/vim-lucius'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'jnurmine/Zenburn'
 Plugin 'cocopon/iceberg.vim'
-Plugin 'jacoborus/tender.vim'
-Plugin 'sickill/vim-monokai'
 
 "--------- UI & Window & Utils
 Plugin 'vim-airline/vim-airline'
@@ -244,6 +232,14 @@ set cpt=.,w,b
 
 
 "- ------------------------ 插件配置 ----------------------------------------  {{{1
+" Colorscheme PaperColor
+let g:PaperColor_Theme_Options = {
+    \   'theme': {
+    \     'default.dark': {
+    \        'transparent_background': 1
+    \      }
+    \   }
+    \ }
 
 " --------------------------------- molokai {{{2
 let g:rehash256 = 1
@@ -271,7 +267,7 @@ set background=dark
 if has("gui_macvim")
     colorscheme PaperColor
 else
-    colorscheme hybrid
+    colorscheme PaperColor
 endif
 
 "高亮当前行
@@ -379,7 +375,7 @@ let g:go_highlight_build_constraints = 1
 
 "Install current directiory as a package into GOPATH, for autocompletion of go
 "code.
-autocmd BufWrite *.go :AsyncRun go install .
+autocmd BufWrite *.go :call job_start('go install .')
 
 "------------------- For rust users
 let g:rustfmt_autosave = 1
@@ -475,5 +471,3 @@ autocmd BufWrite *.html :WS
 autocmd BufWrite *.py :WS
 
 "autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
-
-"Format json
