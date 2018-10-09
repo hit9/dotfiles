@@ -82,3 +82,5 @@ eval "$(pyenv virtualenv-init -)"
 
 # Postgresql
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
