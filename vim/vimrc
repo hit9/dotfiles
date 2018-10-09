@@ -1,195 +1,136 @@
-" -------- Vundle
+"Vundle
 set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"se git:// as default protocol.
+"Use git:// as default protocol.
 let g:vundle_default_git_proto="https"
 
 Plugin 'VundleVim/Vundle.vim'
-
-"--------- Colorscheme
-Plugin 'tomasr/molokai'
-Plugin 'w0ng/vim-hybrid'
+"Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'cocopon/iceberg.vim'
-
-"--------- UI & Window & Utils
+"Plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'taglist.vim'
-
-"--------- Edit
+Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim'
-
 Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'Rip-Rip/clang_complete'
-
-"--------- Snipmate
+Plugin 'mhinz/vim-startify'
+Plugin 'majutsushi/tagbar'
+"Snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'
-
-"--------- Javascript
+"Git
+Plugin 'tpope/vim-fugitive'
+"Language: Javascript
 Plugin 'pangloss/vim-javascript'
-Plugin 'Yggdroot/indentLine'
-
-"-------- Python
+"Language: Python
 Plugin 'pep8'
 Plugin 'python.vim--Vasiliev'
 Plugin 'hynek/vim-python-pep8-indent'
-
-"-------- Git
-Plugin 'tpope/vim-fugitive'
-
-"-------- C/C++
+"Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'vim-scripts/a.vim'
 Plugin 'rhysd/vim-clang-format'
-
-"-------- Go
+"Language: Go
 Plugin 'fatih/vim-go'
 Plugin 'dgryski/vim-godef'
-
-"-------- Rust
+"Language: Rust
 Plugin 'rust-lang/rust.vim'
-"Plugin 'hit9/vim-racer'
 Plugin 'racer-rust/vim-racer'
-
-"------- Misc Languages
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'vim-coffee-script'
-Plugin 'groenewege/vim-less'
-Plugin 'cespare/vim-toml'
-Plugin 'johnmorrow/vim-thrift'
-Plugin 'saltstack/salt-vim'
+"Language: Markdown
 Plugin 'jtratner/vim-flavored-markdown'
+"Language: Misc
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
-Plugin 'mxw/vim-jsx'
 
-call vundle#end()            " required
+call vundle#end() " required
 
-
-"-------------------- 根据文件类型(注意，放在bundle之后)------{{{1
-" 针对不同的文件类型加载对应的插件
-" 针对不同的文件类型采用不同的缩进格式
+"This should be after bundles.
 filetype plugin indent on
-"--------------------------------------------------------------1}}}
 
-"-------------- 基本-------------------------------------------{{{1
 syntax enable
-se nu  "显示行号
+se nu  "Show line numbers.
 set term=screen-256color
-"终端下名字由vim设置
-set title
-"关闭gui右边边框
-set go=
-"开启256 color
-set t_Co=256
-"允许有未保存的内容时切换缓冲区
+set title "Terminal title is set by vim.
+set go= "Disable gui menu
+set t_Co=256 "Enable 256 color
 set hidden
 set ttyfast
 syntax on
-"输入的命令显示出来
 set showcmd
-"显示当前模式
 set showmode
-"关闭报警声音
-set noeb
-"开启鼠标定位
-set mouse=a
-"关闭报警声音
-set noeb
-"外部修改后自动更新这个文件
+set noeb "Disable bells.
+"Auto updates current file if this file is updated by outer.
 set autoread
-"告诉vim使用vim的键盘而不是vi的
-set nocompatible
-"关闭启动时的救助贫困儿童的提示消息
+"Disable the short message on vim start.
 set shortmess=atI
-"自动切换当前目录为当前文件所在目录
+"Auto switch current working directory to current editing file's directory.
 set autochdir
-"800个字符以上的行不去高亮
+"Don't perform highlight on lines that are longer than 800 chars.
 set synmaxcol=800
 set backspace=indent,eol,start
 set gdefault
-"搜索
+"Search
 set hlsearch
 set incsearch
+"Encoding=utf8
+set encoding=utf-8
+"Encoding that creating new files.
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbkgb2312,cp936
+"Encoding that output to terminal.
+set termencoding=utf-8
+"Encoding that saving files.
+set fileencoding=utf-8
 
 set nowrap
 
-"状态栏
+"Statusbar
 set laststatus=2
 set ruler
-
 
 "Tmux copy issue
 "https://github.com/tmux/tmux/issues/543#issuecomment-248980734
 set clipboard=unnamed
 
-
-"------------------------------------------------------------------ 1}}}
-
-" ------------------ gui --------------------------------------------{{{1
-
-set guioptions-=T           " gvim隐藏工具栏
-set guioptions-=m           " gvim隐藏菜单栏
-"设置gvim的字体
+"Hide gvim's toolbar.
+set guioptions-=T
+"Hide gvim's menubar.
+set guioptions-=m
+"Setting gvim's font.
 " set guifont=Monaco:h14
 set guifont=Inconsolata-g\ for\ Powerline:h14
 
-"--------------------------------------------------------------------1}}}
-
-"-------------------- 编码 -----------------------------------------{{{1
-
-"vim内部的编码
-set encoding=utf-8
-"新建一个文件的默认编码
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbkgb2312,cp936
-"输出到终端的编码
-set termencoding=utf-8
-"vim写入文件的时候采用的编码
-set fileencoding=utf-8
-
-"""------------------------------------------------------------------1}}}
-
-"---------------------------------- 缩进 -----------------------------{{{1
-"自动缩进
+"Auto indent.
 set autoindent
-"类似C语言风格的缩进
+"C style indent.
 set cindent
-"智能缩进:每一行都和前一行有相同的缩进量,
-"同时这种缩进形式能正确的识别出花括号,当遇到右花括号（}）,
-"则取消缩进形式。此外还增加了识别C语言关键字的功能。
-"如果一行是以#开头的(比如宏)，那么这种格式将会被特殊对待而不采用缩进格式
+"http://vim.wikia.com/wiki/Indenting_source_code
 set smartindent
-"----------------------------------------------------------------------1}}}
 
-"------------------ tab键 --------------------------------------------{{{1
-
-"把输入的tab自动转换成空格，Python用户必用~
+"Expand tabs into spaces, for python.
 set expandtab
-"一个tab键占据4个空格
-set tabstop=4
-"一开始,插入的就是4个空格,此时一旦你再按下一次tab,这次的四个空格就会和上次的四个空格组合起来变成一个制表符
+set tabstop=4 " 1tab = 4 spaces.
 set softtabstop=4
-"每一级自动缩进的空格数
 set shiftwidth=4
 
-"显示tab键
+"Show list.
 set list
-"list键的填充字符
+"Chars that to display list.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
-"根据文件类型设定缩进,覆盖掉默认的~,来自humiaozuzu
+"Set ident tabs by filetype (modified from humiaozuzu's dotfile).
 autocmd FileType text setlocal textwidth=79
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
@@ -198,41 +139,48 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-"-------------------------------------------------------------------1}}}
 
-
-"-------------------------------鼠标-------------------------
-
-"启用鼠标的使用
+"Enable mouse.
 set mouse=a
-"可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set selection=exclusive
 set selectmode=mouse,key
-"当敲键盘的时候隐藏鼠标指针
+"Hide mouse cursor on keyboard typing.
 set mousehide
 set mousemodel=popup
 
-"--------------------------- 折叠 -------------------------
-
+" Enable fold, manually.
 set foldenable
-set foldmethod=manual  "手动折叠
+set foldmethod=manual
 set foldlevel=3
 
-" --------------------- 匹配 -------------------------------
-
-"高亮显示匹配的括号
+"Highlight match.
 set showmatch
-"匹配括号高亮的时间（单位是十分之一秒）
 set matchtime=1
 
-"------------------- 补全 -----------------------------------
-
+"Completion.
 set completeopt=longest,menu
 set cpt=.,w,b
 
+"Commentry, type `\\` to toggle comments.
+xmap <Leader><Leader>  <Plug>Commentary
+nmap <Leader><Leader>  <Plug>Commentary
+omap <Leader><Leader>  <Plug>Commentary
+nmap <Leader><Leader>  <Plug>CommentaryLine
 
-"- ------------------------ 插件配置 ----------------------------------------  {{{1
-" Colorscheme PaperColor
+"Airline
+let g:airline_theme = 'luna'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+"YouCompleteMe
+let g:ycm_key_list_select_completion = ['<Down>']
+
+"Python highlights (python.vim)
+let g:python_highlight_builtin_objs = 1
+let g:python_highlight_builtin_funcs = 1
+let g:python_highlight_exceptions = 1
+
+"Colorscheme
 let g:PaperColor_Theme_Options = {
     \   'theme': {
     \     'default.dark': {
@@ -241,28 +189,9 @@ let g:PaperColor_Theme_Options = {
     \   }
     \ }
 
-" --------------------------------- molokai {{{2
-let g:rehash256 = 1
-let g:molokai_original = 1
-"-----------------------------------------------2}}}
-
-"--------------------------------- airline {{{2
-let g:airline_theme = 'luna'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-" ------------------------------------------- }}}
-
-"YouCompleteMe
-let g:ycm_key_list_select_completion = ['<Down>']
-
-"Python的高亮
-let g:python_highlight_builtin_objs = 1
-let g:python_highlight_builtin_funcs = 1
-let g:python_highlight_exceptions = 1
-
-"背景:暗色
 set background=dark
+"Make vim be transparent in terminal.
+hi Normal ctermbg=none
 
 if has("gui_macvim")
     colorscheme PaperColor
@@ -270,55 +199,39 @@ else
     colorscheme PaperColor
 endif
 
-"高亮当前行
+"Highlight current line. I'am now using iterm's cursor line highlighting.
 "set cursorline
-"高亮当前列
-set cursorcolumn 
-
+"Highlight current column.
+set cursorcolumn
+" Custom cursorline and cursorcolumn bg and fg colors.
 if has("gui_macvim")
-    "合适的高亮当前行的颜色
     hi CursorLine term=none gui=none guibg=#2d2d2d guifg=DarkCyan
     hi CursorColumn term=none gui=none guibg=#2d2d2d guifg=DarkCyan
 else
-    "合适的高亮当前列的颜色
     "CursorLine: use iterm cursorline bg color, term vim dosent support custom defined
     "color codes
     hi CursorLine term=none cterm=none ctermbg=none ctermfg=DarkCyan
     hi CursorColumn term=none cterm=none ctermbg=DarkGray ctermfg=DarkCyan
 endif
 
-"使vim在终端保持透明
-hi Normal ctermbg=none
-
-"Visual模式：选中的块进行高亮
+"Highlight selected blocks on visual mode.
 if has("gui_macvim")
     hi Visual gui=none guifg=White guibg=#04daf2
 else
     hi Visual term=none cterm=none ctermfg=LightYellow ctermbg=DarkCyan
 endif
 
-" --------------------- Nerdtree:窗口浏览器:NERDTreeToggle {{{2
-"vim启动的时候打开nerdtree
-"autocmd vimenter * NERDTree
-"打开一个未指明的文件时也打开nerdtree
-"autocmd vimenter * if !argc() | NERDTree | endif
-"最后只剩下nerdtree的时候关闭之
+"Open nerdtree on buffer entered. And close it if it's the last window.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"nerdtree 的宽度
+"nerdtree window's width.
 let NERDTreeWinSize = 35
-"显示行号
+"Show line number for nerdtree.
 let NERDTreeShowLineNumbers=1
+"Don't display these files:
 let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__']
-"---------------------------------------------------------- 2}}}
 
-"pep8, ctrl-k作为检查快捷键
-let g:pep8_map='<C-k>'
-
-"gundo 宽度
-let g:gundo_width=23
-
-"EasyMotion  \键
-let g:EasyMotion_leader_key = '<Leader>'
+"pep8, ctrl-k short key.
+"let g:pep8_map='<C-k>'
 
 "------------------ YouCompleteMe
 let g:ycm_confirm_extra_conf = 0
@@ -338,24 +251,6 @@ let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 
-
-"------------------ taglist
-"We need to install ctags http://ctags.sourceforge.net/ first
-"download it and ./configure; sudo make install.
-"ctags will be installed to /usr/local/bin/ctags
-
-"use /usr/local/bin/ctags on mac
-let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
-" 只显示当前文件的tag
-let Tlist_Show_One_File = 1
-"taglist是最后一个的时候退出vim
-let Tlist_Exit_OnlyWindow = 1
-"open taglist on vim startup
-let Tlist_Auto_Open=1
-let Tlist_Auto_Highlight_Tag=1
-let Tlist_Use_Right_Window=1
-let Tlist_WinWidth=27
-
 "--------------------  for pythonist, use vim-pep8-indent instead of pymode
 let g:pymode_indent = 1  "currently use pymode's indent
 let g:pymode_rope = 0
@@ -364,7 +259,6 @@ let g:pymode_lint = 1
 
 "------------------ For Js
 let javascript_enable_domhtmlcss = 1
-
 
 "-------------------- for golang users
 let g:go_highlight_functions = 1
@@ -382,51 +276,34 @@ let g:rustfmt_autosave = 1
 let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
 let $RUST_SRC_PATH='/Users/hit9/src/rust/src/'
 
-"-------------------------------------插件配置end-----------------------------1}}}
+" Vim-startify
+let g:startify_custom_header = [
+            \ '                         ███████████████████████████',
+            \ '                         ███████▀▀▀░░░░░░░▀▀▀███████',
+            \ '                         ████▀░░░░░░░░░░░░░░░░░▀████',
+            \ '                         ███│░░░░░░░░░░░░░░░░░░░│███',
+            \ '                         ██▌│░░░░░░░░░░░░░░░░░░░│▐██',
+            \ '                         ██░└┐░░░░░░░░░░░░░░░░░┌┘░██',
+            \ '                         ██░░└┐░░░░░░░░░░░░░░░┌┘░░██',
+            \ '                         ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██',
+            \ '                         ██▌░│██████▌░░░▐██████│░▐██',
+            \ '                         ███░│▐███▀▀░░▄░░▀▀███▌│░███',
+            \ '                         ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██',
+            \ '                         ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██',
+            \ '                         ████▄─┘██▌░░░░░░░▐██└─▄████',
+            \ '                         █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████',
+            \ '                         ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████',
+            \ '                         █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████',
+            \ '                         ███████▄░░░░░░░░░░░▄███████',
+            \ '                         ██████████▄▄▄▄▄▄▄██████████',
+            \ '                         ███████████████████████████',
+            \ '',
+            \ '                ╔══════════════════════════════════════════╗',
+            \ '                ║             ⎋ Vim Rocks! ⎋               ║',
+            \ '                ╚══════════════════════════════════════════╝'
+            \ ]
 
-func! Runit()
-    exec "w"
-    if &filetype == 'c'
-        exec "!gcc  % -o %<"
-        exec "! ./%<"
-    elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!java %<"
-    elseif &filetype == 'php'
-        exec "!php %"
-    elseif &filetype =='python'
-        exec "!python %"
-    elseif &filetype=='ruby'
-        exec "!ruby %"
-    elseif &filetype=='javascript'
-        exec "!node %"
-    elseif &filetype=='sh'
-        exec "!sh %"
-    elseif &filetype=='go'
-        exec "!go run %"
-    elseif &filetype=='coffee'
-        exec "!coffee %"
-    elseif &filetype=='less'
-        exec "!lessc % %<.css"
-    elseif &filetype=='lua'
-        exec "!lua %"
-    elseif &filetype=='rust'
-        exec "!rustc % -o %<"
-        exec "! ./%<"
-    endif
-endfunc
-
-
-"-------------------------- 键 map-------------------------------------{{{1
-
-"这样在normal模式下在一行中按下0就跳到了行首,按下9到行尾
-noremap 0 ^
-noremap 9 $
-
-"快速的通过w和方向键在窗口之间跳转
+"Shortcut window switches, w+h/j/k/l
 noremap w<up> <c-w><up>
 noremap wk <c-w><up>
 noremap w<left> <c-w><left>
@@ -439,35 +316,51 @@ noremap wj <c-w><down>
 "Type 'gd' on normal mode to goto definition in c/cpp/py files.
 "noremap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-
-"--------------- 系统剪切板 ---------------
-
+"Map Ctrl-C and Ctrl-V to copy and paste.
 map <C-c> "+y
 map <C-v> "+p
-"----------------------------------------------------------------------1}}}
 
-"--------------  用户自定义命令 --------------------------------------{{{1
-":R快速执行程序
-:command R :call Runit()
-"自动PEP8修改当前py文件
-:command PEP8 :!autopep8 -i %
-"打开/关闭Nerdtree
+"Shortcut command to toggle nerdtree window.
 :command NT :NERDTreeToggle
-"打开/关闭tagbar
-:command TG :TlistToggle
-"打开YankRing
-:command YR :YRShow
-"打开关闭Gundo
-:command GD :GundoToggle
-"清楚行尾空白
-:command WS :%s/\s\+$//e
-" ---------------------------------------------------------------------1}}}
-"
-autocmd BufWrite *.c :WS
-autocmd BufWrite *.h :WS
-autocmd BufWrite *.go :WS
-autocmd BufWrite *.js :WS
-autocmd BufWrite *.html :WS
-autocmd BufWrite *.py :WS
 
+"Highlight trailing whitespaces as red.
+"http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+"Clean trailing whitespaces on buffer's save.
+"Command :WS is to clean trailing whitespaces.
+:command WS :%s/\s\+$//e
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
 "autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
+
+"Gotags - tagbar
+"https://github.com/jstemmer/gotags#vim-tagbar-configuration
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \},
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \},
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\}
+"Open tagbar automatically.
+autocmd BufEnter * nested :call tagbar#autoopen(0)
