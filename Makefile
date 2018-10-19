@@ -31,9 +31,21 @@ zsh: submodule
 	ln $(LNSOPT) $(CURDIR)/zsh/zshrc ~/.zshrc
 	ln $(LNSOPT) $(CURDIR)/zsh/oh-my-zsh ~/.oh-my-zsh
 	ln $(LNSOPT) $(CURDIR)/zsh/hit9.zsh-theme ~/.oh-my-zsh/themes/hit9.zsh-theme
+	chsh -s $(which zsh)
 
 git:
 	ln $(LNSOPT) $(CURDIR)/git/gitconfig ~/.gitconfig
 
 z:
 	ln $(LNSOPT) $(CURDIR)/z/z.sh ~/.z.sh
+
+fish:
+	ln $(LNSOPT) $(CURDIR)/fish/before-fish-start.bash ~/.before-fish-start.bash
+	sudo ln $(LNSOPT) $(CURDIR)/fish/fishlogin /usr/local/bin/fishlogin
+	sudo chmod +x /usr/local/bin/fishlogin
+	echo /usr/local/bin/fishlogin | sudo tee -a /etc/shells
+	chsh -s /usr/local/bin/fishlogin
+	ln $(LNSOPT) $(CURDIR)/fish/fishfile ~/.config/fish/fishfile
+
+alacritty:
+	ln $(LNSOPT) $(CURDIR)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml

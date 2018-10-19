@@ -1,0 +1,4 @@
+#!/bin/bash -l
+
+source ~/.before-fish-start.bash
+exec -l fish "$@"
