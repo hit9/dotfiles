@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'cocopon/iceberg.vim'
+Plugin 'rakr/vim-one'
 "Plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -24,7 +25,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mhinz/vim-startify'
-Plugin 'majutsushi/tagbar'
 "Snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -33,7 +33,10 @@ Plugin 'garbas/vim-snipmate'
 "Git
 Plugin 'tpope/vim-fugitive'
 "Language: Javascript
-Plugin 'pangloss/vim-javascript'
+Plugin 'JavaScript-Indent'
+Plugin 'jelera/vim-javascript-syntax'
+"Framework: Vue
+Plugin 'posva/vim-vue'
 "Language: Python
 Plugin 'pep8'
 Plugin 'python.vim--Vasiliev'
@@ -62,7 +65,8 @@ filetype plugin indent on
 
 syntax enable
 se nu  "Show line numbers.
-set term=screen-256color
+"set term=xterm-256color
+set term=xterm-256color
 set title "Terminal title is set by vim.
 set go= "Disable gui menu
 set t_Co=256 "Enable 256 color
@@ -194,15 +198,15 @@ set background=dark
 hi Normal ctermbg=none
 
 if has("gui_macvim")
-    colorscheme PaperColor
+    colorscheme one
 else
-    colorscheme PaperColor
+    colorscheme one
 endif
 
 "Highlight current line. I'am now using iterm's cursor line highlighting.
 "set cursorline
 "Highlight current column.
-set cursorcolumn
+"set cursorcolumn
 " Custom cursorline and cursorcolumn bg and fg colors.
 if has("gui_macvim")
     hi CursorLine term=none gui=none guibg=#2d2d2d guifg=DarkCyan
@@ -259,6 +263,7 @@ let g:pymode_lint = 1
 
 "------------------ For Js
 let javascript_enable_domhtmlcss = 1
+let g:javascript_plugin_jsdoc = 1
 
 "-------------------- for golang users
 let g:go_highlight_functions = 1
@@ -333,34 +338,10 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
 "autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
 
-"Gotags - tagbar
-"https://github.com/jstemmer/gotags#vim-tagbar-configuration
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \},
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \},
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\}
-"Open tagbar automatically.
-autocmd BufEnter * nested :call tagbar#autoopen(0)
+"RefreshBuffer is a function to refresh current editing buffer.
+function! RefreshBuffer(ch, msg)
+  silent edit!
+endfunction
+
+"Call eslint --fix on buffer save, async
+au BufWrite *.js :call job_start("eslint " . expand("%:p") . " --fix", {'exit_cb': 'RefreshBuffer'})
