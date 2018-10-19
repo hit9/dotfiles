@@ -35,34 +35,24 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)a
 
 
-plugins=(zsh-autosuggestions git python pip compleat extract zsh-syntax-highlighting golang)
+plugins=(zsh-autosuggestions compleat extract zsh-syntax-highlighting git)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export TERM=screen-256color
+export TERM=xterm-256color
 
-
-# alias for reload zshrc
-alias reload!='. ~/.zshrc'
-# alias for quick server
-alias pyserver='python -m SimpleHTTPServer'
-
-export LC_ALL=en_US.UTF-8  
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export EDITOR=vim
-export TERM=screen-256color-bce
 
 source $HOME/github/dotfiles/z/z.sh
 
 export PYTHON_EGG_CACHE=/tmp/py_eggs_cache
 
 set -o emacs
-
-sizeof(){du -h "$*"}
-procofport(){lsof -n -i4TCP:"$*" | grep LISTEN}
 
 # only mac
 export PATH=$PATH:$(brew --prefix)/share/npm/bin
@@ -77,10 +67,13 @@ export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:/Users/hit9/.cargo/bin
 export PATH=$PATH:/Users/hit9/toolchain/gcc-arm-none-eabi-5_3-2016q1/bin
+
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Postgresql
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+# source "$HOME/.cargo/env"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
