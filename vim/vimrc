@@ -51,6 +51,7 @@ Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
+Plugin 'dag/vim-fish'
 
 call vundle#end() " required
 
@@ -59,6 +60,7 @@ filetype plugin indent on
 
 syntax enable
 se nu  "Show line numbers.
+set shell=/bin/sh
 "set term=xterm-256color
 set term=screen-256color
 set title "Terminal title is set by vim.
@@ -198,9 +200,10 @@ else
 endif
 
 "Highlight current line. I'am now using iterm's cursor line highlighting.
-"set cursorline
+set cursorline
 "Highlight current column.
-"set cursorcolumn
+set cursorcolumn
+
 " Custom cursorline and cursorcolumn bg and fg colors.
 if has("gui_macvim")
     hi CursorLine term=none gui=none guibg=#2d2d2d guifg=DarkCyan
@@ -208,8 +211,8 @@ if has("gui_macvim")
 else
     "CursorLine: use iterm cursorline bg color, term vim dosent support custom defined
     "color codes
-    hi CursorLine term=none cterm=none ctermbg=none ctermfg=DarkCyan
-    hi CursorColumn term=none cterm=none ctermbg=DarkGray ctermfg=DarkCyan
+    hi CursorLine term=underline cterm=underline ctermbg=none ctermfg=DarkGrey
+    hi CursorColumn term=none cterm=none ctermbg=DarkGrey ctermfg=LightBlue
 endif
 
 "Highlight selected blocks on visual mode.
