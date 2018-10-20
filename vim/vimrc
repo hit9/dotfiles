@@ -22,14 +22,8 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-commentary'
-Plugin 'sjl/gundo.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mhinz/vim-startify'
-"Snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'
 "Git
 Plugin 'tpope/vim-fugitive'
 "Language: Javascript
@@ -47,7 +41,7 @@ Plugin 'vim-scripts/a.vim'
 Plugin 'rhysd/vim-clang-format'
 "Language: Go
 Plugin 'fatih/vim-go'
-Plugin 'dgryski/vim-godef'
+"Plugin 'dgryski/vim-godef'
 "Language: Rust
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
@@ -66,7 +60,7 @@ filetype plugin indent on
 syntax enable
 se nu  "Show line numbers.
 "set term=xterm-256color
-set term=xterm-256color
+set term=screen-256color
 set title "Terminal title is set by vim.
 set go= "Disable gui menu
 set t_Co=256 "Enable 256 color
@@ -198,9 +192,9 @@ set background=dark
 hi Normal ctermbg=none
 
 if has("gui_macvim")
-    colorscheme one
+    colorscheme PaperColor
 else
-    colorscheme one
+    colorscheme PaperColor
 endif
 
 "Highlight current line. I'am now using iterm's cursor line highlighting.
@@ -271,6 +265,13 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_def_mode = 'godef'
+let g:go_def_mapping_enabled = 0
+
+"We remap gd for godef split window.
+au FileType go nnoremap gd :split\|GoDef<CR>
+"Type 'gd' on normal mode to goto definition in c/cpp/py files.
+au FileType python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "Install current directiory as a package into GOPATH, for autocompletion of go
 "code.
@@ -317,9 +318,6 @@ noremap w<right> <c-w><right>
 noremap wl <c-w><right>
 noremap w<down> <c-w><down>
 noremap wj <c-w><down>
-
-"Type 'gd' on normal mode to goto definition in c/cpp/py files.
-"noremap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "Map Ctrl-C and Ctrl-V to copy and paste.
 map <C-c> "+y
