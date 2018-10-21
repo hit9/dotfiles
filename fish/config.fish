@@ -1,5 +1,4 @@
-# Change prompt symbol to $
-set pure_symbol_prompt "\$"
+set pure_symbol_prompt "->>"
 
 # Alias
 alias g "git"

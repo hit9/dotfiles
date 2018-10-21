@@ -11,7 +11,7 @@ export EDITOR=vim
 set -o emacs
 
 # Node/Npm
-export PATH=$PATH:$(brew --prefix)/share/npm/bin
+export PATH=$PATH:/usr/local/share/npm/bin
 
 # Golang
 export GOPATH=/Users/hit9/gopark
