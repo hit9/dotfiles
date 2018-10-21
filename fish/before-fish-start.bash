@@ -21,10 +21,6 @@ source "/Users/hit9/github/oo/env"
 # Rust/Cargo
 export PATH=$PATH:/Users/hit9/.cargo/bin
 
-# Pythonn
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
 # Postgresql
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
