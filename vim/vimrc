@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'cocopon/iceberg.vim'
-Plugin 'rakr/vim-one'
 "Plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -93,6 +92,8 @@ set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbkgb2312,cp936
 set termencoding=utf-8
 "Encoding that saving files.
 set fileencoding=utf-8
+"Paste
+set paste
 
 set nowrap
 
@@ -112,7 +113,10 @@ set guioptions-=m
 " set guifont=Monaco:h14
 set guifont=Inconsolata-g\ for\ Powerline:h14
 
-"Auto indent.
+"Auto indent. This makes CMD+V works wired, so when you are pasting something from clipboard into vim:
+" :set paste
+" CMD + V
+" :set nopaste
 set autoindent
 "C style indent.
 set cindent
