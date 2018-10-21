@@ -211,7 +211,7 @@ if has("gui_macvim")
 else
     "CursorLine: use iterm cursorline bg color, term vim dosent support custom defined
     "color codes
-    hi CursorLine term=underline cterm=underline ctermbg=none ctermfg=DarkGrey
+    hi CursorLine term=underline cterm=underline ctermbg=none ctermfg=none
     hi CursorColumn term=none cterm=none ctermbg=DarkGrey ctermfg=LightBlue
 endif
 
