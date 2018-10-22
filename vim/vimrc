@@ -92,8 +92,6 @@ set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbkgb2312,cp936
 set termencoding=utf-8
 "Encoding that saving files.
 set fileencoding=utf-8
-"Paste
-set paste
 
 set nowrap
 
