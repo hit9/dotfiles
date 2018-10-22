@@ -23,6 +23,11 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mhinz/vim-startify'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-rsi'
+Plugin 'mileszs/ack.vim'
+Plugin 'jayflo/vim-skip'
+Plugin 'unblevable/quick-scope'
 "Git
 Plugin 'tpope/vim-fugitive'
 "Language: Javascript
@@ -36,7 +41,6 @@ Plugin 'python.vim--Vasiliev'
 Plugin 'hynek/vim-python-pep8-indent'
 "Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'vim-scripts/a.vim'
 Plugin 'rhysd/vim-clang-format'
 "Language: Go
 Plugin 'fatih/vim-go'
@@ -47,8 +51,6 @@ Plugin 'racer-rust/vim-racer'
 "Language: Markdown
 Plugin 'jtratner/vim-flavored-markdown'
 "Language: Misc
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'cespare/vim-toml'
 Plugin 'elzr/vim-json'
 Plugin 'dag/vim-fish'
 
@@ -348,3 +350,14 @@ endfunction
 
 "Call eslint --fix on buffer save, async
 au BufWrite *.js :call job_start("eslint " . expand("%:p") . " --fix", {'exit_cb': 'RefreshBuffer'})
+
+"Configure for quick-scope
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+let g:qs_max_chars=180
+
+
+"Configure Ack.vim: Use ag if avaliable
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
