@@ -24,15 +24,13 @@ Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mhinz/vim-startify'
 Plugin 'mhinz/vim-signify'
-Plugin 'tpope/vim-rsi'
 Plugin 'mileszs/ack.vim'
 Plugin 'jayflo/vim-skip'
 Plugin 'unblevable/quick-scope'
 "Git
 Plugin 'tpope/vim-fugitive'
 "Language: Javascript
-Plugin 'JavaScript-Indent'
-Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
 "Framework: Vue
 Plugin 'posva/vim-vue'
 "Language: Python
@@ -347,8 +345,8 @@ function! RefreshBuffer(ch, msg)
   silent edit!
 endfunction
 
-"Call eslint --fix on buffer save, async
-au BufWrite *.js :call job_start("eslint " . expand("%:p") . " --fix", {'exit_cb': 'RefreshBuffer'})
+"Call standard --fix on buffer save, async
+au BufWrite *.js :retab | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'}) | argdo silent execute "normal gg=G''"
 
 "Configure for quick-scope
 highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
@@ -367,3 +365,6 @@ augroup MultipleCursorsSelectionFix
     autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
 augroup END
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
+
+"Vim-javascript configurations
+let g:javascript_plugin_jsdoc = 1
