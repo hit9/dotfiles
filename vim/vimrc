@@ -11,7 +11,6 @@ let g:vundle_default_git_proto="https"
 Plugin 'VundleVim/Vundle.vim'
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'cocopon/iceberg.vim'
 "Plugins
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -27,6 +26,7 @@ Plugin 'mhinz/vim-signify'
 Plugin 'mileszs/ack.vim'
 Plugin 'jayflo/vim-skip'
 Plugin 'unblevable/quick-scope'
+Plugin 'hit9/ShowMotion'  " Forked from https://github.com/boucherm/ShowMotion
 "Git
 Plugin 'tpope/vim-fugitive'
 "Language: Javascript
@@ -162,6 +162,10 @@ set matchtime=1
 set completeopt=longest,menu
 set cpt=.,w,b
 
+"https://stackoverflow.com/posts/1276428/revisions
+"Cursor which always stays in the middle of screen is cool.
+set scrolloff=9999
+
 "Commentry, type `\\` to toggle comments.
 xmap <Leader><Leader>  <Plug>Commentary
 nmap <Leader><Leader>  <Plug>Commentary
@@ -279,7 +283,8 @@ au FileType python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseD
 
 "Install current directiory as a package into GOPATH, for autocompletion of go
 "code.
-autocmd BufWrite *.go :call job_start('go install .')
+autocmd FileType go
+            \ autocmd BufWrite *.go :call job_start('go install .')
 
 "------------------- For rust users
 let g:rustfmt_autosave = 1
@@ -346,10 +351,13 @@ function! RefreshBuffer(ch, msg)
 endfunction
 
 "Call standard --fix on buffer save, async
-au BufWrite *.js :retab | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'}) | argdo silent execute "normal gg=G''"
+"About gg=G cursor moved issue:
+"https://stackoverflow.com/questions/7086402/indenting-entire-file-in-vim-without-leaving-current-cursor-location
+au BufWrite *.js
+    \ :retab | silent execute "normal! gg=G``" | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'})
 
 "Configure for quick-scope
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=112 cterm=underline
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 let g:qs_max_chars=180
 
@@ -368,3 +376,32 @@ let g:multi_cursor_quit_keys='<Esc>,<C-c>'
 
 "Vim-javascript configurations
 let g:javascript_plugin_jsdoc = 1
+
+"ShowMotion connfigurations
+highlight SM_SmallMotionGroup cterm=underline ctermfg=207
+highlight SM_BigMotionGroup   cterm=underline ctermfg=207
+highlight SM_CharSearchGroup  cterm=underline ctermfg=207
+
+"*** Highlights both big and small motions
+nmap w <Plug>(show-motion-both-w)
+nmap W <Plug>(show-motion-both-W)
+nmap b <Plug>(show-motion-both-b)
+nmap B <Plug>(show-motion-both-B)
+nmap e <Plug>(show-motion-both-e)
+nmap E <Plug>(show-motion-both-E)
+
+"*** Only highlights motions corresponding to the one you typed
+nmap w <Plug>(show-motion-w)
+nmap W <Plug>(show-motion-W)
+nmap b <Plug>(show-motion-b)
+nmap B <Plug>(show-motion-B)
+nmap e <Plug>(show-motion-e)
+nmap E <Plug>(show-motion-E)
+
+"Show motion for chars:
+nmap f <Plug>(show-motion-f)
+nmap t <Plug>(show-motion-t)
+nmap F <Plug>(show-motion-F)
+nmap T <Plug>(show-motion-T)
+nmap ; <Plug>(show-motion-;)
+nmap , <Plug>(show-motion-,)
