@@ -283,8 +283,7 @@ au FileType python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseD
 
 "Install current directiory as a package into GOPATH, for autocompletion of go
 "code.
-autocmd FileType go
-            \ autocmd BufWrite *.go :call job_start('go install .')
+autocmd BufWrite *.go :call job_start('go install .')
 
 "------------------- For rust users
 let g:rustfmt_autosave = 1
