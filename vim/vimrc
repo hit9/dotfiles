@@ -1,191 +1,167 @@
-"Vundle
+"Chao Wang's personal vim configurations.
+"Repo: https://github.com/hit9/dotfiles
+"Feel free to use for any purpose, but try it on your own risk.
+"-----------  Vim Makes World Better -------------
+
+"Vundle Plugins ------------------------------ {
 set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"Use git:// as default protocol.
+"Use https:// as default protocol for vundle's git clone.
 let g:vundle_default_git_proto="https"
 
 Plugin 'VundleVim/Vundle.vim'
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 "Plugins
-Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline' "Status line plugin.
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-commentary'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'mhinz/vim-startify'
-Plugin 'mhinz/vim-signify'
-Plugin 'mileszs/ack.vim'
-Plugin 'jayflo/vim-skip'
-Plugin 'unblevable/quick-scope'
-Plugin 'hit9/ShowMotion'  " Forked from https://github.com/boucherm/ShowMotion
+Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
+Plugin 'kien/ctrlp.vim' "Fuzzy files/buffers finder, an alternative plugin is vim-fzf.
+Plugin 'Yggdroot/indentLine' "Visualize us indent levels.
+Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
+Plugin 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
+Plugin 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
+Plugin 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
+Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
+Plugin 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
+Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
+Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
+Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
+Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
 "Git
-Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
-Plugin 'pangloss/vim-javascript'
-"Framework: Vue
-Plugin 'posva/vim-vue'
+Plugin 'pangloss/vim-javascript' "Js syntax plugin.
+"Language/framework: Vue
+Plugin 'posva/vim-vue' "Vue syntax plugin
 "Language: Python
-Plugin 'pep8'
-Plugin 'python.vim--Vasiliev'
-Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'python.vim--Vasiliev' "Python syntax.
+Plugin 'hynek/vim-python-pep8-indent' "vim-pep8-indent instead of pymode.
 "Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'rhysd/vim-clang-format'
 "Language: Go
-Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
 "Language: Rust
-Plugin 'rust-lang/rust.vim'
+Plugin 'rust-lang/rust.vim' "Rust syntax.
 Plugin 'racer-rust/vim-racer'
 "Language: Markdown
-Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'jtratner/vim-flavored-markdown' "Must-have plugin to be a Github's fan.
 "Language: Misc
 Plugin 'elzr/vim-json'
 Plugin 'dag/vim-fish'
 
 call vundle#end() " required
+"Vundle  -------------------------------- }
 
-"This should be after bundles.
-filetype plugin indent on
+"Basic ------------------------------------------------ {
 
-syntax enable
-se nu  "Show line numbers.
-set shell=/bin/sh
-"set term=xterm-256color
-set term=screen-256color
-set title "Terminal title is set by vim.
-set go= "Disable gui menu
-set t_Co=256 "Enable 256 color
-set hidden
-set ttyfast
-syntax on
-set showcmd
-set showmode
+filetype plugin indent on "This should be after bundles.
+
+"Normal settings.
+set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
 set noeb "Disable bells.
-"Auto updates current file if this file is updated by outer.
-set autoread
-"Disable the short message on vim start.
-set shortmess=atI
-"Auto switch current working directory to current editing file's directory.
-set autochdir
-"Don't perform highlight on lines that are longer than 800 chars.
-set synmaxcol=800
-set backspace=indent,eol,start
-set gdefault
-"Search
-set hlsearch
-set incsearch
-"Encoding=utf8
-set encoding=utf-8
-"Encoding that creating new files.
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbkgb2312,cp936
-"Encoding that output to terminal.
-set termencoding=utf-8
-"Encoding that saving files.
-set fileencoding=utf-8
+set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
 
-set nowrap
-
-"Statusbar
-set laststatus=2
-set ruler
-
-"Tmux copy issue
-"https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-set clipboard=unnamed
-
-"Hide gvim's toolbar.
-set guioptions-=T
-"Hide gvim's menubar.
-set guioptions-=m
-"Setting gvim's font.
-" set guifont=Monaco:h14
-set guifont=Inconsolata-g\ for\ Powerline:h14
-
-"Auto indent. This makes CMD+V works wired, so when you are pasting something from clipboard into vim:
-" :set paste
-" CMD + V
-" :set nopaste
-set autoindent
-"C style indent.
-set cindent
-"http://vim.wikia.com/wiki/Indenting_source_code
-set smartindent
-
-"Expand tabs into spaces, for python.
-set expandtab
-set tabstop=4 " 1tab = 4 spaces.
-set softtabstop=4
-set shiftwidth=4
-
-"Show list.
-set list
-"Chars that to display list.
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-
-"Set ident tabs by filetype (modified from humiaozuzu's dotfile).
-autocmd FileType text setlocal textwidth=79
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-
-"Enable mouse.
-set mouse=a
-set selection=exclusive
+"Normal :: Mouse.
+set mouse=a "Enable mouse.
+set selection=exclusive "Mouse can only selects the block where ths cursor is on.
 set selectmode=mouse,key
-"Hide mouse cursor on keyboard typing.
-set mousehide
-set mousemodel=popup
 
-" Enable fold, manually.
-set foldenable
-set foldmethod=manual
-set foldlevel=3
+set mousehide "Hide mouse cursor on keyboard typing.
+set mousemodel=popup "Right mouse button pops up a menu.
 
-"Highlight match.
-set showmatch
-set matchtime=1
+"Syntax
+syntax enable "Enable syntax.
+set synmaxcol=800 "Don't perform highlight on lines that are longer than 800 chars.
 
-"Completion.
-set completeopt=longest,menu
-set cpt=.,w,b
+"Display :: Window
+se nu  "Show line numbers.
+set go= "Disable gvim's gui menu. (But I never use gui version).
+set term=screen-256color "I use screen-256color.
+set shortmess=atI "Disable the short message on vim start.
+set showcmd "Show command in the last line of screeen.
+set showmode "If in Insert, Replace or Visual mode put a message on the last line.
+set nowrap "Lines longer than the width of window will wrap and displaying continues on the next line.
 
+"Display :: Statusbar
+set laststatus=2 "Always show status line on the last window.
+set ruler "Show line and column number of where cursor is.
+
+"Display :: Terminal title
+set title "Makes terminal title is set by vim.
+set titleold= "Restore old title after leaving vim.
+
+"Display :: Scroll/Cursor
 "https://stackoverflow.com/posts/1276428/revisions
 "Cursor which always stays in the middle of screen is cool.
 set scrolloff=9999
 
-"Commentry, type `\\` to toggle comments.
-xmap <Leader><Leader>  <Plug>Commentary
-nmap <Leader><Leader>  <Plug>Commentary
-omap <Leader><Leader>  <Plug>Commentary
-nmap <Leader><Leader>  <Plug>CommentaryLine
+"Search/Replace
+set gdefault ":s/<search-target>/<to-replace-with>/ is s///g by default
+set hlsearch "Highlight search results.
+set incsearch "Realtime search results showing.
 
-"Airline
-let g:airline_theme = 'luna'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+"Editing.
+set autoread "Auto updates current file if this file is updated by outer.
+set hidden "Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed.
+set autochdir "Auto switch current working directory to current editing file's directory.
 
-"YouCompleteMe
-let g:ycm_key_list_select_completion = ['<Down>']
+"Editing :: Encodings --- We all use utf8 please.
+set encoding=utf-8
+set fencs=utf-8 "Encoding that creating new files.
+set termencoding=utf-8 "Encoding that output to terminal.
+set fileencoding=utf-8 "Encoding that saving files.
+set backspace=indent,eol,start "Backspace key, I just don't rely on it.
 
-"Python highlights (python.vim)
-let g:python_highlight_builtin_objs = 1
-let g:python_highlight_builtin_funcs = 1
-let g:python_highlight_exceptions = 1
+" Editing :: Enable fold, manually.
+set foldenable
+set foldmethod=manual "zf to flod, zo to open.
+set foldlevel=3
 
-"Colorscheme
+"Editing :: Copy/Paste
+set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+
+"Editing :: Match
+set showmatch "When a bracket is inserted, briefly jump to the matching one.
+set matchtime=1 "Tenths of a second to show the matching paren.
+
+"Editing :: Completion.
+set completeopt=longest,menu
+set cpt=.,w,b
+
+"Editing :: Indent And Tabs.
+set autoindent "Autoindent  makes Cmd+V works wired, so when pasting something from clipboard into vim:
+               ":set paste and then Cmd+V, and rollback paste settings via :set paste.
+set cindent "C style indent.
+set smartindent "http://vim.wikia.com/wiki/Indenting_source_code
+set expandtab "Expand tabs into spaces, by default (Python user's must-have).
+set tabstop=4 "Setting 1tab = 4 spaces.
+set softtabstop=4 "Number of spaces that a <Tab> counts for while editing. :set paste makes softtabstop to 0 temply.
+set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
+
+set list "Show tabs via listchars below, and display end sign after endo fline.
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
+
+"Tab settings for diferent language filetypes. (forked from humiaozuzu's dotfile.)
+autocmd FileType text setlocal textwidth=79
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+
+"Color/Highlighting.
+set t_Co=256 "Enable 256 color
+set background=dark "Using dark. Hmm dark is sexy.
+
+"Colorscheme Configuration :: PaperColor ----------- {
 let g:PaperColor_Theme_Options = {
     \   'theme': {
     \     'default.dark': {
@@ -193,195 +169,163 @@ let g:PaperColor_Theme_Options = {
     \      }
     \   }
     \ }
+colorscheme PaperColor "Set colorscheme after its setting applied.
+"Colorscheme Configuration :: PaperColor ----------- }
 
-set background=dark
-"Make vim be transparent in terminal.
-hi Normal ctermbg=none
+"Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
+set cursorline "Highlight current line.
+hi CursorLine term=underline cterm=underline ctermbg=none ctermfg=none
+set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
+hi CursorColumn term=none cterm=none ctermbg=DarkGrey ctermfg=LightBlue
 
-if has("gui_macvim")
-    colorscheme PaperColor
-else
-    colorscheme PaperColor
-endif
+" Color :: Normal and Visual mode.
+hi Normal term=none ctermbg=none " Make vim be transparent in terminal.
+hi Visual term=none cterm=bold ctermbg=238 ctermfg=185
 
-"Highlight current line. I'am now using iterm's cursor line highlighting.
-set cursorline
-"Highlight current column.
-set cursorcolumn
+"Basic ------------------------------------------------ }
 
-" Custom cursorline and cursorcolumn bg and fg colors.
-if has("gui_macvim")
-    hi CursorLine term=none gui=none guibg=#2d2d2d guifg=DarkCyan
-    hi CursorColumn term=none gui=none guibg=#2d2d2d guifg=DarkCyan
-else
-    "CursorLine: use iterm cursorline bg color, term vim dosent support custom defined
-    "color codes
-    hi CursorLine term=underline cterm=underline ctermbg=none ctermfg=none
-    hi CursorColumn term=none cterm=none ctermbg=DarkGrey ctermfg=LightBlue
-endif
+"Plugin Configuration :: tpope/vim-commentary ----------------- {
 
-"Highlight selected blocks on visual mode.
-if has("gui_macvim")
-    hi Visual gui=none guifg=White guibg=#04daf2
-else
-    hi Visual term=none cterm=none ctermfg=LightYellow ctermbg=DarkCyan
-endif
+"Type `\\` to toggle comments for current line or selected blocks.
+xmap <Leader><Leader>  <Plug>Commentary
+nmap <Leader><Leader>  <Plug>Commentary
+omap <Leader><Leader>  <Plug>Commentary
+nmap <Leader><Leader>  <Plug>CommentaryLine
 
+"Plugin Configuration :: tpope/vim-commentary ----------------- }
+
+"Plugin Configuration :: vim-airline/vim-airline ----------- {
+let g:airline_theme = 'luna'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+"Plugin Configuration :: vim-airline/vim-airline ----------- }
+
+"Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- {
+"
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_python_binary_path = 'python'
+
+"Type 'gd' on normal mode to goto definition in c/cpp/py files.
+au FileType python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- }
+
+"Plugin Configuration :: python.vim--Vasiliev ----------- {
+let g:python_highlight_builtin_objs = 1
+let g:python_highlight_builtin_funcs = 1
+let g:python_highlight_exceptions = 1
+"Plugin Configuration :: python.vim--Vasiliev ----------- }
+
+
+"Plugin Configuration :: scrooloose/nerdtree --------- {
+"
 "Open nerdtree on buffer entered. And close it if it's the last window.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "nerdtree window's width.
-let NERDTreeWinSize = 35
+let NERDTreeWinSize=35
 "Show line number for nerdtree.
 let NERDTreeShowLineNumbers=1
 "Don't display these files:
 let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__']
+"User-defined custom command `:NT` to toggle nerdtree window
 
-"pep8, ctrl-k short key.
-"let g:pep8_map='<C-k>'
+:command NT :NERDTreeToggle
 
-"------------------ YouCompleteMe
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_python_binary_path = 'python'
-let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-" let g:clang_format#style_options = {
-"             \ 'BasedOnStyle': 'google',
-"             \ 'IndentWidth': '4',
-"             \ 'DerivePointerAlignment': 'false',
-"             \ 'PointerAlignment': 'Right',
-"             \ }
+"Plugin Configuration :: scrooloose/nerdtree --------- }
+
+"Plugin Configuration :: rhysd/vim-clang-format ------ {
+let g:clang_library_path =
+            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
+"Clangformat styles.
+let g:clang_format#style_options = {
+            \ 'BasedOnStyle': 'google',
+            \ 'IndentWidth': '4',
+            \ 'DerivePointerAlignment': 'false',
+            \ 'PointerAlignment': 'Right',
+            \ }
 let g:clang_format#detect_style_file = 1
 let g:clang_format#auto_format = 1
+"Auto format on buffer save.
+autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
+"Plugin Configuration :: rhysd/vim-clang-format ------ }
 
-"----- indentLine
+"Plugin Configuration :: Yggdroot/indentLine ------------------------- {
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
+" Plugin Configuration :: Yggdroot/indentLine ------------------------- }
 
-"--------------------  for pythonist, use vim-pep8-indent instead of pymode
-let g:pymode_indent = 1  "currently use pymode's indent
+"Plugin Configuration :: hynek/vim-python-pep8-indent -------------- {
+let g:pymode_indent = 1  "Currently use pymode's indent
 let g:pymode_rope = 0
 let g:pymode_lint_write = 1
 let g:pymode_lint = 1
+"Plugin Configuration :: hynek/vim-python-pep8-indent -------------- }
 
-"------------------ For Js
+"Plugin Configuration :: pangloss/vim-javascript -------------- {
 let javascript_enable_domhtmlcss = 1
 let g:javascript_plugin_jsdoc = 1
+"Plugin Configuration :: pangloss/vim-javascript -------------- }
 
-"-------------------- for golang users
+"Plugin Configuration :: fatih/vim-go -------------------- {
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_def_mode = 'godef'
-let g:go_def_mapping_enabled = 0
+let g:go_def_mapping_enabled = 0  "I use custom gd map, that split a window.
 
 "We remap gd for godef split window.
 au FileType go nnoremap gd :split\|GoDef<CR>
-"Type 'gd' on normal mode to goto definition in c/cpp/py files.
-au FileType python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "Install current directiory as a package into GOPATH, for autocompletion of go
-"code.
+"code, since gocode don't know packages that not in GOPATH/pkg.
 autocmd BufWrite *.go :call job_start('go install .')
 
-"------------------- For rust users
+"Plugin Configuration :: fatih/vim-go -------------------- }
+
+"Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {
 let g:rustfmt_autosave = 1
 let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
 let $RUST_SRC_PATH='/Users/hit9/src/rust/src/'
+"Plugin Configuration :: rust-lang/rust.vim && racer -------------------- }
 
-" Vim-startify
-let g:startify_custom_header = [
-            \ '                         ███████████████████████████',
-            \ '                         ███████▀▀▀░░░░░░░▀▀▀███████',
-            \ '                         ████▀░░░░░░░░░░░░░░░░░▀████',
-            \ '                         ███│░░░░░░░░░░░░░░░░░░░│███',
-            \ '                         ██▌│░░░░░░░░░░░░░░░░░░░│▐██',
-            \ '                         ██░└┐░░░░░░░░░░░░░░░░░┌┘░██',
-            \ '                         ██░░└┐░░░░░░░░░░░░░░░┌┘░░██',
-            \ '                         ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██',
-            \ '                         ██▌░│██████▌░░░▐██████│░▐██',
-            \ '                         ███░│▐███▀▀░░▄░░▀▀███▌│░███',
-            \ '                         ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██',
-            \ '                         ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██',
-            \ '                         ████▄─┘██▌░░░░░░░▐██└─▄████',
-            \ '                         █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████',
-            \ '                         ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████',
-            \ '                         █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████',
-            \ '                         ███████▄░░░░░░░░░░░▄███████',
-            \ '                         ██████████▄▄▄▄▄▄▄██████████',
-            \ '                         ███████████████████████████',
-            \ '',
-            \ '                ╔══════════════════════════════════════════╗',
-            \ '                ║             ⎋ Vim Rocks! ⎋               ║',
-            \ '                ╚══════════════════════════════════════════╝'
-            \ ]
+"Plugin Configuration :: rust-lang/rust.vim && racer  -------------------- {
+let g:startify_custom_header = 'startify#fortune#cowsay()'
+"Plugin Configuration :: rust-lang/rust.vim && racer  -------------------- }
 
-"Shortcut window switches, w+h/j/k/l
-noremap w<up> <c-w><up>
-noremap wk <c-w><up>
-noremap w<left> <c-w><left>
-noremap wh <c-w><left>
-noremap w<right> <c-w><right>
-noremap wl <c-w><right>
-noremap w<down> <c-w><down>
-noremap wj <c-w><down>
+"Plugin Configuration :: unblevable/quick-scope ------------- {
+highlight QuickScopePrimary ctermfg=155 cterm=underline
+highlight QuickScopeSecondary ctermfg=81 cterm=underline
+let g:qs_max_chars=180 "Max number of chars to highlight in one line.
+"Plugin Configuration :: unblevable/quick-scope ------------- }
 
-"Map Ctrl-C and Ctrl-V to copy and paste.
-map <C-c> "+y
-map <C-v> "+p
-
-"Shortcut command to toggle nerdtree window.
-:command NT :NERDTreeToggle
-
-"Highlight trailing whitespaces as red.
-"http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-"Clean trailing whitespaces on buffer's save.
-"Command :WS is to clean trailing whitespaces.
-:command WS :%s/\s\+$//e
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
-"autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
-
-"RefreshBuffer is a function to refresh current editing buffer.
-function! RefreshBuffer(ch, msg)
-  silent edit!
-endfunction
-
-"Call standard --fix on buffer save, async
-"About gg=G cursor moved issue:
-"https://stackoverflow.com/questions/7086402/indenting-entire-file-in-vim-without-leaving-current-cursor-location
-au BufWrite *.js
-    \ :retab | silent execute "normal! gg=G``" | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'})
-
-"Configure for quick-scope
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-let g:qs_max_chars=180
-
-
-"Configure Ack.vim: Use ag if avaliable
+"Plugin Configuration :: mileszs/ack.vim ------------- {
+"Use ag if avaliable: brew install the_silver_searcher
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+"Plugin Configuration :: mileszs/ack.vim ------------- }
 
+"Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
 augroup MultipleCursorsSelectionFix
     autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
     autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
 augroup END
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
+"Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 
-"Vim-javascript configurations
-let g:javascript_plugin_jsdoc = 1
+"Plugin Configuration :: hit9/ShowMotion --------------------- {
 
-"ShowMotion connfigurations
+"highlight 207=pink.
 highlight SM_SmallMotionGroup cterm=underline ctermfg=207
 highlight SM_BigMotionGroup   cterm=underline ctermfg=207
 highlight SM_CharSearchGroup  cterm=underline ctermfg=207
 
-"*** Highlights both big and small motions
+"Highlights both big and small motions
 nmap w <Plug>(show-motion-both-w)
 nmap W <Plug>(show-motion-both-W)
 nmap b <Plug>(show-motion-both-b)
@@ -389,7 +333,7 @@ nmap B <Plug>(show-motion-both-B)
 nmap e <Plug>(show-motion-both-e)
 nmap E <Plug>(show-motion-both-E)
 
-"*** Only highlights motions corresponding to the one you typed
+"Only highlights motions corresponding to the one you typed
 nmap w <Plug>(show-motion-w)
 nmap W <Plug>(show-motion-W)
 nmap b <Plug>(show-motion-b)
@@ -404,3 +348,49 @@ nmap F <Plug>(show-motion-F)
 nmap T <Plug>(show-motion-T)
 nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
+
+"Plugin Configuration :: hit9/ShowMotion --------------------- }
+
+"Custom :: Window Switches ----------------------------  {
+
+"Shortcut window switches, w+h/j/k/l
+noremap w<up> <c-w><up>
+noremap wk <c-w><up>
+noremap w<left> <c-w><left>
+noremap wh <c-w><left>
+noremap w<right> <c-w><right>
+noremap wl <c-w><right>
+noremap w<down> <c-w><down>
+noremap wj <c-w><down>
+
+"Custom :: Window Switches ----------------------------  }
+
+"Custom :: WhiteSpaces Cleaning ----------------------------  {
+
+"Highlight trailing whitespaces as red.
+"http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
+highlight ExtraWhitespace ctermbg=red
+match ExtraWhitespace /\s\+$/
+
+"Clean trailing whitespaces on buffer's save.
+"Command :WS is to clean trailing whitespaces.
+:command WS :%s/\s\+$//e
+
+"Auto clean whitespaces on buffer save for this files.
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
+
+"Custom :: WhiteSpaces Cleaning ----------------------------  }
+
+"Custom :: Javascript Autoformat ----------------------------  {
+"RefreshBuffer is a function to refresh current editing buffer.
+function! RefreshBuffer(ch, msg)
+  silent edit!
+endfunction
+
+"Call standard --fix on buffer save, async
+"About gg=G cursor moved issue:
+"https://stackoverflow.com/questions/7086402/indenting-entire-file-in-vim-without-leaving-current-cursor-location
+au BufWrite *.js
+    \ :retab | silent execute "normal! gg=G``" | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'})
+
+"Custom :: Javascript Autoformat ----------------------------  }
