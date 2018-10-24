@@ -356,7 +356,7 @@ au BufWrite *.js
     \ :retab | silent execute "normal! gg=G``" | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'})
 
 "Configure for quick-scope
-highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=112 cterm=underline
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 let g:qs_max_chars=180
 
