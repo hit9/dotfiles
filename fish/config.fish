@@ -7,3 +7,6 @@ alias gc "git commit -ev"
 
 # Use advanced exa
 alias ls exa
+
+# Use ag instead of ack
+alias ack ag
