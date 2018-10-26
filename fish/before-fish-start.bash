@@ -29,4 +29,6 @@ PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 # Fzf color: Seoul256 Dusk
 export FZF_DEFAULT_OPTS='
   --color=dark,hl:255,fg:30,hl+:255,fg+:30,bg+:235
+  --color info:108,prompt:109,spinner:108,pointer:168,marker:168
 '
+export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
