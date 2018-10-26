@@ -17,7 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Colorschemes
 Plugin 'NLKNguyen/papercolor-theme'
 "Plugins
-Plugin 'vim-airline/vim-airline' "Status line plugin.
+Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
 Plugin 'kien/ctrlp.vim' "Fuzzy files/buffers finder, an alternative plugin is vim-fzf.
@@ -66,6 +66,8 @@ filetype plugin indent on "This should be after bundles.
 set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
 set noeb "Disable bells.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
+set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
+set lazyredraw "Same, faster vim.
 
 "Normal :: Mouse.
 set mouse=a "Enable mouse.
@@ -161,6 +163,16 @@ autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 tex
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
+"Plugin Configuration :: vim-airline/vim-airline --------------- {
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :hi calls in Vim,
+                                     "A :AirlineRefresh will however clear the cache.
+let g:airline_theme = 'luna'
+let g:airline_powerline_fonts = 1
+
+"Plugin Configuration :: vim-airline/vim-airline --------------- }
+
+
 "Colorscheme Configuration :: PaperColor ----------- {
 let g:PaperColor_Theme_Options = {
     \   'theme': {
@@ -194,12 +206,6 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 
 "Plugin Configuration :: tpope/vim-commentary ----------------- }
 
-"Plugin Configuration :: vim-airline/vim-airline ----------- {
-let g:airline_theme = 'luna'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-"Plugin Configuration :: vim-airline/vim-airline ----------- }
-
 "Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- {
 "
 let g:ycm_key_list_select_completion = ['<Down>']
@@ -207,7 +213,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = 'python'
 
 "Type 'gd' on normal mode to goto definition in c/cpp/py files.
-au FileType python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
+au FileType go,python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- }
 
@@ -278,7 +284,7 @@ let g:go_def_mode = 'godef'
 let g:go_def_mapping_enabled = 0  "I use custom gd map, that split a window.
 
 "We remap gd for godef split window.
-au FileType go nnoremap gd :split\|GoDef<CR>
+"au FileType go nnoremap gd :split\|GoDef<CR>
 
 "Install current directiory as a package into GOPATH, for autocompletion of go
 "code, since gocode don't know packages that not in GOPATH/pkg.
@@ -295,6 +301,10 @@ let $RUST_SRC_PATH='/Users/hit9/src/rust/src/'
 "Plugin Configuration :: rust-lang/rust.vim && racer  -------------------- {
 let g:startify_custom_header = 'startify#fortune#cowsay()'
 "Plugin Configuration :: rust-lang/rust.vim && racer  -------------------- }
+
+"Plugin Configuration :: vim-json --------------------- {
+let g:vim_json_syntax_conceal = 0
+"Plugin Configuration :: vim-json ----------------------------- }
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {
 highlight QuickScopePrimary ctermfg=155 cterm=underline
