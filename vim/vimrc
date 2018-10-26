@@ -8,6 +8,8 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf "Plugin fzf
+
 call vundle#begin()
 
 "Use https:// as default protocol for vundle's git clone.
@@ -20,7 +22,6 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
-Plugin 'kien/ctrlp.vim' "Fuzzy files/buffers finder, an alternative plugin is vim-fzf.
 Plugin 'Yggdroot/indentLine' "Visualize us indent levels.
 Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
 Plugin 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
@@ -32,6 +33,10 @@ Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
 Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
+Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
 "Git
 Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
@@ -111,7 +116,7 @@ set incsearch "Realtime search results showing.
 "Editing.
 set autoread "Auto updates current file if this file is updated by outer.
 set hidden "Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed.
-set autochdir "Auto switch current working directory to current editing file's directory.
+"set autochdir "Auto switch current working directory to current editing file's directory.
 
 "Editing :: Encodings --- We all use utf8 please.
 set encoding=utf-8
@@ -318,6 +323,42 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 "Plugin Configuration :: mileszs/ack.vim ------------- }
+
+"Plugin Configuration :: junegunn/vim-slash ---------- {
+if has('timers')
+  " Blink 2 times with 50ms interval
+  noremap <expr> <plug>(slash-after) slash#blink(2, 100)
+endif
+"Plugin Configuration :: junegunn/vim-slash ---------- }
+
+"Plugin Connfiguration :: junegunn/fzf ------------------- {
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+"Customize fzf colors to match your color scheme.
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment']
+  \ }
+
+"[Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" Map <ctrl-p> to FZF
+nnoremap <silent> <C-p> :FZF<CR>
+"Plugin Connfiguration :: junegunn/fzf ------------------- }
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
