@@ -36,6 +36,7 @@ Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where i
 Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'w0rp/ale' "Asynchronous linting/fixing for Vim
 
 "Git
 Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
@@ -317,6 +318,19 @@ highlight QuickScopeSecondary ctermfg=81 cterm=underline
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 "Plugin Configuration :: unblevable/quick-scope ------------- }
 
+"Plugin Configuration :: w0rp/ale -------------------------------- {
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+    \   'javascript': ['standard'],
+\}
+let g:ale_fixers_explicit = 1
+let g:ale_fixers = {
+    \   'javascript': ['standard'],
+\}
+let g:ale_fix_on_save = 1
+"Plugin Configuration :: w0rp/ale -------------------------------- }
+
 "Plugin Configuration :: mileszs/ack.vim ------------- {
 "Use ag if avaliable: brew install the_silver_searcher
 if executable('ag')
@@ -327,7 +341,7 @@ endif
 "Plugin Configuration :: junegunn/vim-slash ---------- {
 if has('timers')
   " Blink 2 times with 50ms interval
-  noremap <expr> <plug>(slash-after) slash#blink(2, 100)
+  noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
 "Plugin Configuration :: junegunn/vim-slash ---------- }
 
@@ -431,17 +445,3 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
 
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
-
-"Custom :: Javascript Autoformat ----------------------------  {
-"RefreshBuffer is a function to refresh current editing buffer.
-function! RefreshBuffer(ch, msg)
-  silent edit!
-endfunction
-
-"Call standard --fix on buffer save, async
-"About gg=G cursor moved issue:
-"https://stackoverflow.com/questions/7086402/indenting-entire-file-in-vim-without-leaving-current-cursor-location
-au BufWrite *.js
-    \ :retab | silent execute "normal! gg=G``" | call job_start("standard --fix " . expand("%:p"), {'exit_cb': 'RefreshBuffer'})
-
-"Custom :: Javascript Autoformat ----------------------------  }
