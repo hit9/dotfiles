@@ -419,7 +419,7 @@ let g:SignatureMarkTextHLDynamic=1
 "Plugin Configuration :: kshenoy/vim-signature ---------------------- }
 
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- {
-nmap ww <Plug>(choosewin)
+nmap <c-w>q <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- }
 
@@ -455,20 +455,6 @@ nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- }
-
-"Custom :: Window Switches ----------------------------  {
-
-"Shortcut window switches, w+h/j/k/l
-nmap w<up> <c-w><up>
-nmap wk <c-w><up>
-nmap w<left> <c-w><left>
-nmap wh <c-w><left>
-nmap w<right> <c-w><right>
-nmap wl <c-w><right>
-nmap w<down> <c-w><down>
-nmap wj <c-w><down>
-
-"Custom :: Window Switches ----------------------------  }
 
 "Custom :: WhiteSpaces Cleaning ----------------------------  {
 
