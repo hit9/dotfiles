@@ -16,28 +16,49 @@ call vundle#begin()
 let g:vundle_default_git_proto="https"
 
 Plugin 'VundleVim/Vundle.vim'
-"Colorschemes
+"Colorschemes.
 Plugin 'NLKNguyen/papercolor-theme'
-"Plugins
+"StatusBar.
 Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
+"Startup Display.
+Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
+"File Explorer.
 Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
-Plugin 'Yggdroot/indentLine' "Visualize us indent levels.
+Plugin 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
+"Window Switches.
+Plugin 't9md/vim-choosewin' "Land on window you chose like tmux's 'display-pane'
+"Search In Buffer.
+Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
+Plugin 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
+"Search Cross files/buffers;
+Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+"Range/Pattern/Substitue/Replace.
+Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
+"Completeion
 Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
+"Visualization Enchance.
+Plugin 'Yggdroot/indentLine' "Visualize us indent levels.
+Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
+Plugin 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
+"Fast Movement, Motions.
+Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
+Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
+Plugin 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
+Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
+                               "mx to (un)mark
+                               "m- to delete mark.
+                               "m<Space> to delete all marks for this buffer.
+                               "'<mark> to seek to line head of mark.
+                               "m/ to show all marks in a split buffer.
+"Fast Editing.
 Plugin 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plugin 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
 Plugin 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
-Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
-Plugin 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
-Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
-Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
-Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
-Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
-Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+"Linting/Fixing.
 Plugin 'w0rp/ale' "Asynchronous linting/fixing for Vim
-
 "Git
 Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
@@ -60,6 +81,7 @@ Plugin 'jtratner/vim-flavored-markdown' "Must-have plugin to be a Github's fan.
 "Language: Misc
 Plugin 'elzr/vim-json'
 Plugin 'dag/vim-fish'
+Plugin 'Valloric/MatchTagAlways' "A Vim plugin that always highlights the enclosing html/xml tags.
 
 call vundle#end() " required
 "Vundle  -------------------------------- }
@@ -88,7 +110,8 @@ syntax enable "Enable syntax.
 set synmaxcol=800 "Don't perform highlight on lines that are longer than 800 chars.
 
 "Display :: Window
-se nu  "Show line numbers.
+set number  "Show line numbers.
+set relativenumber "Show relative line numbers.
 set go= "Disable gvim's gui menu. (But I never use gui version).
 set term=screen-256color "I use screen-256color.
 set shortmess=atI "Disable the short message on vim start.
@@ -217,6 +240,9 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_python_binary_path = 'python'
+let g:ycm_complete_in_comments = 1 "Enable completion in comments.
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 "Collect identifiers and strings inside comments.
+let g:ycm_seed_identifiers_with_syntax = 1 "Language syntax keywords completion.
 
 "Type 'gd' on normal mode to goto definition in c/cpp/py files.
 au FileType go,python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -382,6 +408,20 @@ augroup MultipleCursorsSelectionFix
 augroup END
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
+
+"Plugin Configuration :: mhinz/vim-signify ----------------- {
+highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
+"Plugin Configuration :: mhinz/vim-signify }
+
+"Plugin Configuration :: kshenoy/vim-signature ------------------- {
+highlight SignatureMarkText cterm=none ctermfg=155
+let g:SignatureMarkTextHLDynamic=1
+"Plugin Configuration :: kshenoy/vim-signature ---------------------- }
+
+"Plugin Configuration :: t9md/vim-choosewin ---------------------- {
+nmap ww <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+"Plugin Configuration :: t9md/vim-choosewin ---------------------- }
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
 
