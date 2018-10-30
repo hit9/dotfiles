@@ -29,6 +29,22 @@ Others
 - [n](https://github.com/tj/n) (Node version manager.)
 - [pyenv](https://github.com/pyenv/pyenv) (Python version manager.)
 
+Vim plugins I really enjoy
+--------------------------
+
+- [unblevable/quick-scope](https://github.com/unblevable/quick-scope)
+- [jayflo/vim-skip](https://github.com/jayflo/vim-skip)
+- [Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
+- [jiangmiao/auto-pairs](https://github.com/jiangmiao/auto-pairs)
+- [tpope/vim-commentary](https://github.com/tpope/vim-commentary)
+- [hit9/ShowMotion](https://github.com/hit9/ShowMotion)
+- [bronson/vim-visual-star-search](https://github.com/bronson/vim-visual-star-search)
+- [markonm/traces.vim](https://github.com/markonm/traces.vim)
+- [Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
+- [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
+- [t9md/vim-choosewin](https://github.com/t9md/vim-choosewin)
+- [junegunn/vim-slash](https://github.com/junegunn/vim-slash)
+
 Notes
 -----
 
