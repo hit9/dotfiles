@@ -459,14 +459,14 @@ nmap , <Plug>(show-motion-,)
 "Custom :: Window Switches ----------------------------  {
 
 "Shortcut window switches, w+h/j/k/l
-noremap w<up> <c-w><up>
-noremap wk <c-w><up>
-noremap w<left> <c-w><left>
-noremap wh <c-w><left>
-noremap w<right> <c-w><right>
-noremap wl <c-w><right>
-noremap w<down> <c-w><down>
-noremap wj <c-w><down>
+nmap w<up> <c-w><up>
+nmap wk <c-w><up>
+nmap w<left> <c-w><left>
+nmap wh <c-w><left>
+nmap w<right> <c-w><right>
+nmap wl <c-w><right>
+nmap w<down> <c-w><down>
+nmap wj <c-w><down>
 
 "Custom :: Window Switches ----------------------------  }
 
