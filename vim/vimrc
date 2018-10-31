@@ -27,7 +27,7 @@ Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
 Plugin 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
 "Window Switches.
-Plugin 't9md/vim-choosewin' "Land on window you chose like tmux's 'display-pane'
+"Plugin 't9md/vim-choosewin' "Land on window you chose like tmux's 'display-pane'
 "Search In Buffer.
 Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
 Plugin 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
@@ -419,8 +419,8 @@ let g:SignatureMarkTextHLDynamic=1
 "Plugin Configuration :: kshenoy/vim-signature ---------------------- }
 
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- {
-nmap <c-w>q <Plug>(choosewin)
-let g:choosewin_overlay_enable = 1
+"nmap <c-w>w <Plug>(choosewin)
+"let g:choosewin_overlay_enable = 1
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- }
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
