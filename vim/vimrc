@@ -111,7 +111,7 @@ set synmaxcol=800 "Don't perform highlight on lines that are longer than 800 cha
 
 "Display :: Window
 set number  "Show line numbers.
-set relativenumber "Show relative line numbers.
+"set relativenumber "Show relative line numbers.
 set go= "Disable gvim's gui menu. (But I never use gui version).
 set term=screen-256color "I use screen-256color.
 set shortmess=atI "Disable the short message on vim start.
@@ -471,3 +471,15 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
 
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
+
+"Custom :: Window Switches ----------------------------  {
+"Shortcut window switches, w+h/j/k/l
+nmap w<up> <c-w><up>
+nmap wk <c-w><up>
+nmap w<left> <c-w><left>
+nmap wh <c-w><left>
+nmap w<right> <c-w><right>
+nmap wl <c-w><right>
+nmap w<down> <c-w><down>
+nmap wj <c-w><down>
+"Custom :: Window Switches ----------------------------  }
