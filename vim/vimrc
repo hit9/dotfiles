@@ -140,7 +140,7 @@ set incsearch "Realtime search results showing.
 "Editing.
 set autoread "Auto updates current file if this file is updated by outer.
 set hidden "Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed.
-"set autochdir "Auto switch current working directory to current editing file's directory.
+set autochdir "Auto switch current working directory to current editing file's directory.
 
 "Editing :: Encodings --- We all use utf8 please.
 set encoding=utf-8
