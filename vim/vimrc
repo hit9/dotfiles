@@ -217,13 +217,13 @@ colorscheme PaperColor "Set colorscheme after its setting applied.
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
 set cursorline "Highlight current line.
-hi CursorLine term=underline cterm=underline ctermbg=none ctermfg=none
+hi CursorLine term=none cterm=none ctermbg=237 ctermfg=none
 set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
-hi CursorColumn term=none cterm=none ctermbg=DarkGrey ctermfg=LightBlue
+hi CursorColumn term=none cterm=none ctermbg=237 ctermfg=none
 
 " Color :: Normal and Visual mode.
 hi Normal term=none ctermbg=none " Make vim be transparent in terminal.
-hi Visual term=none cterm=bold ctermbg=238 ctermfg=185
+hi Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
 "Basic ------------------------------------------------ }
 
@@ -346,7 +346,7 @@ let g:vim_json_syntax_conceal = 0
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {
 highlight QuickScopePrimary ctermfg=155 cterm=underline
-highlight QuickScopeSecondary ctermfg=81 cterm=underline
+highlight QuickScopeSecondary ctermfg=81 cterm=none
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 "Plugin Configuration :: unblevable/quick-scope ------------- }
 
@@ -390,6 +390,8 @@ augroup MultipleCursorsSelectionFix
     autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
 augroup END
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
+highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
+highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 
 "Plugin Configuration :: mhinz/vim-signify ----------------- {
@@ -415,7 +417,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "Plugin Configuration :: machakann/vim-highlightedyank ---------------------- {
 let g:highlightedyank_highlight_duration = 1000  "In ms
-hi HighlightedyankRegion term=none cterm=bold ctermbg=238 ctermfg=185
+hi HighlightedyankRegion term=none cterm=bold ctermbg=238 ctermfg=none
 "Plugin Configuration :: machakann/vim-highlightedyank  ---------------------- }
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
