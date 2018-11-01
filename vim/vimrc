@@ -8,7 +8,6 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.fzf "Plugin fzf
 
 call vundle#begin()
 
@@ -27,14 +26,13 @@ Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
 Plugin 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
 "Window Switches.
-"Plugin 't9md/vim-choosewin' "Land on window you chose like tmux's 'display-pane'
+" Plugin 't9md/vim-choosewin' "Land on window you chose like tmux's 'display-pane'
 "Search In Buffer.
 Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
 Plugin 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
 Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plugin 'ctrlpvim/ctrlp.vim' "Fuzzy file, buffer, mru, tag, etc finder.
 "Range/Pattern/Substitue/Replace.
 Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Completeion
@@ -53,6 +51,10 @@ Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
                                "m<Space> to delete all marks for this buffer.
                                "'<mark> to seek to line head of mark.
                                "m/ to show all marks in a split buffer.
+Plugin 'wellle/targets.vim' " Provides additional text objects
+Plugin 'machakann/vim-sandwich'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'machakann/vim-highlightedyank'
 "Fast Editing.
 Plugin 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plugin 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
@@ -66,7 +68,7 @@ Plugin 'pangloss/vim-javascript' "Js syntax plugin.
 "Language/framework: Vue
 Plugin 'posva/vim-vue' "Vue syntax plugin
 "Language: Python
-Plugin 'python.vim--Vasiliev' "Python syntax.
+Plugin 'hdima/python-syntax' "Python syntax.
 Plugin 'hynek/vim-python-pep8-indent' "vim-pep8-indent instead of pymode.
 "Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -324,6 +326,10 @@ autocmd BufWrite *.go :call job_start('go install .')
 
 "Plugin Configuration :: fatih/vim-go -------------------- }
 
+"Plugin Configuration :: hdima/python-syntax ---------------- {
+let python_highlight_all = 1
+"Plugin Configuration :: hdima/python-syntax ----------------- }
+
 "Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {
 let g:rustfmt_autosave = 1
 let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
@@ -349,10 +355,12 @@ let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \   'javascript': ['standard'],
+    \   'python': ['black'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
     \   'javascript': ['standard'],
+    \   'python': ['black'],
 \}
 let g:ale_fix_on_save = 1
 "Plugin Configuration :: w0rp/ale -------------------------------- }
@@ -371,34 +379,9 @@ if has('timers')
 endif
 "Plugin Configuration :: junegunn/vim-slash ---------- }
 
-"Plugin Connfiguration :: junegunn/fzf ------------------- {
-" Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-
-"Customize fzf colors to match your color scheme.
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment']
-  \ }
-
-"[Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-
-" Map <ctrl-p> to FZF
-nnoremap <silent> <C-p> :FZF<CR>
-"Plugin Connfiguration :: junegunn/fzf ------------------- }
+"Plugin Connfiguration :: ctrlpvim/ctrlp.vim ------------------- {
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+"Plugin Connfiguration :: ctrlpvim/ctrlp.vim ------------------- }
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
@@ -419,9 +402,21 @@ let g:SignatureMarkTextHLDynamic=1
 "Plugin Configuration :: kshenoy/vim-signature ---------------------- }
 
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- {
-"nmap <c-w>w <Plug>(choosewin)
-"let g:choosewin_overlay_enable = 1
+" nmap <c-w>w <Plug>(choosewin)
+" let g:choosewin_overlay_enable = 1
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- }
+
+"Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- {
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+"Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- }
+
+"Plugin Configuration :: machakann/vim-highlightedyank ---------------------- {
+let g:highlightedyank_highlight_duration = 1000  "In ms
+hi HighlightedyankRegion term=none cterm=bold ctermbg=238 ctermfg=185
+"Plugin Configuration :: machakann/vim-highlightedyank  ---------------------- }
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
 
