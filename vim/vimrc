@@ -53,8 +53,8 @@ Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
                                "m/ to show all marks in a split buffer.
 Plugin 'wellle/targets.vim' " Provides additional text objects
 Plugin 'machakann/vim-sandwich'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'machakann/vim-highlightedyank'
+Plugin 'kien/rainbow_parentheses.vim' "Colorful pairs ()[]{}..
+Plugin 'machakann/vim-highlightedyank' "Highlight yanked section for 1 seond delay.. hmm.
 "Fast Editing.
 Plugin 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plugin 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
