@@ -61,6 +61,9 @@ Plugin 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comme
 Plugin 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
 Plugin 'w0rp/ale' "Asynchronous linting/fixing for Vim
+"Snips.
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 "Git
 Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
