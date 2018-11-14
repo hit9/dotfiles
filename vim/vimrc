@@ -75,7 +75,6 @@ Plugin 'hdima/python-syntax' "Python syntax.
 Plugin 'hynek/vim-python-pep8-indent' "vim-pep8-indent instead of pymode.
 "Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'rhysd/vim-clang-format'
 "Language: Go
 Plugin 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
 "Language: Rust
@@ -277,22 +276,6 @@ let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__']
 
 "Plugin Configuration :: scrooloose/nerdtree --------- }
 
-"Plugin Configuration :: rhysd/vim-clang-format ------ {
-let g:clang_library_path =
-            \ '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/'
-"Clangformat styles.
-let g:clang_format#style_options = {
-            \ 'BasedOnStyle': 'google',
-            \ 'IndentWidth': '4',
-            \ 'DerivePointerAlignment': 'false',
-            \ 'PointerAlignment': 'Right',
-            \ }
-let g:clang_format#detect_style_file = 1
-let g:clang_format#auto_format = 1
-"Auto format on buffer save.
-autocmd BufWrite *.c,*.h,*.cc,*.hh :ClangFormat
-"Plugin Configuration :: rhysd/vim-clang-format ------ }
-
 "Plugin Configuration :: Yggdroot/indentLine ------------------------- {
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
@@ -359,11 +342,15 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \   'javascript': ['standard'],
     \   'python': ['black'],
+    \   'c': ['clang-format'],
+    \   'cpp': ['clang-format'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
     \   'javascript': ['standard'],
     \   'python': ['black'],
+    \   'c': ['clang-format'],
+    \   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
 "Plugin Configuration :: w0rp/ale -------------------------------- }
