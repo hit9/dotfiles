@@ -62,8 +62,8 @@ Plugin 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to
 "Linting/Fixing.
 Plugin 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Snips.
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
 "Git
 Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
@@ -71,8 +71,8 @@ Plugin 'pangloss/vim-javascript' "Js syntax plugin.
 "Language/framework: Vue
 Plugin 'posva/vim-vue' "Vue syntax plugin
 "Language: Python
-Plugin 'hdima/python-syntax' "Python syntax.
 Plugin 'hynek/vim-python-pep8-indent' "vim-pep8-indent instead of pymode.
+Plugin 'vim-python/python-syntax' "Python syntax.
 "Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
 "Language: Go
@@ -85,6 +85,8 @@ Plugin 'jtratner/vim-flavored-markdown' "Must-have plugin to be a Github's fan.
 "Language: Misc
 Plugin 'elzr/vim-json'
 Plugin 'dag/vim-fish'
+Plugin 'cespare/vim-toml'
+Plugin 'stephpy/vim-yaml'
 Plugin 'Valloric/MatchTagAlways' "A Vim plugin that always highlights the enclosing html/xml tags.
 
 call vundle#end() " required
@@ -253,13 +255,6 @@ au FileType go,python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionEl
 
 "Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- }
 
-"Plugin Configuration :: python.vim--Vasiliev ----------- {
-let g:python_highlight_builtin_objs = 1
-let g:python_highlight_builtin_funcs = 1
-let g:python_highlight_exceptions = 1
-"Plugin Configuration :: python.vim--Vasiliev ----------- }
-
-
 "Plugin Configuration :: scrooloose/nerdtree --------- {
 "
 "Open nerdtree on buffer entered. And close it if it's the last window.
@@ -281,13 +276,6 @@ let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 " Plugin Configuration :: Yggdroot/indentLine ------------------------- }
-
-"Plugin Configuration :: hynek/vim-python-pep8-indent -------------- {
-let g:pymode_indent = 1  "Currently use pymode's indent
-let g:pymode_rope = 0
-let g:pymode_lint_write = 1
-let g:pymode_lint = 1
-"Plugin Configuration :: hynek/vim-python-pep8-indent -------------- }
 
 "Plugin Configuration :: pangloss/vim-javascript -------------- {
 let javascript_enable_domhtmlcss = 1
@@ -312,9 +300,9 @@ autocmd BufWrite *.go :call job_start('go install .')
 
 "Plugin Configuration :: fatih/vim-go -------------------- }
 
-"Plugin Configuration :: hdima/python-syntax ---------------- {
+"Plugin Configuration :: vim-python/python-syntax ---------------- {
 let python_highlight_all = 1
-"Plugin Configuration :: hdima/python-syntax ----------------- }
+"Plugin Configuration :: vim-python/python-syntax ----------------- }
 
 "Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {
 let g:rustfmt_autosave = 1
@@ -341,9 +329,10 @@ let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \   'javascript': ['standard'],
-    \   'python': ['black'],
+    \   'python': ['black', 'mypy'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
+    \   'proto': ['protoc-gen-lint'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
@@ -455,7 +444,7 @@ match ExtraWhitespace /\s\+$/
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc :WS
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml :WS
 
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
 
