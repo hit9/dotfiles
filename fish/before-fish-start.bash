@@ -26,6 +26,7 @@ PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 # Ctrl-R
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # Fzf color: Seoul256 Dusk
 export FZF_DEFAULT_OPTS='
   --color=dark,hl:255,fg:30,hl+:255,fg+:30,bg+:235
