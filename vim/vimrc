@@ -71,7 +71,7 @@ Plugin 'pangloss/vim-javascript' "Js syntax plugin.
 "Language/framework: Vue
 Plugin 'posva/vim-vue' "Vue syntax plugin
 "Language: Python
-Plugin 'hynek/vim-python-pep8-indent' "vim-pep8-indent instead of pymode.
+" Plugin 'hynek/vim-python-pep8-indent' "vim-pep8-indent instead of pymode.
 Plugin 'vim-python/python-syntax' "Python syntax.
 "Language: C/C++
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -81,13 +81,15 @@ Plugin 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,auto
 Plugin 'rust-lang/rust.vim' "Rust syntax.
 Plugin 'racer-rust/vim-racer'
 "Language: Markdown
-Plugin 'jtratner/vim-flavored-markdown' "Must-have plugin to be a Github's fan.
+Plugin 'plasticboy/vim-markdown'
 "Language: Misc
 Plugin 'elzr/vim-json'
 Plugin 'dag/vim-fish'
 Plugin 'cespare/vim-toml'
 Plugin 'stephpy/vim-yaml'
 Plugin 'Valloric/MatchTagAlways' "A Vim plugin that always highlights the enclosing html/xml tags.
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
 
 call vundle#end() " required
 "Vundle  -------------------------------- }
@@ -329,10 +331,10 @@ let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \   'javascript': ['standard'],
-    \   'python': ['black', 'mypy'],
+    \   'python': ['black', 'mypy', 'vulture'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
-    \   'proto': ['protoc-gen-lint'],
+    \   'proto': ['prototool'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
@@ -342,6 +344,7 @@ let g:ale_fixers = {
     \   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_grpc.py,*.egg-info,dist/*,"'
 "Plugin Configuration :: w0rp/ale -------------------------------- }
 
 "Plugin Configuration :: mileszs/ack.vim ------------- {
@@ -431,6 +434,10 @@ nmap ; <Plug>(show-motion-;)
 nmap , <Plug>(show-motion-,)
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- }
+
+"Plugin Configuration :: plasticboy/vim-markdown ---------- {
+let g:vim_markdown_conceal = 0
+"Plugin Configuration :: plasticboy/vim-markdown ---------- }
 
 "Custom :: WhiteSpaces Cleaning ----------------------------  {
 
