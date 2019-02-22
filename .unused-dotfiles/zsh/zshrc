@@ -77,3 +77,6 @@ PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 # source "$HOME/.cargo/env"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /Users/hit9/.travis/travis.sh ] && source /Users/hit9/.travis/travis.sh

@@ -17,6 +17,10 @@ let g:vundle_default_git_proto="https"
 Plugin 'VundleVim/Vundle.vim'
 "Colorschemes.
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'joshdick/onedark.vim'
+Plugin 'crusoexia/vim-monokai'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'KeitaNakamura/neodark.vim'
 "StatusBar.
 Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
@@ -216,6 +220,7 @@ let g:PaperColor_Theme_Options = {
     \      }
     \   }
     \ }
+
 colorscheme PaperColor "Set colorscheme after its setting applied.
 "Colorscheme Configuration :: PaperColor ----------- }
 
@@ -445,7 +450,7 @@ match ExtraWhitespace /\s\+$/
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml :WS
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto :WS
 
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
 
