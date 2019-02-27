@@ -17,10 +17,6 @@ let g:vundle_default_git_proto="https"
 Plugin 'VundleVim/Vundle.vim'
 "Colorschemes.
 Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'joshdick/onedark.vim'
-Plugin 'crusoexia/vim-monokai'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'KeitaNakamura/neodark.vim'
 "StatusBar.
 Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
@@ -37,7 +33,6 @@ Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved sta
 Plugin 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
 Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
-Plugin 'ctrlpvim/ctrlp.vim' "Fuzzy file, buffer, mru, tag, etc finder.
 "Range/Pattern/Substitue/Replace.
 Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Tags
@@ -308,8 +303,7 @@ let g:tagbar_foldlevel = 0
 let g:tagbar_previewwin_pos = "topleft"
 let g:tagbar_silent = 1
 
-"Automatically open tagbar on programming languages.
-autocmd FileType c,cpp,go,python nested :TagbarOpen
+" autocmd FileType c,cpp,python,go :TagbarOpen
 
 "Plugin Configuration :: majutsushi/tagbar ----------- }
 
@@ -401,10 +395,6 @@ if has('timers')
   noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
 "Plugin Configuration :: junegunn/vim-slash ---------- }
-
-"Plugin Connfiguration :: ctrlpvim/ctrlp.vim ------------------- {
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-"Plugin Connfiguration :: ctrlpvim/ctrlp.vim ------------------- }
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
