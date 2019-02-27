@@ -24,6 +24,7 @@ Plugin 'KeitaNakamura/neodark.vim'
 "StatusBar.
 Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-bufferline' "Super simple vim plugin to show the list of buffers in the command bar.
 "Startup Display.
 Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 "File Explorer.
@@ -39,6 +40,8 @@ Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
 Plugin 'ctrlpvim/ctrlp.vim' "Fuzzy file, buffer, mru, tag, etc finder.
 "Range/Pattern/Substitue/Replace.
 Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
+"Tags
+Plugin 'majutsushi/tagbar' "Creating a sidebar that displays the ctags-generated tags of the current file.
 "Completeion
 Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
 "Visualization Enchance.
@@ -92,6 +95,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'stephpy/vim-yaml'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
+Plugin 'yogorobot/bitproto', {'rtp': 'vim/'}
 
 call vundle#end() " required
 "Vundle  -------------------------------- }
@@ -105,6 +109,7 @@ set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
 set noeb "Disable bells.
 set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
+set timeout timeoutlen=300 ttimeoutlen=30
 set lazyredraw "Same, faster vim.
 
 "Normal :: Mouse.
@@ -160,10 +165,14 @@ set termencoding=utf-8 "Encoding that output to terminal.
 set fileencoding=utf-8 "Encoding that saving files.
 set backspace=indent,eol,start "Backspace key, I just don't rely on it.
 
-" Editing :: Enable fold, manually.
-set foldenable
-set foldmethod=manual "zf to flod, zo to open.
-set foldlevel=3
+" Editing :: fold, by indent {{{
+set nofoldenable
+autocmd FileType c,go,python,javascript,bitproto,protobuf setlocal foldenable
+set foldmethod=indent
+set foldcolumn=2
+set foldlevel=0
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  " Which commands trigger auto-unfold
+set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
 
 "Editing :: Copy/Paste
 set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
@@ -211,7 +220,6 @@ let g:airline_theme = 'luna'
 let g:airline_powerline_fonts = 1
 
 "Plugin Configuration :: vim-airline/vim-airline --------------- }
-
 
 "Colorscheme Configuration :: PaperColor ----------- {
 let g:PaperColor_Theme_Options = {
@@ -270,18 +278,46 @@ let NERDTreeWinSize=35
 "Show line number for nerdtree.
 let NERDTreeShowLineNumbers=1
 "Don't display these files:
-let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__']
+let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__', '\.mypy_cache', '\.DS_Store',
+    \ '^\.git$', '\.o$', '\.so$', '\.egg$', "\.pytest_cache", "\.swp$", "\.swo$", "\.swn$"]
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
+" Show hidden files, too
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+
 "User-defined custom command `:NT` to toggle nerdtree window
 
 :command NT :NERDTreeToggle
 
 "Plugin Configuration :: scrooloose/nerdtree --------- }
 
+"Plugin Configuration :: majutsushi/tagbar -------------- {
+
+highlight TagbarComment ctermfg=235
+highlight TagbarKind ctermfg=13
+highlight TagbarNestedKind  ctermfg=169
+highlight TagbarScope ctermfg=40
+highlight TagbarType ctermfg=249
+highlight TagbarFoldIcon ctermfg=23
+highlight TagbarHighlight ctermfg=254 ctermbg=28
+
+let g:tagbar_iconchars = ['+', '-']
+let g:tagbar_autopreview = 0
+let g:tagbar_foldlevel = 0
+let g:tagbar_previewwin_pos = "topleft"
+let g:tagbar_silent = 1
+
+"Automatically open tagbar on programming languages.
+autocmd FileType c,cpp,go,python nested :TagbarOpen
+
+"Plugin Configuration :: majutsushi/tagbar ----------- }
+
 "Plugin Configuration :: Yggdroot/indentLine ------------------------- {
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
-" Plugin Configuration :: Yggdroot/indentLine ------------------------- }
+"Plugin Configuration :: Yggdroot/indentLine ------------------------- }
 
 "Plugin Configuration :: pangloss/vim-javascript -------------- {
 let javascript_enable_domhtmlcss = 1
@@ -404,7 +440,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "Plugin Configuration :: RRethy/vim-illuminate ------------------ {
 let g:Illuminate_delay = 100
-highlight illuminatedWord cterm=underline gui=underline ctermbg=238
+highlight illuminatedWord cterm=underline gui=underline
 "Plugin Configuration :: RRethy/vim-illuminate --------------- }
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
@@ -471,3 +507,15 @@ nmap wl <c-w><right>
 nmap w<down> <c-w><down>
 nmap wj <c-w><down>
 "Custom :: Window Switches ----------------------------  }
+
+" Mappings to easily toggle fold levels
+nmap z0 :set foldlevel=0<CR>
+nmap z1 :set foldlevel=1<CR>
+nmap z2 :set foldlevel=2<CR>
+nmap z3 :set foldlevel=3<CR>
+nmap z4 :set foldlevel=4<CR>
+nmap z5 :set foldlevel=5<CR>
+nmap z6 :set foldlevel=6<CR>
+nmap z7 :set foldlevel=7<CR>
+nmap z8 :set foldlevel=8<CR>
+nmap z99 :set foldlevel=99<CR>
