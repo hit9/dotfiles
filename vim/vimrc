@@ -26,13 +26,12 @@ Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 "File Explorer.
 Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
 Plugin 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
-"Window Switches.
-" Plugin 't9md/vim-choosewin' "Land on window you chose like tmux's 'display-pane'
 "Search In Buffer.
 Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
 Plugin 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
-Plugin 'mileszs/ack.vim' "Fast cross-file search via ag (the sliver search).
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 "Range/Pattern/Substitue/Replace.
 Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Tags
@@ -213,6 +212,7 @@ let g:airline_highlighting_cache = 1 "This will try to prevent some of the more 
                                      "A :AirlineRefresh will however clear the cache.
 let g:airline_theme = 'luna'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#bufferline#enabled = 1
 
 "Plugin Configuration :: vim-airline/vim-airline --------------- }
 
@@ -264,8 +264,28 @@ au FileType go,python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionEl
 
 "Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- }
 
+"Plugin Configuration :: fzf --------------- {
+"Map control-p to fzf ^_^
+nmap <c-p> :FZF<CR>
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+"Plugin Configuration :: fzf  ------------- }
+
 "Plugin Configuration :: scrooloose/nerdtree --------- {
-"
 "Open nerdtree on buffer entered. And close it if it's the last window.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "nerdtree window's width.
@@ -381,13 +401,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_grpc.py,*.egg-info,dist/*,"'
 "Plugin Configuration :: w0rp/ale -------------------------------- }
-
-"Plugin Configuration :: mileszs/ack.vim ------------- {
-"Use ag if avaliable: brew install the_silver_searcher
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-"Plugin Configuration :: mileszs/ack.vim ------------- }
 
 "Plugin Configuration :: junegunn/vim-slash ---------- {
 if has('timers')
