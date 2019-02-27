@@ -45,6 +45,7 @@ Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
 Plugin 'Yggdroot/indentLine' "Visualize us indent levels.
 Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
 Plugin 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
+Plugin 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other uses of the current word under the cursor.
 "Fast Movement, Motions.
 Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
@@ -390,7 +391,7 @@ let g:SignatureMarkTextHLDynamic=1
 "Plugin Configuration :: kshenoy/vim-signature ---------------------- }
 
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- {
-" nmap <c-w>w <Plug>(choosewin)
+" nmap ww <Plug>(choosewin)
 " let g:choosewin_overlay_enable = 1
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- }
 
@@ -400,6 +401,11 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- }
+
+"Plugin Configuration :: RRethy/vim-illuminate ------------------ {
+let g:Illuminate_delay = 100
+highlight illuminatedWord cterm=underline gui=underline ctermbg=238
+"Plugin Configuration :: RRethy/vim-illuminate --------------- }
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
 
