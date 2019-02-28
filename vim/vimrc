@@ -34,8 +34,6 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 "Range/Pattern/Substitue/Replace.
 Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
-"Tags
-Plugin 'majutsushi/tagbar' "Creating a sidebar that displays the ctags-generated tags of the current file.
 "Completeion
 Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
 "Visualization Enchance.
@@ -46,8 +44,8 @@ Plugin 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other u
 "Fast Movement, Motions.
 Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
-Plugin 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
-Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
+"Plugin 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
+"Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
                                "mx to (un)mark
                                "m- to delete mark.
                                "m<Space> to delete all marks for this buffer.
@@ -66,11 +64,11 @@ Plugin 'w0rp/ale' "Asynchronous linting/fixing for Vim
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 "Git
-Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
+" Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
 Plugin 'pangloss/vim-javascript' "Js syntax plugin.
 "Language/framework: Vue
-Plugin 'posva/vim-vue' "Vue syntax plugin
+" Plugin 'posva/vim-vue' "Vue syntax plugin, I don't write frontend alot.
 "Language: Python
 Plugin 'vim-python/python-syntax' "Python syntax.
 "Language: C/C++
@@ -103,7 +101,6 @@ set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
 set noeb "Disable bells.
 set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
-set timeout timeoutlen=300 ttimeoutlen=30
 set lazyredraw "Same, faster vim.
 
 "Normal :: Mouse.
@@ -161,12 +158,13 @@ set backspace=indent,eol,start "Backspace key, I just don't rely on it.
 
 " Editing :: fold, by indent {{{
 set nofoldenable
-autocmd FileType c,go,python,javascript,bitproto,protobuf setlocal foldenable
 set foldmethod=indent
 set foldcolumn=2
 set foldlevel=0
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  " Which commands trigger auto-unfold
 set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
+"Enable fold for programming languages.
+autocmd FileType c,go,python,javascript,bitproto,protobuf setlocal foldenable
 
 "Editing :: Copy/Paste
 set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
@@ -207,12 +205,12 @@ set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: vim-airline/vim-airline --------------- {
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :hi calls in Vim,
                                      "A :AirlineRefresh will however clear the cache.
 let g:airline_theme = 'luna'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 "Plugin Configuration :: vim-airline/vim-airline --------------- }
 
@@ -237,6 +235,10 @@ hi CursorColumn term=none cterm=none ctermbg=237 ctermfg=none
 " Color :: Normal and Visual mode.
 hi Normal term=none ctermbg=none " Make vim be transparent in terminal.
 hi Visual term=none cterm=bold ctermbg=238 ctermfg=none
+
+" Color :: Folded
+hi Folded cterm=bold term=bold ctermbg=23 ctermfg=228
+hi FoldColumn cterm=bold term=bold ctermfg=23
 
 "Basic ------------------------------------------------ }
 
@@ -306,26 +308,6 @@ let NERDTreeShowHidden=1
 :command NT :NERDTreeToggle
 
 "Plugin Configuration :: scrooloose/nerdtree --------- }
-
-"Plugin Configuration :: majutsushi/tagbar -------------- {
-
-highlight TagbarComment ctermfg=235
-highlight TagbarKind ctermfg=13
-highlight TagbarNestedKind  ctermfg=169
-highlight TagbarScope ctermfg=40
-highlight TagbarType ctermfg=249
-highlight TagbarFoldIcon ctermfg=23
-highlight TagbarHighlight ctermfg=254 ctermbg=28
-
-let g:tagbar_iconchars = ['+', '-']
-let g:tagbar_autopreview = 0
-let g:tagbar_foldlevel = 0
-let g:tagbar_previewwin_pos = "topleft"
-let g:tagbar_silent = 1
-
-" autocmd FileType c,cpp,python,go :TagbarOpen
-
-"Plugin Configuration :: majutsushi/tagbar ----------- }
 
 "Plugin Configuration :: Yggdroot/indentLine ------------------------- {
 let g:indentLine_char = '|'
@@ -442,7 +424,7 @@ au Syntax * RainbowParenthesesLoadBraces
 "Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- }
 
 "Plugin Configuration :: RRethy/vim-illuminate ------------------ {
-let g:Illuminate_delay = 100
+let g:Illuminate_delay = 30
 highlight illuminatedWord cterm=underline gui=underline
 "Plugin Configuration :: RRethy/vim-illuminate --------------- }
 
