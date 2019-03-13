@@ -45,7 +45,7 @@ Plugin 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other u
 Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 "Plugin 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
-"Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
+Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
                                "mx to (un)mark
                                "m- to delete mark.
                                "m<Space> to delete all marks for this buffer.
@@ -220,6 +220,17 @@ let g:PaperColor_Theme_Options = {
     \     'default.dark': {
     \        'transparent_background': 1
     \      }
+    \   },
+    \   'language': {
+    \     'python': {
+    \       'highlight_builtins' : 1
+    \     },
+    \     'cpp': {
+    \       'highlight_standard_library': 1
+    \     },
+    \     'c': {
+    \       'highlight_builtins' : 1
+    \     }
     \   }
     \ }
 
@@ -228,17 +239,17 @@ colorscheme PaperColor "Set colorscheme after its setting applied.
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
 set cursorline "Highlight current line.
-hi CursorLine term=none cterm=none ctermbg=237 ctermfg=none
+hi CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none
 set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
-hi CursorColumn term=none cterm=none ctermbg=237 ctermfg=none
+hi CursorColumn term=none cterm=none ctermbg=240 ctermfg=none
 
 " Color :: Normal and Visual mode.
 hi Normal term=none ctermbg=none " Make vim be transparent in terminal.
 hi Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
 " Color :: Folded
-hi Folded cterm=bold term=bold ctermbg=23 ctermfg=228
-hi FoldColumn cterm=bold term=bold ctermfg=23
+hi Folded cterm=bold term=bold ctermbg=238 ctermfg=251
+hi FoldColumn cterm=bold term=bold ctermfg=251
 
 "Basic ------------------------------------------------ }
 
