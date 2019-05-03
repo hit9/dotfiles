@@ -22,7 +22,7 @@ Others
 - [the_silver_searcher](https://github.com/ggreer/the_silver_searcher) (Much faster than `ack` replacement.)
 - [fisher](https://github.com/jorgebucaran/fisher) (Fish shell package manager.)
 - [pure-fish](https://github.com/hit9/pure) (My fish theme, forked from [pure](https://github.com/rafaelrinaldi/pure))
-- [lolcat](https://github.com/busyloop/lolcat) (Rainbows in terminal.)
+- [lolcat](https://github.com/busyloop/lolcat) (Rainbows in terminal.) And its C version fast implementation: [lolcat in C](https://github.com/jaseg/lolcat).
 - fortune (`brew install fortune`)
 - cowsay (`brew install cowsay`)
 - [oo](https://github.com/hit9/oo) (Go version manager.)
