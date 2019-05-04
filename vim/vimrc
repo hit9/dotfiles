@@ -423,8 +423,12 @@ endif
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
-" highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
-" highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
+augroup MultipleCursorsSelectionFix
+    autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
+    autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
+augroup END
+highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
+highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 
 "Plugin Configuration :: mhinz/vim-signify ----------------- {
