@@ -206,6 +206,10 @@ autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 soft
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
 "Color/Highlighting.
+
+"Enable true color support:
+"https://lotabout.me/2018/true-color-for-tmux-and-vim/
+"https://github.com/tmux/tmux/issues/1246
 if exists('+termguicolors')
   let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
