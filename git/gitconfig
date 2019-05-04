@@ -1,26 +1,28 @@
 [user]
-	name = hit9
-	email = hit9@icloud.com
+    name = hit9
+    email = hit9@icloud.com
+[url "git@github.com:"]
+    insteadOf = https://github.com/
 [merge]
     tool = vimdiff
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
 [giggle]
-	main-window-maximized = false
-	main-window-geometry = 296x71+1+58
-	history-view-vpane-position = 549
-	main-window-view = FileView
+    main-window-maximized = false
+    main-window-geometry = 296x71+1+58
+    history-view-vpane-position = 549
+    main-window-view = FileView
     file-view-vpane-position = 538
 [color]
-	ui = true
+    ui = true
     diff = auto
     status = auto
     branch = auto
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [core]
     editor = /usr/local/bin/vim
-	pager = diff-so-fancy | less --tabs=1,5 -R
+    pager = diff-so-fancy | less --tabs=1,5 -R
 
 [alias]
     lgg = log --graph --pretty=format:\"%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\"
@@ -29,20 +31,20 @@
     ad = add .
     diff-last-tag = !git log `git describe --tags --abbrev=0`..HEAD --oneline
 [push]
-	default = matching
+    default = matching
 
 [rerere]
-enabled = 1
-autoupdate = 1
+    enabled = 1
+    autoupdate = 1
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [color "diff"]
-	meta = 227
-	frag = magenta bold
-	commit = 227 bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = 227
+    frag = magenta bold
+    commit = 227 bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
