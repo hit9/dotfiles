@@ -206,11 +206,16 @@ autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 soft
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
 "Color/Highlighting.
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: vim-airline/vim-airline --------------- {
-let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :hi calls in Vim,
+let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :highlight calls in Vim,
                                      "A :AirlineRefresh will however clear the cache.
 let g:airline_theme = 'peaksea'
 let g:airline_powerline_fonts = 1
@@ -239,23 +244,26 @@ let g:PaperColor_Theme_Options = {
     \   }
     \ }
 
-colorscheme PaperColor "Set colorscheme after its setting applied.
+
+" colorscheme PaperColor "Set colorscheme after its setting applied.
+colorscheme challenger_deep
 
 "Colorscheme Configuration :: PaperColor ----------- }
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
 set cursorline "Highlight current line.
-hi CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none
+highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#383a42
 set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
-hi CursorColumn term=none cterm=none ctermbg=240 ctermfg=none
+highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#383a42
 
 " Color :: Normal and Visual mode.
-hi Normal term=none ctermbg=none " Make vim be transparent in terminal.
-hi Visual term=none cterm=bold ctermbg=238 ctermfg=none
+highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
+highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
 " Color :: Folded
-hi Folded cterm=bold term=bold ctermbg=236 ctermfg=248
-hi FoldColumn cterm=bold term=bold ctermfg=248
+highlight Folded cterm=bold term=bold ctermbg=236 ctermfg=248 guibg=#32353f guifg=#fafafa
+highlight FoldColumn cterm=bold term=bold ctermfg=248
+
 
 "Basic ------------------------------------------------ }
 
@@ -410,13 +418,9 @@ endif
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
-augroup MultipleCursorsSelectionFix
-    autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
-    autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
-augroup END
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
-highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
-highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
+" highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
+" highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 
 "Plugin Configuration :: mhinz/vim-signify ----------------- {
