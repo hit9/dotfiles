@@ -47,7 +47,7 @@ window:
   #     - none: Neither borders nor title bar
   #     - buttonless: Title bar, transparent background and title bar buttons
   #     - transparent: Title bar, transparent background, but no title bar buttons
-  decorations: full
+  decorations: none
   # When true, alacritty starts maximized.
   start_maximized: true
 
@@ -87,7 +87,6 @@ font:
   # Normal (roman) font face
   normal:
     family: Inconsolata-g for Powerline
-    # family: Menlo
     # The `style` can be specified to pick a specific face.
     # style: Regular
 
@@ -142,16 +141,78 @@ render_timer: false
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Snazzy)
+# # Colors (Snazzy)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x282a36'
+#     foreground: '0xeff0eb'
+
+#   cursor:
+#     background: '0x008ec4'
+#     foreground: '0xf1f1f1'
+#   # Normal colors
+#   normal:
+#     black:   '0x282a36'
+#     red:     '0xff5c57'
+#     green:   '0x5af78e'
+#     yellow:  '0xf3f99d'
+#     blue:    '0x57c7ff'
+#     magenta: '0xff6ac1'
+#     cyan:    '0x9aedfe'
+#     white:   '0xf1f1f0'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x686868'
+#     red:     '0xff5c57'
+#     green:   '0x5af78e'
+#     yellow:  '0xf3f99d'
+#     blue:    '0x57c7ff'
+#     magenta: '0xff6ac1'
+#     cyan:    '0x9aedfe'
+#     white:   '0xf1f1f0'
+
+# # Color (https://github.com/challenger-deep-theme/alacritty)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1b182c'
+#     foreground: '0xcbe3e7'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x100e23'
+#     red:     '0xff8080'
+#     green:   '0x95ffa4'
+#     yellow:  '0xffe9aa'
+#     blue:    '0x91ddff'
+#     magenta: '0xc991e1'
+#     cyan:    '0xaaffe4'
+#     white:   '0xcbe3e7'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x565575'
+#     red:     '0xff5458'
+#     green:   '0x62d196'
+#     yellow:  '0xffb378'
+#     blue:    '0x65b2ff'
+#     magenta: '0x906cff'
+#     cyan:    '0x63f2f1'
+#     white:   '0xa6b3cc'
+
+# Colors (Snazzy (modified by hit9))
 colors:
   # Default colors
   primary:
-    background: '0x282a36'
-    foreground: '0xeff0eb'
+    # Background taken from challenger-deep-theme.
+    background: '0x1b182c'
+    foreground: '0xcbe3e7'
 
   cursor:
-   background: '0x008ec4'
-   foreground: '0xf1f1f1'
+    background: '0x008ec4'
+    foreground: '0xf1f1f1'
   # Normal colors
   normal:
     black:   '0x282a36'
@@ -173,6 +234,35 @@ colors:
     magenta: '0xff6ac1'
     cyan:    '0x9aedfe'
     white:   '0xf1f1f0'
+
+# # Colors (Dracula) (https://github.com/jwilm/alacritty/wiki/Color-schemes#dracula)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x282a36'
+#     foreground: '0xf8f8f2'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x000000'
+#     red:     '0xff5555'
+#     green:   '0x50fa7b'
+#     yellow:  '0xf1fa8c'
+#     blue:    '0xcaa9fa'
+#     magenta: '0xff79c6'
+#     cyan:    '0x8be9fd'
+#     white:   '0xbfbfbf'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x575b70'
+#     red:     '0xff6e67'
+#     green:   '0x5af78e'
+#     yellow:  '0xf4f99d'
+#     blue:    '0xcaa9fa'
+#     magenta: '0xff92d0'
+#     cyan:    '0x9aedfe'
+#     white:   '0xe6e6e6'
 
 # Colors (Oxide)
 # colors:
