@@ -217,7 +217,7 @@ set background=dark "Using dark. Hmm dark is sexy.
 "Plugin Configuration :: vim-airline/vim-airline --------------- {
 "let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :highlight calls in Vim,
 "                                     "A :AirlineRefresh will however clear the cache.
-let g:airline_theme = 'violet'
+let g:airline_theme = 'minimalist' "kolor,violet
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
