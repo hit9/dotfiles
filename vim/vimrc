@@ -17,10 +17,15 @@ let g:vundle_default_git_proto="https"
 Plugin 'VundleVim/Vundle.vim'
 "Colorschemes.
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'joshdick/onedark.vim'
+Plugin 'jacoborus/tender.vim'
+Plugin 'challenger-deep-theme/vim', { 'name': 'challenger-deep' }
+Plugin 'drewtempelmeyer/palenight.vim'
+
 "StatusBar.
 Plugin 'vim-airline/vim-airline' "Status/tabline for vim
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'bling/vim-bufferline' "Super simple vim plugin to show the list of buffers in the command bar.
+" Plugin 'bling/vim-bufferline' "Super simple vim plugin to show the list of buffers in the command bar.
 "Startup Display.
 Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 "File Explorer.
@@ -87,7 +92,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'stephpy/vim-yaml'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
-Plugin 'yogorobot/bitproto', {'rtp': 'vim/'}
+Plugin 'yogorobot/bitproto', {'rtp': 'editors/vim/'}
 
 call vundle#end() " required
 "Vundle  -------------------------------- }
@@ -207,7 +212,7 @@ set background=dark "Using dark. Hmm dark is sexy.
 "Plugin Configuration :: vim-airline/vim-airline --------------- {
 let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :hi calls in Vim,
                                      "A :AirlineRefresh will however clear the cache.
-let g:airline_theme = 'luna'
+let g:airline_theme = 'peaksea'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -235,6 +240,7 @@ let g:PaperColor_Theme_Options = {
     \ }
 
 colorscheme PaperColor "Set colorscheme after its setting applied.
+
 "Colorscheme Configuration :: PaperColor ----------- }
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
@@ -248,8 +254,8 @@ hi Normal term=none ctermbg=none " Make vim be transparent in terminal.
 hi Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
 " Color :: Folded
-hi Folded cterm=bold term=bold ctermbg=238 ctermfg=251
-hi FoldColumn cterm=bold term=bold ctermfg=251
+hi Folded cterm=bold term=bold ctermbg=236 ctermfg=248
+hi FoldColumn cterm=bold term=bold ctermfg=248
 
 "Basic ------------------------------------------------ }
 
@@ -441,10 +447,10 @@ highlight illuminatedWord cterm=underline gui=underline
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
 
-"highlight 207=pink.
-highlight SM_SmallMotionGroup cterm=underline ctermfg=207
-highlight SM_BigMotionGroup   cterm=underline ctermfg=207
-highlight SM_CharSearchGroup  cterm=underline ctermfg=207
+"highlight 168=pink.
+highlight SM_SmallMotionGroup cterm=underline ctermfg=168
+highlight SM_BigMotionGroup   cterm=underline ctermfg=168
+highlight SM_CharSearchGroup  cterm=underline ctermfg=168
 
 "Highlights both big and small motions
 nmap w <Plug>(show-motion-both-w)
