@@ -13,3 +13,9 @@
 [submodule "vim/Vundle.vim"]
 	path = vim/Vundle.vim
 	url = git://github.com/VundleVim/Vundle.vim.git
+[submodule "kitty/kitty"]
+	path = kitty/kitty
+	url = https://github.com/kovidgoyal/kitty.git
+[submodule "kitty/challenger-deep-theme-kitty"]
+	path = kitty/challenger-deep-theme-kitty
+	url = https://github.com/challenger-deep-theme/kitty.git
