@@ -84,7 +84,7 @@ Plugin 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,auto
 Plugin 'rust-lang/rust.vim' "Rust syntax.
 Plugin 'racer-rust/vim-racer'
 "Language: Markdown
-Plugin 'plasticboy/vim-markdown'
+Plugin 'gabrielelana/vim-markdown'
 "Language: Misc
 Plugin 'elzr/vim-json'
 Plugin 'dag/vim-fish'
@@ -92,6 +92,7 @@ Plugin 'cespare/vim-toml'
 Plugin 'stephpy/vim-yaml'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
+Plugin 'junegunn/goyo.vim'
 Plugin 'yogorobot/bitproto', {'rtp': 'editors/vim/'}
 
 call vundle#end() " required
@@ -249,8 +250,8 @@ let g:PaperColor_Theme_Options = {
     \ }
 
 
-" colorscheme PaperColor "Set colorscheme after its setting applied.
-colorscheme challenger_deep
+colorscheme PaperColor "Set colorscheme after its setting applied.
+" colorscheme challenger_deep
 
 "Colorscheme Configuration :: PaperColor ----------- }
 
@@ -491,9 +492,14 @@ nmap , <Plug>(show-motion-,)
 "Plugin Configuration :: hit9/ShowMotion --------------------- }
 
 "Plugin Configuration :: plasticboy/vim-markdown ---------- {
-let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal = 0
 "Plugin Configuration :: plasticboy/vim-markdown ---------- }
 
+"Plugin Configuration :: gabrielelana/vim-markdown ---------- {
+let g:markdown_enable_spell_checking = 0
+let g:markdown_enable_conceal = 0
+"Plugin Configuration :: gabrielelana/vim-markdown ---------- }
+"
 "Custom :: WhiteSpaces Cleaning ----------------------------  {
 
 "Highlight trailing whitespaces as red.
