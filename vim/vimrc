@@ -3,100 +3,94 @@
 "Feel free to use for any purpose, but try it on your own risk.
 "-----------  Vim Makes World Better -------------
 
-"Vundle Plugins ------------------------------ {
+"Plugins ------------------------------ {
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
 
-call vundle#begin()
-
-"Use https:// as default protocol for vundle's git clone.
-let g:vundle_default_git_proto="https"
-
-Plugin 'VundleVim/Vundle.vim'
 "Colorschemes.
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'joshdick/onedark.vim'
-Plugin 'jacoborus/tender.vim'
-Plugin 'challenger-deep-theme/vim', { 'name': 'challenger-deep' }
-Plugin 'drewtempelmeyer/palenight.vim'
-
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'joshdick/onedark.vim'
+" Plug 'jacoborus/tender.vim'
+" Plug 'challenger-deep-theme/vim', { 'name': 'challenger-deep' }
+" Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'rhysd/vim-color-spring-night'
 "StatusBar.
-Plugin 'vim-airline/vim-airline' "Status/tabline for vim
-Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'bling/vim-bufferline' "Super simple vim plugin to show the list of buffers in the command bar.
+Plug 'vim-airline/vim-airline' "Status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'
+" Plug 'bling/vim-bufferline' "Super simple vim plugin to show the list of buffers in the command bar.
 "Startup Display.
-Plugin 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
+Plug 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 "File Explorer.
-Plugin 'scrooloose/nerdtree' "Best file explore window plugin..
-Plugin 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
+Plug 'scrooloose/nerdtree' "Best file explore window plugin..
+Plug 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
 "Search In Buffer.
-Plugin 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
-Plugin 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
+Plug 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
+Plug 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+" Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 "Range/Pattern/Substitue/Replace.
-Plugin 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
+" Plug 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Completeion
-Plugin 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
+Plug 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
 "Visualization Enchance.
-Plugin 'Yggdroot/indentLine' "Visualize us indent levels.
-Plugin 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
-Plugin 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
-Plugin 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other uses of the current word under the cursor.
+Plug 'Yggdroot/indentLine' "Visualize us indent levels.
+" Plug 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
+Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
+Plug 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other uses of the current word under the cursor.
 "Fast Movement, Motions.
-Plugin 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
-Plugin 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
-"Plugin 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
-Plugin 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
+Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
+Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
+"Plug 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
+" Plug 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
                                "mx to (un)mark
                                "m- to delete mark.
                                "m<Space> to delete all marks for this buffer.
                                "'<mark> to seek to line head of mark.
                                "m/ to show all marks in a split buffer.
-"Plugin 'wellle/targets.vim' " Provides additional text objects
-"Plugin 'machakann/vim-sandwich'
-Plugin 'kien/rainbow_parentheses.vim' "Colorful pairs ()[]{}..
+"Plug 'wellle/targets.vim' " Provides additional text objects
+"Plug 'machakann/vim-sandwich'
+Plug 'kien/rainbow_parentheses.vim' "Colorful pairs ()[]{}..
 "Fast Editing.
-Plugin 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
-Plugin 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
-Plugin 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
+Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
+Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
+Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
-Plugin 'w0rp/ale' "Asynchronous linting/fixing for Vim
+Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Snips.
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 "Git
-" Plugin 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
+" Plug 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
-Plugin 'pangloss/vim-javascript' "Js syntax plugin.
+Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language/framework: Vue
-" Plugin 'posva/vim-vue' "Vue syntax plugin, I don't write frontend alot.
+" Plug 'posva/vim-vue' "Vue syntax plugin, I don't write frontend alot.
 "Language: Python
-Plugin 'vim-python/python-syntax' "Python syntax.
+Plug 'vim-python/python-syntax' "Python syntax.
 "Language: C/C++
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 "Language: Go
-Plugin 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
+Plug 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
 "Language: Rust
-Plugin 'rust-lang/rust.vim' "Rust syntax.
-Plugin 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim' "Rust syntax.
+Plug 'racer-rust/vim-racer'
 "Language: Markdown
-Plugin 'gabrielelana/vim-markdown'
+Plug 'gabrielelana/vim-markdown'
 "Language: Misc
-Plugin 'elzr/vim-json'
-Plugin 'dag/vim-fish'
-Plugin 'cespare/vim-toml'
-Plugin 'stephpy/vim-yaml'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'uber/prototool', { 'rtp':'vim/prototool' }
-Plugin 'junegunn/goyo.vim'
-Plugin 'yogorobot/bitproto', {'rtp': 'editors/vim/'}
+Plug 'elzr/vim-json'
+Plug 'dag/vim-fish'
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'uber/prototool', { 'rtp':'vim/prototool' }
+Plug '~/github/bitproto/editors/vim/'
 
-call vundle#end() " required
-"Vundle  -------------------------------- }
+call plug#end()
+
+"Plugin  -------------------------------- }
 
 "Basic ------------------------------------------------ {
 
@@ -220,8 +214,8 @@ set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: vim-airline/vim-airline --------------- {
-"let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :highlight calls in Vim,
-"                                     "A :AirlineRefresh will however clear the cache.
+let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :highlight calls in Vim,
+                                     "A :AirlineRefresh will however clear the cache.
 let g:airline_theme = 'minimalist' "kolor,violet
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#bufferline#enabled = 1
@@ -298,22 +292,22 @@ au FileType go,python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionEl
 
 "Plugin Configuration :: fzf --------------- {
 "Map control-p to fzf ^_^
-nmap <c-p> :FZF<CR>
+" nmap <c-p> :FZF<CR>
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+" \ { 'fg':      ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 
 "Plugin Configuration :: fzf  ------------- }
 
@@ -461,33 +455,33 @@ highlight illuminatedWord cterm=underline gui=underline
 "Plugin Configuration :: hit9/ShowMotion --------------------- {
 
 "highlight 168=pink.
-highlight SM_SmallMotionGroup cterm=underline ctermfg=168
-highlight SM_BigMotionGroup   cterm=underline ctermfg=168
-highlight SM_CharSearchGroup  cterm=underline ctermfg=168
+"highlight SM_SmallMotionGroup cterm=underline ctermfg=168
+"highlight SM_BigMotionGroup   cterm=underline ctermfg=168
+"highlight SM_CharSearchGroup  cterm=underline ctermfg=168
 
-"Highlights both big and small motions
-nmap w <Plug>(show-motion-both-w)
-nmap W <Plug>(show-motion-both-W)
-nmap b <Plug>(show-motion-both-b)
-nmap B <Plug>(show-motion-both-B)
-nmap e <Plug>(show-motion-both-e)
-nmap E <Plug>(show-motion-both-E)
+""Highlights both big and small motions
+"nmap w <Plug>(show-motion-both-w)
+"nmap W <Plug>(show-motion-both-W)
+"nmap b <Plug>(show-motion-both-b)
+"nmap B <Plug>(show-motion-both-B)
+"nmap e <Plug>(show-motion-both-e)
+"nmap E <Plug>(show-motion-both-E)
 
-"Only highlights motions corresponding to the one you typed
-nmap w <Plug>(show-motion-w)
-nmap W <Plug>(show-motion-W)
-nmap b <Plug>(show-motion-b)
-nmap B <Plug>(show-motion-B)
-nmap e <Plug>(show-motion-e)
-nmap E <Plug>(show-motion-E)
+""Only highlights motions corresponding to the one you typed
+"nmap w <Plug>(show-motion-w)
+"nmap W <Plug>(show-motion-W)
+"nmap b <Plug>(show-motion-b)
+"nmap B <Plug>(show-motion-B)
+"nmap e <Plug>(show-motion-e)
+"nmap E <Plug>(show-motion-E)
 
-"Show motion for chars:
-nmap f <Plug>(show-motion-f)
-nmap t <Plug>(show-motion-t)
-nmap F <Plug>(show-motion-F)
-nmap T <Plug>(show-motion-T)
-nmap ; <Plug>(show-motion-;)
-nmap , <Plug>(show-motion-,)
+""Show motion for chars:
+"nmap f <Plug>(show-motion-f)
+"nmap t <Plug>(show-motion-t)
+"nmap F <Plug>(show-motion-F)
+"nmap T <Plug>(show-motion-T)
+"nmap ; <Plug>(show-motion-;)
+"nmap , <Plug>(show-motion-,)
 
 "Plugin Configuration :: hit9/ShowMotion --------------------- }
 
