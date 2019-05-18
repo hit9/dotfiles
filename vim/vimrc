@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'patstockwell/vim-monokai-tasty'
 " Plug 'joshdick/onedark.vim'
 " Plug 'jacoborus/tender.vim'
 " Plug 'challenger-deep-theme/vim', { 'name': 'challenger-deep' }
@@ -76,7 +77,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
 "Language: Rust
 Plug 'rust-lang/rust.vim' "Rust syntax.
-Plug 'racer-rust/vim-racer'
+" Plug 'racer-rust/vim-racer'
 "Language: Markdown
 Plug 'gabrielelana/vim-markdown'
 "Language: Misc
@@ -193,7 +194,7 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display l
 "Tab settings for diferent language filetypes. (forked from humiaozuzu's dotfile.)
 autocmd FileType text setlocal textwidth=79
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
@@ -245,7 +246,6 @@ let g:PaperColor_Theme_Options = {
 
 
 colorscheme PaperColor "Set colorscheme after its setting applied.
-" colorscheme challenger_deep
 
 "Colorscheme Configuration :: PaperColor ----------- }
 
@@ -284,9 +284,20 @@ let g:ycm_python_binary_path = 'python'
 let g:ycm_complete_in_comments = 1 "Enable completion in comments.
 let g:ycm_collect_identifiers_from_comments_and_strings = 1 "Collect identifiers and strings inside comments.
 let g:ycm_seed_identifiers_with_syntax = 1 "Language syntax keywords completion.
+let g:ycm_gocode_binary_path = "/Users/hit9/gopark/bin/gocode"  "This version of gocode works with Go Modules.
+let g:ycm_godef_binary_path = "/Users/hit9/gopark/bin/godef" " Must install with gomodule on https://github.com/rogpeppe/godef/issues/114
+let g:ycm_max_diagnostics_to_display = 15
+let g:ycm_max_num_candidates = 30
+let g:ycm_use_ultisnips_completer = 0
+" https://github.com/Valloric/ycmd/issues/788
+let g:ycm_semantic_triggers = {
+    \ 'python': [
+    \     're!(from\s+\S+\s+import\s+)'
+    \   ]
+    \ }
 
 "Type 'gd' on normal mode to goto definition in c/cpp/py files.
-au FileType go,python,c,javascript nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
+au FileType go,python,c,javascript,rust nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- }
 
@@ -371,12 +382,11 @@ let python_highlight_all = 1
 "Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {
 let g:rustfmt_autosave = 1
 let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
-let $RUST_SRC_PATH='/Users/hit9/src/rust/src/'
 "Plugin Configuration :: rust-lang/rust.vim && racer -------------------- }
 
-"Plugin Configuration :: rust-lang/rust.vim && racer  -------------------- {
+"Plugin Configuration :: mhinz/vim-startify -------------------- {
 let g:startify_custom_header = 'startify#fortune#cowsay()'
-"Plugin Configuration :: rust-lang/rust.vim && racer  -------------------- }
+"Plugin Configuration :: mhinz/vim-startify -------------------- }
 
 "Plugin Configuration :: vim-json --------------------- {
 let g:vim_json_syntax_conceal = 0
