@@ -1,18 +1,6 @@
-[submodule "zsh/oh-my-zsh"]
-	path = .unused-dotfiles/zsh/oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh
 [submodule "z"]
 	path = z
 	url = git://github.com/rupa/z.git
-[submodule "item2-color-schemes"]
-	path = .unused-dotfiles/item2-color-schemes
-	url = https://github.com/mbadolato/iTerm2-Color-Schemes
-[submodule "zsh/fzf"]
-	path = .unused-dotfiles/zsh/fzf
-	url = https://github.com/junegunn/fzf
-[submodule "vim/Vundle.vim"]
-	path = vim/Vundle.vim
-	url = git://github.com/VundleVim/Vundle.vim.git
 [submodule "kitty/kitty"]
 	path = kitty/kitty
 	url = https://github.com/kovidgoyal/kitty.git
