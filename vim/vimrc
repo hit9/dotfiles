@@ -337,6 +337,8 @@ let NERDTreeShowHidden=1
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
+"https://github.com/Yggdroot/indentLine/issues/47
+autocmd FileType help,nerdtree IndentLinesToggle
 "Plugin Configuration :: Yggdroot/indentLine ------------------------- }
 
 "Plugin Configuration :: pangloss/vim-javascript -------------- {
@@ -431,8 +433,8 @@ highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 "Plugin Configuration :: mhinz/vim-signify }
 
 "Plugin Configuration :: kshenoy/vim-signature ------------------- {
-highlight SignatureMarkText cterm=none ctermfg=155
-let g:SignatureMarkTextHLDynamic=1
+" highlight SignatureMarkText cterm=none ctermfg=155
+" let g:SignatureMarkTextHLDynamic=1
 "Plugin Configuration :: kshenoy/vim-signature ---------------------- }
 
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- {
