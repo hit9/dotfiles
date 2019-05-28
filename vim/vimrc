@@ -11,16 +11,8 @@ call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'patstockwell/vim-monokai-tasty'
-" Plug 'joshdick/onedark.vim'
-" Plug 'jacoborus/tender.vim'
-" Plug 'challenger-deep-theme/vim', { 'name': 'challenger-deep' }
-" Plug 'drewtempelmeyer/palenight.vim'
-" Plug 'rhysd/vim-color-spring-night'
 "StatusBar.
-Plug 'vim-airline/vim-airline' "Status/tabline for vim
-Plug 'vim-airline/vim-airline-themes'
-" Plug 'bling/vim-bufferline' "Super simple vim plugin to show the list of buffers in the command bar.
+Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "Startup Display.
 Plug 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 "File Explorer.
@@ -30,15 +22,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flag
 Plug 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
 Plug 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
-" Plug 'junegunn/fzf.vim'
-" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 "Range/Pattern/Substitue/Replace.
 " Plug 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Completeion
-Plug 'Valloric/YouCompleteMe' "Autocomplete plugin (Go/Python/Js etc.)
+Plug 'maralla/completor.vim' "Autocomplte plugin
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
-" Plug 'hit9/ShowMotion'  "Highlight `w/e/b/B` etc. motions to hint user where is going to jump to next. Forked from boucherm/ShowMotion.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
 Plug 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other uses of the current word under the cursor.
 "Fast Movement, Motions.
@@ -53,7 +42,7 @@ Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to 
                                "m/ to show all marks in a split buffer.
 "Plug 'wellle/targets.vim' " Provides additional text objects
 "Plug 'machakann/vim-sandwich'
-Plug 'kien/rainbow_parentheses.vim' "Colorful pairs ()[]{}..
+" Plug 'kien/rainbow_parentheses.vim' "Colorful pairs ()[]{}..
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
@@ -63,12 +52,8 @@ Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Snips.
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
-"Git
-" Plug 'tpope/vim-fugitive' "Git plugin for vim. I use it not a lot.
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
-"Language/framework: Vue
-" Plug 'posva/vim-vue' "Vue syntax plugin, I don't write frontend alot.
 "Language: Python
 Plug 'vim-python/python-syntax' "Python syntax.
 "Language: C/C++
@@ -87,7 +72,8 @@ Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-Plug '~/github/bitproto/editors/vim/'
+Plug '/Users/hit9/github/bitsbuffers/editors/vim/', {'as': 'bitsbuffers'}
+Plug '/Users/hit9/github/bitproto/editors/vim/', {'as': 'bitproto'}
 
 call plug#end()
 
@@ -114,7 +100,7 @@ set mousemodel=popup "Right mouse button pops up a menu.
 
 "Syntax
 syntax enable "Enable syntax.
-set synmaxcol=180 "Don't perform highlight on lines that are longer than 800 chars.
+set synmaxcol=180 "Don't perform highlight on lines that are longer than 180 chars.
 syntax sync minlines=256
 
 "Display :: Window
@@ -194,7 +180,7 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display l
 "Tab settings for diferent language filetypes. (forked from humiaozuzu's dotfile.)
 autocmd FileType text setlocal textwidth=79
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=90
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
@@ -213,16 +199,6 @@ if exists('+termguicolors')
 endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
-
-"Plugin Configuration :: vim-airline/vim-airline --------------- {
-let g:airline_highlighting_cache = 1 "This will try to prevent some of the more expensive :highlight calls in Vim,
-                                     "A :AirlineRefresh will however clear the cache.
-let g:airline_theme = 'minimalist' "kolor,violet
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-
-"Plugin Configuration :: vim-airline/vim-airline --------------- }
 
 "Colorscheme Configuration :: PaperColor ----------- {
 let g:PaperColor_Theme_Options = {
@@ -276,51 +252,14 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 
 "Plugin Configuration :: tpope/vim-commentary ----------------- }
 
-"Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- {
-"
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_python_binary_path = 'python'
-let g:ycm_complete_in_comments = 1 "Enable completion in comments.
-let g:ycm_collect_identifiers_from_comments_and_strings = 1 "Collect identifiers and strings inside comments.
-let g:ycm_seed_identifiers_with_syntax = 1 "Language syntax keywords completion.
-let g:ycm_gocode_binary_path = "/Users/hit9/gopark/bin/gocode"  "This version of gocode works with Go Modules.
-let g:ycm_godef_binary_path = "/Users/hit9/gopark/bin/godef" " Must install with gomodule on https://github.com/rogpeppe/godef/issues/114
-let g:ycm_max_diagnostics_to_display = 15
-let g:ycm_max_num_candidates = 30
-let g:ycm_use_ultisnips_completer = 0
-" https://github.com/Valloric/ycmd/issues/788
-let g:ycm_semantic_triggers = {
-    \ 'python': [
-    \     're!(from\s+\S+\s+import\s+)'
-    \   ]
-    \ }
-
-"Type 'gd' on normal mode to goto definition in c/cpp/py files.
-au FileType go,python,c,javascript,rust nmap gd :split\|YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-"Plugin Configuration :: Valloric/YouCompleteMe ----------------------------- }
-
-"Plugin Configuration :: fzf --------------- {
-"Map control-p to fzf ^_^
-" nmap <c-p> :FZF<CR>
-" Customize fzf colors to match your color scheme
-" let g:fzf_colors =
-" \ { 'fg':      ['fg', 'Normal'],
-"   \ 'bg':      ['bg', 'Normal'],
-"   \ 'hl':      ['fg', 'Comment'],
-"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"   \ 'hl+':     ['fg', 'Statement'],
-"   \ 'info':    ['fg', 'PreProc'],
-"   \ 'border':  ['fg', 'Ignore'],
-"   \ 'prompt':  ['fg', 'Conditional'],
-"   \ 'pointer': ['fg', 'Exception'],
-"   \ 'marker':  ['fg', 'Keyword'],
-"   \ 'spinner': ['fg', 'Label'],
-"   \ 'header':  ['fg', 'Comment'] }
-
-"Plugin Configuration :: fzf  ------------- }
+"Plugin Configuration :: maralla/completor.vim ---------- {
+let g:completor_auto_trigger = 1
+let g:completor_python_binary = "python"
+let g:completor_filetype_map = {}
+" Enable lsp for go by using gopls
+let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls'}
+au FileType go,python,c,javascript,rust nmap gd :split\|:call completor#do('definition')<CR>
+"Plugin Configuration :: maralla/completor.vim ---------- }
 
 "Plugin Configuration :: scrooloose/nerdtree --------- {
 "Open nerdtree on buffer entered. And close it if it's the last window.
@@ -377,6 +316,7 @@ autocmd BufWrite *.go :call job_start('go install .')
 
 "Plugin Configuration :: vim-python/python-syntax ---------------- {
 let python_highlight_all = 1
+let python_slow_sync = 0
 "Plugin Configuration :: vim-python/python-syntax ----------------- }
 
 "Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {
@@ -453,53 +393,16 @@ highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 "Plugin Configuration :: t9md/vim-choosewin ---------------------- }
 
 "Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- {
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
 "Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- }
 
 "Plugin Configuration :: RRethy/vim-illuminate ------------------ {
 let g:Illuminate_delay = 30
 highlight illuminatedWord cterm=underline gui=underline
 "Plugin Configuration :: RRethy/vim-illuminate --------------- }
-
-"Plugin Configuration :: hit9/ShowMotion --------------------- {
-
-"highlight 168=pink.
-"highlight SM_SmallMotionGroup cterm=underline ctermfg=168
-"highlight SM_BigMotionGroup   cterm=underline ctermfg=168
-"highlight SM_CharSearchGroup  cterm=underline ctermfg=168
-
-""Highlights both big and small motions
-"nmap w <Plug>(show-motion-both-w)
-"nmap W <Plug>(show-motion-both-W)
-"nmap b <Plug>(show-motion-both-b)
-"nmap B <Plug>(show-motion-both-B)
-"nmap e <Plug>(show-motion-both-e)
-"nmap E <Plug>(show-motion-both-E)
-
-""Only highlights motions corresponding to the one you typed
-"nmap w <Plug>(show-motion-w)
-"nmap W <Plug>(show-motion-W)
-"nmap b <Plug>(show-motion-b)
-"nmap B <Plug>(show-motion-B)
-"nmap e <Plug>(show-motion-e)
-"nmap E <Plug>(show-motion-E)
-
-""Show motion for chars:
-"nmap f <Plug>(show-motion-f)
-"nmap t <Plug>(show-motion-t)
-"nmap F <Plug>(show-motion-F)
-"nmap T <Plug>(show-motion-T)
-"nmap ; <Plug>(show-motion-;)
-"nmap , <Plug>(show-motion-,)
-
-"Plugin Configuration :: hit9/ShowMotion --------------------- }
-
-"Plugin Configuration :: plasticboy/vim-markdown ---------- {
-" let g:vim_markdown_conceal = 0
-"Plugin Configuration :: plasticboy/vim-markdown ---------- }
 
 "Plugin Configuration :: gabrielelana/vim-markdown ---------- {
 let g:markdown_enable_spell_checking = 0
