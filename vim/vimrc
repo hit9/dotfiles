@@ -19,13 +19,14 @@ Plug 'mhinz/vim-startify' "Brings a beautiful and convenient startup buffer.
 Plug 'scrooloose/nerdtree' "Best file explore window plugin..
 Plug 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
 "Search In Buffer.
-Plug 'junegunn/vim-slash' "Automatically search clear highlight & Improved star-search.
 Plug 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
 "Range/Pattern/Substitue/Replace.
 " Plug 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Completeion
-Plug 'maralla/completor.vim' "Autocomplte plugin
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
@@ -33,25 +34,14 @@ Plug 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other use
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
-"Plug 'tmhedberg/matchit' "Extended % matching for HTML, LaTeX, Lua, Vim, XML, Shell and many other languages.
-" Plug 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks.
-                               "mx to (un)mark
-                               "m- to delete mark.
-                               "m<Space> to delete all marks for this buffer.
-                               "'<mark> to seek to line head of mark.
-                               "m/ to show all marks in a split buffer.
 "Plug 'wellle/targets.vim' " Provides additional text objects
 "Plug 'machakann/vim-sandwich'
-" Plug 'kien/rainbow_parentheses.vim' "Colorful pairs ()[]{}..
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
 Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
 Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
-"Snips.
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -177,6 +167,8 @@ set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
 set list "Show tabs via listchars below, and display end sign after endo fline.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
 
+set updatetime=250
+
 "Tab settings for diferent language filetypes. (forked from humiaozuzu's dotfile.)
 autocmd FileType text setlocal textwidth=79
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
@@ -252,14 +244,12 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 
 "Plugin Configuration :: tpope/vim-commentary ----------------- }
 
-"Plugin Configuration :: maralla/completor.vim ---------- {
-let g:completor_auto_trigger = 1
-let g:completor_python_binary = "python"
-let g:completor_filetype_map = {}
-" Enable lsp for go by using gopls
-let g:completor_filetype_map.go = {'ft': 'lsp', 'cmd': 'gopls'}
-au FileType go,python,c,javascript,rust nmap gd :split\|:call completor#do('definition')<CR>
-"Plugin Configuration :: maralla/completor.vim ---------- }
+"Plugin Configuration :: neoclide/coc.nvim ---------- {
+au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+"Plugin Configuration :: neoclide/coc.nvim ---------- }
 
 "Plugin Configuration :: scrooloose/nerdtree --------- {
 "Open nerdtree on buffer entered. And close it if it's the last window.
@@ -381,23 +371,6 @@ highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
 "Plugin Configuration :: mhinz/vim-signify ----------------- {
 highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 "Plugin Configuration :: mhinz/vim-signify }
-
-"Plugin Configuration :: kshenoy/vim-signature ------------------- {
-" highlight SignatureMarkText cterm=none ctermfg=155
-" let g:SignatureMarkTextHLDynamic=1
-"Plugin Configuration :: kshenoy/vim-signature ---------------------- }
-
-"Plugin Configuration :: t9md/vim-choosewin ---------------------- {
-" nmap ww <Plug>(choosewin)
-" let g:choosewin_overlay_enable = 1
-"Plugin Configuration :: t9md/vim-choosewin ---------------------- }
-
-"Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- {
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
-"Plugin Configuration :: kien/rainbow_parentheses.vim  ---------------------- }
 
 "Plugin Configuration :: RRethy/vim-illuminate ------------------ {
 let g:Illuminate_delay = 30
