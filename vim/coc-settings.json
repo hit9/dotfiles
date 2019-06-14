@@ -1,5 +1,10 @@
 {
+    "suggest.floatEnable": false,
+    "suggest.enablePreview": false,
 	"coc.preferences.jumpCommand": "split",
+    "coc.preferences.hoverTarget": "preview",
+    "diagnostic.displayByAle": true,
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
 	"languageserver": {
 		"golang": {
 			"command": "gopls",
@@ -58,7 +63,7 @@
 							"enabled": true
 						},
 						"pycodestyle": {
-							"enabled": true
+							"enabled": false
 						},
 						"pydocstyle": {
 							"enabled": false,

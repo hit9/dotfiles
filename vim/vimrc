@@ -167,7 +167,14 @@ set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
 set list "Show tabs via listchars below, and display end sign after endo fline.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
 
-set updatetime=250
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+" Better display for messages
+set cmdheight=2
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
 
 "Tab settings for diferent language filetypes. (forked from humiaozuzu's dotfile.)
 autocmd FileType text setlocal textwidth=79
@@ -191,6 +198,19 @@ if exists('+termguicolors')
 endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
+
+"Plugin Configuration :: lightline.vim ----------- {
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
+"Plugin Configuration :: lightline.vim ----------- }
 
 "Colorscheme Configuration :: PaperColor ----------- {
 let g:PaperColor_Theme_Options = {
@@ -246,9 +266,6 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 
 "Plugin Configuration :: neoclide/coc.nvim ---------- {
 au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
 "Plugin Configuration :: neoclide/coc.nvim ---------- }
 
 "Plugin Configuration :: scrooloose/nerdtree --------- {
