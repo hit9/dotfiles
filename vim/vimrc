@@ -236,7 +236,6 @@ let g:lightline = {
 "     \   }
 "     \ }
 
-
 "colorscheme PaperColor "Set colorscheme after its setting applied.
 colorscheme challenger_deep
 "Transparent

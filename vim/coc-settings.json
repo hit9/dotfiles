@@ -4,84 +4,86 @@
     "suggest.maxPreviewWidth": 65,
     "suggest.echodocSupport": true,
     "suggest.noselect": true,
-	"coc.preferences.jumpCommand": "split",
+    "coc.preferences.jumpCommand": "split",
     "coc.preferences.hoverTarget": "preview",
     "diagnostic.displayByAle": true,
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-	"languageserver": {
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-			"filetypes": ["go"]
-		},
-		"rust": {
-			"command": "ra_lsp_server",
-			"filetypes": ["rust"],
-			"rootPatterns": ["Cargo.toml"]
-		},
-		"python": {
-			"command": "python",
-			"args": [
-				"-mpyls",
-				"-vv",
-				"--log-file",
-				"/tmp/lsp_python.log"
-			],
-			"trace.server": "verbose",
-			"filetypes": [
-				"python"
-			],
-			"settings": {
-				"pyls": {
-					"enable": true,
-					"trace": {
-						"server": "verbose"
-					},
-					"commandPath": "",
-					"plugins": {
-						"jedi_completion": {
-							"enabled": true
-						},
-						"jedi_hover": {
-							"enabled": false
-						},
-						"jedi_references": {
-							"enabled": true
-						},
-						"jedi_signature_help": {
-							"enabled": true
-						},
-						"jedi_symbols": {
-							"enabled": true,
-							"all_scopes": true
-						},
-						"mccabe": {
-							"enabled": false,
-							"threshold": 15
-						},
-						"preload": {
-							"enabled": true
-						},
-						"pycodestyle": {
-							"enabled": false
-						},
-						"pydocstyle": {
-							"enabled": false,
-							"match": "(?!test_).*\\.py",
-							"matchDir": "[^\\.].*"
-						},
-						"pyflakes": {
-							"enabled": false
-						},
-						"rope_completion": {
-							"enabled": false
-						},
-						"yapf": {
-							"enabled": false
-						}
-					}
-				}
-			}
-		}
-	}
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"]
+        },
+        "rust": {
+            "command": "ra_lsp_server",
+            "filetypes": ["rust"],
+            "rootPatterns": ["Cargo.toml"]
+        },
+        "python": {
+            "command": "python",
+            "cwd": ".",
+            "args": [
+                "-mpyls",
+                "-vv",
+                "--log-file",
+                "/tmp/lsp_python.log"
+            ],
+            "trace.server": "verbose",
+            "filetypes": [
+                "python"
+            ],
+            "rootPatterns": ["setup.py", ".git/", "pyproject.toml"],
+            "settings": {
+                "pyls": {
+                    "enable": true,
+                    "trace": {
+                        "server": "verbose"
+                    },
+                    "commandPath": "",
+                    "plugins": {
+                        "jedi_completion": {
+                            "enabled": true
+                        },
+                        "jedi_hover": {
+                            "enabled": false
+                        },
+                        "jedi_references": {
+                            "enabled": true
+                        },
+                        "jedi_signature_help": {
+                            "enabled": true
+                        },
+                        "jedi_symbols": {
+                            "enabled": true,
+                            "all_scopes": true
+                        },
+                        "mccabe": {
+                            "enabled": false,
+                            "threshold": 15
+                        },
+                        "preload": {
+                            "enabled": true
+                        },
+                        "pycodestyle": {
+                            "enabled": false
+                        },
+                        "pydocstyle": {
+                            "enabled": false,
+                            "match": "(?!test_).*\\.py",
+                            "matchDir": "[^\\.].*"
+                        },
+                        "pyflakes": {
+                            "enabled": false
+                        },
+                        "rope_completion": {
+                            "enabled": false
+                        },
+                        "yapf": {
+                            "enabled": false
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
