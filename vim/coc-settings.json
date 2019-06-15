@@ -1,5 +1,5 @@
 {
-    "suggest.floatEnable": false,
+    "suggest.floatEnable": true,
     "suggest.enablePreview": false,
     "suggest.maxPreviewWidth": 65,
     "suggest.echodocSupport": true,

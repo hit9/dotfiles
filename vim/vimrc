@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep'  }
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'liuchengxu/space-vim-dark'
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
@@ -46,6 +46,12 @@ Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to v
 Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Viewer & Finder for LSP symbols and tags in Vim
 Plug 'liuchengxu/vista.vim'
+"Automatic resizing of Vim windows to the golden ratio
+Plug 'roman/golden-ratio'
+"Vim plugin to accelerate up-down moving (j and k mapping)
+Plug 'rhysd/accelerated-jk'
+"Plugin to reveal the hidden message from Git under the cursor quickly.
+Plug 'rhysd/git-messenger.vim'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -101,7 +107,9 @@ syntax sync minlines=256
 set number  "Show line numbers.
 "set relativenumber "Show relative line numbers.
 set go= "Disable gvim's gui menu. (But I never use gui version).
-set term=screen-256color "I use screen-256color.
+if !has('nvim')
+    set term=screen-256color "I use screen-256color.
+endif
 set shortmess=atI "Disable the short message on vim start.
 set noshowcmd "Don't show command in the last line of screeen.
 set showmode "If in Insert, Replace or Visual mode put a message on the last line.
@@ -348,6 +356,11 @@ let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
 let g:startify_custom_header = 'startify#fortune#cowsay()'
 "Plugin Configuration :: mhinz/vim-startify -------------------- }
 
+"Plugin Configuration :: rhysd/accelerated-jk -------------------- {
+nmap j <Plug>(accelerated_jk_gj_position)
+nmap k <Plug>(accelerated_jk_gk_position)
+"Plugin Configuration :: rhysd/accelerated-jk -------------------- }
+
 "Plugin Configuration :: vim-json --------------------- {
 let g:vim_json_syntax_conceal = 0
 "Plugin Configuration :: vim-json ----------------------------- }
@@ -386,6 +399,14 @@ if has('timers')
   noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
 "Plugin Configuration :: junegunn/vim-slash ---------- }
+
+"Plugin Configuration :: Shougo/echodoc.vim ---------- {
+if has('nvim')
+  let g:echodoc#type = 'virtual'
+else
+  let g:echodoc#type = 'echo'
+endif
+"Plugin Configuration :: Shougo/echodoc.vim ---------- }
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
