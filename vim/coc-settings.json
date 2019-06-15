@@ -1,6 +1,9 @@
 {
     "suggest.floatEnable": false,
     "suggest.enablePreview": false,
+    "suggest.maxPreviewWidth": 65,
+    "suggest.echodocSupport": true,
+    "suggest.noselect": true,
 	"coc.preferences.jumpCommand": "split",
     "coc.preferences.hoverTarget": "preview",
     "diagnostic.displayByAle": true,
@@ -35,15 +38,12 @@
 						"server": "verbose"
 					},
 					"commandPath": "",
-					"configurationSources": [
-						"pycodestyle"
-					],
 					"plugins": {
 						"jedi_completion": {
 							"enabled": true
 						},
 						"jedi_hover": {
-							"enabled": true
+							"enabled": false
 						},
 						"jedi_references": {
 							"enabled": true

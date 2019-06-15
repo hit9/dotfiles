@@ -22,11 +22,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flag
 Plug 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
 "Search Cross files/buffers;
 "Range/Pattern/Substitue/Replace.
-" Plug 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
 "Completeion
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/echodoc.vim'
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
@@ -42,6 +42,8 @@ Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment
 Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
 Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
+"Viewer & Finder for LSP symbols and tags in Vim
+Plug 'liuchengxu/vista.vim'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -251,7 +253,6 @@ highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
 highlight Folded cterm=bold term=bold ctermbg=236 ctermfg=248 guibg=#32353f guifg=#fafafa
 highlight FoldColumn cterm=bold term=bold ctermfg=248
 
-
 "Basic ------------------------------------------------ }
 
 "Plugin Configuration :: tpope/vim-commentary ----------------- {
@@ -268,9 +269,15 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
 "Plugin Configuration :: neoclide/coc.nvim ---------- }
 
+"Plugin Configuration :: liuchengxu/vista.vim ---------- {
+let g:vista#renderer#enable_icon = 0
+let g:vista_default_executive = 'coc'
+let g:vista_sidebar_width = 40
+"Plugin Configuration :: liuchengxu/vista.vim ---------- }
+
 "Plugin Configuration :: scrooloose/nerdtree --------- {
 "Open nerdtree on buffer entered. And close it if it's the last window.
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "nerdtree window's width.
 let NERDTreeWinSize=35
 "Show line number for nerdtree.
