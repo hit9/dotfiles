@@ -11,6 +11,8 @@ call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep'  }
+Plug 'liuchengxu/space-vim-dark'
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "Startup Display.
@@ -203,7 +205,7 @@ set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: lightline.vim ----------- {
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'molokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -235,7 +237,12 @@ let g:PaperColor_Theme_Options = {
     \ }
 
 
-colorscheme PaperColor "Set colorscheme after its setting applied.
+"colorscheme PaperColor "Set colorscheme after its setting applied.
+colorscheme challenger_deep
+"Transparent
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 "Colorscheme Configuration :: PaperColor ----------- }
 
@@ -270,7 +277,7 @@ au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
 "Plugin Configuration :: neoclide/coc.nvim ---------- }
 
 "Plugin Configuration :: liuchengxu/vista.vim ---------- {
-let g:vista#renderer#enable_icon = 0
+let g:vista#renderer#enable_icon = 1
 let g:vista_default_executive = 'coc'
 let g:vista_sidebar_width = 40
 "Plugin Configuration :: liuchengxu/vista.vim ---------- }
@@ -347,7 +354,7 @@ let g:vim_json_syntax_conceal = 0
 "Plugin Configuration :: vim-json ----------------------------- }
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {
-highlight QuickScopePrimary ctermfg=155 cterm=underline
+highlight QuickScopePrimary ctermfg=119 cterm=underline
 highlight QuickScopeSecondary ctermfg=81 cterm=none
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']

@@ -49,8 +49,7 @@ window:
   #     - transparent: Title bar, transparent background, but no title bar buttons
   decorations: none
   # When true, alacritty starts maximized.
-  start_maximized: true
-
+  startup_mode: SimpleFullscreen
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -86,23 +85,26 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Inconsolata-g for Powerline
-    # The `style` can be specified to pick a specific face.
+    # family: Inconsolata-g for Powerline
+    family: InconsolataLGC Nerd Font
     # style: Regular
+    # The `style` can be specified to pick a specific face.
 
   # Italic font face
   bold:
-    family: Inconsolata-g for Powerline
+    # family: Inconsolata-g for Powerline
+    family: InconsolataLGC Nerd Font
+    # style: Bold
     # family: Menlo
     # The `style` can be specified to pick a specific face.
-    # style: Bold
 
   # Italic font face
   italic:
-    family: Inconsolata-g for Powerline
+    # family: Inconsolata-g for Powerline
+    family: InconsolataLGC Nerd Font
+    # style: Italic
     # family: Menlo
     # The `style` can be specified to pick a specific face.
-    # style: Italic
 
   # Point size
   size: 15.0
@@ -130,8 +132,10 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`
   use_thin_strokes: true
 
-# Display the time it takes to redraw each frame.
-render_timer: false
+
+debug:
+  # Display the time it takes to redraw each frame.
+  render_timer: false
 
 # Use custom cursor colors. If `true`, the `colors.cursor.foreground` and
 # `colors.cursor.background` colors will be used to display the cursor.
