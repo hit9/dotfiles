@@ -41,10 +41,9 @@ Vim plugins I really enjoy
 - [hit9/ShowMotion](https://github.com/hit9/ShowMotion)
 - [bronson/vim-visual-star-search](https://github.com/bronson/vim-visual-star-search)
 - [markonm/traces.vim](https://github.com/markonm/traces.vim)
-- [Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
+- [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim/)
 - [terryma/vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
-- [t9md/vim-choosewin](https://github.com/t9md/vim-choosewin)
-- [junegunn/vim-slash](https://github.com/junegunn/vim-slash)
+- [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim)
 
 Notes
 -----

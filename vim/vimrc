@@ -386,7 +386,7 @@ endif
 
 "Plugin Configuration :: Shougo/echodoc.vim ---------- {
 if has('nvim')
-  let g:echodoc#type = 'virtual'
+  let g:echodoc#type = 'float'
 else
   let g:echodoc#type = 'echo'
 endif
