@@ -45,8 +45,6 @@ Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 Plug 'liuchengxu/vista.vim'
 "Automatic resizing of Vim windows to the golden ratio
 Plug 'roman/golden-ratio'
-"Vim plugin to accelerate up-down moving (j and k mapping)
-Plug 'rhysd/accelerated-jk'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -346,11 +344,6 @@ let python_slow_sync = 0
 let g:rustfmt_autosave = 1
 let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
 "Plugin Configuration :: rust-lang/rust.vim && racer -------------------- }
-
-"Plugin Configuration :: rhysd/accelerated-jk -------------------- {
-nmap j <Plug>(accelerated_jk_gj_position)
-nmap k <Plug>(accelerated_jk_gk_position)
-"Plugin Configuration :: rhysd/accelerated-jk -------------------- }
 
 "Plugin Configuration :: vim-json --------------------- {
 let g:vim_json_syntax_conceal = 0
