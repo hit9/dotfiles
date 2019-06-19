@@ -44,7 +44,10 @@ Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Viewer & Finder for LSP symbols and tags in Vim
 Plug 'liuchengxu/vista.vim'
 "Automatic resizing of Vim windows to the golden ratio
-Plug 'roman/golden-ratio'
+if !has('nvim')
+  "Nvim's floating window dosen't work well with golden-ratio.
+  Plug 'roman/golden-ratio'
+endif
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -253,12 +256,12 @@ hi SignColumn ctermbg=NONE guibg=NONE
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
 set cursorline "Highlight current line.
 if has('nvim')
-    highlight CursorLine ctermbg=236 ctermfg=none guibg=#383a42
+    highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
 else
-    highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#383a42
+    highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
 endif
 set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
-highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#383a42
+highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#454545
 
 " Color :: Normal and Visual mode.
 highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
