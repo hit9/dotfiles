@@ -27,6 +27,16 @@
             "filetypes": ["rust"],
             "rootPatterns": ["Cargo.toml"]
         },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", ".git", ".hg"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        },
         "python": {
             "command": "python",
             "cwd": ".",
