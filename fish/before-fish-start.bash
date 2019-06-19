@@ -28,8 +28,15 @@ PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Fzf color: Seoul256 Dusk
-export FZF_DEFAULT_OPTS='
-  --color=dark,hl:255,fg:30,hl+:255,fg+:30,bg+:235
-  --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+# export FZF_DEFAULT_OPTS='
+#   --color=dark,hl:255,fg:30,hl+:255,fg+:30,bg+:235
+#   --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+#'
+
+# https://github.com/junegunn/fzf/wiki/Color-schemes
+# Molokai (modified)
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark,fg:252,hl:67,fg+:252,bg+:235,hl+:81
+--color info:144,prompt:161,spinner:135,pointer:135,marker:118
 '
 export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
