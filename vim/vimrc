@@ -44,10 +44,13 @@ Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Viewer & Finder for LSP symbols and tags in Vim
 Plug 'liuchengxu/vista.vim'
 "Automatic resizing of Vim windows to the golden ratio
-if !has('nvim')
-  "Nvim's floating window dosen't work well with golden-ratio.
-  Plug 'roman/golden-ratio'
-endif
+"Nvim's floating window dosen't work well with golden-ratio.
+"We use don't map autocmd of golden-ratio, but by map `wz` for manually
+"resizing.
+Plug 'roman/golden-ratio'
+"Fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -437,18 +440,47 @@ match ExtraWhitespace /\s\+$/
 "Auto clean whitespaces on buffer save for this files.
 autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto :WS
 
+"Plugin Configuration :: junegunn/fzf.vim ----------------- {
+" ProjectFiles tries to locate files relative to the git root contained in
+" NerdTree, falling back to the current NerdTree dir if not available
+" see https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
+function! s:find_git_root()
+    return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+nmap <c-r> :ProjectFiles<CR>
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+	\ { 'fg':      ['fg', 'Normal'],
+	\ 'bg':      ['bg', 'Normal'],
+	\ 'hl':      ['fg', 'Comment'],
+	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+	\ 'hl+':     ['fg', 'Statement'],
+	\ 'info':    ['fg', 'PreProc'],
+	\ 'border':  ['fg', 'Ignore'],
+	\ 'prompt':  ['fg', 'Conditional'],
+	\ 'pointer': ['fg', 'Exception'],
+	\ 'marker':  ['fg', 'Keyword'],
+	\ 'spinner': ['fg', 'Label'],
+	\ 'header':  ['fg', 'Comment'] }
+"Plugin Configuration :: junegunn/fzf.vim ----------------- }
+
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
 
 "Custom :: Window Switches ----------------------------  {
+
+"Plugin Configuration :: roman/golden-ratio ----------------- {{
+let g:golden_ratio_autocommand = 0
+"Plugin Configuration :: roman/golden-ratio ----------------- }}
+
 "Shortcut window switches, w+h/j/k/l
-nmap w<up> <c-w><up>
 nmap wk <c-w><up>
-nmap w<left> <c-w><left>
 nmap wh <c-w><left>
-nmap w<right> <c-w><right>
 nmap wl <c-w><right>
-nmap w<down> <c-w><down>
 nmap wj <c-w><down>
+nmap wz :GoldenRatioResize<CR>
 "Custom :: Window Switches ----------------------------  }
 
 " Mappings to easily toggle fold levels
