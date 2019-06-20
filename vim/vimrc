@@ -369,8 +369,8 @@ highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none g
 
 "Plugin Configuration :: mhinz/vim-signify ----------------- {
 highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
-highlight SignifySignAdd ctermfg=yellow ctermbg=green guifg=#F7DC6F guibg=#229954
-highlight SignifySignChange ctermfg=yellow ctermbg=blue guifg=#F7DC6F guibg=#5499C7
+highlight SignifySignAdd ctermfg=yellow ctermbg=green guifg=#F7DC6F guibg=#1E8449
+highlight SignifySignChange ctermfg=yellow ctermbg=blue guifg=#F7DC6F guibg=#2874A6
 highlight SignifySignDelete ctermfg=yellow ctermbg=red guifg=#F7DC6F guibg=#EC7063
 "Plugin Configuration :: mhinz/vim-signify }
 
@@ -407,7 +407,7 @@ function! s:find_git_root()
 endfunction
 
 command! ProjectFiles execute 'Files' s:find_git_root()
-nmap <c-r> :ProjectFiles<CR>
+nmap <c-p> :ProjectFiles<CR>
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 	\ { 'fg':      ['fg', 'Normal'],

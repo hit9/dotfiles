@@ -12,6 +12,7 @@
     "diagnostic.warningSign": "W",
     "diagnostic.hintSign": "H",
     "diagnostic.displayByAle": true,
+    "diagnostic.refreshAfterSave": true,
     "signature.enable": true,
     "signature.target": "float",
     "coc.preferences.jumpCommand": "split",
