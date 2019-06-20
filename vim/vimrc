@@ -16,20 +16,20 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "File Explorer.
-Plug 'scrooloose/nerdtree' "Best file explore window plugin..
-Plug 'Xuyuanp/nerdtree-git-plugin' "A plugin of NERDTree showing git status flags.
-"Search In Buffer.
-Plug 'bronson/vim-visual-star-search' "Start a * or # search for a visual selection.
-Plug 'markonm/traces.vim' "Range, pattern and substitute preview. :substite :smagic :snomagic
+"Best file explore window plugin..
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"A plugin of NERDTree showing git status flags.
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+"Range, pattern and substitute preview. :substite :smagic :snomagic
+Plug 'markonm/traces.vim'
 "Completeion
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc.nvim', { 'do': './install.sh nightly' }
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'Shougo/echodoc.vim'
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
-Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
-Plug 'RRethy/vim-illuminate' " Vim plugin for selectively illuminating other uses of the current word under the cursor.
+"Show diff signs for file changes under git/hg/svn control.
+Plug 'mhinz/vim-signify'
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
@@ -41,15 +41,12 @@ Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment
 Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
 Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
-"Viewer & Finder for LSP symbols and tags in Vim
-Plug 'liuchengxu/vista.vim'
 "Automatic resizing of Vim windows to the golden ratio
 "Nvim's floating window dosen't work well with golden-ratio.
-"We use don't map autocmd of golden-ratio, but by map `wz` for manually
-"resizing.
-Plug 'roman/golden-ratio'
+"We use don't map autocmd of golden-ratio, but by map `wz` for manually resizing.
+Plug 'roman/golden-ratio', { 'on': 'GoldenRatioResize' }
 "Fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
@@ -58,10 +55,10 @@ Plug 'vim-python/python-syntax' "Python syntax.
 "Language: C/C++
 Plug 'octol/vim-cpp-enhanced-highlight'
 "Language: Go
-Plug 'fatih/vim-go' "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
+"Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
+Plug 'fatih/vim-go'
 "Language: Rust
 Plug 'rust-lang/rust.vim' "Rust syntax.
-" Plug 'racer-rust/vim-racer'
 "Language: Markdown
 Plug 'gabrielelana/vim-markdown'
 "Language: Misc
@@ -107,7 +104,8 @@ set number  "Show line numbers.
 "set relativenumber "Show relative line numbers.
 set go= "Disable gvim's gui menu. (But I never use gui version).
 if !has('nvim')
-    set term=screen-256color "I use screen-256color.
+   "Use screen-256color for Vim8.
+    set term=screen-256color
 endif
 set shortmess=atI "Disable the short message on vim start.
 set noshowcmd "Don't show command in the last line of screeen.
@@ -128,7 +126,7 @@ set titleold= "Restore old title after leaving vim.
 set scrolloff=9999
 
 "Search/Replace
-set gdefault ":s/<search-target>/<to-replace-with>/ is s///g by default
+set gdefault "The :s/<search-target>/<to-replace-with>/ is s///g by default
 set hlsearch "Highlight search results.
 set incsearch "Realtime search results showing.
 
@@ -144,7 +142,7 @@ set termencoding=utf-8 "Encoding that output to terminal.
 set fileencoding=utf-8 "Encoding that saving files.
 set backspace=indent,eol,start "Backspace key, I just don't rely on it.
 
-" Editing :: fold, by indent {{{
+" Editing :: fold, by indent
 set nofoldenable
 set foldmethod=indent
 set foldcolumn=2
@@ -203,10 +201,11 @@ autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 tex
 "https://lotabout.me/2018/true-color-for-tmux-and-vim/
 "https://github.com/tmux/tmux/issues/1246
 if exists('+termguicolors')
-  if !has('nvim')
+  if !has('nvim') " ------- Vim8
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
   endif
+  " ------- Vim8.0 & NVim
   set termguicolors
 endif
 set t_Co=256 "Enable 256 color
@@ -215,53 +214,24 @@ set background=dark "Using dark. Hmm dark is sexy.
 "Plugin Configuration :: lightline.vim ----------- {
 let g:lightline = {
       \ 'colorscheme': 'molokai',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
       \ }
-"Plugin Configuration :: lightline.vim ----------- }
 
-"Colorscheme Configuration :: PaperColor ----------- {
-" let g:PaperColor_Theme_Options = {
-"     \   'theme': {
-"     \     'default.dark': {
-"     \        'transparent_background': 1
-"     \      }
-"     \   },
-"     \   'language': {
-"     \     'python': {
-"     \       'highlight_builtins' : 1
-"     \     },
-"     \     'cpp': {
-"     \       'highlight_standard_library': 1
-"     \     },
-"     \     'c': {
-"     \       'highlight_builtins' : 1
-"     \     }
-"     \   }
-"     \ }
-
-" colorscheme PaperColor "Set colorscheme after its setting applied.
+"Set colorscheme.
 colorscheme challenger_deep
-" colorscheme space-vim-dark
 
-"Transparent
+"Transparent background
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 
-"Colorscheme Configuration :: PaperColor ----------- }
+"Colorscheme Configuration :: Challenger_deep ----------- }
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
 set cursorline "Highlight current line.
 if has('nvim')
-    highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
+  highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
 else
-    highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
+  highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
 endif
 set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
 highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#454545
@@ -289,12 +259,6 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 "Plugin Configuration :: neoclide/coc.nvim ---------- {
 au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
 "Plugin Configuration :: neoclide/coc.nvim ---------- }
-
-"Plugin Configuration :: liuchengxu/vista.vim ---------- {
-let g:vista#renderer#enable_icon = 1
-let g:vista_default_executive = 'coc'
-let g:vista_sidebar_width = 40
-"Plugin Configuration :: liuchengxu/vista.vim ---------- }
 
 "Plugin Configuration :: scrooloose/nerdtree --------- {
 "Open nerdtree on buffer entered. And close it if it's the last window.
@@ -359,7 +323,9 @@ let g:vim_json_syntax_conceal = 0
 highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
 highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
+    \ '4', '5', '6', '7', '8', '9']
 "Plugin Configuration :: unblevable/quick-scope ------------- }
 
 "Plugin Configuration :: w0rp/ale -------------------------------- {
@@ -389,14 +355,6 @@ if has('timers')
   noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
 "Plugin Configuration :: junegunn/vim-slash ---------- }
-
-"Plugin Configuration :: Shougo/echodoc.vim ---------- {
-if has('nvim')
-  let g:echodoc#type = 'float'
-else
-  let g:echodoc#type = 'echo'
-endif
-"Plugin Configuration :: Shougo/echodoc.vim ---------- }
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124

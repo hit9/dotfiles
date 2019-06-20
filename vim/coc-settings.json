@@ -2,7 +2,7 @@
     "suggest.floatEnable": false,
     "suggest.enablePreview": false,
     "suggest.maxPreviewWidth": 65,
-    "suggest.echodocSupport": true,
+    "suggest.echodocSupport": false,
     "suggest.noselect": true,
     "diagnostic.enable": true,
     "diagnostic.messageTarget": "echo",
@@ -11,6 +11,7 @@
     "diagnostic.errorSign": "X",
     "diagnostic.warningSign": "W",
     "diagnostic.hintSign": "H",
+    "diagnostic.displayByAle": true,
     "signature.enable": true,
     "signature.target": "float",
     "coc.preferences.jumpCommand": "split",
@@ -51,6 +52,7 @@
                 "python"
             ],
             "rootPatterns": ["setup.py", ".git/", "pyproject.toml"],
+            "disableDiagnostics": true,
             "settings": {
                 "pyls": {
                     "enable": true,
