@@ -37,3 +37,8 @@
 ! ## Wikipedia
 ||wikipedia.org
 ||zh.wikipedia.org
+
+! ## Reddit
+||redditmedia.com
+||redditstatic.com
+||reddit.com
