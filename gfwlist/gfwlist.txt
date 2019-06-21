@@ -48,5 +48,8 @@
 ||githubassets.com
 ||camo.githubusercontent.com
 
-! ## Google
+! ## Amazon
 ||amazonaws.com
+
+! ## Microsoft
+||live.com
