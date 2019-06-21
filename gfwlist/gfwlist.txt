@@ -1,0 +1,39 @@
+! ## WhiteList
+@@||appleid.apple.com
+
+! ## Google
+||google.com
+||google.com.hk
+||googleapis.com
+||fonts.googleapis.com
+||goo.gl
+||gstatic.com
+||googleemail.com
+||googlesource.com
+||googlevideo.com
+||g.co
+
+! ## Youtube
+||youtube.com
+||youtu.be
+||ytimg.com
+||ggpht.com
+
+! ## Twitter
+||twitter.com
+||t.co
+||twimg.com
+
+
+! ## Dropbox
+||dropbox.com
+||dropboxusercontent.com
+||dropboxstatic.com
+
+! ## Facebook
+||facebook.com
+||fbcdn.net
+
+! ## Wikipedia
+||wikipedia.org
+||zh.wikipedia.org
