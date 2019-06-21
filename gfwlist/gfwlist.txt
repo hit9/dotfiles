@@ -42,3 +42,7 @@
 ||redditmedia.com
 ||redditstatic.com
 ||reddit.com
+
+! ## Github
+||github.com
+||githubassets.com
