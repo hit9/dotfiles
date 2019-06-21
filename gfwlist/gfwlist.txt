@@ -47,3 +47,6 @@
 ||github.com
 ||githubassets.com
 ||camo.githubusercontent.com
+
+! ## Google
+||amazonaws.com
