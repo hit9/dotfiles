@@ -54,3 +54,6 @@
 ! ## Microsoft
 ||live.com
 ||azureedge.net
+
+! ## Quora
+||quora.com
