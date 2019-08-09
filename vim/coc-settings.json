@@ -25,7 +25,7 @@
             "filetypes": ["go"]
         },
         "rust": {
-            "command": "ra_lsp_server",
+            "command": "rls",
             "filetypes": ["rust"],
             "rootPatterns": ["Cargo.toml"]
         },
