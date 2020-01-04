@@ -370,9 +370,9 @@ highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=unde
 highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
-" let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-"     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-"     \ '4', '5', '6', '7', '8', '9']
+let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
+    \ '4', '5', '6', '7', '8', '9']
 "Plugin Configuration :: unblevable/quick-scope ------------- }
 
 "Plugin Configuration :: w0rp/ale -------------------------------- {
