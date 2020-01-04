@@ -63,7 +63,7 @@ window:
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 10000
+  history: 15000
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
@@ -216,134 +216,6 @@ colors:
     magenta: '0x906cff'
     cyan:    '0x63f2f1'
     white:   '0xa6b3cc'
-
-# # Colors (Snazzy (modified by hit9))
-# colors:
-#   # Default colors
-#   primary:
-#     # Background taken from challenger-deep-theme.
-#     background: '0x1b182c'
-#     foreground: '0xcbe3e7'
-
-#   cursor:
-#     background: '0x008ec4'
-#     foreground: '0xf1f1f1'
-#   # Normal colors
-#   normal:
-#     black:   '0x282a36'
-#     red:     '0xff5c57'
-#     green:   '0x5af78e'
-#     yellow:  '0xf3f99d'
-#     blue:    '0x57c7ff'
-#     magenta: '0xff6ac1'
-#     cyan:    '0x9aedfe'
-#     white:   '0xf1f1f0'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x686868'
-#     red:     '0xff5c57'
-#     green:   '0x5af78e'
-#     yellow:  '0xf3f99d'
-#     blue:    '0x57c7ff'
-#     magenta: '0xff6ac1'
-#     cyan:    '0x9aedfe'
-#     white:   '0xf1f1f0'
-
-# # Colors (Dracula) (https://github.com/jwilm/alacritty/wiki/Color-schemes#dracula)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x282a36'
-#     foreground: '0xf8f8f2'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x000000'
-#     red:     '0xff5555'
-#     green:   '0x50fa7b'
-#     yellow:  '0xf1fa8c'
-#     blue:    '0xcaa9fa'
-#     magenta: '0xff79c6'
-#     cyan:    '0x8be9fd'
-#     white:   '0xbfbfbf'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x575b70'
-#     red:     '0xff6e67'
-#     green:   '0x5af78e'
-#     yellow:  '0xf4f99d'
-#     blue:    '0xcaa9fa'
-#     magenta: '0xff92d0'
-#     cyan:    '0x9aedfe'
-#     white:   '0xe6e6e6'
-
-# Colors (Oxide)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x212121'
-#     foreground: '0xc0c5ce'
-#     bright_foreground: '0xf3f4f5'
-
-#   cursor:
-#     text: '0x212121'
-#     cursor: '0xc0c5ce'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x212121'
-#     red:     '0xe57373'
-#     green:   '0xa6bc69'
-#     yellow:  '0xfac863'
-#     blue:    '0x6699cc'
-#     magenta: '0xc594c5'
-#     cyan:    '0x5fb3b3'
-#     white:   '0xc0c5ce'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x5c5c5c'
-#     red:     '0xe57373'
-#     green:   '0xa6bc69'
-#     yellow:  '0xfac863'
-#     blue:    '0x6699cc'
-#     magenta: '0xc594c5'
-#     cyan:    '0x5fb3b3'
-#     white:   '0xf3f4f5'
-
-
-# # Colors (Pencil Dark)
-# colors:
-#  # Default Colors
-#  primary:
-#    background: '0x212121'
-#    foreground: '0xf1f1f1'
-#  cursor:
-#    background: '0x008ec4'
-#    foreground: '0xf1f1f1'
-
-#  # Normal colors
-#  normal:
-#    black:   '0x212121'
-#    red:     '0xc30771'
-#    green:   '0x10a778'
-#    yellow:  '0xa89c14'
-#    blue:    '0x008ec4'
-#    magenta: '0x523c79'
-#    cyan:    '0x20a5ba'
-#    white:   '0xe0e0e0'
-#  # Bright colors
-#  bright:
-#    black:   '0x212121'
-#    red:     '0xfb007a'
-#    green:   '0x5fd7af'
-#    yellow:  '0xf3e430'
-#    blue:    '0x20bbfc'
-#    magenta: '0x6855de'
-#    cyan:    '0x4fb8cc'
-#    white:   '0xf1f1f1'
 
   # Indexed Colors
   #

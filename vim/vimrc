@@ -12,8 +12,6 @@ call plug#begin('~/.vim/plugged')
 "Colorschemes.
 " Plug 'NLKNguyen/papercolor-theme'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-Plug 'reedes/vim-colors-pencil'
-" Plug 'liuchengxu/space-vim-dark'
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "File Explorer.
@@ -24,7 +22,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 "Range, pattern and substitute preview. :substite :smagic :snomagic
 Plug 'markonm/traces.vim'
 "Completeion
-Plug 'neoclide/coc.nvim', { 'do': './install.sh nightly' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 "Visualization Enchance.
@@ -46,11 +44,15 @@ Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
 "Nvim's floating window dosen't work well with golden-ratio.
 "We use don't map autocmd of golden-ratio, but by map `wz` for manually resizing.
 Plug 'roman/golden-ratio', { 'on': 'GoldenRatioResize' }
+" Show / hide cursorline and cursorcolumn automatically. Reason: The
+" cursorline option takes heavy CPU usage and makes the cursor move slowly.
+" Plug 'hit9/vim-auto-cursorline'
+Plug 'mtth/cursorcross.vim'
 "Fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 "git
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -221,25 +223,55 @@ set background=dark "Using dark. Hmm dark is sexy.
 let g:lightline = {
       \ 'colorscheme': 'molokai',
       \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'PaperColor',
+"       \ }
+
+
+"Colorscheme Configuration :: PaperColor ----------- {
+
+""Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
+"highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#383a42
+"highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#383a42
+
+"" Color :: Normal and Visual mode.
+"highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
+"highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
+
+"let g:PaperColor_Theme_Options = {
+"    \   'theme': {
+"    \     'default.dark': {
+"    \        'transparent_background': 1
+"    \      }
+"    \   },
+"    \   'language': {
+"    \     'python': {
+"    \       'highlight_builtins' : 1
+"    \     },
+"    \     'cpp': {
+"    \       'highlight_standard_library': 1
+"    \     },
+"    \     'c': {
+"    \       'highlight_builtins' : 1
+"    \     }
+"    \   }
+"    \ }
+
+"colorscheme PaperColor
+
+" ------------- End of PaperColorTheme ------------ }
+
+" ------------- Colorscheme challenger_deep ------------ {
 
 "Set colorscheme.
 colorscheme challenger_deep
 
-"Transparent background
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
-
-"Colorscheme Configuration :: Challenger_deep ----------- }
-
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
-set cursorline "Highlight current line.
 if has('nvim')
   highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
 else
   highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
 endif
-set cursorcolumn "Highlight current column. (Apply after colorscheme loaded)
 highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#454545
 
 " Color :: Normal and Visual mode.
@@ -249,6 +281,13 @@ highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
 " Color :: Folded
 highlight Folded cterm=bold term=bold ctermbg=236 ctermfg=248 guibg=#32353f guifg=#fafafa
 highlight FoldColumn cterm=bold term=bold ctermfg=248 guifg=#D2B4DE
+
+"Colorscheme Configuration :: Challenger_deep ----------- }
+"
+""Transparent background
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
 
 "Basic ------------------------------------------------ }
 
@@ -309,6 +348,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_def_mode = 'godef'
 let g:go_def_mapping_enabled = 0  "I use custom gd map, that split a window.
+let g:go_code_completion_enabled = 0
 "Plugin Configuration :: fatih/vim-go -------------------- }
 
 "Plugin Configuration :: vim-python/python-syntax ---------------- {
@@ -329,9 +369,10 @@ let g:vim_json_syntax_conceal = 0
 highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
 highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-    \ '4', '5', '6', '7', '8', '9']
+let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
+" let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+"     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
+"     \ '4', '5', '6', '7', '8', '9']
 "Plugin Configuration :: unblevable/quick-scope ------------- }
 
 "Plugin Configuration :: w0rp/ale -------------------------------- {
@@ -369,8 +410,17 @@ augroup MultipleCursorsSelectionFix
     autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
     autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
 augroup END
+
+" -------- When using challenger_deep
 highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28 guibg=#F8F9F9
 highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none guibg=#8E44AD guifg=#F4F6F7
+" --------- End: When using challenger_deep
+
+" -------- When using PaperColor
+" highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
+" highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
+" --------- End: When using PaperColor
+
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 
 "Plugin Configuration :: mhinz/vim-signify ----------------- {
@@ -431,6 +481,12 @@ let g:fzf_colors =
 	\ 'header':  ['fg', 'Comment'] }
 "Plugin Configuration :: junegunn/fzf.vim ----------------- }
 
+"Plugin Configuration :: hit9/vim-auto-cursorline ----------------- {
+
+let g:auto_cursorline_wait_ms = 2000
+
+"Plugin Configuration :: hit9/vim-auto-cursorline ----------------- }
+
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
 
 "Custom :: Window Switches ----------------------------  {
@@ -438,6 +494,11 @@ let g:fzf_colors =
 "Plugin Configuration :: roman/golden-ratio ----------------- {{
 let g:golden_ratio_autocommand = 0
 "Plugin Configuration :: roman/golden-ratio ----------------- }}
+
+"Plugin Configuration :: mtth/cursorcross.vim ----------------- {{
+let g:cursorcross_dynamic = 'clw'
+let g:cursorcross_mappings = 0
+"Plugin Configuration :: /mtth/cursorcross.vim ----------------- }}
 
 "Shortcut window switches, w+h/j/k/l
 nmap wk <c-w><up>
