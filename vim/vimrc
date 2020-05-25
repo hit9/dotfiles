@@ -10,8 +10,9 @@ filetype off                   " required!
 call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
-" Plug 'NLKNguyen/papercolor-theme'
-Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+" Plug 'tomasr/molokai'
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "File Explorer.
@@ -31,28 +32,18 @@ Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 Plug 'mhinz/vim-signify'
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
-Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
-"Plug 'wellle/targets.vim' " Provides additional text objects
-"Plug 'machakann/vim-sandwich'
+" Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
 Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
 Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
-"Automatic resizing of Vim windows to the golden ratio
-"Nvim's floating window dosen't work well with golden-ratio.
-"We use don't map autocmd of golden-ratio, but by map `wz` for manually resizing.
-Plug 'roman/golden-ratio', { 'on': 'GoldenRatioResize' }
-" Show / hide cursorline and cursorcolumn automatically. Reason: The
-" cursorline option takes heavy CPU usage and makes the cursor move slowly.
-" Plug 'hit9/vim-auto-cursorline'
-Plug 'mtth/cursorcross.vim'
 "Fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 "git
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -61,24 +52,24 @@ Plug 'vim-python/python-syntax' "Python syntax.
 Plug 'octol/vim-cpp-enhanced-highlight'
 "Language: Go
 "Golang all-in-one plugin, go-to-definition,highlight,autoformat.. support.
-Plug 'fatih/vim-go'
+Plug 'hit9/vim-go-syntax'
 "Language: Rust
 Plug 'rust-lang/rust.vim' "Rust syntax.
 "Language: Markdown
 Plug 'gabrielelana/vim-markdown'
 "Language: Misc
 Plug 'elzr/vim-json'
-Plug 'dag/vim-fish'
+"Plug 'dag/vim-fish'
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-Plug '/Users/hit9/github/bitsbuffers/editors/vim/', {'as': 'bitsbuffers'}
+"Plug '/Users/hit9/github/bitsbuffers/editors/vim/', {'as': 'bitsbuffers'}
 Plug '/Users/hit9/github/bitproto/editors/vim/', {'as': 'bitproto'}
 "Language: Qml
-Plug 'peterhoeg/vim-qml'
+"Plug 'peterhoeg/vim-qml'
 "Language: Typescript
-Plug 'leafgarland/typescript-vim'
+"Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 "Plugin  -------------------------------- }
@@ -104,8 +95,8 @@ set mousemodel=popup "Right mouse button pops up a menu.
 
 "Syntax
 syntax enable "Enable syntax.
-set synmaxcol=180 "Don't perform highlight on lines that are longer than 180 chars.
-syntax sync minlines=256
+set synmaxcol=300 "Don't perform highlight on lines that are longer than 300 chars.
+syntax sync minlines=300
 
 "Display :: Window
 set number  "Show line numbers.
@@ -220,67 +211,70 @@ set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: lightline.vim ----------- {
-let g:lightline = {
-      \ 'colorscheme': 'molokai',
-      \ }
 " let g:lightline = {
-"       \ 'colorscheme': 'PaperColor',
+"       \ 'colorscheme': 'molokai',
 "       \ }
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
 
+"Set cursorline and cursorcolumn
+set cursorline
+set cursorcolumn
 
 "Colorscheme Configuration :: PaperColor ----------- {
 
-""Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
-"highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#383a42
-"highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#383a42
+"Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
+highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#383a42
+highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#383a42
 
-"" Color :: Normal and Visual mode.
-"highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
-"highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
+" Color :: Normal and Visual mode.
+highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
+highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
-"let g:PaperColor_Theme_Options = {
-"    \   'theme': {
-"    \     'default.dark': {
-"    \        'transparent_background': 1
-"    \      }
-"    \   },
-"    \   'language': {
-"    \     'python': {
-"    \       'highlight_builtins' : 1
-"    \     },
-"    \     'cpp': {
-"    \       'highlight_standard_library': 1
-"    \     },
-"    \     'c': {
-"    \       'highlight_builtins' : 1
-"    \     }
-"    \   }
-"    \ }
+let g:PaperColor_Theme_Options = {
+    \   'theme': {
+    \     'default.dark': {
+    \        'transparent_background': 1
+    \      }
+    \   },
+    \   'language': {
+    \     'python': {
+    \       'highlight_builtins' : 1
+    \     },
+    \     'cpp': {
+    \       'highlight_standard_library': 1
+    \     },
+    \     'c': {
+    \       'highlight_builtins' : 1
+    \     }
+    \   }
+    \ }
 
-"colorscheme PaperColor
+colorscheme PaperColor
 
 " ------------- End of PaperColorTheme ------------ }
 
 " ------------- Colorscheme challenger_deep ------------ {
 
 "Set colorscheme.
-colorscheme challenger_deep
+"colorscheme challenger_deep
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
-if has('nvim')
-  highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
-else
-  highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
-endif
-highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#454545
+" if has('nvim')
+"   highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
+" else
+"   highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
+" endif
+" highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#454545
 
-" Color :: Normal and Visual mode.
-highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
-highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
+" " Color :: Normal and Visual mode.
+" highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
+" highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
-" Color :: Folded
-highlight Folded cterm=bold term=bold ctermbg=236 ctermfg=248 guibg=#32353f guifg=#fafafa
-highlight FoldColumn cterm=bold term=bold ctermfg=248 guifg=#D2B4DE
+" " Color :: Folded
+" highlight Folded cterm=bold term=bold ctermbg=236 ctermfg=248 guibg=#32353f guifg=#fafafa
+" highlight FoldColumn cterm=bold term=bold ctermfg=248 guifg=#D2B4DE
 
 "Colorscheme Configuration :: Challenger_deep ----------- }
 "
@@ -340,17 +334,6 @@ let javascript_enable_domhtmlcss = 1
 let g:javascript_plugin_jsdoc = 1
 "Plugin Configuration :: pangloss/vim-javascript -------------- }
 
-"Plugin Configuration :: fatih/vim-go -------------------- {
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_def_mode = 'godef'
-let g:go_def_mapping_enabled = 0  "I use custom gd map, that split a window.
-let g:go_code_completion_enabled = 0
-"Plugin Configuration :: fatih/vim-go -------------------- }
-
 "Plugin Configuration :: vim-python/python-syntax ---------------- {
 let python_highlight_all = 1
 let python_slow_sync = 0
@@ -366,13 +349,15 @@ let g:vim_json_syntax_conceal = 0
 "Plugin Configuration :: vim-json ----------------------------- }
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {
-highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
-highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
-let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
-let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-    \ '4', '5', '6', '7', '8', '9']
+" highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
+" highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
+" highlight QuickScopePrimary ctermfg=162 cterm=underline guifg='#d70087' gui=underline
+" highlight QuickScopeSecondary ctermfg=172 cterm=none guifg='#d78700' gui=underline
+" let g:qs_max_chars=180 "Max number of chars to highlight in one line.
+" let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
+" let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+"     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
+"     \ '4', '5', '6', '7', '8', '9']
 "Plugin Configuration :: unblevable/quick-scope ------------- }
 
 "Plugin Configuration :: w0rp/ale -------------------------------- {
@@ -391,17 +376,11 @@ let g:ale_fixers = {
     \   'python': ['black'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
+    \   'go': ['gofmt'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_grpc.py,*.egg-info,dist/*,"'
 "Plugin Configuration :: w0rp/ale -------------------------------- }
-
-"Plugin Configuration :: junegunn/vim-slash ---------- {
-if has('timers')
-  " Blink 2 times with 50ms interval
-  noremap <expr> <plug>(slash-after) slash#blink(2, 50)
-endif
-"Plugin Configuration :: junegunn/vim-slash ---------- }
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
@@ -429,11 +408,6 @@ highlight SignifySignAdd ctermfg=yellow ctermbg=green guifg=#F7DC6F guibg=#1E844
 highlight SignifySignChange ctermfg=yellow ctermbg=blue guifg=#F7DC6F guibg=#2874A6
 highlight SignifySignDelete ctermfg=yellow ctermbg=red guifg=#F7DC6F guibg=#EC7063
 "Plugin Configuration :: mhinz/vim-signify }
-
-"Plugin Configuration :: RRethy/vim-illuminate ------------------ {
-let g:Illuminate_delay = 30
-highlight illuminatedWord cterm=underline gui=underline
-"Plugin Configuration :: RRethy/vim-illuminate --------------- }
 
 "Plugin Configuration :: gabrielelana/vim-markdown ---------- {
 let g:markdown_enable_spell_checking = 0
@@ -481,24 +455,9 @@ let g:fzf_colors =
 	\ 'header':  ['fg', 'Comment'] }
 "Plugin Configuration :: junegunn/fzf.vim ----------------- }
 
-"Plugin Configuration :: hit9/vim-auto-cursorline ----------------- {
-
-let g:auto_cursorline_wait_ms = 2000
-
-"Plugin Configuration :: hit9/vim-auto-cursorline ----------------- }
-
 "Custom :: WhiteSpaces Cleaning ----------------------------  }
 
 "Custom :: Window Switches ----------------------------  {
-
-"Plugin Configuration :: roman/golden-ratio ----------------- {{
-let g:golden_ratio_autocommand = 0
-"Plugin Configuration :: roman/golden-ratio ----------------- }}
-
-"Plugin Configuration :: mtth/cursorcross.vim ----------------- {{
-let g:cursorcross_dynamic = 'clw'
-let g:cursorcross_mappings = 0
-"Plugin Configuration :: /mtth/cursorcross.vim ----------------- }}
 
 "Shortcut window switches, w+h/j/k/l
 nmap wk <c-w><up>
