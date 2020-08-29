@@ -38,7 +38,7 @@ Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
 Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
-Plug 'w0rp/ale' "Asynchronous linting/fixing for Vim
+Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim
 "Fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
@@ -69,7 +69,7 @@ Plug '/Users/hit9/github/bitproto/editors/vim/', {'as': 'bitproto'}
 "Language: Qml
 "Plug 'peterhoeg/vim-qml'
 "Language: Typescript
-"Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 "Plugin  -------------------------------- }
