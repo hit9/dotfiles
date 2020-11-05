@@ -43,7 +43,7 @@ Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 "git
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -69,7 +69,7 @@ Plug '/Users/hit9/github/bitproto/editors/vim/', {'as': 'bitproto'}
 "Language: Qml
 "Plug 'peterhoeg/vim-qml'
 "Language: Typescript
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 "Plugin  -------------------------------- }
@@ -478,3 +478,7 @@ nmap z6 :set foldlevel=6<CR>
 nmap z7 :set foldlevel=7<CR>
 nmap z8 :set foldlevel=8<CR>
 nmap z99 :set foldlevel=99<CR>
+
+"Custom :: git / tig ----------------------------  {
+command! Blame  :!tig blame %
+"Custom :: git / tig ----------------------------  }
