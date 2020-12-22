@@ -12,6 +12,7 @@
 ||googlesource.com
 ||googlevideo.com
 ||g.co
+||googleusercontent.com
 
 ! ## Youtube
 ||youtube.com
