@@ -63,13 +63,14 @@ Plug 'elzr/vim-json'
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-"Plug '/Users/hit9/github/bitsbuffers/editors/vim/', {'as': 'bitsbuffers'}
-Plug '/Users/hit9/github/bitproto/editors/vim/', {'as': 'bitproto'}
+"Plug 'uber/prototool', { 'rtp':'vim/prototool' }
+Plug '/Users/hit9/gopark/src/github.com/hit9/bitproto/editors/vim/', {'as': 'bitproto'}
 "Language: Qml
 "Plug 'peterhoeg/vim-qml'
 "Language: Typescript
-Plug 'peitalin/vim-jsx-typescript'
+"Plug 'peitalin/vim-jsx-typescript'
+"Language: ruby
+Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 "Plugin  -------------------------------- }
@@ -81,7 +82,7 @@ filetype plugin indent on "This should be after bundles.
 "Normal settings.
 set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
 set noeb "Disable bells.
-set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
+"set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
 set lazyredraw "Same, faster vim.
 
@@ -96,7 +97,7 @@ set mousemodel=popup "Right mouse button pops up a menu.
 "Syntax
 syntax enable "Enable syntax.
 set synmaxcol=300 "Don't perform highlight on lines that are longer than 300 chars.
-syntax sync minlines=300
+syntax sync minlines=1000
 
 "Display :: Window
 set number  "Show line numbers.
@@ -353,27 +354,29 @@ let g:vim_json_syntax_conceal = 0
 " highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
 " highlight QuickScopePrimary ctermfg=162 cterm=underline guifg='#d70087' gui=underline
 " highlight QuickScopeSecondary ctermfg=172 cterm=none guifg='#d78700' gui=underline
+
 " let g:qs_max_chars=180 "Max number of chars to highlight in one line.
 " let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
 " let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 "     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
 "     \ '4', '5', '6', '7', '8', '9']
+" let g:qs_highlight_on_keys = ['f', 'F']
 "Plugin Configuration :: unblevable/quick-scope ------------- }
+
 
 "Plugin Configuration :: w0rp/ale -------------------------------- {
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \   'javascript': ['standard'],
-    \   'python': ['black', 'mypy', 'vulture'],
+    \   'python': ['black', 'mypy'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
-    \   'proto': ['prototool'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
     \   'javascript': ['standard'],
-    \   'python': ['black'],
+    \   'python': ['black', 'isort'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
     \   'go': ['gofmt'],
@@ -426,7 +429,7 @@ match ExtraWhitespace /\s\+$/
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto :WS
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst :WS
 
 "Plugin Configuration :: junegunn/fzf.vim ----------------- {
 " ProjectFiles tries to locate files relative to the git root contained in
