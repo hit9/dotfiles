@@ -19,3 +19,8 @@ export GO111MODULE=on
 alias nvim ~/src/nvim-osx64/bin/nvim
 
 export GOPRIVATE="github.com/yogorobot/*"
+
+# Pyenv init slow alot
+# pyenv init - --no-rehash | source
+alias python python3
+alias pip pip3
