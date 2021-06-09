@@ -40,7 +40,7 @@ Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to v
 "Linting/Fixing.
 Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim
 "Fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 "git
 "Plug 'tpope/vim-fugitive'
@@ -327,7 +327,8 @@ let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 "https://github.com/Yggdroot/indentLine/issues/47
-autocmd FileType help,nerdtree IndentLinesToggle
+" autocmd FileType help,nerdtree IndentLinesToggle
+autocmd FileType help IndentLinesToggle
 "Plugin Configuration :: Yggdroot/indentLine ------------------------- }
 
 "Plugin Configuration :: pangloss/vim-javascript -------------- {
@@ -356,7 +357,7 @@ let g:vim_json_syntax_conceal = 0
 " highlight QuickScopeSecondary ctermfg=172 cterm=none guifg='#d78700' gui=underline
 
 " let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-" let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
+" let g:qs_lazy_highlight = 0 " https://github.com/unblevable/quick-scope#lazy-highlight
 " let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
 "     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
 "     \ '4', '5', '6', '7', '8', '9']
@@ -441,6 +442,8 @@ endfunction
 
 command! ProjectFiles execute 'Files' s:find_git_root()
 nmap <c-p> :ProjectFiles<CR>
+
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal'  }  }
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 	\ { 'fg':      ['fg', 'Normal'],
