@@ -10,8 +10,13 @@ export EDITOR=vim
 # Be emacs
 set -o emacs
 
+# Homebrew
+export PATH=$PATH:/opt/homebrew/bin
+
 # Node/Npm
 export PATH=$PATH:/usr/local/share/npm/bin
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
 
 # Golang
 export GOPATH=/Users/hit9/gopark
