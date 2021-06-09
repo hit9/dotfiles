@@ -21,7 +21,7 @@
 [diff]
     tool = vimdiff
 [core]
-    editor = /usr/local/bin/vim
+    editor = vim
     pager = diff-so-fancy | less --tabs=1,5 -R
     # pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
 
@@ -49,3 +49,5 @@
     old = red bold
     new = green bold
     whitespace = red reverse
+[init]
+	defaultBranch = master
