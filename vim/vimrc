@@ -11,7 +11,6 @@ call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
-" Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "File Explorer.
@@ -27,6 +26,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
+Plug 'Yggdroot/hiPairs' "Highlights the pair surrounding the current cursor position
+Plug 'RRethy/vim-illuminate' "Automatically highlighting other uses of the current word under the cursor
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
@@ -206,7 +207,7 @@ set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: lightline.vim ----------- {
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'OldHope',
       \ }
 
 "Set cursorline and cursorcolumn
@@ -246,29 +247,6 @@ colorscheme PaperColor
 
 " ------------- End of PaperColorTheme ------------ }
 
-" ------------- Colorscheme challenger_deep ------------ {
-
-"Set colorscheme.
-"colorscheme challenger_deep
-
-"Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
-" if has('nvim')
-"   highlight CursorLine ctermbg=236 ctermfg=none guibg=#454545
-" else
-"   highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#454545
-" endif
-" highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#454545
-
-" " Color :: Normal and Visual mode.
-" highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
-" highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
-
-" " Color :: Folded
-" highlight Folded cterm=bold term=bold ctermbg=236 ctermfg=248 guibg=#32353f guifg=#fafafa
-" highlight FoldColumn cterm=bold term=bold ctermfg=248 guifg=#D2B4DE
-
-"Colorscheme Configuration :: Challenger_deep ----------- }
-"
 ""Transparent background
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
@@ -408,22 +386,23 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nmap <c-p> :ProjectFiles<CR>
 
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal'  }  }
+" let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal'  }  }
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-	\ { 'fg':      ['fg', 'Normal'],
-	\ 'bg':      ['bg', 'Normal'],
-	\ 'hl':      ['fg', 'Comment'],
-	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-	\ 'hl+':     ['fg', 'Statement'],
-	\ 'info':    ['fg', 'PreProc'],
-	\ 'border':  ['fg', 'Ignore'],
-	\ 'prompt':  ['fg', 'Conditional'],
-	\ 'pointer': ['fg', 'Exception'],
-	\ 'marker':  ['fg', 'Keyword'],
-	\ 'spinner': ['fg', 'Label'],
-	\ 'header':  ['fg', 'Comment'] }
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 "Plugin Configuration :: junegunn/fzf.vim ----------------- }
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {
@@ -439,6 +418,33 @@ let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
     \ '4', '5', '6', '7', '8', '9']
 let g:qs_highlight_on_keys = ['f', 'F']
 "Plugin Configuration :: unblevable/quick-scope ------------- }
+
+
+"Plugin Yggdroot/hiPairs -------------------------------- {
+let g:hiPairs_hl_matchPair = { 'term'    : 'underline,bold',
+    \                  'cterm'   : 'bold',
+    \                  'ctermfg' : '15',
+    \                  'ctermbg' : '32',
+    \                  'gui'     : 'bold',
+    \                  'guifg'   : '#ffffff',
+    \                  'guibg'   : '#0087d7' }
+" -------------------------------------------------------- }
+
+"Plugin RRethy/vim-illuminate -------------------------------- {
+
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
+
+" let g:Illuminate_delay = 1500
+let g:Illuminate_ftblacklist = ['nerdtree', 'make', ]
+let g:Illuminate_ftwhitelist = ['python', 'go', 'javascript', 'c', 'cpp', 'protobuf', 'java', 'rust']
+let g:Illuminate_ftHighlightGroups = {
+      \ 'vim': ['vimVar', 'vimFuncName', 'vimFunction', 'vimUserFunc', 'vimFunc']
+      \ }
+
+" -------------------------------------------------------- }
 
 "Custom :: Window Switches ----------------------------  {
 
