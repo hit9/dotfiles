@@ -27,7 +27,6 @@ Plug 'roxma/vim-hug-neovim-rpc'
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 Plug 'Yggdroot/hiPairs' "Highlights the pair surrounding the current cursor position
-Plug 'RRethy/vim-illuminate' "Automatically highlighting other uses of the current word under the cursor
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
@@ -424,26 +423,10 @@ let g:qs_highlight_on_keys = ['f', 'F']
 let g:hiPairs_hl_matchPair = { 'term'    : 'underline,bold',
     \                  'cterm'   : 'bold',
     \                  'ctermfg' : '15',
-    \                  'ctermbg' : '32',
+    \                  'ctermbg' : '24',
     \                  'gui'     : 'bold',
     \                  'guifg'   : '#ffffff',
-    \                  'guibg'   : '#0087d7' }
-" -------------------------------------------------------- }
-
-"Plugin RRethy/vim-illuminate -------------------------------- {
-
-augroup illuminate_augroup
-    autocmd!
-    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
-augroup END
-
-" let g:Illuminate_delay = 1500
-let g:Illuminate_ftblacklist = ['nerdtree', 'make', ]
-let g:Illuminate_ftwhitelist = ['python', 'go', 'javascript', 'c', 'cpp', 'protobuf', 'java', 'rust']
-let g:Illuminate_ftHighlightGroups = {
-      \ 'vim': ['vimVar', 'vimFuncName', 'vimFunction', 'vimUserFunc', 'vimFunc']
-      \ }
-
+    \                  'guibg'   : '#005f87' }
 " -------------------------------------------------------- }
 
 "Custom :: Window Switches ----------------------------  {
