@@ -1,3 +1,5 @@
+# Using fish@2.7.1
+# brew install fish@2.7.1
 set pure_symbol_prompt ":) ->"
 
 # Alias
@@ -16,7 +18,7 @@ alias ack ag
 
 export GO111MODULE=on
 
-alias nvim ~/src/nvim-osx64/bin/nvim
+alias nvim ~/.bin/nvim-osx64/bin/nvim
 
 export GOPRIVATE="github.com/yogorobot/*"
 

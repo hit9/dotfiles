@@ -12,7 +12,6 @@ call plug#begin('~/.vim/plugged')
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
 " Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-" Plug 'tomasr/molokai'
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "File Explorer.
@@ -28,11 +27,9 @@ Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
-"Show diff signs for file changes under git/hg/svn control.
-Plug 'mhinz/vim-signify'
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
-" Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
+Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
@@ -42,8 +39,8 @@ Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim
 "Fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
-"git
-"Plug 'tpope/vim-fugitive'
+"git - Show diff signs for file changes under git/hg/svn control.
+Plug 'mhinz/vim-signify'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -64,11 +61,7 @@ Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-Plug '/Users/hit9/gopark/src/github.com/hit9/bitproto/editors/vim/', {'as': 'bitproto'}
-"Language: Qml
-"Plug 'peterhoeg/vim-qml'
-"Language: Typescript
-"Plug 'peitalin/vim-jsx-typescript'
+Plug 'hit9/bitproto', {'dir': 'editors/vim'}
 "Language: ruby
 Plug 'vim-ruby/vim-ruby'
 call plug#end()
@@ -82,7 +75,7 @@ filetype plugin indent on "This should be after bundles.
 "Normal settings.
 set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
 set noeb "Disable bells.
-"set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
+set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
 set lazyredraw "Same, faster vim.
 
@@ -212,9 +205,6 @@ set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
 "Plugin Configuration :: lightline.vim ----------- {
-" let g:lightline = {
-"       \ 'colorscheme': 'molokai',
-"       \ }
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ }
@@ -296,7 +286,7 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 
 "Plugin Configuration :: tpope/vim-commentary ----------------- }
 
-"Plugin Configuration :: neoclide/coc.nvim ---------- {
+" Plugin Configuration :: neoclide/coc.nvim ---------- {
 au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
 "Plugin Configuration :: neoclide/coc.nvim ---------- }
 
@@ -350,21 +340,6 @@ let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
 let g:vim_json_syntax_conceal = 0
 "Plugin Configuration :: vim-json ----------------------------- }
 
-"Plugin Configuration :: unblevable/quick-scope ------------- {
-" highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
-" highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
-" highlight QuickScopePrimary ctermfg=162 cterm=underline guifg='#d70087' gui=underline
-" highlight QuickScopeSecondary ctermfg=172 cterm=none guifg='#d78700' gui=underline
-
-" let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-" let g:qs_lazy_highlight = 0 " https://github.com/unblevable/quick-scope#lazy-highlight
-" let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-"     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-"     \ '4', '5', '6', '7', '8', '9']
-" let g:qs_highlight_on_keys = ['f', 'F']
-"Plugin Configuration :: unblevable/quick-scope ------------- }
-
-
 "Plugin Configuration :: w0rp/ale -------------------------------- {
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
@@ -393,16 +368,6 @@ augroup MultipleCursorsSelectionFix
     autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
     autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
 augroup END
-
-" -------- When using challenger_deep
-highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28 guibg=#F8F9F9
-highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none guibg=#8E44AD guifg=#F4F6F7
-" --------- End: When using challenger_deep
-
-" -------- When using PaperColor
-" highlight multiple_cursors_cursor term=none cterm=none ctermfg=none ctermbg=28
-" highlight multiple_cursors_visual term=none cterm=none ctermbg=22 ctermfg=none
-" --------- End: When using PaperColor
 
 "Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
 
@@ -461,7 +426,19 @@ let g:fzf_colors =
 	\ 'header':  ['fg', 'Comment'] }
 "Plugin Configuration :: junegunn/fzf.vim ----------------- }
 
-"Custom :: WhiteSpaces Cleaning ----------------------------  }
+"Plugin Configuration :: unblevable/quick-scope ------------- {
+highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
+highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
+highlight QuickScopePrimary ctermfg=162 cterm=underline guifg='#d70087' gui=underline
+highlight QuickScopeSecondary ctermfg=172 cterm=none guifg='#d78700' gui=underline
+
+let g:qs_max_chars=180 "Max number of chars to highlight in one line.
+let g:qs_lazy_highlight = 0 " https://github.com/unblevable/quick-scope#lazy-highlight
+let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
+    \ '4', '5', '6', '7', '8', '9']
+let g:qs_highlight_on_keys = ['f', 'F']
+"Plugin Configuration :: unblevable/quick-scope ------------- }
 
 "Custom :: Window Switches ----------------------------  {
 
@@ -470,7 +447,6 @@ nmap wk <c-w><up>
 nmap wh <c-w><left>
 nmap wl <c-w><right>
 nmap wj <c-w><down>
-nmap wz :GoldenRatioResize<CR>
 "Custom :: Window Switches ----------------------------  }
 
 " Mappings to easily toggle fold levels
@@ -478,12 +454,6 @@ nmap z0 :set foldlevel=0<CR>
 nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
-nmap z4 :set foldlevel=4<CR>
-nmap z5 :set foldlevel=5<CR>
-nmap z6 :set foldlevel=6<CR>
-nmap z7 :set foldlevel=7<CR>
-nmap z8 :set foldlevel=8<CR>
-nmap z99 :set foldlevel=99<CR>
 
 "Custom :: git / tig ----------------------------  {
 command! Blame  :!tig blame %
