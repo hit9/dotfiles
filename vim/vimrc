@@ -41,6 +41,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 "git - Show diff signs for file changes under git/hg/svn control.
 Plug 'mhinz/vim-signify'
+Plug 'liuchengxu/vista.vim' "Tag viewer, depens on ctags
+Plug 'simeji/winresizer' "Window resizer
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -208,6 +210,8 @@ set background=dark "Using dark. Hmm dark is sexy.
 let g:lightline = {
       \ 'colorscheme': 'OldHope',
       \ }
+"Or lightline theme molokai
+"https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
 
 "Set cursorline and cursorcolumn
 set cursorline
@@ -402,6 +406,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.3 } }
 "Plugin Configuration :: junegunn/fzf.vim ----------------- }
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {
@@ -416,7 +421,15 @@ let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'
     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
     \ '4', '5', '6', '7', '8', '9']
 let g:qs_highlight_on_keys = ['f', 'F']
+let g:qs_second_highlight = 0
+let g:qs_ignorecase = 1
 "Plugin Configuration :: unblevable/quick-scope ------------- }
+
+
+"Plugin Configuration :: liuchengxu/vista.vim ------------- {
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_sidebar_width = 35
+"Plugin Configuration :: liuchengxu/vista.vim ------------- }
 
 
 "Plugin Yggdroot/hiPairs -------------------------------- {
@@ -430,6 +443,10 @@ let g:hiPairs_hl_matchPair = { 'term'    : 'underline,bold',
 " -------------------------------------------------------- }
 
 "Custom :: Window Switches ----------------------------  {
+
+"Plugin simeji/winresizer ---------------- {
+let g:winresizer_start_key = '<C-E>'
+"Plugin simeji/winresizer ---------------- }
 
 "Shortcut window switches, w+h/j/k/l
 nmap wk <c-w><up>
@@ -445,5 +462,9 @@ nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
 
 "Custom :: git / tig ----------------------------  {
-command! Blame  :!tig blame %
+if has('nvim')
+    command! Blame  :terminal tig blame %
+else
+    command! Blame  :!tig blame %
+endif
 "Custom :: git / tig ----------------------------  }
