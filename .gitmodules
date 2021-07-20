@@ -1,9 +1,3 @@
 [submodule "z"]
 	path = z
 	url = git://github.com/rupa/z.git
-[submodule "kitty/kitty"]
-	path = kitty/kitty
-	url = https://github.com/kovidgoyal/kitty.git
-[submodule "kitty/challenger-deep-theme-kitty"]
-	path = kitty/challenger-deep-theme-kitty
-	url = https://github.com/challenger-deep-theme/kitty.git

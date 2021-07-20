@@ -8,7 +8,6 @@ What's in?
 
 - [fish](https://fishshell.com/) (Best shell, >3)
 - [alacritty](https://github.com/jwilm/alacritty) (Fastest terminal emulator, GPU-accelerated.)
-- [kitty](https://github.com/kovidgoyal/kitty) (A cross-platform, fast, feature full, GPU based terminal emulator)
 - [vim](https://www.vim.org/) (God of editors!)
 - [tmux](https://github.com/tmux/tmux) (Coolest terminal multiplexer.)
 - [git](https://github.com/git) (Hmm..)
