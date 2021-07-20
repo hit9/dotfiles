@@ -24,7 +24,7 @@ Plug 'markonm/traces.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
-Plug 'ratheesh/hiPairs' "Highlights the pair surrounding the current cursor position, forked from https://github.com/Yggdroot/hiPairs
+"Plug 'ratheesh/hiPairs' "Highlights the pair surrounding the current cursor position, forked from https://github.com/Yggdroot/hiPairs
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 "Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
@@ -42,6 +42,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-signify'
 " Plug 'liuchengxu/vista.vim' "Tag viewer, depens on ctags
 Plug 'simeji/winresizer' "Window resizer
+Plug 'troydm/zoomwintab.vim'
 "Language: Javascript
 Plug 'pangloss/vim-javascript' "Js syntax plugin.
 "Language: Python
@@ -299,7 +300,7 @@ let NERDTreeShowHidden=1
 "Plugin Configuration :: Yggdroot/indentLine ------------------------- {
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_leadingSpaceChar = '-'
 "https://github.com/Yggdroot/indentLine/issues/47
 " autocmd FileType help,nerdtree IndentLinesToggle
 autocmd FileType help IndentLinesToggle
@@ -456,6 +457,7 @@ nmap wk <c-w><up>
 nmap wh <c-w><left>
 nmap wl <c-w><right>
 nmap wj <c-w><down>
+nmap wz <c-w>o  " Zoom
 "Custom :: Window Switches ----------------------------  }
 
 " Mappings to easily toggle fold levels
