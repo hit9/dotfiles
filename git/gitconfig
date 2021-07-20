@@ -24,6 +24,7 @@
     editor = vim
     pager = diff-so-fancy | less --tabs=1,5 -R
     # pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
+    excludesfile = ~/.gitignore
 
 [alias]
     lgg = log --graph --pretty=format:\"%C(yellow)%h%Creset%C(bold red)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\"
