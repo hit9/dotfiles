@@ -35,8 +35,8 @@ set -U fish_user_paths \
         $fish_user_paths
 
 # oo
-source $HOME/github/oo/env.fish
- 
+source $HOME/.oo/env.fish
+
 # https://github.com/junegunn/fzf
 set -x FZF_DEFAULT_COMMAND 'fd --type f --exclude .git'
 
