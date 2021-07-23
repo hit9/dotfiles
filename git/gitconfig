@@ -14,16 +14,19 @@
     main-window-view = FileView
     file-view-vpane-position = 538
 [color]
-    ui = true
+	ui = true
     diff = auto
     status = auto
     branch = auto
 [diff]
     tool = vimdiff
+
+[difftool "vimdiff"]
+    cmd = vimdiff -b \"$LOCAL\" \"$REMOTE\"
+
 [core]
     editor = vim
-    pager = diff-so-fancy | less --tabs=1,5 -R
-    # pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Monokai Extended'
+    pager = diff-so-fancy | less --tabs=4 -RFX
     excludesfile = ~/.gitignore
 
 [alias]
@@ -39,16 +42,19 @@
     enabled = 1
     autoupdate = 1
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
 [color "diff"]
-    meta = 227
-    frag = magenta bold
-    commit = 227 bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+	func = 146 bold
 [init]
 	defaultBranch = master
+[interactive]
+	diffFilter = diff-so-fancy --patch
