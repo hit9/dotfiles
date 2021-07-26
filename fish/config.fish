@@ -19,7 +19,7 @@ set -x N_PREFIX $HOME/.n
 
 # $PATH
 set -e fish_user_paths
-set -U fish_user_paths \
+set -gx fish_user_paths \
         $GOPATH/bin \
         $HOME/.cargo/bin \
         $N_PREFIX/bin \
@@ -32,6 +32,7 @@ set -U fish_user_paths \
         /usr/bin \
         /sbin \
         /bin \
+        $HOME/.fzf/bin \
         $fish_user_paths
 
 # oo
