@@ -63,8 +63,8 @@ Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
 "Plug 'uber/prototool', { 'rtp':'vim/prototool' }
-Plug 'hit9/bitproto', {'dir': 'editors/vim'}
 "Language: ruby
+Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
 Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
