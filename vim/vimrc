@@ -32,7 +32,7 @@ Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s 
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
 "Plug 'mg979/vim-visual-multi' "multiple cursors
-"Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
+Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
 "Linting/Fixing.
 Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim
 "Fzf
