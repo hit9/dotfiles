@@ -35,6 +35,8 @@ set -gx fish_user_paths \
         $HOME/.fzf/bin \
         $fish_user_paths
 
+set -x XDG_CONFIG_HOME $HOME/.config
+
 # oo
 source $HOME/.oo/env.fish
 

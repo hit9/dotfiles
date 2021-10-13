@@ -343,6 +343,7 @@ let g:ale_fixers = {
     \   'go': ['gofmt'],
 \}
 let g:ale_fix_on_save = 1
+let g:python_mypy_show_notes = 1
 let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_grpc.py,*.egg-info,dist/*,"'
 "Plugin Configuration :: w0rp/ale -------------------------------- }
 
