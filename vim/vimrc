@@ -281,7 +281,7 @@ au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
 au FileType go,python,c,javascript,rust nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
 "Plugin Configuration :: neoclide/coc.nvim ---------- }}}
 
-"Phttps://stackoverflow.com/posts/1276428/revisionslugin Configuration :: scrooloose/nerdtree --------- {{{
+" Configuration :: scrooloose/nerdtree --------- {{{
 "Open nerdtree on buffer entered. And close it if it's the last window.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "nerdtree window's width.
