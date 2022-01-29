@@ -83,7 +83,7 @@ alias python python3
 alias pip pip3
 alias nvim ~/.bin/nvim-osx64/bin/nvim
 alias ls exa
-alias cat bat
 alias ack ag
 alias sed gsed
 # alias grep ggrep
+# alias cat bat
