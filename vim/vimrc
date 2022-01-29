@@ -1,9 +1,13 @@
+" vim: foldmethod=marker foldenable
+
+" Disclaim ------------ {{{
 "Chao Wang's personal vim configurations.
 "Repo: https://github.com/hit9/dotfiles
 "Feel free to use for any purpose, but try it on your own risk.
 "-----------  Vim Makes World Better -------------
+"---------}}}
 
-"Plugins ------------------------------ {
+"Plugins ------------------------------ {{{
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -24,15 +28,15 @@ Plug 'markonm/traces.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
-"Plug 'ratheesh/hiPairs' "Highlights the pair surrounding the current cursor position, forked from https://github.com/Yggdroot/hiPairs
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
 "Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
-"Plug 'mg979/vim-visual-multi' "multiple cursors
 Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
+"Marks
+" Plug 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks
 "Linting/Fixing.
 Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim
 "Fzf
@@ -40,7 +44,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 "git - Show diff signs for file changes under git/hg/svn control.
 Plug 'mhinz/vim-signify'
-" Plug 'liuchengxu/vista.vim' "Tag viewer, depens on ctags
 Plug 'simeji/winresizer' "Window resizer
 Plug 'troydm/zoomwintab.vim'
 "Language: Javascript
@@ -58,19 +61,17 @@ Plug 'rust-lang/rust.vim' "Rust syntax.
 Plug 'gabrielelana/vim-markdown'
 "Language: Misc
 Plug 'elzr/vim-json'
-"Plug 'dag/vim-fish'
 Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
-"Plug 'uber/prototool', { 'rtp':'vim/prototool' }
 "Language: ruby
 Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
-Plug 'vim-ruby/vim-ruby'
+"Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
-"Plugin  -------------------------------- }
+"Plugin  -------------------------------- }}}
 
-"Basic ------------------------------------------------ {
+"Basic ------------------------------------------------ {{{
 
 filetype plugin indent on "This should be after bundles.
 
@@ -190,7 +191,7 @@ autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
-"Color/Highlighting.
+"Color/Highlighting. ------------          {{{
 
 "Enable true color support:
 "https://lotabout.me/2018/true-color-for-tmux-and-vim/
@@ -206,22 +207,15 @@ endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
-"Plugin Configuration :: lightline.vim ----------- {
-let g:lightline = {
-      \ 'colorscheme': 'OldHope',
-      \ }
-"Or lightline theme molokai
-"https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
-
 "Set cursorline and cursorcolumn
-"set cursorline
-"set cursorcolumn
+set cursorline
+set cursorcolumn
 
-"Colorscheme Configuration :: PaperColor ----------- {
+"Colorscheme Configuration :: PaperColor ----------- {{{
 
 "Color :: CursorLine/CursorColumn (Apply after colorscheme loaded)
-" highlight CursorLine term=underline cterm=underline ctermbg=236 ctermfg=none guibg=#383a42
-" highlight CursorColumn term=none cterm=none ctermbg=240 ctermfg=none guibg=#383a42
+highlight CursorLine term=underline cterm=underline ctermbg=246 ctermfg=none guibg=#383a42
+highlight CursorColumn term=none cterm=none ctermbg=244 ctermfg=none guibg=#383a42
 
 " Color :: Normal and Visual mode.
 highlight Normal term=none ctermbg=none " Make vim be transparent in terminal.
@@ -252,16 +246,27 @@ let g:PaperColor_Theme_Options = {
 
 colorscheme PaperColor
 
-" ------------- End of PaperColorTheme ------------ }
+" ------------- End of PaperColorTheme ------------ }}}
 
-""Transparent background
+""Transparent background ------- {{{
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
+"----- }}}
 
-"Basic ------------------------------------------------ }
+"Plugin Configuration :: lightline.vim ----------- {{{
 
-"Plugin Configuration :: tpope/vim-commentary ----------------- {
+"https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
+"Plugin Configuration :: lightline.vim ----------- }}}
+
+"----------- }}}
+
+"Basic ------------------------------------------------ }}}
+
+"Plugin Configuration :: tpope/vim-commentary ----------------- {{{
 
 "Type `\\` to toggle comments for current line or selected blocks.
 xmap <Leader><Leader>  <Plug>Commentary
@@ -269,13 +274,14 @@ nmap <Leader><Leader>  <Plug>Commentary
 omap <Leader><Leader>  <Plug>Commentary
 nmap <Leader><Leader>  <Plug>CommentaryLine
 
-"Plugin Configuration :: tpope/vim-commentary ----------------- }
+"Plugin Configuration :: tpope/vim-commentary ----------------- }}}
 
-" Plugin Configuration :: neoclide/coc.nvim ---------- {
+" Plugin Configuration :: neoclide/coc.nvim ---------- {{{
 au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
-"Plugin Configuration :: neoclide/coc.nvim ---------- }
+au FileType go,python,c,javascript,rust nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+"Plugin Configuration :: neoclide/coc.nvim ---------- }}}
 
-"Phttps://stackoverflow.com/posts/1276428/revisionslugin Configuration :: scrooloose/nerdtree --------- {
+"Phttps://stackoverflow.com/posts/1276428/revisionslugin Configuration :: scrooloose/nerdtree --------- {{{
 "Open nerdtree on buffer entered. And close it if it's the last window.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 "nerdtree window's width.
@@ -292,40 +298,38 @@ let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 
 "User-defined custom command `:NT` to toggle nerdtree window
-
 :command NT :NERDTreeToggle
 
-"Plugin Configuration :: scrooloose/nerdtree --------- }
+"Plugin Configuration :: scrooloose/nerdtree --------- }}}
 
-"Plugin Configuration :: Yggdroot/indentLine ------------------------- {
+"Plugin Configuration :: Yggdroot/indentLine ------------------------- {{{
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '-'
 "https://github.com/Yggdroot/indentLine/issues/47
 " autocmd FileType help,nerdtree IndentLinesToggle
 autocmd FileType help IndentLinesToggle
-"Plugin Configuration :: Yggdroot/indentLine ------------------------- }
+"Plugin Configuration :: Yggdroot/indentLine ------------------------- }}}
 
-"Plugin Configuration :: pangloss/vim-javascript -------------- {
+"Plugin Configuration :: pangloss/vim-javascript -------------- {{{
 let javascript_enable_domhtmlcss = 1
 let g:javascript_plugin_jsdoc = 1
-"Plugin Configuration :: pangloss/vim-javascript -------------- }
+"Plugin Configuration :: pangloss/vim-javascript -------------- }}}
 
-"Plugin Configuration :: vim-python/python-syntax ---------------- {
+"Plugin Configuration :: vim-python/python-syntax ---------------- {{{
 let python_highlight_all = 1
 let python_slow_sync = 0
-"Plugin Configuration :: vim-python/python-syntax ----------------- }
+"Plugin Configuration :: vim-python/python-syntax ----------------- }}}
 
-"Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {
-let g:rustfmt_autosave = 1
-let g:racer_cmd = '/Users/hit9/.cargo/bin/racer'
-"Plugin Configuration :: rust-lang/rust.vim && racer -------------------- }
+"Plugin Configuration :: rust-lang/rust.vim && racer -------------------- {{{
+let g:rustfmt_autosave = 0  " Use ale for rust formatting.
+"Plugin Configuration :: rust-lang/rust.vim && racer -------------------- }}}
 
-"Plugin Configuration :: vim-json --------------------- {
+"Plugin Configuration :: vim-json --------------------- {{{
 let g:vim_json_syntax_conceal = 0
-"Plugin Configuration :: vim-json ----------------------------- }
+"Plugin Configuration :: vim-json ----------------------------- }}}
 
-"Plugin Configuration :: w0rp/ale -------------------------------- {
+"Plugin Configuration :: w0rp/ale -------------------------------- {{{
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
@@ -333,21 +337,24 @@ let g:ale_linters = {
     \   'python': ['black', 'mypy'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
+    \   'rust': ['cargo', 'rls'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
     \   'javascript': ['standard'],
-    \   'python': ['black', 'isort'],
+    \   'python': ['black'],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
     \   'go': ['gofmt'],
+    \   'rust': ['rustfmt'],
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
 let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_grpc.py,*.egg-info,dist/*,"'
-"Plugin Configuration :: w0rp/ale -------------------------------- }
+let g:ale_rust_rls_toolchain = 'nightly'
+"Plugin Configuration :: w0rp/ale -------------------------------- }}}
 
-"Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
+"Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {{{
 "Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
 let g:multi_cursor_quit_keys='<Esc>,<C-c>'
 augroup MultipleCursorsSelectionFix
@@ -355,21 +362,21 @@ augroup MultipleCursorsSelectionFix
     autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
 augroup END
 
-"Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {
+"Plugin Configuration :: terryma/vim-multiple-cursors -------------------  }}}
 
-"Plugin Configuration :: mhinz/vim-signify ----------------- {
+"Plugin Configuration :: mhinz/vim-signify ----------------- {{{
 highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
 highlight SignifySignAdd ctermfg=yellow ctermbg=green guifg=#F7DC6F guibg=#1E8449
 highlight SignifySignChange ctermfg=yellow ctermbg=blue guifg=#F7DC6F guibg=#2874A6
 highlight SignifySignDelete ctermfg=yellow ctermbg=red guifg=#F7DC6F guibg=#EC7063
-"Plugin Configuration :: mhinz/vim-signify }
+"Plugin Configuration :: mhinz/vim-signify }}}
 
-"Plugin Configuration :: gabrielelana/vim-markdown ---------- {
+"Plugin Configuration :: gabrielelana/vim-markdown ---------- {{{
 let g:markdown_enable_spell_checking = 0
 let g:markdown_enable_conceal = 0
-"Plugin Configuration :: gabrielelana/vim-markdown ---------- }
+"Plugin Configuration :: gabrielelana/vim-markdown ---------- }}}
 "
-"Custom :: WhiteSpaces Cleaning ----------------------------  {
+"Custom :: WhiteSpaces Cleaning ----------------------------  {{{
 
 "Highlight trailing whitespaces as red.
 "http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
@@ -382,8 +389,9 @@ match ExtraWhitespace /\s\+$/
 
 "Auto clean whitespaces on buffer save for this files.
 autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst :WS
+"------- }}}
 
-"Plugin Configuration :: junegunn/fzf.vim ----------------- {
+"Plugin Configuration :: junegunn/fzf.vim ----------------- {{{
 " ProjectFiles tries to locate files relative to the git root contained in
 " NerdTree, falling back to the current NerdTree dir if not available
 " see https://github.com/junegunn/fzf.vim/issues/47#issuecomment-160237795
@@ -412,32 +420,23 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.3 } }
-"Plugin Configuration :: junegunn/fzf.vim ----------------- }
+"Plugin Configuration :: junegunn/fzf.vim ----------------- }}}
 
-"Plugin Configuration :: unblevable/quick-scope ------------- {
+"Plugin Configuration :: unblevable/quick-scope ------------- {{{
 highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=underline
 highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
-highlight QuickScopePrimary ctermfg=162 cterm=underline guifg='#d70087' gui=underline
-highlight QuickScopeSecondary ctermfg=172 cterm=none guifg='#d78700' gui=underline
 
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-let g:qs_lazy_highlight = 0 " https://github.com/unblevable/quick-scope#lazy-highlight
+let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
 let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
     \ '4', '5', '6', '7', '8', '9']
-let g:qs_highlight_on_keys = ['f', 'F']
+" let g:qs_highlight_on_keys = ['f', 'F']
 let g:qs_second_highlight = 0
 let g:qs_ignorecase = 1
-"Plugin Configuration :: unblevable/quick-scope ------------- }
+"Plugin Configuration :: unblevable/quick-scope ------------- }}}
 
-
-"Plugin Configuration :: liuchengxu/vista.vim ------------- {
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_sidebar_width = 35
-"Plugin Configuration :: liuchengxu/vista.vim ------------- }
-
-
-"Plugin Yggdroot/hiPairs -------------------------------- {
+"Plugin Yggdroot/hiPairs -------------------------------- {{{
 let g:hiPairs_hl_matchPair = { 'term'    : 'underline,bold',
     \                  'cterm'   : 'bold',
     \                  'ctermfg' : '15',
@@ -445,13 +444,13 @@ let g:hiPairs_hl_matchPair = { 'term'    : 'underline,bold',
     \                  'gui'     : 'bold',
     \                  'guifg'   : '#ffffff',
     \                  'guibg'   : '#005f87' }
-" -------------------------------------------------------- }
+" -------------------------------------------------------- }}}
 
-"Custom :: Window Switches ----------------------------  {
+"Custom :: Window Switches ----------------------------  {{{
 
-"Plugin simeji/winresizer ---------------- {
+"Plugin simeji/winresizer ---------------- {{{
 let g:winresizer_start_key = '<C-E>'
-"Plugin simeji/winresizer ---------------- }
+"Plugin simeji/winresizer ---------------- }}}
 
 "Shortcut window switches, w+h/j/k/l
 nmap wk <c-w><up>
@@ -459,18 +458,20 @@ nmap wh <c-w><left>
 nmap wl <c-w><right>
 nmap wj <c-w><down>
 nmap wz <c-w>o  " Zoom
-"Custom :: Window Switches ----------------------------  }
+"Custom :: Window Switches ----------------------------  }}}
 
+" Folding -------------- {{{
 " Mappings to easily toggle fold levels
 nmap z0 :set foldlevel=0<CR>
 nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
+"-----------}}}
 
-"Custom :: git / tig ----------------------------  {
+"Custom :: git / tig ----------------------------  {{{
 if has('nvim')
     command! Blame  :terminal tig blame %
 else
     command! Blame  :!tig blame %
 endif
-"Custom :: git / tig ----------------------------  }
+"Custom :: git / tig ----------------------------  }}}
