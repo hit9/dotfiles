@@ -226,7 +226,7 @@ let g:PaperColor_Theme_Options = {
     \     'default.dark': {
     \        'transparent_background': 1,
     \        'override': {
-    \           'visual_bg': ['#00afd7', '38'],
+    \           'visual_bg': ['#005f87', '31'],
     \           'visual_fg': ['#ffffff', '255']
     \        }
     \      }
@@ -404,8 +404,8 @@ nmap <c-p> :ProjectFiles<CR>
 
 " let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal'  }  }
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
