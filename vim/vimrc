@@ -199,6 +199,11 @@ autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
+"NVim: Auto enter insert on :terminal mode.  :help :terminal
+if has('nvim')
+    autocmd TermOpen * startinsert
+endif
+
 "Color/Highlighting. ------------          {{{
 
 "Enable true color support:
@@ -428,7 +433,7 @@ let g:fzf_colors = {
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.3 } }
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 "Plugin Configuration :: junegunn/fzf.vim ----------------- }}}
 
 "Plugin Configuration :: unblevable/quick-scope ------------- {{{
