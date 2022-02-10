@@ -75,6 +75,9 @@ function fish_user_key_bindings
   bind \cx edit_command_buffer
 end
 
+# bat https://github.com/sharkdp/bat
+set -x BAT_THEME zenburn
+
 # Alias
 alias g "git"
 alias gst "git status"
@@ -86,4 +89,4 @@ alias ls exa
 alias ack ag
 alias sed gsed
 # alias grep ggrep
-# alias cat bat
+alias cat bat
