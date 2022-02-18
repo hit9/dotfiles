@@ -28,7 +28,7 @@
         },
         "ccls": {
             "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "filetypes": ["c",  "cc","cpp", "objc", "objcpp"],
             "rootPatterns": [".ccls", ".git", ".hg"],
             "initializationOptions": {
                 "cache": {
