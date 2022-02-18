@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
+
 "StatusBar.
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim
 "File Explorer.
@@ -30,11 +31,11 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
-"Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
+Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
-Plug 'terryma/vim-multiple-cursors' "Brings sublime text's multiple cursors to vim. Press Ctrl-N to try.
+Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim
 "Marks
 " Plug 'kshenoy/vim-signature' "Plugin to toggle, display and navigate marks
 "Linting/Fixing.
@@ -70,9 +71,11 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 "Language: ruby
 Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
 
-" NVIM Only
-Plug 'nvim-lua/plenary.nvim'
-Plug 'sindrets/diffview.nvim'
+if has('nvim')
+    " NVIM Only
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'sindrets/diffview.nvim' "Wonderful diff plugin!
+endif
 
 "Plug 'vim-ruby/vim-ruby'
 call plug#end()
@@ -213,9 +216,9 @@ if exists('+termguicolors')
   if !has('nvim') " ------- Vim8
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  else " --------- NVIM
+    set termguicolors
   endif
-  " ------- Vim8.0 & NVim
-  set termguicolors
 endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
@@ -367,15 +370,18 @@ let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_
 let g:ale_rust_rls_toolchain = 'nightly'
 "Plugin Configuration :: w0rp/ale -------------------------------- }}}
 
-"Plugin Configuration :: terryma/vim-multiple-cursors ------------------- {{{
-"Bugs in terryma/vim-multiple-cursors, requires this setting. https://github.com/terryma/vim-multiple-cursors/issues/124
-let g:multi_cursor_quit_keys='<Esc>,<C-c>'
-augroup MultipleCursorsSelectionFix
-    autocmd User MultipleCursorsPre  if &selection ==# 'exclusive' | let g:multi_cursor_save_selection = &selection | set selection=inclusive | endif
-    autocmd User MultipleCursorsPost if exists('g:multi_cursor_save_selection') | let &selection = g:multi_cursor_save_selection | unlet g:multi_cursor_save_selection | endif
-augroup END
+"Plugin Configuration :: mg979/vim-visual-multi ------- {{{
+let g:VM_theme = 'iceblue' "https://github.com/mg979/vim-visual-multi/wiki/Highlight-colors
+" Won't use default leader key \\, using Ctrl-N instead.
+" Select words: Ctrl-N and press N for next word.
+" Multiple lines: visual mode selection section, and Ctrl-N
+" Select all occurences of current word: Ctrl-N and press A quickly
+let g:VM_leader = '<C-N>'
+let g:VM_maps = {}
+let g:VM_maps["Visual Add"] = '<C-n>'
 
-"Plugin Configuration :: terryma/vim-multiple-cursors -------------------  }}}
+
+"}}}
 
 "Plugin Configuration :: mhinz/vim-signify ----------------- {{{
 highlight SignColumn ctermbg=NONE cterm=NONE guibg=NONE gui=NONE
@@ -441,10 +447,7 @@ highlight QuickScopePrimary ctermfg=119 cterm=underline guifg='#afff5f' gui=unde
 highlight QuickScopeSecondary ctermfg=81 cterm=none guifg='#5fffff' gui=underline
 
 let g:qs_max_chars=180 "Max number of chars to highlight in one line.
-let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
-let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    \ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-    \ '4', '5', '6', '7', '8', '9']
+" let g:qs_lazy_highlight = 1 " https://github.com/unblevable/quick-scope#lazy-highlight
 " let g:qs_highlight_on_keys = ['f', 'F']
 let g:qs_second_highlight = 0
 let g:qs_ignorecase = 1
