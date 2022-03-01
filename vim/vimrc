@@ -31,7 +31,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 "Fast Movement, Motions.
 Plug 'jayflo/vim-skip' "Fast move in current line via binary-search way. Type s or S to try.
-Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
+" Plug 'unblevable/quick-scope' "Realtime highlight on `f` motions and f<char> to move on.
 "Fast Editing.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[]).
 Plug 'tpope/vim-commentary' "Type '\\' aka <Leader><Leader> to quick (un)comment line(s).
@@ -45,7 +45,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 "git - Show diff signs for file changes under git/hg/svn control.
 Plug 'mhinz/vim-signify'
-
+"Tags
+Plug 'liuchengxu/vista.vim'
 "Window
 Plug 'simeji/winresizer' "Window resizer
 Plug 'troydm/zoomwintab.vim'
@@ -293,8 +294,9 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 "Plugin Configuration :: tpope/vim-commentary ----------------- }}}
 
 " Plugin Configuration :: neoclide/coc.nvim ---------- {{{
-au FileType go,python,c,javascript,rust nmap <silent> gd <Plug>(coc-definition)
-au FileType go,python,c,javascript,rust nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+au FileType go,python,c,cpp,javascript,rust nmap <silent> gd <Plug>(coc-definition)
+au FileType go,python,c,cpp,javascript,rust nmap <silent> gD <Plug>(coc-implementation)
+au FileType go,python,c,cpp,javascript,rust nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
 "Plugin Configuration :: neoclide/coc.nvim ---------- }}}
 
 " Configuration :: scrooloose/nerdtree --------- {{{

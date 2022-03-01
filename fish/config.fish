@@ -26,6 +26,7 @@ set -gx fish_user_paths \
         /usr/local/lib/ruby/gems/3.0.0/bin \
         /usr/local/opt/ruby/bin \
         /Applications/Postgres.app/Contents/Versions/latest/bin/Applications/Postgres.app/Contents/Versions/latest/bin \
+        /usr/local/opt/llvm/bin \
         /usr/local/sbin \
         /usr/local/bin \
         /usr/sbin \
@@ -72,7 +73,7 @@ end
 functions -c fish_user_key_bindings _old_fish_user_key_bindings
 function fish_user_key_bindings
   _old_fish_user_key_bindings
-  bind \cx edit_command_buffer
+  bind \cx edit_command_buffer  # Ctrl-X
 end
 
 # bat https://github.com/sharkdp/bat
@@ -88,5 +89,5 @@ alias nvim ~/.bin/nvim-osx64/bin/nvim
 alias ls exa
 alias ack ag
 alias sed gsed
+# alias cat bat
 # alias grep ggrep
-alias cat bat
