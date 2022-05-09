@@ -14,6 +14,8 @@ filetype off                   " required!
 call plug#begin('~/.vim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'Yggdroot/indentLine' "Visualize indent levels.
@@ -51,7 +53,7 @@ call plug#end()
 filetype plugin indent on
 
 "Basic
-set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
+" set shell=/usr/local/bin/fish  "Vim's shell, defaults to `$SHELL`.
 set noeb "Disable bells.
 set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
@@ -211,28 +213,33 @@ hi SignColumn ctermbg=NONE guibg=NONE
 "End Basic :: Color ---------------------------- }}}
 "End Basic --------------------------------------------- }}}
 
-"Netrw - vim's default file explorer ----------------------- {{{
-
-"Why you don't need nerdtree plugin, https://shapeshed.com/vim-netrw
-let g:netrw_liststyle = 3 "Use tree style listing.
-let g:netrw_winsize = 20 "Width percentage of netrw browser window.
-let g:netrw_banner = 0 "Removing the banner.
-let g:netrw_browse_split = 4 "Open files in previous window.
-"Comma-separated pattern list for hiding files (regex).
-let g:netrw_list_hide = '.*\.sw[ponm]$,^\.git/$,^\.mypy_cache/$,^\.venv/$,' .
-      \ '^\.DS_Store$,.*\.pyc$,.*\.so$,^\.pytest_cache$,^__pycache__/$,.*\.egg-info/$,.*\.o$'
-
-"Key r binds to file list sorting by default in netrw, but this feature
-"seems useless for me, so remap it to :Explore for refreshing file listing.
-au FileType netrw nmap <buffer> r :Explore<CR>
-"---------------------------------------------------------- }}}
-
 "Plugin :: lightline.vim ----------------------------------------- {{{
 "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
 let g:lightline = {
       \ 'colorscheme': 'PaperColor',
       \ }
 "End Plugin :: lightline.vim --------------------------- }}}
+
+"Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
+
+"Open nerdtree on buffer entered. And close it if it's the last window.
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"nerdtree window's width.
+let NERDTreeWinSize=35
+"Show line number for nerdtree.
+let NERDTreeShowLineNumbers=1
+"Don't display these files:
+let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__', '\.mypy_cache', '\.DS_Store',
+    \ '^\.git$', '\.o$', '\.so$', '\.egg$', "\.pytest_cache", "\.swp$", "\.swo$", "\.swn$"]
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
+" Show hidden files, too
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+
+"User-defined custom command `:NT` to toggle nerdtree window
+:command NT :NERDTreeToggle
+" End Plugin :: scrooloose/nerdtree ----------------------------------------- }}}
 
 "Plugin :: tpope/vim-commentary --------------------------------------- {{{
 "Type `\\` to toggle comments for current line or selected blocks.
