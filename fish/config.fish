@@ -20,6 +20,7 @@ set -x N_PREFIX $HOME/.n
 # $PATH
 set -e fish_user_paths
 set -gx fish_user_paths \
+        $HOME/.pyenv/shims \
         $GOPATH/bin \
         $HOME/.cargo/bin \
         $N_PREFIX/bin \
