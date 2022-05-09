@@ -15,7 +15,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
-Plug 'markonm/traces.vim' "Realtime search/replace feedback.
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'Yggdroot/indentLine' "Visualize indent levels.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
