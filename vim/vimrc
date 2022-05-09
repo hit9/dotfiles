@@ -3,6 +3,9 @@
 
 "Chao Wang's personal vim configurations.
 "Repo: https://github.com/hit9/dotfiles
+"No considerations for gvim, only for vim in terminal.
+
+"Vim 8.2 and NeoVim >= 0.7
 
 "Plugins ---------------------------------------------- {{{
 set nocompatible               " be iMproved
@@ -12,8 +15,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
 Plug 'markonm/traces.vim' "Realtime search/replace feedback.
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'Yggdroot/indentLine' "Visualize indent levels.
@@ -87,10 +88,6 @@ set shortmess+=c "Don't give |ins-completion-menu| messages.
 set signcolumn=yes "Always show signcolumns
 set cmdheight=2 "Command-line height (number of screen lines).
 
-if !has('nvim')
-  set term=screen-256color "Use screen-256color for Vim8.
-endif
-
 "Scroll
 set scrolloff=9999 "Cursor always stays in the middle of screen, https://stackoverflow.com/posts/1276428/revisions.
 
@@ -162,54 +159,51 @@ endif
 
 "Basic :: Color -------------------------------- {{{
 
-  "Enable true color support:
-  "https://lotabout.me/2018/true-color-for-tmux-and-vim/
-  "https://github.com/tmux/tmux/issues/1246
-  if exists('+termguicolors')
-    if !has('nvim') " ------- Vim8
-      let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-      let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-    else " --------- NVIM
-      set termguicolors
-    endif
-  endif
-  set t_Co=256 "Enable 256 color
-  set background=dark "Using dark. Hmm dark is sexy.
+"Normal and Visual mode color cosutomization.
+highlight Normal term=none ctermbg=none "Make vim be transparent in terminal.
+highlight Visual term=none cterm=bold ctermbg=31 ctermfg=255 guibg=#005f87 guifg=#ffffff
 
-  "Basic :: Color :: PaperColor ------- {{{
-  let g:PaperColor_Theme_Options = {
-    \   'theme': {
-    \     'default.dark': {
-    \        'transparent_background': 1,
-    \        'override': {
-    \           'visual_bg': ['#005f87', '31'],
-    \           'visual_fg': ['#ffffff', '255']
-    \        }
-    \      }
-    \   },
-    \   'language': {
-    \     'python': {
-    \       'highlight_builtins' : 1
-    \     },
-    \     'cpp': {
-    \       'highlight_standard_library': 1
-    \     },
-    \     'c': {
-    \       'highlight_builtins' : 1
-    \     }
-    \   }
-    \ }
+"Enable true color support:
+"https://lotabout.me/2018/true-color-for-tmux-and-vim/
+"https://github.com/tmux/tmux/issues/1246
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+set t_Co=256 "Enable 256 color
+set background=dark "Using dark. Hmm dark is sexy.
 
-  colorscheme PaperColor
+"Basic :: Color :: PaperColor ------- {{{
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \        'transparent_background': 1,
+  \        'override': {
+  \           'visual_bg': ['#005f87', '31'],
+  \           'visual_fg': ['#ffffff', '255']
+  \        }
+  \      }
+  \   },
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     },
+  \     'cpp': {
+  \       'highlight_standard_library': 1
+  \     },
+  \     'c': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
+
+colorscheme PaperColor
 "End Basic :: Color :: PaperColor -------- }}}
 
 "CursorLine/CursorColumn, should be applied after colorscheme loaded.
-highlight CursorLine term=underline cterm=underline ctermbg=246 ctermfg=none guibg=#383a42
-highlight CursorColumn term=none cterm=none ctermbg=244 ctermfg=none guibg=#383a42
-
-"Normal and Visual mode color cosutomization.
-highlight Normal term=none ctermbg=none "Make vim be transparent in terminal.
-highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
+highlight CursorLine term=none cterm=none ctermbg=238 ctermfg=none
+highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none
 
 "Transparent background
 hi Normal     ctermbg=NONE guibg=NONE
@@ -218,11 +212,27 @@ hi SignColumn ctermbg=NONE guibg=NONE
 "End Basic :: Color ---------------------------- }}}
 "End Basic --------------------------------------------- }}}
 
+"Netrw - vim's default file explorer ----------------------- {{{
+
+"Why you don't need nerdtree plugin, https://shapeshed.com/vim-netrw
+let g:netrw_liststyle = 3 "Use tree style listing.
+let g:netrw_winsize = 20 "Width percentage of netrw browser window.
+let g:netrw_banner = 0 "Removing the banner.
+let g:netrw_browse_split = 4 "Open files in previous window.
+"Comma-separated pattern list for hiding files (regex).
+let g:netrw_list_hide = '.*\.sw[ponm]$,^\.git/$,^\.mypy_cache/$,^\.venv/$,' .
+      \ '^\.DS_Store$,.*\.pyc$,.*\.so$,^\.pytest_cache$,^__pycache__/$,.*\.egg-info/$,.*\.o$'
+
+"Key r binds to file list sorting by default in netrw, but this feature
+"seems useless for me, so remap it to :Explore for refreshing file listing.
+au FileType netrw nmap <buffer> r :Explore<CR>
+"---------------------------------------------------------- }}}
+
 "Plugin :: lightline.vim ----------------------------------------- {{{
-  "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
-  let g:lightline = {
-        \ 'colorscheme': 'PaperColor',
-        \ }
+"https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
 "End Plugin :: lightline.vim --------------------------- }}}
 
 "Plugin :: tpope/vim-commentary --------------------------------------- {{{
@@ -239,33 +249,11 @@ au FileType go,python,c,cpp,javascript,rust nmap <silent> gD <Plug>(coc-implemen
 au FileType go,python,c,cpp,javascript,rust nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
 " End Plugin :: neoclide/coc.nvim -------------------------------- }}}
 
-"Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
-
-"Open nerdtree on buffer entered. And close it if it's the last window.
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"nerdtree window's width.
-let NERDTreeWinSize=35
-"Show line number for nerdtree.
-let NERDTreeShowLineNumbers=1
-"Don't display these files:
-let NERDTreeIgnore=['\.pyc$', '\.o$', '\~$', '__pycache__', '\.mypy_cache', '\.DS_Store',
-    \ '^\.git$', '\.o$', '\.so$', '\.egg$', "\.pytest_cache", "\.swp$", "\.swo$", "\.swn$"]
-" Highlight the selected entry in the tree
-let NERDTreeHighlightCursorline=1
-" Show hidden files, too
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-
-"User-defined custom command `:NT` to toggle nerdtree window
-:command NT :NERDTreeToggle
-" End Plugin :: scrooloose/nerdtree ----------------------------------------- }}}
-
 "Plugin :: Yggdroot/indentLine -------------------- {{{
 let g:indentLine_char = '|'
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '-'
 "https://github.com/Yggdroot/indentLine/issues/47
-" autocmd FileType help,nerdtree IndentLinesToggle
 autocmd FileType help IndentLinesToggle
 " End Plugin :: Yggdroot/indentLine ---------------- }}}
 
