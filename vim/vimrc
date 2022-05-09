@@ -5,217 +5,217 @@
 "Repo: https://github.com/hit9/dotfiles
 
 "Plugins ---------------------------------------------- {{{
-  set nocompatible               " be iMproved
-  filetype off                   " required!
+set nocompatible               " be iMproved
+filetype off                   " required!
 
-  call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
-  Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
-  Plug 'markonm/traces.vim' "Realtime search/replace feedback.
-  Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
-  Plug 'Yggdroot/indentLine' "Visualize indent levels.
-  Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
-  Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
-  Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
-  Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
-  Plug 'dense-analysis/ale' "All-in-oine asynchronous linting/fixing for Vim.
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
-  Plug 'junegunn/fzf.vim' "Fzf vim plugin.
-  Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
-  Plug 'simeji/winresizer' "Window resizer.
-  Plug 'troydm/zoomwintab.vim' "Window zoom.
-  Plug 'pangloss/vim-javascript'
-  Plug 'vim-python/python-syntax'
-  Plug 'octol/vim-cpp-enhanced-highlight'
-  Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
-  Plug 'rust-lang/rust.vim'
-  Plug 'gabrielelana/vim-markdown'
-  Plug 'elzr/vim-json'
-  Plug 'cespare/vim-toml'
-  Plug 'stephpy/vim-yaml'
-  Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
+Plug 'markonm/traces.vim' "Realtime search/replace feedback.
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
+Plug 'Yggdroot/indentLine' "Visualize indent levels.
+Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
+Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
+Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
+Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
+Plug 'dense-analysis/ale' "All-in-oine asynchronous linting/fixing for Vim.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
+Plug 'junegunn/fzf.vim' "Fzf vim plugin.
+Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
+Plug 'simeji/winresizer' "Window resizer.
+Plug 'troydm/zoomwintab.vim' "Window zoom.
+Plug 'pangloss/vim-javascript'
+Plug 'vim-python/python-syntax'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
+Plug 'rust-lang/rust.vim'
+Plug 'gabrielelana/vim-markdown'
+Plug 'elzr/vim-json'
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
+Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
 
-  "Nvim Only
-  if has('nvim')
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
-  endif
+"Nvim Only
+if has('nvim')
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
+endif
 
-  call plug#end()
+call plug#end()
 "End Plugins -----------------------------------------------  }}}
 
 "Basic ------------------------------------------------------ {{{
-  filetype plugin indent on
+filetype plugin indent on
 
-  "Basic
-  set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
-  set noeb "Disable bells.
-  set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
-  set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
-  set lazyredraw "Same, faster vim.
-  set title "Makes terminal title is set by vim.
-  set titleold= "Restore old title after leaving vim.
-  set autoread "Auto updates current file if this file is updated by outer.
-  set hidden "Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed.
-  set autochdir "Auto switch current working directory to current editing file's directory.
-  set updatetime=300 "Smaller updatetime for CursorHold & CursorHoldI
+"Basic
+set shell=/bin/sh  "Make vim to use `/bin/sh` instead of `$SHELL`.
+set noeb "Disable bells.
+set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
+set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
+set lazyredraw "Same, faster vim.
+set title "Makes terminal title is set by vim.
+set titleold= "Restore old title after leaving vim.
+set autoread "Auto updates current file if this file is updated by outer.
+set hidden "Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed.
+set autochdir "Auto switch current working directory to current editing file's directory.
+set updatetime=300 "Smaller updatetime for CursorHold & CursorHoldI
 
-  "Mouse
-  set mouse=a "Enable mouse.
-  set selection=exclusive "Mouse can only selects the block where ths cursor is on.
-  set selectmode=mouse,key
-  set mousehide "Hide mouse cursor on keyboard typing.
-  set mousemodel=popup "Right mouse button pops up a menu.
+"Mouse
+set mouse=a "Enable mouse.
+set selection=exclusive "Mouse can only selects the block where ths cursor is on.
+set selectmode=mouse,key
+set mousehide "Hide mouse cursor on keyboard typing.
+set mousemodel=popup "Right mouse button pops up a menu.
 
-  "Syntax
-  syntax enable "Enable syntax.
-  set synmaxcol=300 "Don't perform highlight on lines that are longer than 300 chars.
-  syntax sync minlines=1000
+"Syntax
+syntax enable "Enable syntax.
+set synmaxcol=300 "Don't perform highlight on lines that are longer than 300 chars.
+syntax sync minlines=1000
 
-  "Displayment
-  set number  "Show line numbers.
-  set norelativenumber "Don't use relative line numbers.
-  set go= "Disable gvim's gui menu. (But I personally never use gui version vim).
-  set shortmess=atI "Disable the short message on vim start.
-  set noshowcmd "Don't show command in the last line of screeen.
-  set showmode "If in Insert, Replace or Visual mode put a message on the last line.
-  set nowrap "Lines longer than the width of window will wrap and displaying continues on the next line.
-  set shortmess+=c "Don't give |ins-completion-menu| messages.
-  set signcolumn=yes "Always show signcolumns
-  set cmdheight=2 "Command-line height (number of screen lines).
+"Displayment
+set number  "Show line numbers.
+set norelativenumber "Don't use relative line numbers.
+set go= "Disable gvim's gui menu. (But I personally never use gui version vim).
+set shortmess=atI "Disable the short message on vim start.
+set noshowcmd "Don't show command in the last line of screeen.
+set showmode "If in Insert, Replace or Visual mode put a message on the last line.
+set nowrap "Lines longer than the width of window will wrap and displaying continues on the next line.
+set shortmess+=c "Don't give |ins-completion-menu| messages.
+set signcolumn=yes "Always show signcolumns
+set cmdheight=2 "Command-line height (number of screen lines).
 
-  if !has('nvim')
-    set term=screen-256color "Use screen-256color for Vim8.
-  endif
+if !has('nvim')
+  set term=screen-256color "Use screen-256color for Vim8.
+endif
 
-  "Scroll
-  set scrolloff=9999 "Cursor always stays in the middle of screen, https://stackoverflow.com/posts/1276428/revisions.
+"Scroll
+set scrolloff=9999 "Cursor always stays in the middle of screen, https://stackoverflow.com/posts/1276428/revisions.
 
-  "Statusline
-  set laststatus=2 "Always show status line on the last window.
-  set ruler "Show line and column number of where cursor is.
+"Statusline
+set laststatus=2 "Always show status line on the last window.
+set ruler "Show line and column number of where cursor is.
 
-  "Search & Replace
-  set gdefault "The :s/<search-target>/<to-replace-with>/ is s///g by default
-  set hlsearch "Highlight search results.
-  set incsearch "Realtime search results showing.
+"Search & Replace
+set gdefault "The :s/<search-target>/<to-replace-with>/ is s///g by default
+set hlsearch "Highlight search results.
+set incsearch "Realtime search results showing.
 
-  "Encoding (utf8)
-  set encoding=utf-8
-  set fencs=utf-8 "Encoding that creating new files.
-  set termencoding=utf-8 "Encoding that output to terminal.
-  set fileencoding=utf-8 "Encoding that saving files.
-  set backspace=indent,eol,start "Backspace key, I just don't rely on it.
+"Encoding (utf8)
+set encoding=utf-8
+set fencs=utf-8 "Encoding that creating new files.
+set termencoding=utf-8 "Encoding that output to terminal.
+set fileencoding=utf-8 "Encoding that saving files.
+set backspace=indent,eol,start "Backspace key, I just don't rely on it.
 
-  "Fold
-  set nofoldenable
-  set foldmethod=indent
-  set foldcolumn=2
-  set foldlevel=0
-  set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  "Which commands trigger auto-unfold
-  set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
-  autocmd FileType c,go,python,javascript,bitproto,protobuf setlocal foldenable "Enable folding for programming purpose.
+"Fold
+set nofoldenable
+set foldmethod=indent
+set foldcolumn=2
+set foldlevel=0
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  "Which commands trigger auto-unfold
+set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
+autocmd FileType c,go,python,javascript,bitproto,protobuf setlocal foldenable "Enable folding for programming purpose.
 
-  "Copy/Paste
-  set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+"Copy/Paste
+set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
 
-  "Match
-  set showmatch "When a bracket is inserted, briefly jump to the matching one.
-  set matchtime=1 "Tenths of a second to show the matching paren.
+"Match
+set showmatch "When a bracket is inserted, briefly jump to the matching one.
+set matchtime=1 "Tenths of a second to show the matching paren.
 
-  "Completion.
-  "Default vim completion behavior when CTRL-P/N are used.
-  set completeopt=longest,menu  "Use a popup menu to show possible completinos.
-  set cpt=.,w,b  "Scan candidates from .(current buffer), w(buffers from other windows), b(other loaded buffers).
+"Completion.
+"Default vim completion behavior when CTRL-P/N are used.
+set completeopt=longest,menu  "Use a popup menu to show possible completinos.
+set cpt=.,w,b  "Scan candidates from .(current buffer), w(buffers from other windows), b(other loaded buffers).
 
-  "Indent
-  set autoindent "Indent automatically. But notice that autoindent may make Cmd+V pastsing works wired,
-                 "so when pasting something from clipboard into vim, better to `:set paste` and then Cmd+V,
-                 "and rollback this setting via :set nopaste.
-  set cindent "C style indent.
-  set smartindent "http://vim.wikia.com/wiki/Indenting_source_code
-  set expandtab "Expand tabs into spaces, by default (Python users's must-have).
-  set tabstop=4 "Setting 1tab = 4 spaces.
-  set softtabstop=4 "Number of spaces that a <Tab> counts for while editing. :set paste makes softtabstop to 0 temply.
-  set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
+"Indent
+set autoindent "Indent automatically. But notice that autoindent may make Cmd+V pastsing works wired,
+               "so when pasting something from clipboard into vim, better to `:set paste` and then Cmd+V,
+               "and rollback this setting via :set nopaste.
+set cindent "C style indent.
+set smartindent "http://vim.wikia.com/wiki/Indenting_source_code
+set expandtab "Expand tabs into spaces, by default (Python users's must-have).
+set tabstop=4 "Setting 1tab = 4 spaces.
+set softtabstop=4 "Number of spaces that a <Tab> counts for while editing. :set paste makes softtabstop to 0 temply.
+set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
 
-  set list "Show tabs via listchars below, and display end sign after endo fline.
-  set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
+set list "Show tabs via listchars below, and display end sign after endo fline.
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
 
-  "Tab settings for diferent language filetypes (forked from humiaozuzu's dotfile).
-  autocmd FileType text setlocal textwidth=79
-  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=90
-  autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-  autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-  autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-  autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
-  autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+"Tab settings for diferent language filetypes (forked from humiaozuzu's dotfile).
+autocmd FileType text setlocal textwidth=79
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=90
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
+autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
-  "NVim: Auto enter insert on :terminal mode. :help :terminal
-  if has('nvim')
-      autocmd TermOpen * startinsert
-  endif
+"NVim: Auto enter insert on :terminal mode. :help :terminal
+if has('nvim')
+    autocmd TermOpen * startinsert
+endif
 
-  "Basic :: Color -------------------------------- {{{
+"Basic :: Color -------------------------------- {{{
 
-    "Enable true color support:
-    "https://lotabout.me/2018/true-color-for-tmux-and-vim/
-    "https://github.com/tmux/tmux/issues/1246
-    if exists('+termguicolors')
-      if !has('nvim') " ------- Vim8
-        let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-      else " --------- NVIM
-        set termguicolors
-      endif
+  "Enable true color support:
+  "https://lotabout.me/2018/true-color-for-tmux-and-vim/
+  "https://github.com/tmux/tmux/issues/1246
+  if exists('+termguicolors')
+    if !has('nvim') " ------- Vim8
+      let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+    else " --------- NVIM
+      set termguicolors
     endif
-    set t_Co=256 "Enable 256 color
-    set background=dark "Using dark. Hmm dark is sexy.
+  endif
+  set t_Co=256 "Enable 256 color
+  set background=dark "Using dark. Hmm dark is sexy.
 
-    "Basic :: Color :: PaperColor ------- {{{
-    let g:PaperColor_Theme_Options = {
-      \   'theme': {
-      \     'default.dark': {
-      \        'transparent_background': 1,
-      \        'override': {
-      \           'visual_bg': ['#005f87', '31'],
-      \           'visual_fg': ['#ffffff', '255']
-      \        }
-      \      }
-      \   },
-      \   'language': {
-      \     'python': {
-      \       'highlight_builtins' : 1
-      \     },
-      \     'cpp': {
-      \       'highlight_standard_library': 1
-      \     },
-      \     'c': {
-      \       'highlight_builtins' : 1
-      \     }
-      \   }
-      \ }
+  "Basic :: Color :: PaperColor ------- {{{
+  let g:PaperColor_Theme_Options = {
+    \   'theme': {
+    \     'default.dark': {
+    \        'transparent_background': 1,
+    \        'override': {
+    \           'visual_bg': ['#005f87', '31'],
+    \           'visual_fg': ['#ffffff', '255']
+    \        }
+    \      }
+    \   },
+    \   'language': {
+    \     'python': {
+    \       'highlight_builtins' : 1
+    \     },
+    \     'cpp': {
+    \       'highlight_standard_library': 1
+    \     },
+    \     'c': {
+    \       'highlight_builtins' : 1
+    \     }
+    \   }
+    \ }
 
-    colorscheme PaperColor
-  "End Basic :: Color :: PaperColor -------- }}}
+  colorscheme PaperColor
+"End Basic :: Color :: PaperColor -------- }}}
 
-  "CursorLine/CursorColumn, should be applied after colorscheme loaded.
-  highlight CursorLine term=underline cterm=underline ctermbg=246 ctermfg=none guibg=#383a42
-  highlight CursorColumn term=none cterm=none ctermbg=244 ctermfg=none guibg=#383a42
+"CursorLine/CursorColumn, should be applied after colorscheme loaded.
+highlight CursorLine term=underline cterm=underline ctermbg=246 ctermfg=none guibg=#383a42
+highlight CursorColumn term=none cterm=none ctermbg=244 ctermfg=none guibg=#383a42
 
-  "Normal and Visual mode color cosutomization.
-  highlight Normal term=none ctermbg=none "Make vim be transparent in terminal.
-  highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
+"Normal and Visual mode color cosutomization.
+highlight Normal term=none ctermbg=none "Make vim be transparent in terminal.
+highlight Visual term=none cterm=bold ctermbg=238 ctermfg=none
 
-  "Transparent background
-  hi Normal     ctermbg=NONE guibg=NONE
-  hi LineNr     ctermbg=NONE guibg=NONE
-  hi SignColumn ctermbg=NONE guibg=NONE
-  "End Basic :: Color ---------------------------- }}}
+"Transparent background
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+"End Basic :: Color ---------------------------- }}}
 "End Basic --------------------------------------------- }}}
 
 "Plugin :: lightline.vim ----------------------------------------- {{{
