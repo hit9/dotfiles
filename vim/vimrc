@@ -225,8 +225,8 @@ set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
 "Set cursorline and cursorcolumn
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 "Colorscheme Configuration :: PaperColor ----------- {{{
 
@@ -356,11 +356,12 @@ let g:ale_linters = {
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
     \   'rust': ['cargo', 'rls'],
+    \   'go': ['gopls'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
     \   'javascript': ['standard'],
-    \   'python': ['black'],
+    \   'python': ['black', "isort"],
     \   'c': ['clang-format'],
     \   'cpp': ['clang-format'],
     \   'go': ['gofmt'],
@@ -369,6 +370,7 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
 let g:ale_python_vulture_options = '--min-confidence 80 --exclude "*pb2.py,*pb2_grpc.py,*.egg-info,dist/*,"'
+let g:ale_python_isort_options = '--profile black'
 let g:ale_rust_rls_toolchain = 'nightly'
 "Plugin Configuration :: w0rp/ale -------------------------------- }}}
 
