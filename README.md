@@ -3,6 +3,9 @@
 
 ![](images/demo.gif)
 
+
+Blog (中文) - https://writings.sh/post/commandline-tools
+
 What's in?
 ---------
 
