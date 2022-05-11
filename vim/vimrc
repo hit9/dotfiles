@@ -17,8 +17,8 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
-Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'Yggdroot/indentLine' "Visualize indent levels.
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
 Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
@@ -29,21 +29,23 @@ Plug 'junegunn/fzf.vim' "Fzf vim plugin.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
 Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
-Plug 'pangloss/vim-javascript'
-Plug 'vim-python/python-syntax'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
-Plug 'rust-lang/rust.vim'
-Plug 'gabrielelana/vim-markdown'
-Plug 'elzr/vim-json'
-Plug 'cespare/vim-toml'
-Plug 'stephpy/vim-yaml'
 Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
 
-"Nvim Only
-if has('nvim')
+if has('nvim') "NVim
   Plug 'nvim-lua/plenary.nvim'
   Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+else "Vim
+  "Syntax Highlighting
+  Plug 'pangloss/vim-javascript'
+  Plug 'vim-python/python-syntax'
+  Plug 'octol/vim-cpp-enhanced-highlight'
+  Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
+  Plug 'rust-lang/rust.vim'
+  Plug 'gabrielelana/vim-markdown'
+  Plug 'elzr/vim-json'
+  Plug 'cespare/vim-toml'
+  Plug 'stephpy/vim-yaml'
 endif
 
 call plug#end()
@@ -155,7 +157,7 @@ autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 tex
 
 "NVim: Auto enter insert on :terminal mode. :help :terminal
 if has('nvim')
-    autocmd TermOpen * startinsert
+  autocmd TermOpen * startinsert
 endif
 
 "Basic :: Color -------------------------------- {{{
@@ -216,8 +218,8 @@ hi SignColumn ctermbg=NONE guibg=NONE
 "Plugin :: lightline.vim ----------------------------------------- {{{
 "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ }
+  \ 'colorscheme': 'PaperColor',
+  \ }
 "End Plugin :: lightline.vim --------------------------- }}}
 
 "Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
@@ -285,21 +287,21 @@ let g:vim_json_syntax_conceal = 0
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-    \   'javascript': ['standard'],
-    \   'python': ['black', 'mypy'],
-    \   'c': ['clang-format'],
-    \   'cpp': ['clang-format'],
-    \   'rust': ['cargo', 'rls'],
-    \   'go': ['gopls'],
+  \   'javascript': ['standard'],
+  \   'python': ['black', 'mypy'],
+  \   'c': ['clang-format'],
+  \   'cpp': ['clang-format'],
+  \   'rust': ['cargo', 'rls'],
+  \   'go': ['gopls'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
-    \   'javascript': ['standard'],
-    \   'python': ['black', "isort"],
-    \   'c': ['clang-format'],
-    \   'cpp': ['clang-format'],
-    \   'go': ['gofmt'],
-    \   'rust': ['rustfmt'],
+  \   'javascript': ['standard'],
+  \   'python': ['black', "isort"],
+  \   'c': ['clang-format'],
+  \   'cpp': ['clang-format'],
+  \   'go': ['gofmt'],
+  \   'rust': ['rustfmt'],
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
@@ -402,8 +404,8 @@ nmap z3 :set foldlevel=3<CR>
 
 "Custom :: git / tig ------------------------------- {{{
 if has('nvim')
-    command! Blame  :terminal tig blame %
+  command! Blame  :terminal tig blame %
 else
-    command! Blame  :!tig blame %
+  command! Blame  :!tig blame %
 endif
 " -------------------------------------------------- }}}
