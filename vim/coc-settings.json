@@ -4,6 +4,7 @@
     "suggest.maxPreviewWidth": 65,
     "suggest.echodocSupport": false,
     "suggest.noselect": true,
+
     "diagnostic.enable": false,
     "diagnostic.messageTarget": "echo",
     "diagnostic.virtualText": false,
@@ -11,10 +12,17 @@
     "diagnostic.warningSign": "W",
     "diagnostic.hintSign": "H",
     "diagnostic.displayByAle": true,
+
     "signature.enable": true,
     "signature.target": "float",
+
     "coc.preferences.jumpCommand": "split",
     "coc.preferences.useQuickfixForLocations": false,
+
+    "python.linting.enabled": false,
+    "pyright.organizeimports.provider": "isort",
+    "pyright.disableDiagnostics": true,
+
     "languageserver": {
         "golang": {
             "command": "gopls",
@@ -25,73 +33,6 @@
             "command": "rls",
             "filetypes": ["rust"],
             "rootPatterns": ["Cargo.toml"]
-        },
-        "python": {
-            "command": "python",
-            "cwd": ".",
-            "args": [
-                "-mpyls",
-                "-vv",
-                "--log-file",
-                "/tmp/lsp_python.log"
-            ],
-            "trace.server": "verbose",
-            "filetypes": [
-                "python"
-            ],
-            "rootPatterns": ["setup.py", ".git/", "pyproject.toml"],
-            "disableDiagnostics": true,
-            "settings": {
-                "pyls": {
-                    "enable": true,
-                    "trace": {
-                        "server": "verbose"
-                    },
-                    "commandPath": "",
-                    "plugins": {
-                        "jedi_completion": {
-                            "enabled": true
-                        },
-                        "jedi_hover": {
-                            "enabled": false
-                        },
-                        "jedi_references": {
-                            "enabled": true
-                        },
-                        "jedi_signature_help": {
-                            "enabled": true
-                        },
-                        "jedi_symbols": {
-                            "enabled": true,
-                            "all_scopes": true
-                        },
-                        "mccabe": {
-                            "enabled": false,
-                            "threshold": 15
-                        },
-                        "preload": {
-                            "enabled": true
-                        },
-                        "pycodestyle": {
-                            "enabled": false
-                        },
-                        "pydocstyle": {
-                            "enabled": false,
-                            "match": "(?!test_).*\\.py",
-                            "matchDir": "[^\\.].*"
-                        },
-                        "pyflakes": {
-                            "enabled": false
-                        },
-                        "rope_completion": {
-                            "enabled": false
-                        },
-                        "yapf": {
-                            "enabled": false
-                        }
-                    }
-                }
-            }
         }
     }
 }
