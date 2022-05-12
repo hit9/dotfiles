@@ -29,7 +29,6 @@ Plug 'junegunn/fzf.vim' "Fzf vim plugin.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
 Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
-Plug 'hit9/bitproto', {'rtp': 'editors/vim', 'as': 'bitproto'}
 
 if has('nvim') "NVim
   Plug 'nvim-lua/plenary.nvim'
@@ -57,7 +56,6 @@ filetype plugin indent on
 "Basic
 " set shell=/usr/local/bin/fish  "Vim's shell, defaults to `$SHELL`.
 set noeb "Disable bells.
-set re=1 "Force vim to use a older version of regex engine and it is actually FASTER.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
 set lazyredraw "Same, faster vim.
 set title "Makes terminal title is set by vim.
@@ -113,7 +111,7 @@ set backspace=indent,eol,start "Backspace key, I just don't rely on it.
 "Fold
 set nofoldenable
 set foldmethod=indent
-set foldcolumn=2
+set foldcolumn=0 "number of columns showing the foldlevels on the left sidebar.
 set foldlevel=0
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  "Which commands trigger auto-unfold
 set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
@@ -147,8 +145,8 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display l
 
 "Tab settings for diferent language filetypes (forked from humiaozuzu's dotfile).
 autocmd FileType text setlocal textwidth=79
-autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=90
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=110
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=110
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
