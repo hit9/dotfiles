@@ -25,8 +25,7 @@ Plug 'troydm/zoomwintab.vim' "Window zoom.
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'lukas-reineke/indent-blankline.nvim'
-" Plug 'beauwilliams/focus.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -250,7 +249,7 @@ au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gv :call CocAction
 lua << EOF
   require("indent_blankline").setup {
     show_current_context = true,
-    show_current_context_start = true,
+    show_current_context_start = false,
     show_end_of_line = false,
   }
 EOF
@@ -300,21 +299,6 @@ highlight SignifySignChange ctermfg=yellow ctermbg=blue guifg=#F7DC6F guibg=#287
 highlight SignifySignDelete ctermfg=yellow ctermbg=red guifg=#F7DC6F guibg=#EC7063
 "End Plugin :: mhinz/vim-signify  ----------------------- }}}
 
-"Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
-
-"Highlight trailing whitespaces as red.
-"http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
-highlight ExtraWhitespace ctermbg=red guibg=#EC7063
-match ExtraWhitespace /\s\+$/
-
-"Clean trailing whitespaces on buffer's save.
-"Command :WS is to clean trailing whitespaces.
-:command WS :%s/\s\+$//e
-
-"Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst :WS
-"End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
-
 "Plugin :: junegunn/fzf.vim ------------------------------ {{{
 " ProjectFiles tries to locate files relative to the git root contained in
 " NerdTree, falling back to the current NerdTree dir if not available
@@ -350,6 +334,21 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 "Plugin :: simeji/winresizer ------------------------- {{{
 let g:winresizer_start_key = '<C-E>'
 "End Plugin ::  simeji/winresizer -------------------- }}}
+
+"Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
+
+"Highlight trailing whitespaces as red.
+"http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
+highlight ExtraWhitespace ctermbg=red guibg=#EC7063
+match ExtraWhitespace /\s\+$/
+
+"Clean trailing whitespaces on buffer's save.
+"Command :WS is to clean trailing whitespaces.
+:command WS :%s/\s\+$//e
+
+"Auto clean whitespaces on buffer save for this files.
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst :WS
+"End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
 
 "Custom :: Window Switches -------------------------- {{{
 
