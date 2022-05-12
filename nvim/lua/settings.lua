@@ -1,2 +1,0 @@
--- vim: foldmethod=marker foldenable
--- Lua configs for nvim.
