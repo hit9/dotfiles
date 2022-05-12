@@ -34,6 +34,8 @@ if has('nvim') "NVim
   Plug 'nvim-lua/plenary.nvim'
   Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'beauwilliams/focus.nvim'
 else "Vim
   "Syntax Highlighting
   Plug 'pangloss/vim-javascript'
