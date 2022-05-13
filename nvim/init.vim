@@ -26,7 +26,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
-Plug 'delphinus/auto-cursorline.nvim', { 'branch': 'main' }
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
 
@@ -197,13 +196,6 @@ EOF
 "Plugin :: lightline.vim ----------------------------------------- {{{
 let g:lightline = { 'colorscheme': 'PaperColor' } "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
 "End Plugin :: lightline.vim --------------------------- }}}
-
-"Plugin :: auto-cursorline.nvim ------------------- {{{
-lua << EOF
-  require("auto-cursorline").setup {}
-EOF
-"------------------------------------------ }}}
-
 
 "Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
 
