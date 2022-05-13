@@ -26,9 +26,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
-
+Plug 'delphinus/auto-cursorline.nvim', { 'branch': 'main' }
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
+
 
 "Basic ------------------------------------------------------ {{{
 filetype plugin indent on
@@ -167,17 +168,6 @@ let g:PaperColor_Theme_Options = {
   \           'visual_fg': ['#ffffff', '255']
   \        }
   \      }
-  \   },
-  \   'language': {
-  \     'python': {
-  \       'highlight_builtins' : 1
-  \     },
-  \     'cpp': {
-  \       'highlight_standard_library': 1
-  \     },
-  \     'c': {
-  \       'highlight_builtins' : 1
-  \     }
   \   }
   \ }
 
@@ -185,14 +175,15 @@ colorscheme PaperColor
 "End Basic :: Color :: PaperColor -------- }}}
 
 "CursorLine/CursorColumn, should be applied after colorscheme loaded.
-highlight CursorLine term=none cterm=none ctermbg=238 ctermfg=none
-highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none
+highlight CursorLine term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
+highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
 
 "Transparent background
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 "End Basic :: Color ---------------------------- }}}
+
 "End Basic --------------------------------------------- }}}
 
 "Plugin :: treesitter ----------------------------------------- {{{
@@ -204,11 +195,15 @@ EOF
 "End Plugin :: treesitter --------------------------------------- }}}
 
 "Plugin :: lightline.vim ----------------------------------------- {{{
-"https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
-let g:lightline = {
-  \ 'colorscheme': 'PaperColor',
-  \ }
+let g:lightline = { 'colorscheme': 'PaperColor' } "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
 "End Plugin :: lightline.vim --------------------------- }}}
+
+"Plugin :: auto-cursorline.nvim ------------------- {{{
+lua << EOF
+  require("auto-cursorline").setup {}
+EOF
+"------------------------------------------ }}}
+
 
 "Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
 
