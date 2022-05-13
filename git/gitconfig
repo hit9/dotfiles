@@ -25,7 +25,7 @@
     cmd = vimdiff -b \"$LOCAL\" \"$REMOTE\"
 
 [core]
-    editor = vim
+    editor = ~/.bin/nvim-osx64/bin/nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
     excludesfile = ~/.gitignore
 
