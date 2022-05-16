@@ -20,7 +20,8 @@
     "coc.preferences.useQuickfixForLocations": false,
 
     "python.linting.enabled": false,
-    "pyright.organizeimports.provider": "isort",
+    "python.formatting.provider": "none",
+    "pyright.organizeimports.provider": "none",
     "pyright.disableDiagnostics": true,
 
     "languageserver": {
