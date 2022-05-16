@@ -17,6 +17,7 @@ Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
 Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
 Plug 'dense-analysis/ale' "All-in-oine asynchronous linting/fixing for Vim.
+Plug 'Konfekt/FastFold' "Speed up Vim by updating folds only when called-for.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
 Plug 'junegunn/fzf.vim' "Fzf vim plugin.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
@@ -243,10 +244,13 @@ EOF
 " ---------------------------------------------------- }}}
 
 "Plugin :: w0rp/ale  ------------------------------------- {{{
+
+"Ale with foldmethod != indent, check:
+"https://github.com/dense-analysis/ale/issues/1829#issuecomment-475589289
+
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-  \   'javascript': ['standard'],
   \   'python': ['black', 'mypy'],
   \   'c': ['clang-format'],
   \   'cpp': ['clang-format'],
@@ -255,7 +259,6 @@ let g:ale_linters = {
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
-  \   'javascript': ['standard'],
   \   'python': ['black', "isort"],
   \   'c': ['clang-format'],
   \   'cpp': ['clang-format'],
