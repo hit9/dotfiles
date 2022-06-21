@@ -259,7 +259,7 @@ let g:ale_linters = {
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
-  \   'python': ['black', "isort"],
+  \   'python': ['black', 'isort'],
   \   'c': ['clang-format'],
   \   'cpp': ['clang-format'],
   \   'go': ['gofmt'],
@@ -267,7 +267,7 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
-let g:ale_python_isort_options = '--profile black'
+let g:ale_python_isort_options = '--profile black --ca'
 let g:ale_rust_rls_toolchain = 'nightly'
 "End Plugin :: w0rp/ale ----------------------------------- }}}
 
