@@ -138,3 +138,4 @@ key_bindings:
   # https://github.com/alacritty/alacritty/issues/93
   - { key: F,  mods: Alt,           chars: "\x1bf"                       }
   - { key: B,  mods: Alt,           chars: "\x1bb"                       }
+  - { key: D,  mods: Alt,           chars: "\x1bd"                       }
