@@ -25,6 +25,7 @@ Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
+Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
 call plug#end()
