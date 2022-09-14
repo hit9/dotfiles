@@ -24,7 +24,7 @@ Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn cont
 Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
 Plug 'nvim-lua/plenary.nvim'
-Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
+" Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
 Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
@@ -183,6 +183,7 @@ highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#4444
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
+
 "End Basic :: Color ---------------------------- }}}
 
 "End Basic --------------------------------------------- }}}
