@@ -11,7 +11,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
-Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
 Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
@@ -28,6 +27,15 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
+
+"Completion
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
+Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
+Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
+
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
 
@@ -229,12 +237,6 @@ omap <Leader><Leader>  <Plug>Commentary
 nmap <Leader><Leader>  <Plug>CommentaryLine
 " End Plugin :: tpope/vim-commentary ---------------------------------- }}}
 
-"Plugin :: neoclide/coc.nvim ------------------------------------ {{{
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gd <Plug>(coc-definition)
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gD <Plug>(coc-implementation)
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
-" End Plugin :: neoclide/coc.nvim -------------------------------- }}}
-
 "Plugin :: lukas-reineke/indent-blankline.nvim -------------------- {{{
 lua << EOF
   require("indent_blankline").setup {
@@ -272,6 +274,73 @@ let g:python_mypy_show_notes = 1
 let g:ale_python_isort_options = '--profile black --ca'
 let g:ale_rust_rls_toolchain = 'nightly'
 "End Plugin :: w0rp/ale ----------------------------------- }}}
+
+"Plugin hrsh7th/nvim-cmp ------------------ {{{
+
+au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+
+lua << EOF
+  local cmp = require'cmp'
+
+  cmp.setup({
+
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      end,
+    },
+
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' },
+      { name = 'buffer' },
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+  })
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['pyright'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig')['rls'].setup {
+    capabilities = capabilities
+  }
+EOF
+"}}}
+
+"Plugin neovim/nvim-lspconfig ------------ {{
+lua << EOF
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    float = { border = "none" },
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
+  })
+EOF
+
+"Display diagnostic on cursor hover.
+au CursorHold * lua vim.diagnostic.open_float(0,{scope = "cursor"})
+"}}
 
 "Plugin :: mg979/vim-visual-multi ------------------------- {{{
 let g:VM_theme = 'iceblue' "https://github.com/mg979/vim-visual-multi/wiki/Highlight-colors
