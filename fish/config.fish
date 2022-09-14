@@ -78,6 +78,21 @@ function fish_user_key_bindings
   bind \cx edit_command_buffer  # Ctrl-X
 end
 
+# fish dotenv function
+function dotenv --description 'Load environment variables from .env file'
+  set -l envfile ".env"
+
+  if [ (count $argv) -gt 0 ]
+    set envfile $argv[1]
+  end
+
+  if test -e $envfile
+    for line in (cat $envfile | grep -e '[^[:space:]]' | grep -v '^#')
+        set -xg (echo $line | cut -d = -f 1) (echo $line | cut -d = -f 2-)
+    end
+  end
+end
+
 # bat https://github.com/sharkdp/bat
 set -x BAT_THEME zenburn
 
@@ -88,7 +103,7 @@ alias gc "git commit -ev"
 alias python python3
 alias pip pip3
 alias nvim ~/.bin/nvim-osx64/bin/nvim
-alias vim ~/.bin/nvim-osx64/bin/nvim
+# alias vim ~/.bin/nvim-osx64/bin/nvim
 alias ls exa
 alias ack ag
 alias sed gsed
