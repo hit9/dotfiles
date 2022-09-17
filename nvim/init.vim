@@ -35,6 +35,7 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
+Plug 'seblj/nvim-echo-diagnostics'
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -326,7 +327,9 @@ lua << EOF
 EOF
 "}}}
 
-"Plugin neovim/nvim-lspconfig ------------ {{
+"Plugin seblj/nvim-echo-diagnostics ------------ {{
+
+"Display diagnostic on via echo messaage instead of virtual_text
 lua << EOF
   vim.diagnostic.config({
     virtual_text = false,
@@ -336,10 +339,16 @@ lua << EOF
     update_in_insert = false,
     severity_sort = false,
   })
+
+  require("echo-diagnostics").setup{
+      show_diagnostic_number = true,
+      show_diagnostic_source = false,
+  }
+
 EOF
 
-"Display diagnostic on cursor hover.
-au CursorHold * lua vim.diagnostic.open_float(0,{scope = "cursor"})
+autocmd CursorHold * lua require('echo-diagnostics').echo_line_diagnostic()
+
 "}}
 
 "Plugin :: mg979/vim-visual-multi ------------------------- {{{
