@@ -147,6 +147,10 @@ autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
+"Terminal
+"Using ESC to go back to normal.
+autocmd TermOpen * tnoremap <Esc> <C-\><C-n>
+
 "Basic :: Color -------------------------------- {{{
 
 "Normal and Visual mode color cosutomization.
@@ -395,8 +399,14 @@ let g:winresizer_start_key = '<C-E>'
 
 "Highlight trailing whitespaces as red.
 "http://vim.wikia.com/wiki/Highlight_unwanted_spaces.
-highlight ExtraWhitespace ctermbg=red guibg=#EC7063
-match ExtraWhitespace /\s\+$/
+
+function! HighlightExtraWhitespace()
+  highlight ExtraWhitespace ctermbg=red guibg=#EC7063
+  match ExtraWhitespace /\s\+$/
+endfunction
+
+autocmd BufWinEnter * if &buftype != 'terminal' | call HighlightExtraWhitespace() | endif
+autocmd TermOpen * hi clear ExtraWhitespace
 
 "Clean trailing whitespaces on buffer's save.
 "Command :WS is to clean trailing whitespaces.
@@ -422,4 +432,12 @@ nmap z0 :set foldlevel=0<CR>
 nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
+"--------------------------------------------------- }}}
+
+"Custom  `git blame` via tig -------------------------- {{{
+function! Blame()
+  :terminal tig blame %
+  :startinsert
+endfunction
+:command Blame :call Blame()
 "--------------------------------------------------- }}}
