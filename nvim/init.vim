@@ -26,7 +26,6 @@ Plug 'nvim-lua/plenary.nvim'
 " Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
 Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
 
 "Completion
 Plug 'neovim/nvim-lspconfig'
@@ -234,16 +233,6 @@ nmap <Leader><Leader>  <Plug>Commentary
 omap <Leader><Leader>  <Plug>Commentary
 nmap <Leader><Leader>  <Plug>CommentaryLine
 " End Plugin :: tpope/vim-commentary ---------------------------------- }}}
-
-"Plugin :: lukas-reineke/indent-blankline.nvim -------------------- {{{
-" lua << EOF
-"   require("indent_blankline").setup {
-"     show_current_context = true,
-"     show_current_context_start = false,
-"     show_end_of_line = false,
-"   }
-" EOF
-" ---------------------------------------------------- }}}
 
 "Plugin :: w0rp/ale  ------------------------------------- {{{
 
