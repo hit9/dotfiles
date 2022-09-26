@@ -108,8 +108,8 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  "Which
 set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
 
 "Enable folding for programming purpose, and use treesitter folding.
-autocmd FileType c,cpp,css,go,python,javascript,protobuf,ruby,rust,typescript
-      \ setlocal foldenable foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+" autocmd FileType c,cpp,css,go,python,javascript,protobuf,ruby,rust,typescript
+"       \ setlocal foldenable foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 
 "Copy/Paste
 set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
