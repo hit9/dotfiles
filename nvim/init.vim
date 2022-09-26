@@ -26,7 +26,7 @@ Plug 'nvim-lua/plenary.nvim'
 " Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
 Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
+" Plug 'lukas-reineke/indent-blankline.nvim' "Indentation lines.
 
 "Completion
 Plug 'neovim/nvim-lspconfig'
@@ -136,7 +136,7 @@ set softtabstop=4 "Number of spaces that a <Tab> counts for while editing. :set 
 set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
 
 set list "Show tabs via listchars below, and display end sign after endo fline.
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
+set listchars=space:·,tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
 
 "Tab settings for diferent language filetypes (forked from humiaozuzu's dotfile).
 autocmd FileType text setlocal textwidth=79
@@ -147,9 +147,6 @@ autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-
-"NVim: Auto enter insert on :terminal mode. :help :terminal
-autocmd TermOpen * startinsert
 
 "Basic :: Color -------------------------------- {{{
 
@@ -239,13 +236,13 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 " End Plugin :: tpope/vim-commentary ---------------------------------- }}}
 
 "Plugin :: lukas-reineke/indent-blankline.nvim -------------------- {{{
-lua << EOF
-  require("indent_blankline").setup {
-    show_current_context = true,
-    show_current_context_start = false,
-    show_end_of_line = false,
-  }
-EOF
+" lua << EOF
+"   require("indent_blankline").setup {
+"     show_current_context = true,
+"     show_current_context_start = false,
+"     show_end_of_line = false,
+"   }
+" EOF
 " ---------------------------------------------------- }}}
 
 "Plugin :: w0rp/ale  ------------------------------------- {{{
@@ -417,7 +414,7 @@ match ExtraWhitespace /\s\+$/
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst :WS
+autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql :WS
 "End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
 
 "Custom :: Window Switches -------------------------- {{{
@@ -437,7 +434,3 @@ nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
 "--------------------------------------------------- }}}
-
-"Custom :: git / tig ------------------------------- {{{
-command! Blame  :terminal tig blame %
-" -------------------------------------------------- }}}
