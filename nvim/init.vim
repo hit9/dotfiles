@@ -17,6 +17,7 @@ Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
 Plug 'dense-analysis/ale' "All-in-one asynchronous linting/fixing for Vim.
 Plug 'Konfekt/FastFold' "Speed up Vim by updating folds only when called-for.
+Plug 'wellle/targets.vim' "Vim plugin that provides additional text objects
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
 Plug 'junegunn/fzf.vim' "Fzf vim plugin.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
