@@ -23,6 +23,7 @@
     "python.formatting.provider": "none",
     "pyright.organizeimports.provider": "none",
     "pyright.disableDiagnostics": true,
+    "pyright.inlayHints.enable": false,
 
     "languageserver": {
         "golang": {
