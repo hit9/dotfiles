@@ -317,6 +317,9 @@ lua << EOF
   require('lspconfig')['rls'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['clangd'].setup {
+    capabilities = capabilities
+  }
 EOF
 "}}}
 
