@@ -17,7 +17,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
-Plug 'Yggdroot/indentLine' "Visualize indent levels.
 Plug 'neoclide/coc.nvim', { 'branch': 'release' } "All-in-one code completion plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
@@ -29,25 +28,16 @@ Plug 'junegunn/fzf.vim' "Fzf vim plugin.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
 Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
-
-if has('nvim') "NVim
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'sindrets/diffview.nvim' "Vimdiff with a files navigator.
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'lukas-reineke/indent-blankline.nvim'
-  Plug 'beauwilliams/focus.nvim'
-else "Vim
-  "Syntax Highlighting
-  Plug 'pangloss/vim-javascript'
-  Plug 'vim-python/python-syntax'
-  Plug 'octol/vim-cpp-enhanced-highlight'
-  Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
-  Plug 'rust-lang/rust.vim'
-  Plug 'gabrielelana/vim-markdown'
-  Plug 'elzr/vim-json'
-  Plug 'cespare/vim-toml'
-  Plug 'stephpy/vim-yaml'
-endif
+"Syntax Highlighting
+Plug 'pangloss/vim-javascript'
+Plug 'vim-python/python-syntax'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'hit9/vim-go-syntax' "Fork from vim-go for syntax highlighting only.
+Plug 'rust-lang/rust.vim'
+Plug 'gabrielelana/vim-markdown'
+Plug 'elzr/vim-json'
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -143,7 +133,7 @@ set softtabstop=4 "Number of spaces that a <Tab> counts for while editing. :set 
 set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
 
 set list "Show tabs via listchars below, and display end sign after endo fline.
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
+set listchars=space:·,tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
 
 "Tab settings for diferent language filetypes (forked from humiaozuzu's dotfile).
 autocmd FileType text setlocal textwidth=79
@@ -154,11 +144,6 @@ autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
-
-"NVim: Auto enter insert on :terminal mode. :help :terminal
-if has('nvim')
-  autocmd TermOpen * startinsert
-endif
 
 "Basic :: Color -------------------------------- {{{
 
@@ -253,8 +238,18 @@ nmap <Leader><Leader>  <Plug>CommentaryLine
 
 "Plugin :: neoclide/coc.nvim ------------------------------------ {{{
 au FileType go,python,c,cpp,javascript,rust nmap <silent> gd <Plug>(coc-definition)
-au FileType go,python,c,cpp,javascript,rust nmap <silent> gD <Plug>(coc-implementation)
+au FileType go,python,c,cpp,javascript,rust nmap <silent> gr <Plug>(coc-references)
+au FileType go,python,c,cpp,javascript,rust nmap <silent> gD <Plug>(coc-type-definition)
+au FileType go,python,c,cpp,javascript,rust nmap <silent>  K :call ShowDocumentation()<CR>
 au FileType go,python,c,cpp,javascript,rust nmap <silent> gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 " End Plugin :: neoclide/coc.nvim -------------------------------- }}}
 
 "Plugin :: Yggdroot/indentLine -------------------- {{{
@@ -403,9 +398,5 @@ nmap z3 :set foldlevel=3<CR>
 "--------------------------------------------------- }}}
 
 "Custom :: git / tig ------------------------------- {{{
-if has('nvim')
-  command! Blame  :terminal tig blame %
-else
-  command! Blame  :!tig blame %
-endif
+command! Blame  :!tig blame %
 " -------------------------------------------------- }}}
