@@ -10,7 +10,7 @@ window:
     x: 2
     y: 2
   # Window decorations
-  decorations: full  # full/none/buttonless/transparent
+  decorations: none  # full/none/buttonless/transparent
   startup_mode: Maximized # Maximized/Windowed/Fullscreen
 
 scrolling:
