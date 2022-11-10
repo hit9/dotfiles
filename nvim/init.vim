@@ -260,11 +260,13 @@ let g:ale_fixers = {
   \   'cpp': ['clang-format'],
   \   'go': ['gofmt'],
   \   'rust': ['rustfmt'],
+  \   'proto': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
 let g:ale_python_isort_options = '--profile black --ca'
 let g:ale_rust_rls_toolchain = 'nightly'
+let g:c_clangformat_use_local_file = 1
 "End Plugin :: w0rp/ale ----------------------------------- }}}
 
 "Plugin hrsh7th/nvim-cmp ------------------ {{{
