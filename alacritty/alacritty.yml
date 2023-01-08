@@ -1,6 +1,9 @@
 # Reference: https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
 window:
+  dynamic_title: true
+  opacity: 1.0
+
   # Window dimensions (changes require restart)
   dimensions:
     columns: 250
@@ -10,7 +13,7 @@ window:
     x: 2
     y: 2
   # Window decorations
-  decorations: none  # full/none/buttonless/transparent
+  decorations: buttonless  # full/none/buttonless/transparent
   startup_mode: Maximized # Maximized/Windowed/Fullscreen
 
 scrolling:
@@ -40,8 +43,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-
-  use_thin_strokes: true # better for retina macos displays
 
 
 debug:
@@ -91,9 +92,6 @@ bell:
   animation: EaseOutExpo
   duration: 0  # disable visual bell
 
-# Background opacity
-background_opacity: 1.0
-
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
@@ -107,8 +105,6 @@ selection:
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
-
-window.dynamic_title: true
 
 # Cursor style
 cursor:
