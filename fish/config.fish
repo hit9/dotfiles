@@ -25,9 +25,10 @@ set -gx fish_user_paths \
         $GOPATH/bin \
         $HOME/.cargo/bin \
         $N_PREFIX/bin \
-        /usr/local/lib/ruby/gems/3.1.0/bin \
+        /usr/local/lib/ruby/gems/3.4.2/bin \
         /usr/local/opt/ruby/bin \
         /Applications/Postgres.app/Contents/Versions/latest/bin/Applications/Postgres.app/Contents/Versions/latest/bin \
+        /usr/local/Cellar/clang-format/14.0.6/bin \
         /usr/local/opt/llvm/bin \
         /usr/local/sbin \
         /usr/local/bin \

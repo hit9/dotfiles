@@ -12,7 +12,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plu
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
-Plug 'jiangmiao/auto-pairs' "Auto close pairs ((),{},[],'' etc.).
+Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
 Plug 'dense-analysis/ale' "All-in-one asynchronous linting/fixing for Vim.
@@ -27,6 +27,7 @@ Plug 'nvim-lua/plenary.nvim'
 " Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
 Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'dohsimpson/vim-macroeditor'
 
 "Completion
 Plug 'neovim/nvim-lspconfig'
@@ -36,6 +37,8 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
+
+Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -198,6 +201,12 @@ hi SignColumn ctermbg=NONE guibg=NONE
 
 "End Basic --------------------------------------------- }}}
 
+"Plugin :: windwp/nvim-autopairs ----------------------------------------- {{{
+lua << EOF
+  require'nvim-autopairs'.setup {}
+EOF
+"End Plug :: windwp/nvim-autopairs  ------ }}}
+
 "Plugin :: treesitter ----------------------------------------- {{{
 lua << EOF
   require'nvim-treesitter.configs'.setup {
@@ -307,7 +316,7 @@ lua << EOF
   })
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['gopls'].setup {
@@ -421,7 +430,7 @@ autocmd TermOpen * hi clear ExtraWhitespace
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql :WS
+autocmd BufWrite *.c,*.cc,*.cpp,*.cxx,*.hxx,*.hh,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql :WS
 "End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
 
 "Custom :: Window Switches -------------------------- {{{
