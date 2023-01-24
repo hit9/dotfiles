@@ -1,13 +1,9 @@
 # Reference: https://github.com/alacritty/alacritty/blob/master/alacritty.yml
+# Path: ~/.config/alacritty/alacritty.yml
 
 window:
   dynamic_title: true
   opacity: 1.0
-
-  # Window dimensions (changes require restart)
-  dimensions:
-    columns: 250
-    lines: 200
   # Window padding (changes require restart)
   padding:
     x: 2

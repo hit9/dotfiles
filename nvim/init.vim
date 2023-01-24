@@ -4,6 +4,8 @@
 "Chao Wang's personal vim configurations. https://github.com/hit9/dotfiles
 "Requires: NeoVim >= 0.7, not support Vim.
 
+" Filepath: ~/.config/nvim/init.vim
+
 "Plugins ---------------------------------------------- {{{
 call plug#begin('~/.vim/plugged')
 
@@ -24,8 +26,7 @@ Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn cont
 Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
-Plug 'hit9/diffview.nvim', { 'branch': 'compat-zoomwintab' } "Fork of sindrets/diffview.nvim to avoid compatiable issue with zoomwintab
+Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'dohsimpson/vim-macroeditor'
 
