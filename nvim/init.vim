@@ -326,10 +326,10 @@ lua << EOF
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['rls'].setup {
+  require('lspconfig')['clangd'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['clangd'].setup {
+  require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
   }
 EOF
