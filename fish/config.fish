@@ -1,6 +1,6 @@
 # https://github.com/pure-fish/pure
 
-set pure_symbol_prompt "=>"
+set pure_symbol_prompt "\$"
 set pure_color_virtualenv "magenta"
 
 # Basic
