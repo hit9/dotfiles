@@ -14,3 +14,4 @@ Some tweaks:
 Css tweaks for [tabcenter-reborn](https://addons.mozilla.org/en-US/firefox/addon/tabcenter-reborn/):
 
 * https://framagit.org/ariasuni/tabcenter-reborn/-/wikis/home
+* https://github.com/ranmaru22/firefox-vertical-tabs
