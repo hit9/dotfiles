@@ -1,0 +1,18 @@
+/* Hide the horizontal tab strip */
+#TabsToolbar
+{
+  visibility: collapse;
+}
+
+#tabbrowser-tabs {
+  visibility: collapse;
+}
+
+/* Hide sidebar header */
+#sidebar-box #sidebar-header {
+  visibility: collapse;
+}
+
+#sidebar-box {
+  max-width: 136px !important;
+}
