@@ -24,6 +24,7 @@ set -gx fish_user_paths \
         $HOME/.pyenv/shims \
         $GOPATH/bin \
         $HOME/.cargo/bin \
+        $HOME/.dotnet/tools \
         $N_PREFIX/bin \
         /usr/local/lib/ruby/gems/3.4.2/bin \
         /usr/local/opt/ruby/bin \

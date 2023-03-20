@@ -15,7 +15,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin 
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'windwp/nvim-autopairs'
-Plug 'tpope/vim-commentary' "Quick (un)comment line(s), shortcut key `\\`.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
 Plug 'dense-analysis/ale' "All-in-one asynchronous linting/fixing for Vim.
 Plug 'Konfekt/FastFold' "Speed up Vim by updating folds only when called-for.
@@ -38,6 +37,7 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
+Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
 
@@ -241,14 +241,6 @@ let NERDTreeShowHidden=1
 :command NT :NERDTreeToggle
 " End Plugin :: scrooloose/nerdtree ----------------------------------------- }}}
 
-"Plugin :: tpope/vim-commentary --------------------------------------- {{{
-"Type `\\` to toggle comments for current line or selected blocks.
-xmap <Leader><Leader>  <Plug>Commentary
-nmap <Leader><Leader>  <Plug>Commentary
-omap <Leader><Leader>  <Plug>Commentary
-nmap <Leader><Leader>  <Plug>CommentaryLine
-" End Plugin :: tpope/vim-commentary ---------------------------------- }}}
-
 "Plugin :: w0rp/ale  ------------------------------------- {{{
 
 "Ale with foldmethod != indent, check:
@@ -281,12 +273,12 @@ let g:c_clangformat_use_local_file = 1
 
 "Plugin hrsh7th/nvim-cmp ------------------ {{{
 
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> K :lua vim.lsp.buf.hover()<CR>
 
 lua << EOF
   local cmp = require'cmp'
@@ -328,6 +320,12 @@ lua << EOF
   }
   require('lspconfig')['clangd'].setup {
     capabilities = capabilities
+  }
+  require('lspconfig')['csharp_ls'].setup {
+    capabilities = capabilities,
+    handlers = {
+      ["textDocument/definition"] = require('csharpls_extended').handler,
+    }
   }
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
@@ -388,6 +386,15 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 nmap <c-p> :ProjectFiles<CR>
 nmap <c-b> :Buffers<CR>
+
+"Search 'foo bar' in ~/projects
+":Ag "foo bar" ~/projects
+"Start in fullscreen mode
+":Ag! "foo bar"
+command! -bang -nargs=+ -complete=file Ag call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+"Search pattern in git root directory.
+command! -bang -nargs=+ AgGitFiles execute 'Ag!' <q-args> s:find_git_root()
 
 " let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal'  }  }
 " Customize fzf colors to match your color scheme
