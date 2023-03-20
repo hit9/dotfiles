@@ -28,6 +28,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'dohsimpson/vim-macroeditor'
+Plug 'tpope/vim-fugitive'
 
 "Completion
 Plug 'neovim/nvim-lspconfig'
@@ -40,6 +41,9 @@ Plug 'seblj/nvim-echo-diagnostics'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
+
+"Cpp
+Plug 'gauteh/vim-cppman'
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -278,7 +282,8 @@ au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gD :split<cr> :
 au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
 au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
 au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+"for cpp, shift+K is reserved for https://github.com/gauteh/vim-cppman
+au FileType go,python,c,javascript,rust,lua,cs nmap <silent> K :lua vim.lsp.buf.hover()<CR>
 
 lua << EOF
   local cmp = require'cmp'
