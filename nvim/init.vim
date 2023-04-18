@@ -258,6 +258,8 @@ let g:ale_linters = {
   \   'cpp': ['clang-format'],
   \   'rust': ['cargo', 'rls'],
   \   'go': ['gopls'],
+  \   'swift': ['apple-swift-format'],
+  \   'dart': ['dart-format'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
@@ -267,6 +269,8 @@ let g:ale_fixers = {
   \   'go': ['gofmt'],
   \   'rust': ['rustfmt'],
   \   'proto': ['clang-format'],
+  \   'swift': ['apple-swift-format'],
+  \   'dart': ['dart-format'],
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
@@ -277,13 +281,13 @@ let g:c_clangformat_use_local_file = 1
 
 "Plugin hrsh7th/nvim-cmp ------------------ {{{
 
-au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
-au FileType go,python,c,cpp,javascript,rust,lua,cs nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
 "for cpp, shift+K is reserved for https://github.com/gauteh/vim-cppman
-au FileType go,python,c,javascript,rust,lua,cs nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+au FileType go,python,c,javascript,rust,lua,cs,swift,dart nmap <silent> K :lua vim.lsp.buf.hover()<CR>
 
 lua << EOF
   local cmp = require'cmp'
@@ -324,6 +328,12 @@ lua << EOF
     capabilities = capabilities
   }
   require('lspconfig')['clangd'].setup {
+    capabilities = capabilities
+  }
+  require('lspconfig').sourcekit.setup { -- swift
+    capabilities = capabilities
+  }
+  require('lspconfig').dartls.setup{
     capabilities = capabilities
   }
   require('lspconfig')['csharp_ls'].setup {
@@ -443,7 +453,7 @@ autocmd TermOpen * hi clear ExtraWhitespace
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.cc,*.cpp,*.cxx,*.hxx,*.hh,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql :WS
+autocmd BufWrite *.c,*.cc,*.cpp,*.cxx,*.hxx,*.hh,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql,*.swift,*.dart :WS
 "End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
 
 "Custom :: Window Switches -------------------------- {{{
