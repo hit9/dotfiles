@@ -291,6 +291,7 @@ au FileType go,python,c,javascript,rust,lua,cs,swift,dart nmap <silent> K :lua v
 
 lua << EOF
   local cmp = require'cmp'
+  local nvim_lsp = require'lspconfig'
 
   cmp.setup({
 
@@ -320,6 +321,14 @@ lua << EOF
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+  -- Make a root_dir function, searching some files at first and then fallback to cwd.
+  function make_root_dir_function(...)
+    local patterns = {...}
+    return function(fname)
+      return nvim_lsp.util.root_pattern(unpack(patterns))(fname) or vim.fn.getcwd()
+    end
+  end
+
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['gopls'].setup {
     capabilities = capabilities
@@ -334,7 +343,8 @@ lua << EOF
     capabilities = capabilities
   }
   require('lspconfig').dartls.setup{
-    capabilities = capabilities
+    capabilities = capabilities,
+    root_dir = make_root_dir_function('pubspec.yaml', '.git')
   }
   require('lspconfig')['csharp_ls'].setup {
     capabilities = capabilities,
