@@ -7,7 +7,7 @@
 " Filepath: ~/.config/nvim/init.vim
 
 "Plugins ---------------------------------------------- {{{
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugs')
 
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
@@ -177,6 +177,15 @@ endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
+"CursorLine/CursorColumn, should be applied after colorscheme loaded.
+highlight CursorLine term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
+highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
+
+"Transparent background
+hi Normal     ctermbg=NONE guibg=NONE
+hi LineNr     ctermbg=NONE guibg=NONE
+hi SignColumn ctermbg=NONE guibg=NONE
+
 "Basic :: Color :: PaperColor ------- {{{
 let g:PaperColor_Theme_Options = {
   \   'theme': {
@@ -191,16 +200,8 @@ let g:PaperColor_Theme_Options = {
   \ }
 
 colorscheme PaperColor
+
 "End Basic :: Color :: PaperColor -------- }}}
-
-"CursorLine/CursorColumn, should be applied after colorscheme loaded.
-highlight CursorLine term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
-highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
-
-"Transparent background
-hi Normal     ctermbg=NONE guibg=NONE
-hi LineNr     ctermbg=NONE guibg=NONE
-hi SignColumn ctermbg=NONE guibg=NONE
 
 "End Basic :: Color ---------------------------- }}}
 
@@ -470,7 +471,11 @@ autocmd TermOpen * hi clear ExtraWhitespace
 :command WS :%s/\s\+$//e
 
 "Auto clean whitespaces on buffer save for this files.
-autocmd BufWrite *.c,*.cc,*.cpp,*.cxx,*.hxx,*.hh,*.h,*.go,*.py,*.js,*.html,*.md,.vimrc,*.ini,*.toml,*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql,*.swift,*.dart :WS
+autocmd BufWrite
+      \ *.c,*.cc,*.cpp,*.cxx,*.hxx,*.hh,*.h,*.go,*.py,*.js,
+      \ *.html,*.md,.vimrc,*.ini,*.toml,
+      \ *.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql,*.swift,*.dart
+      \ :WS
 "End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
 
 "Custom :: Window Switches -------------------------- {{{
