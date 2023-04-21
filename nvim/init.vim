@@ -473,8 +473,8 @@ autocmd TermOpen * hi clear ExtraWhitespace
 "Auto clean whitespaces on buffer save for this files.
 autocmd BufWrite
       \ *.c,*.cc,*.cpp,*.cxx,*.hxx,*.hh,*.h,*.go,*.py,*.js,
-      \ *.html,*.md,.vimrc,*.ini,*.toml,
-      \ *.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql,*.swift,*.dart
+      \*.html,*.md,.vimrc,*.ini,*.toml,*.vim,
+      \*.markdown,*.yaml,*.proto,*.bitproto,*.rst,*.sql,*.swift,*.dart
       \ :WS
 "End  Custom :: WhiteSpaces Cleaning ---------------------------------- }}}
 
