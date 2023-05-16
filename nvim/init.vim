@@ -261,6 +261,8 @@ let g:ale_linters = {
   \   'go': ['gopls'],
   \   'swift': ['apple-swift-format'],
   \   'dart': ['dart-format'],
+  \   'javascript': ['eslint'],
+  \   'typescript': ['eslint'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
@@ -272,30 +274,36 @@ let g:ale_fixers = {
   \   'proto': ['clang-format'],
   \   'swift': ['apple-swift-format'],
   \   'dart': ['dart-format'],
+  \   'javascript': ['eslint'],
+  \   'typescript': ['eslint'],
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
 let g:ale_python_isort_options = '--profile black --ca'
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:c_clangformat_use_local_file = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_typescript_eslint_executable = 'eslint_d'
+let g:ale_typescript_eslint_use_global = 1
 "End Plugin :: w0rp/ale ----------------------------------- }}}
 
 "Plugin hrsh7th/nvim-cmp ------------------ {{{
 
 "Split a horizontal window and Go to definition
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
 "Split a vertical window and Go to definition
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
 "Split a horizontal window and Go to declaration (many lsp servers don't implement this, check gd instead)
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
 "Split a window and show all references to this symbol under the cursor in the quickfix window
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
 "Split a window and show all implementations of this symbol under the cursor in the quickfix window
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> gi :split<cr> :lua vim.lsp.buf.implementation()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gi :split<cr> :lua vim.lsp.buf.implementation()<CR>
 "Show the documentation of the signature help message of this symbol under the cursor.
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
 "for cpp, shift+K is reserved for https://github.com/gauteh/vim-cppman
-au FileType go,python,c,javascript,rust,lua,cs,swift,dart nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+au FileType go,python,c,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> K :lua vim.lsp.buf.hover()<CR>
 
 lua << EOF
   local cmp = require'cmp'
@@ -360,6 +368,7 @@ lua << EOF
       ["textDocument/definition"] = require('csharpls_extended').handler,
     }
   }
+  require('lspconfig')['tsserver'].setup {}
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
   }
