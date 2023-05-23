@@ -504,11 +504,3 @@ nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
 "--------------------------------------------------- }}}
-
-"Custom  `git blame` via tig -------------------------- {{{
-function! Blame()
-  :terminal tig blame %
-  :startinsert
-endfunction
-:command Blame :call Blame()
-"--------------------------------------------------- }}}
