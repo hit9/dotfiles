@@ -11,9 +11,9 @@ set -x LANG en_US.UTF-8
 set -x LC_ALL en_US.UTF-8
 
 # Go
-set -x GOPATH $HOME/gopark
+set -x GOPATH $HOME/dev/gopark
 set -x GO111MODULE on
-set -x GOPRIVATE "github.com/yogorobot/*"
+# set -x GOPRIVATE "github.com/yogorobot/*"
 
 # https://github.com/tj/n
 set -x N_PREFIX $HOME/.n
@@ -26,9 +26,9 @@ set -gx fish_user_paths \
         $HOME/.cargo/bin \
         $HOME/.dotnet/tools \
         $N_PREFIX/bin \
+        $HOME/src/flutter/bin \
         /usr/local/lib/ruby/gems/3.4.2/bin \
         /usr/local/opt/ruby/bin \
-        /Applications/Postgres.app/Contents/Versions/latest/bin/Applications/Postgres.app/Contents/Versions/latest/bin \
         /usr/local/Cellar/clang-format/14.0.6/bin \
         /usr/local/opt/llvm/bin \
         /usr/local/sbin \
@@ -105,9 +105,6 @@ alias gc "git commit -ev"
 alias python python3
 alias pip pip3
 alias nvim ~/.bin/nvim-osx64/bin/nvim
-# alias vim ~/.bin/nvim-osx64/bin/nvim
 alias ls exa
 alias ack ag
 alias sed gsed
-# alias cat bat
-# alias grep ggrep

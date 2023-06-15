@@ -10,8 +10,8 @@
 call plug#begin('~/.config/nvim/plugs')
 
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin.
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags.
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin, lazy load on comand NERDTreeToggle
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags, lazy load on comand NERDTreeToggle
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'windwp/nvim-autopairs'
@@ -257,7 +257,7 @@ let g:ale_linters = {
   \   'python': ['black', 'mypy'],
   \   'c': ['clang-format'],
   \   'cpp': ['clang-format'],
-  \   'rust': ['cargo', 'rls'],
+  \   'rust': ['analyzer'],
   \   'go': ['gopls'],
   \   'swift': ['apple-swift-format'],
   \   'dart': ['dart-format'],
