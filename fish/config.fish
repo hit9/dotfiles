@@ -18,6 +18,9 @@ set -x GO111MODULE on
 # https://github.com/tj/n
 set -x N_PREFIX $HOME/.n
 
+# vcpkg
+set -x VCPKG_ROOT $HOME/dev/vcpkg
+
 # $PATH
 set -e fish_user_paths
 set -gx fish_user_paths \
@@ -26,7 +29,8 @@ set -gx fish_user_paths \
         $HOME/.cargo/bin \
         $HOME/.dotnet/tools \
         $N_PREFIX/bin \
-        $HOME/src/flutter/bin \
+        $VCPKG_ROOT \
+        $HOME/dev/src/flutter/bin \
         /usr/local/lib/ruby/gems/3.4.2/bin \
         /usr/local/opt/ruby/bin \
         /usr/local/Cellar/clang-format/14.0.6/bin \
