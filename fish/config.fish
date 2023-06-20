@@ -33,7 +33,6 @@ set -gx fish_user_paths \
         $HOME/dev/src/flutter/bin \
         /usr/local/lib/ruby/gems/3.4.2/bin \
         /usr/local/opt/ruby/bin \
-        /usr/local/Cellar/clang-format/14.0.6/bin \
         /usr/local/opt/llvm/bin \
         /usr/local/sbin \
         /usr/local/bin \
@@ -48,6 +47,9 @@ set -x XDG_CONFIG_HOME $HOME/.config
 
 # oo
 source $HOME/.oo/env.fish
+
+# homebrew
+set -x HOMEBREW_NO_AUTO_UPDATE 1
 
 # https://github.com/junegunn/fzf
 set -x FZF_DEFAULT_COMMAND 'fd --type f --exclude .git'
