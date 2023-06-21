@@ -3,6 +3,7 @@
 set pure_symbol_prompt "\$"
 set pure_color_virtualenv "magenta"
 set pure_show_jobs true
+set pure_color_jobs "blue"
 
 # Basic
 set -x SHELL fish
