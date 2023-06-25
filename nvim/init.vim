@@ -264,6 +264,7 @@ let g:ale_linters = {
   \   'dart': ['dart-format'],
   \   'javascript': ['eslint'],
   \   'typescript': ['eslint'],
+  \   'typescriptreact': ['eslint'],
 \}
 let g:ale_fixers_explicit = 1
 let g:ale_fixers = {
@@ -277,6 +278,7 @@ let g:ale_fixers = {
   \   'dart': ['dart-format'],
   \   'javascript': ['eslint'],
   \   'typescript': ['eslint'],
+  \   'typescriptreact': ['eslint'],
   \   'cmake': ['cmakeformat'],
 \}
 let g:ale_fix_on_save = 1
@@ -285,9 +287,9 @@ let g:ale_python_isort_options = '--profile black --ca'
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:c_clangformat_use_local_file = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_use_global = 0
 let g:ale_typescript_eslint_executable = 'eslint_d'
-let g:ale_typescript_eslint_use_global = 1
+let g:ale_typescript_eslint_use_global = 0
 "End Plugin :: w0rp/ale ----------------------------------- }}}
 
 "Plugin hrsh7th/nvim-cmp ------------------ {{{
