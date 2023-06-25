@@ -29,6 +29,7 @@ Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files naviga
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'dohsimpson/vim-macroeditor'
 Plug 'tpope/vim-fugitive'
+Plug 'Freed-Wu/cppinsights.vim'
 
 "Completion
 Plug 'neovim/nvim-lspconfig'
@@ -276,6 +277,7 @@ let g:ale_fixers = {
   \   'dart': ['dart-format'],
   \   'javascript': ['eslint'],
   \   'typescript': ['eslint'],
+  \   'cmake': ['cmakeformat'],
 \}
 let g:ale_fix_on_save = 1
 let g:python_mypy_show_notes = 1
@@ -353,6 +355,9 @@ lua << EOF
     capabilities = capabilities
   }
   require('lspconfig')['clangd'].setup {
+    capabilities = capabilities
+  }
+  require'lspconfig'.neocmake.setup{
     capabilities = capabilities
   }
   require('lspconfig').sourcekit.setup { -- swift
@@ -504,3 +509,9 @@ nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
 "--------------------------------------------------- }}}
+
+
+"Plugin :: Freed-Wu/cppinsights.vim  ------------------------- {{{
+"where cppinsights: https://github.com/andreasfertig/cppinsights
+let g:cppinsights#extra_args = '-- -std=c++17'
+"End Plugin :: Freed-Wu/cppinsights.vim  -------------------- }}}
