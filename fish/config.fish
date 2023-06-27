@@ -165,6 +165,8 @@ alias gc "git commit -ev"
 alias python python3
 alias pip pip3
 alias nvim ~/.bin/nvim-osx64/bin/nvim
+# exa => https://github.com/ogham/exa
 alias ls exa
+# ag =>  https://github.com/ggreer/the_silver_searcher
 alias ack ag
 alias sed gsed
