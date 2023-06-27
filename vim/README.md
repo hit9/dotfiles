@@ -1,1 +1,1 @@
-I switched to [neovim](../neovim) now.
+I switched to [neovim](../nvim) now.
