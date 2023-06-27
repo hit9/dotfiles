@@ -36,5 +36,5 @@ Commandline tools:
 * fortune (`brew install fortune`)
 * cowsay (`brew install cowsay`)
 * [oo](https://github.com/hit9/oo): Go version manager.
-- [n](https://github.com/tj/n):  Node version manager.
-- [pyenv](https://github.com/pyenv/pyenv): Python version manager.
+* [n](https://github.com/tj/n):  Node version manager.
+* [pyenv](https://github.com/pyenv/pyenv): Python version manager.
