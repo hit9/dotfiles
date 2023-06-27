@@ -1,3 +1,8 @@
+# Configuration file for fish shell.
+# Filepath: ~/.config/fish/config.fish
+# Fish shell: https://fishshell.com/
+# Fish plugin manager: https://github.com/jorgebucaran/fisher
+
 # https://github.com/pure-fish/pure
 # Leader symbol for fish prompt
 set pure_symbol_prompt "\$"
@@ -6,7 +11,7 @@ set pure_show_jobs true
 set pure_color_jobs "blue"
 set pure_show_system_time false
 
-# Basic
+# Basic environments
 set -x SHELL fish
 set -x TERM screen-256color
 set -x EDITOR nvim
@@ -25,7 +30,7 @@ set -x N_PREFIX $HOME/.n
 # VCPKG_ROOT is the path of vcpkg repo.
 set -x VCPKG_ROOT $HOME/dev/vcpkg
 
-# $PATH environment variable
+# $PATH environment variables
 set -e fish_user_paths
 set -gx fish_user_paths \
     $HOME/.pyenv/shims \
@@ -51,6 +56,7 @@ set -gx fish_user_paths \
 set -x XDG_CONFIG_HOME $HOME/.config
 
 # oo (Go version manager)
+# https://github.com/hit9/oo
 source $HOME/.oo/env.fish
 
 # homebrew
@@ -72,6 +78,7 @@ function fish_greeting
     end
 end
 
+# Display current activated python virtualenv on prompt.
 # Rewrite prompt for pyenv (overriding pure-fish/pure)
 if not functions -q  _old_pure_prompt_virtualenv
     functions -c _pure_prompt_virtualenv _old_pure_prompt_virtualenv
@@ -102,7 +109,7 @@ function fish_user_key_bindings
     bind \cx edit_command_buffer
 end
 
-# fish dotenv function
+# fish dotenv function.
 # Execute `dotenv` will load environment variables from file `.env`.
 function dotenv --description 'Load environment variables from .env file'
     set -l envfile ".env"
