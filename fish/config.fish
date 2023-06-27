@@ -4,6 +4,7 @@ set pure_symbol_prompt "\$"
 set pure_color_virtualenv "magenta"
 set pure_show_jobs true
 set pure_color_jobs "blue"
+set pure_show_system_time false
 
 # Basic
 set -x SHELL fish
@@ -61,7 +62,9 @@ set -x FZF_DEFAULT_COMMAND 'fd --type f --exclude .git'
 
 # Rewrite Greeting message
 # https://github.com/jaseg/lolcat
-functions -c fish_greeting _old_fish_greeting
+if not functions -q _old_fish_greeting
+    functions -c fish_greeting _old_fish_greeting
+end
 function fish_greeting
     _old_fish_greeting
     if type -q fortune and type -q lolcat
@@ -70,7 +73,9 @@ function fish_greeting
 end
 
 # Rewrite prompt for pyenv (overriding pure-fish/pure)
-functions -c _pure_prompt_virtualenv _old_pure_prompt_virtualenv
+if not functions -q  _old_pure_prompt_virtualenv
+    functions -c _pure_prompt_virtualenv _old_pure_prompt_virtualenv
+end
 function _pure_prompt_virtualenv
     if set -q PYENV_VERSION
         # https://github.com/pure-fish/pure/blob/master/functions/_pure_prompt_virtualenv.fish
@@ -83,9 +88,16 @@ end
 
 
 # Rewrite function fish_user_key_bindings
-functions -c fish_user_key_bindings _old_fish_user_key_bindings
+if functions -q fish_user_key_bindings
+    if not functions -q _old_fish_user_key_bindings
+        functions -c fish_user_key_bindings _old_fish_user_key_bindings
+    end
+end
+
 function fish_user_key_bindings
-    _old_fish_user_key_bindings
+    if functions -q _old_fish_user_key_bindings
+        _old_fish_user_key_bindings
+    end
     # Ctrl-X to edit command buffer with $EDITOR
     bind \cx edit_command_buffer
 end
