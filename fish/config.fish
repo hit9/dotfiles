@@ -117,6 +117,8 @@ function dotenv --description 'Load environment variables from .env file'
             set -xg (echo $line | cut -d = -f 1) (echo $line | cut -d = -f 2-)
         end
 
+        set -xg __PYENV_ACTIVATE 1
+
         # Rewrite _pure_prompt function
         if not functions -q _old_pure_prompt
             functions -c _pure_prompt _old_pure_prompt
@@ -124,10 +126,29 @@ function dotenv --description 'Load environment variables from .env file'
 
         # Insert dotenv prefix to prompt
         function _pure_prompt  --inherit-variable envfile --argument-names exit_code
-            echo -n -s (set_color green) "(" $envfile ")" (set_color normal) " "
+            if set -q __PYENV_ACTIVATE
+                echo -n -s (set_color green) "(" $envfile ")" (set_color normal) " "
+            end
             _old_pure_prompt $exit_code
         end
     end
+end
+
+function dotenv-erase --description 'Erase environment variables from given file'
+    set -l envfile ".env"
+
+    if [ (count $argv) -gt 0 ]
+        set envfile $argv[1]
+    end
+
+    if test -e $envfile
+        # If envfile exists, set env variables one by one.
+        for line in (cat $envfile | grep -e '[^[:space:]]' | grep -v '^#')
+            set --erase (echo $line | cut -d = -f 1)
+        end
+    end
+
+    set --erase __PYENV_ACTIVATE
 end
 
 # Alias
