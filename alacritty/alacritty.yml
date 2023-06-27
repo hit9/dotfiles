@@ -128,6 +128,9 @@ key_bindings:
   - { key: Right,                   chars: "\x1b[C",   mode: ~AppCursor  }
   - { key: Right,                   chars: "\x1bOC",   mode: AppCursor   }
   # https://github.com/alacritty/alacritty/issues/93
+  # Alt-F to move forward by word.
   - { key: F,  mods: Alt,           chars: "\x1bf"                       }
+  # Alt-F to move backward by word.
   - { key: B,  mods: Alt,           chars: "\x1bb"                       }
+  # Alt-F to delete by word.
   - { key: D,  mods: Alt,           chars: "\x1bd"                       }
