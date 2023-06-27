@@ -1,7 +1,7 @@
 ❤ My ~/.dotfiles
 ================
 
-![](images/demo.gif)
+![](images/demo1.gif)
 
 
 Blog (中文) - https://writings.sh/post/commandline-tools
