@@ -14,12 +14,12 @@ let g:python3_host_prog = '~/.pyenv/shims/python'
 "Plugins ---------------------------------------------- {{{
 call plug#begin('~/.config/nvim/plugs')
 
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme' "My favorite colorscheme.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin, lazy load on comand NERDTreeToggle
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags, lazy load on comand NERDTreeToggle
 Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
-Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-autopairs' "Close pair ()[]{} etc. automatically.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
 Plug 'dense-analysis/ale' "All-in-one asynchronous linting/fixing for Vim.
 Plug 'Konfekt/FastFold' "Speed up Vim by updating folds only when called-for.
@@ -31,13 +31,13 @@ Plug 'simeji/winresizer' "Window resizer.
 Plug 'troydm/zoomwintab.vim' "Window zoom.
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files navigator.
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'dohsimpson/vim-macroeditor'
-Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting for variety filetypes.
+Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
+Plug 'tpope/vim-fugitive' "Git plugin.
 Plug 'Freed-Wu/cppinsights.vim' "C++ Insights - See your source code with the eyes of a compiler
-Plug 'voldikss/vim-translator' " Translator
+Plug 'voldikss/vim-translator' " Translator (mostly english to chinese, for me).
 
-"Completion
+"Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
 Plug 'hrsh7th/vim-vsnip'
@@ -50,7 +50,7 @@ Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
 
 "Cpp
-Plug 'gauteh/vim-cppman'
+Plug 'gauteh/vim-cppman' " Man via cppreference.
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
