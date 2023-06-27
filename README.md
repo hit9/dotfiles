@@ -15,4 +15,4 @@ Files:
 - [tridactyl](firefox/tridactylrc) - Firefox tridactyl plugin config file.
 - [Keybindings](misc/Keybindings) - macos emacs keybindings..
 
-![](demo.png)
+![](misc/demo.png)
