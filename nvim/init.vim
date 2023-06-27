@@ -6,6 +6,11 @@
 
 " Filepath: ~/.config/nvim/init.vim
 
+"Preload before all ---
+"Ref: https://github.com/neovim/neovim/issues/2437
+let g:python_host_prog  = ''
+let g:python3_host_prog = '~/.pyenv/shims/python'
+
 "Plugins ---------------------------------------------- {{{
 call plug#begin('~/.config/nvim/plugs')
 
@@ -29,7 +34,8 @@ Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files naviga
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'dohsimpson/vim-macroeditor'
 Plug 'tpope/vim-fugitive'
-Plug 'Freed-Wu/cppinsights.vim'
+Plug 'Freed-Wu/cppinsights.vim' "C++ Insights - See your source code with the eyes of a compiler
+Plug 'voldikss/vim-translator' " Translator
 
 "Completion
 Plug 'neovim/nvim-lspconfig'
