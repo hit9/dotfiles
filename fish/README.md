@@ -1,7 +1,7 @@
 Fish
 ----
 
-Reference:
+References:
 
 * Fish: https://fishshell.com
 * Plugin manager - fisher: https://github.com/jorgebucaran/fisher
@@ -10,7 +10,7 @@ Reference:
 
 Files:
 
-- `~/.config/fish/config.fish`: File shell configuration.
+- `~/.config/fish/config.fish`: Fish shell configuration.
 - `~/.config/fish/fishfile`: fisher plugins.
 
 Notes:
