@@ -8,7 +8,7 @@
 
 "Preload before all ---
 "Ref: https://github.com/neovim/neovim/issues/2437
-let g:python_host_prog  = ''
+let g:python_host_prog  = '~/.pyenv/shims/python'
 let g:python3_host_prog = '~/.pyenv/shims/python'
 
 "Plugins ---------------------------------------------- {{{
@@ -34,7 +34,6 @@ Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files naviga
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting for variety filetypes.
 Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
 Plug 'tpope/vim-fugitive' "Git plugin.
-Plug 'Freed-Wu/cppinsights.vim' "C++ Insights - See your source code with the eyes of a compiler
 Plug 'voldikss/vim-translator' " Translator (mostly english to chinese, for me).
 
 "Completion & LSP (language protocol server).
@@ -45,12 +44,15 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
+Plug 'ray-x/lsp_signature.nvim' "LSP signature hint as you type
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
 
-"Cpp
+"C/C++
 Plug 'gauteh/vim-cppman' " Man via cppreference.
+Plug 'https://git.sr.ht/~p00f/clangd_extensions.nvim' "Clangd's off-spec features for neovim's LSP client
+Plug 'Freed-Wu/cppinsights.vim' "C++ Insights - See your source code with the eyes of a compiler
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -159,7 +161,7 @@ autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 te
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=110
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
-autocmd FileType coffee,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 autocmd FileType html,htmldjango,xhtml,haml setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=0
 autocmd FileType sass,scss,css setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=79
 
@@ -298,7 +300,7 @@ let g:ale_typescript_eslint_executable = 'eslint_d'
 let g:ale_typescript_eslint_use_global = 0
 "End Plugin :: w0rp/ale ----------------------------------- }}}
 
-"Plugin hrsh7th/nvim-cmp ------------------ {{{
+"Plugin LSP hrsh7th/nvim-cmp, lspconfig, lsp_signature etc. ------------------ {{{
 
 "Split a horizontal window and Go to definition
 au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
@@ -312,8 +314,11 @@ au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescr
 au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gi :split<cr> :lua vim.lsp.buf.implementation()<CR>
 "Show the documentation of the signature help message of this symbol under the cursor.
 au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
-"for cpp, shift+K is reserved for https://github.com/gauteh/vim-cppman
-au FileType go,python,c,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+"Show symbol information under current cursor.
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+"For C/C++: Enable inlay_hints via plugin clangd_extensions only in insert mode.
+au FileType c,cpp au InsertEnter * ClangdSetInlayHints
+au FileType c,cpp au InsertLeave * ClangdDisableInlayHints
 
 lua << EOF
   local cmp = require'cmp'
@@ -334,6 +339,7 @@ lua << EOF
       { name = 'nvim_lsp' },
       { name = 'vsnip' },
       { name = 'buffer' },
+      { name = 'nvim_lsp_signature_help' },
     },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -362,9 +368,28 @@ lua << EOF
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['clangd'].setup {
-    capabilities = capabilities
+  -- Temporary using https://git.sr.ht/~p00f/clangd_extensions.nvim instead.
+  -- Will switch batch to nvim builtin inlay_hints once 0.10 lands.
+  -- require('lspconfig')['clangd'].setup {
+  --   capabilities = capabilities,
+  --   cmd = {"clangd", "--offset-encoding=utf-16"}
+  -- }
+  -- Inlay Hint was merged in 0.10 nightly release now.
+  -- But features seems not stable and breask old things.
+  -- Wait for some time, and use clangd_extensions for a while.
+
+  require("clangd_extensions").setup {
+    extensions = {
+      -- Don't set inlay_hints automatically
+      -- Will set it on insert mode.
+      autoSetHints = false,
+      inlay_hints = {
+        inline = false,
+        only_current_line = true,
+      }
+    }
   }
+
   require'lspconfig'.neocmake.setup{
     capabilities = capabilities
   }
@@ -385,6 +410,16 @@ lua << EOF
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
   }
+
+  -- Plugin ray-x/lsp_signature.nvim
+  -- https://github.com/ray-x/lsp_signature.nvim
+  require "lsp_signature".setup({
+    hint_enable = false,
+    handler_opts = {
+      border = "single"
+    }
+  })
+
 EOF
 "}}}
 
@@ -472,6 +507,7 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 "End Plugin :: junegunn/fzf.vim ---------------------------- }}}
 
 "Plugin :: simeji/winresizer ------------------------- {{{
+"Ctrl-E to reset vin windows
 let g:winresizer_start_key = '<C-E>'
 "End Plugin ::  simeji/winresizer -------------------- }}}
 
@@ -485,7 +521,7 @@ function! HighlightExtraWhitespace()
   match ExtraWhitespace /\s\+$/
 endfunction
 
-autocmd BufWinEnter * if &buftype != 'terminal' | call HighlightExtraWhitespace() | endif
+autocmd BufWinEnter * if &buftype != 'terminal' && &buftype != 'nofile' | call HighlightExtraWhitespace() | endif
 autocmd TermOpen * hi clear ExtraWhitespace
 
 "Clean trailing whitespaces on buffer's save.
@@ -523,3 +559,9 @@ nmap z3 :set foldlevel=3<CR>
 "where cppinsights: https://github.com/andreasfertig/cppinsights
 let g:cppinsights#extra_args = '-- -std=c++17'
 "End Plugin :: Freed-Wu/cppinsights.vim  -------------------- }}}
+
+"For C++: https://github.com/gauteh/vim-cppman ------- {{{
+"Map to `M`.
+"since K is already taken by `vim.lsp.buf.hover`.
+au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
+"End Plugin.}}}
