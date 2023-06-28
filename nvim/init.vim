@@ -44,7 +44,9 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
-Plug 'ray-x/lsp_signature.nvim' "LSP signature hint as you type
+"ray-x/lsp_signature.nvim is slow, with poor performance..
+"I use another simple-but-fast alternative.
+Plug 'erhickey/sig-window-nvim' " neovim plugin for automatic display of LSP signature help in a floating window
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
@@ -411,13 +413,26 @@ lua << EOF
     capabilities = capabilities
   }
 
-  -- Plugin ray-x/lsp_signature.nvim
-  -- https://github.com/ray-x/lsp_signature.nvim
-  require "lsp_signature".setup({
-    hint_enable = false,
-    handler_opts = {
-      border = "single"
-    }
+  -- Plugin erhickey/sig-window-nvim
+  -- https://github.com/erhickey/sig-window-nvim
+
+  require('sig-window-nvim').setup({
+    window_config = function(label, config, width, height)
+      return {
+        relative = 'cursor',
+        anchor = 'SW',
+        width = width,
+        height = height,
+        row = -1,
+        col = 3,
+        focusable = false,
+        zindex = config.zindex,
+        style = 'minimal',
+        border = config.border,
+      }
+    end,
+    border='single',
+    hl_group = 'Visual',
   })
 
 EOF
