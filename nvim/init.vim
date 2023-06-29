@@ -2,7 +2,7 @@
 " vim: tabstop=2 softtabstop=2 shiftwidth=2
 
 "Chao Wang's personal vim configurations. https://github.com/hit9/dotfiles
-"Requires: NeoVim >= 0.7, not support Vim.
+"Requires: NeoVim >= 0.9, not support Vim.
 
 " Filepath: ~/.config/nvim/init.vim
 
@@ -34,7 +34,6 @@ Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files naviga
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting for variety filetypes.
 Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
 Plug 'tpope/vim-fugitive' "Git plugin.
-Plug 'voldikss/vim-translator' " Translator (mostly english to chinese, for me).
 
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
@@ -53,7 +52,6 @@ Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
 
 "C/C++
 Plug 'gauteh/vim-cppman' " Man via cppreference.
-Plug 'https://git.sr.ht/~p00f/clangd_extensions.nvim' "Clangd's off-spec features for neovim's LSP client
 Plug 'Freed-Wu/cppinsights.vim' "C++ Insights - See your source code with the eyes of a compiler
 
 call plug#end()
@@ -318,9 +316,6 @@ au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescr
 au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
 "Show symbol information under current cursor.
 au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> K :lua vim.lsp.buf.hover()<CR>
-"For C/C++: Enable inlay_hints via plugin clangd_extensions only in insert mode.
-au FileType c,cpp au InsertEnter * ClangdSetInlayHints
-au FileType c,cpp au InsertLeave * ClangdDisableInlayHints
 
 lua << EOF
   local cmp = require'cmp'
@@ -370,26 +365,10 @@ lua << EOF
   require('lspconfig')['pyright'].setup {
     capabilities = capabilities
   }
-  -- Temporary using https://git.sr.ht/~p00f/clangd_extensions.nvim instead.
-  -- Will switch batch to nvim builtin inlay_hints once 0.10 lands.
-  -- require('lspconfig')['clangd'].setup {
-  --   capabilities = capabilities,
-  --   cmd = {"clangd", "--offset-encoding=utf-16"}
-  -- }
-  -- Inlay Hint was merged in 0.10 nightly release now.
-  -- But features seems not stable and breask old things.
-  -- Wait for some time, and use clangd_extensions for a while.
 
-  require("clangd_extensions").setup {
-    extensions = {
-      -- Don't set inlay_hints automatically
-      -- Will set it on insert mode.
-      autoSetHints = false,
-      inlay_hints = {
-        inline = false,
-        only_current_line = true,
-      }
-    }
+  require('lspconfig')['clangd'].setup {
+    capabilities = capabilities,
+    cmd = {"clangd", "--offset-encoding=utf-16"}
   }
 
   require'lspconfig'.neocmake.setup{
