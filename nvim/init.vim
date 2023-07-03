@@ -37,15 +37,13 @@ Plug 'tpope/vim-fugitive' "Git plugin.
 
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
-Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
 "ray-x/lsp_signature.nvim is slow, with poor performance..
 "I use another simple-but-fast alternative.
-Plug 'erhickey/sig-window-nvim' " neovim plugin for automatic display of LSP signature help in a floating window
+Plug 'hit9/sig-window-nvim' " neovim plugin for automatic display of LSP signature help in a floating window, forked from erhickey/sig-window-nvim
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
@@ -325,18 +323,9 @@ lua << EOF
 
     preselect = cmp.PreselectMode.None,
 
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      end,
-    },
-
     sources = {
       { name = 'nvim_lsp' },
-      { name = 'vsnip' },
       { name = 'buffer' },
-      { name = 'nvim_lsp_signature_help' },
     },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -362,9 +351,31 @@ lua << EOF
   require('lspconfig')['gopls'].setup {
     capabilities = capabilities
   }
-  require('lspconfig')['pyright'].setup {
-    capabilities = capabilities
+
+  -- Python lsp
+  require'lspconfig'.pylsp.setup{
+    settings = {
+      pylsp = {
+        plugins = {
+          autopep8 = {
+            enabled = false,
+          },
+          yapf = {
+            enabled = false,
+          },
+        }
+      }
+    }
   }
+
+  -- require('lspconfig')['pyright'].setup {
+  --   capabilities = capabilities,
+  --   settings = {
+  --     useLibraryCodeForTypes = false,
+  --     autoSearchPaths = true,
+  --     diagnosticMode = 'openFilesOnly',
+  --   }
+  -- }
 
   require('lspconfig')['clangd'].setup {
     capabilities = capabilities,
