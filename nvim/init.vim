@@ -169,10 +169,6 @@ autocmd TermOpen * tnoremap <Esc> <C-\><C-n>
 
 "Basic :: Color -------------------------------- {{{
 
-"Normal and Visual mode color cosutomization.
-highlight Normal term=none ctermbg=none "Make vim be transparent in terminal.
-highlight Visual term=none cterm=bold ctermbg=31 ctermfg=255 guibg=#005f87 guifg=#ffffff
-
 "Enable true color support:
 "https://lotabout.me/2018/true-color-for-tmux-and-vim/
 "https://github.com/tmux/tmux/issues/1246
@@ -184,6 +180,26 @@ endif
 set t_Co=256 "Enable 256 color
 set background=dark "Using dark. Hmm dark is sexy.
 
+"Basic :: Color :: PaperColor ------- {{{
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \        'transparent_background': 1,
+  \        'override': {
+  \           'visual_bg': ['#006699', '31'],
+  \           'visual_fg': ['#ffffff', '255']
+  \        }
+  \      }
+  \   }
+  \ }
+colorscheme PaperColor
+
+"End Basic :: Color :: PaperColor -------- }}}
+
+"Normal and Visual mode color cosutomization.
+highlight Normal term=none ctermbg=none "Make vim be transparent in terminal.
+highlight Visual term=none cterm=bold ctermbg=31 ctermfg=255 guibg=#006699 guifg=#ffffff
+
 "CursorLine/CursorColumn, should be applied after colorscheme loaded.
 highlight CursorLine term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
 highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#444444
@@ -192,23 +208,6 @@ highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#4444
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
-
-"Basic :: Color :: PaperColor ------- {{{
-let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': {
-  \        'transparent_background': 1,
-  \        'override': {
-  \           'visual_bg': ['#005f87', '31'],
-  \           'visual_fg': ['#ffffff', '255']
-  \        }
-  \      }
-  \   }
-  \ }
-
-colorscheme PaperColor
-
-"End Basic :: Color :: PaperColor -------- }}}
 
 "End Basic :: Color ---------------------------- }}}
 
@@ -353,21 +352,6 @@ lua << EOF
   }
 
   -- Python lsp
-  require'lspconfig'.pylsp.setup{
-    settings = {
-      pylsp = {
-        plugins = {
-          autopep8 = {
-            enabled = false,
-          },
-          yapf = {
-            enabled = false,
-          },
-        }
-      }
-    }
-  }
-
   -- require('lspconfig')['pyright'].setup {
   --   capabilities = capabilities,
   --   settings = {
@@ -376,6 +360,25 @@ lua << EOF
   --     diagnosticMode = 'openFilesOnly',
   --   }
   -- }
+
+  require'lspconfig'.pylsp.setup{
+    settings = {
+      pylsp = {
+        configurationSources = {},
+        plugins = {
+          autopep8 = {enabled = false},
+          flake8 = {enabled = false},
+          yapf = {enabled = false},
+          mccabe = {enabled = false},
+          pycodestyle = {enabled = false},
+          preload = {enabled=false},
+          jedi_completion = {
+            enabled = true,
+          },
+        }
+      }
+    }
+  }
 
   require('lspconfig')['clangd'].setup {
     capabilities = capabilities,
