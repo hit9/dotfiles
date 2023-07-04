@@ -41,9 +41,9 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
-"ray-x/lsp_signature.nvim is slow, with poor performance..
-"I use another simple-but-fast alternative.
-Plug 'hit9/sig-window-nvim' " neovim plugin for automatic display of LSP signature help in a floating window, forked from erhickey/sig-window-nvim
+"ray-x/lsp_signature.nvim is slow, with poor performance...
+"I use another lightweight-but-fast alternative.
+Plug 'erhickey/sig-window-nvim'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
 Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
