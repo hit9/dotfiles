@@ -44,13 +44,13 @@ Plug 'seblj/nvim-echo-diagnostics'
 "ray-x/lsp_signature.nvim is slow, with poor performance...
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
-Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
+Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
 
-Plug 'hit9/bitproto', {'rtp': 'editors/vim'}
+Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 
 "C/C++
-Plug 'gauteh/vim-cppman' " Man via cppreference.
-Plug 'Freed-Wu/cppinsights.vim' "C++ Insights - See your source code with the eyes of a compiler
+Plug 'gauteh/vim-cppman', { 'for': 'cpp' } " Man via cppreference.
+Plug 'Freed-Wu/cppinsights.vim', { 'for': 'cpp' } "C++ Insights - See your source code with the eyes of a compiler
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
