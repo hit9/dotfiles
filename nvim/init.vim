@@ -352,14 +352,15 @@ lua << EOF
   }
 
   -- Python lsp
-  -- require('lspconfig')['pyright'].setup {
-  --   capabilities = capabilities,
-  --   settings = {
-  --     useLibraryCodeForTypes = false,
-  --     autoSearchPaths = true,
-  --     diagnosticMode = 'openFilesOnly',
-  --   }
-  -- }
+  require('lspconfig')['pyright'].setup {
+    capabilities = capabilities,
+    autostart = false,
+    settings = {
+      useLibraryCodeForTypes = false,
+      autoSearchPaths = true,
+      diagnosticMode = 'openFilesOnly',
+    }
+  }
 
   require'lspconfig'.pylsp.setup{
     settings = {
@@ -426,6 +427,32 @@ lua << EOF
     end,
     border='single',
     hl_group = 'Visual',
+  })
+
+  -- Below the lsp_complete_configured_servers copies from nvim-lspconfig, lspconfig.lua.
+  local lspconfig_util = require('lspconfig.util')
+
+  local completion_sort = function(items)
+    table.sort(items)
+    return items
+  end
+
+  local lsp_complete_configured_servers = function(arg)
+    return completion_sort(vim.tbl_filter(function(s)
+      return s:sub(1, #arg) == arg
+    end, lspconfig_util.available_servers()))
+  end
+
+  -- Defines a custom command `LspSwitch`.
+  vim.api.nvim_create_user_command('LspSwitch', function(opts)
+    local target = opts.fargs[1]
+    vim.cmd{cmd = 'LspStop'}
+    vim.cmd{cmd = 'LspStart', args = { target }}
+    print("Switched to", target)
+  end, {
+    desc = 'Stop current attaching language servers and start a new one.',
+    nargs = 1,
+    complete = lsp_complete_configured_servers,
   })
 
 EOF
