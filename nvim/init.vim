@@ -37,6 +37,8 @@ Plug 'tpope/vim-fugitive' "Git plugin.
 
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
+Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
@@ -281,9 +283,9 @@ let g:ale_fixers = {
   \   'proto': ['clang-format'],
   \   'swift': ['apple-swift-format'],
   \   'dart': ['dart-format'],
-  \   'javascript': ['eslint'],
-  \   'typescript': ['eslint'],
-  \   'typescriptreact': ['eslint'],
+  \   'javascript': ['eslint', 'prettier'],
+  \   'typescript': ['eslint', 'prettier'],
+  \   'typescriptreact': ['eslint', 'prettier'],
   \   'cmake': ['cmakeformat'],
 \}
 let g:ale_fix_on_save = 1
@@ -299,20 +301,24 @@ let g:ale_typescript_eslint_use_global = 0
 
 "Plugin LSP hrsh7th/nvim-cmp, lspconfig, lsp_signature etc. ------------------ {{{
 
-"Split a horizontal window and Go to definition
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
-"Split a vertical window and Go to definition
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
-"Split a horizontal window and Go to declaration (many lsp servers don't implement this, check gd instead)
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
-"Split a window and show all references to this symbol under the cursor in the quickfix window
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
-"Split a window and show all implementations of this symbol under the cursor in the quickfix window
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> gi :split<cr> :lua vim.lsp.buf.implementation()<CR>
-"Show the documentation of the signature help message of this symbol under the cursor.
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
-"Show symbol information under current cursor.
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+function! NMapLspKeys()
+  "Split a horizontal window and Go to definition
+  nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
+  "Split a vertical window and Go to definition
+  nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
+  "Split a horizontal window and Go to declaration (many lsp servers don't implement this, check gd instead)
+  nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
+  "Split a window and show all references to this symbol under the cursor in the quickfix window
+  nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
+  "Split a window and show all implementations of this symbol under the cursor in the quickfix window
+  nmap <silent> gi :split<cr> :lua vim.lsp.buf.implementation()<CR>
+  "Show the documentation of the signature help message of this symbol under the cursor.
+  nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+  "Show symbol information under current cursor.
+  nmap <silent> K :lua vim.lsp.buf.hover()<CR>
+endfunction
+
+au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact :call NMapLspKeys()
 
 lua << EOF
   local cmp = require'cmp'
@@ -322,8 +328,15 @@ lua << EOF
 
     preselect = cmp.PreselectMode.None,
 
+    snippet = {
+      expand = function(args)
+        vim.fn['vsnip#anonymous'](args.body)
+      end,
+    },
+
     sources = {
       { name = 'nvim_lsp' },
+      { name = 'vsnip' },
       { name = 'buffer' },
     },
     mapping = cmp.mapping.preset.insert({
