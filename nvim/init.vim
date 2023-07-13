@@ -210,6 +210,7 @@ highlight CursorColumn term=none cterm=none ctermbg=238 ctermfg=none guibg=#4444
 hi Normal     ctermbg=NONE guibg=NONE
 hi LineNr     ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
+hi NormalFloat ctermbg=NONE guibg=NONE
 
 "End Basic :: Color ---------------------------- }}}
 

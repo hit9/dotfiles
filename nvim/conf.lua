@@ -159,6 +159,24 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 -- End lsp key mapping }}}
 
+-- Lsp Hover & SignatureHelp {{{
+
+-- Single border for hover floating window.
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = 'single',
+})
+
+-- Single border for signature help window.
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = 'single',
+})
+
+-- Single border for :LspInfo window.
+require('lspconfig.ui.windows').default_options = {
+  border = 'single',
+}
+-- }}}
+
 -- Plugin erhickey/sig-window-nvim {{{
 -- https://github.com/erhickey/sig-window-nvim
 require('sig-window-nvim').setup({
