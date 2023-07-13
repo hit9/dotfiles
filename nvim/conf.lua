@@ -125,36 +125,6 @@ require('lspconfig')['rust_analyzer'].setup({
 
 -- End LSP }}}
 
--- {{{ LspSwith command
-
--- Below the lsp_complete_configured_servers copies from nvim-lspconfig, lspconfig.lua.
-local lspconfig_util = require('lspconfig.util')
-
-local completion_sort = function(items)
-  table.sort(items)
-  return items
-end
-
-local lsp_complete_configured_servers = function(arg)
-  return completion_sort(vim.tbl_filter(function(s)
-    return s:sub(1, #arg) == arg
-  end, lspconfig_util.available_servers()))
-end
-
--- Defines a custom command `LspSwitch`.
-vim.api.nvim_create_user_command('LspSwitch', function(opts)
-  local target = opts.fargs[1]
-  vim.cmd({ cmd = 'LspStop' })
-  vim.cmd({ cmd = 'LspStart', args = { target } })
-  print('Switched to', target)
-end, {
-  desc = 'Stop current attaching language servers and start a new one.',
-  nargs = 1,
-  complete = lsp_complete_configured_servers,
-})
-
--- End LspSwitch }}}
-
 -- Lsp Key Mapping -- {{{
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact',
@@ -283,7 +253,6 @@ local null_ls = require('null-ls')
 -- Python run null-ls runtime_condition function.
 function python_null_ls_condition(params)
   -- Dont run mypy on installed packages etc.
-  print(params.bufname)
   if string.find(params.bufname, 'site-packages') then
     return false
   elseif string.find(params.bufname, '.pyenv') then
@@ -380,8 +349,10 @@ function _G.lsp_progress()
     local percentage = lsp_msg.percentage or 0
     local title = lsp_msg.title or ''
     return string.format(' %%<%s: %s %s (%s%%%%) ', name, title, msg, percentage)
+  elseif #lsp_clients > 0 then
+    return '[ ' .. table.concat(lsp_client_names, ' ') .. ' ]'
   else
-    return '[ LSP: ' .. table.concat(lsp_client_names, ' ') .. ' ]'
+    return '[ NO LSP ]'
   end
 end
 
@@ -389,8 +360,8 @@ require('lualine').setup({
   options = {
     theme = 'papercolor_dark',
     -- icons_enabled = false,
-    -- section_separators = '',
-    -- component_separators = '',
+    section_separators = '',
+    component_separators = '',
   },
   sections = {
     lualine_c = {
