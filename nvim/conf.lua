@@ -216,8 +216,6 @@ vim.api.nvim_create_autocmd('CursorHold', {
 -- end seblj/nvim-echo-diagnostics }}}
 -- Plugin jose-elias-alvarez/null-ls.nvim {{{
 
-vim.lsp.buf.format({ timeout_ms = 3000 })
-
 -- null-ls formatting on save.
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Formatting-on-save
 local async_formatting = function(bufnr)
