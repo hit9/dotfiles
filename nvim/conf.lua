@@ -193,7 +193,7 @@ vim.diagnostic.config({
   float = { border = 'none' },
   underline = true,
   update_in_insert = false,
-  severity_sort = false,
+  severity_sort = true,
 })
 -- }}}
 
@@ -279,6 +279,8 @@ null_ls.setup({
     null_ls.builtins.diagnostics.mypy.with({
       extra_args = { '--follow-imports', 'silent' },
       runtime_condition = python_null_ls_condition,
+      -- mypy runs slowly, we use it on-save instead of on-change.
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
     -- C/C++
     null_ls.builtins.formatting.clang_format.with({ filetypes = { 'c', 'cpp', 'proto' } }),
@@ -340,7 +342,7 @@ function _G.lsp_progress()
   local lsp_clients = vim.lsp.get_active_clients()
   local lsp_client_names = {}
   for _, client in pairs(lsp_clients) do
-    table.insert(lsp_client_names, client.name .. '(' .. client.id .. ')')
+    table.insert(lsp_client_names, client.id .. ':' .. client.name)
   end
   local lsp_msg = vim.lsp.util.get_progress_messages()[1]
   if lsp_msg then
@@ -350,18 +352,18 @@ function _G.lsp_progress()
     local title = lsp_msg.title or ''
     return string.format(' %%<%s: %s %s (%s%%%%) ', name, title, msg, percentage)
   elseif #lsp_clients > 0 then
-    return '[ ' .. table.concat(lsp_client_names, ' ') .. ' ]'
+    return table.concat(lsp_client_names, ' ')
   else
-    return '[ NO LSP ]'
+    return 'NO LSP'
   end
 end
 
 require('lualine').setup({
   options = {
     theme = 'papercolor_dark',
-    -- icons_enabled = false,
+    icons_enabled = false,
     section_separators = '',
-    component_separators = '',
+    component_separators = { left = '|', right = '|' },
   },
   sections = {
     lualine_c = {
@@ -369,6 +371,8 @@ require('lualine').setup({
       'lsp_progress()',
     },
   },
+  -- Having a single statusline instead of each for every window.
+  globalstatus = true,
 })
 
 --}}}
