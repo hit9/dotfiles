@@ -17,7 +17,8 @@ call plug#begin('~/.config/nvim/plugs')
 Plug 'NLKNguyen/papercolor-theme' "My favorite colorscheme.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } "Famous file explorer plugin, lazy load on comand NERDTreeToggle
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' } "NERDTree plugin which shows git status flags, lazy load on comand NERDTreeToggle
-Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'linrongbin16/lsp-progress.nvim'
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'windwp/nvim-autopairs' "Close pair ()[]{} etc. automatically.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
@@ -214,10 +215,6 @@ hi SignColumn ctermbg=NONE guibg=NONE
 "End Basic :: Color ---------------------------- }}}
 
 "End Basic --------------------------------------------- }}}
-
-"Plugin :: lightline.vim ----------------------------------------- {{{
-let g:lightline = { 'colorscheme': 'PaperColor' } "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
-"End Plugin :: lightline.vim --------------------------- }}}
 
 "Plugin :: scrooloose/nerdtree ------------------------------------------------ {{{
 

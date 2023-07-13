@@ -76,6 +76,8 @@ require('lspconfig').pylsp.setup({
         mccabe = { enabled = false },
         pycodestyle = { enabled = false },
         preload = { enabled = false },
+        pyflakes = { enabled = false },
+        pylint = { enabled = false },
         jedi_completion = {
           enabled = true,
         },
@@ -327,7 +329,7 @@ null_ls.setup({
     null_ls.builtins.formatting.cmake_format,
     -- Lua
     null_ls.builtins.formatting.stylua.with({
-      extra_args = { '--indent-type', 'spaces', '--indent-width', '2', '--quote-style', 'ForceSingle' },
+      extra_args = { '--indent-type', 'spaces', '--indent-width', '2', '--quote-style', 'AutoPreferSingle' },
     }),
   },
 
@@ -360,3 +362,32 @@ require('godbolt').setup({
   url = 'https://godbolt.org', -- can be changed to a different godbolt instance
 })
 -- end godbolt }}}
+
+--- Status Line {{{
+require('lsp-progress').setup({
+  format = function(client_messages)
+    local lsp_clients = vim.lsp.get_active_clients()
+    local lsp_client_names = {}
+    for _, client in pairs(lsp_clients) do
+      table.insert(lsp_client_names, client.name .. '(' .. client.id .. ')')
+    end
+    local sign = '[ LSP: ' .. table.concat(lsp_client_names, ',') .. ' ]'
+    return #client_messages > 0 and (sign .. ' ' .. table.concat(client_messages, ' ')) or sign
+  end,
+})
+require('lualine').setup({
+  options = {
+    theme = 'papercolor_dark',
+    -- icons_enabled = false,
+    -- section_separators = '',
+    -- component_separators = '',
+  },
+  sections = {
+    lualine_c = {
+      'filename',
+      "require('lsp-progress').progress()",
+    },
+  },
+})
+
+--}}}
