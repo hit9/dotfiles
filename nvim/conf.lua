@@ -278,12 +278,37 @@ local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
 local null_ls = require('null-ls')
 
+-- Python run null-ls runtime_condition function.
+function python_null_ls_condition(params)
+  -- Dont run mypy on installed packages etc.
+  print(params.bufname)
+  if string.find(params.bufname, 'site-packages') then
+    return false
+  elseif string.find(params.bufname, '.pyenv') then
+    return false
+  elseif string.find(params.bufname, 'Python.framework') then
+    return false
+  elseif string.find(params.bufname, 'pb2') then
+    return false
+  else
+    return true
+  end
+end
+
 null_ls.setup({
   sources = {
     -- Python
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort.with({ extra_args = { '--profile', 'black', '--ca' } }),
-    null_ls.builtins.diagnostics.mypy,
+    null_ls.builtins.formatting.black.with({
+      runtime_condition = python_null_ls_condition,
+    }),
+    null_ls.builtins.formatting.isort.with({
+      extra_args = { '--profile', 'black', '--ca' },
+      runtime_condition = python_null_ls_condition,
+    }),
+    null_ls.builtins.diagnostics.mypy.with({
+      extra_args = { '--follow-imports', 'silent' },
+      runtime_condition = python_null_ls_condition,
+    }),
     -- C/C++
     null_ls.builtins.formatting.clang_format.with({ filetypes = { 'c', 'cpp', 'proto' } }),
     null_ls.builtins.diagnostics.clang_check.with({ filetypes = { 'c', 'cpp' } }),
@@ -296,8 +321,8 @@ null_ls.setup({
     -- Dart
     null_ls.builtins.formatting.dart_format,
     -- Js/Ts
-    null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.eslint_d.with({ prefer_local = 'node_modules/.bin' }),
+    null_ls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
     -- CMake
     null_ls.builtins.formatting.cmake_format,
     -- Lua
