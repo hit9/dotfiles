@@ -21,7 +21,6 @@ Plug 'itchyny/lightline.vim' "Lightweight statusline plugin.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'windwp/nvim-autopairs' "Close pair ()[]{} etc. automatically.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
-Plug 'dense-analysis/ale' "All-in-one asynchronous linting/fixing for Vim.
 Plug 'Konfekt/FastFold' "Speed up Vim by updating folds only when called-for.
 Plug 'wellle/targets.vim' "Vim plugin that provides additional text objects
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
@@ -34,7 +33,7 @@ Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files naviga
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting for variety filetypes.
 Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
 Plug 'tpope/vim-fugitive' "Git plugin.
-
+Plug 'voldikss/vim-translator' "Transaltor
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
@@ -47,12 +46,14 @@ Plug 'seblj/nvim-echo-diagnostics'
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
+Plug 'jose-elias-alvarez/null-ls.nvim', { 'branch': 'main' }
 
 Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 
 "C/C++
 Plug 'gauteh/vim-cppman', { 'for': 'cpp' } " Man via cppreference.
 Plug 'Freed-Wu/cppinsights.vim', { 'for': 'cpp' } "C++ Insights - See your source code with the eyes of a compiler
+Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -90,11 +91,10 @@ syntax sync minlines=1000
 set number  "Show line numbers.
 set norelativenumber "Don't use relative line numbers.
 set go= "Disable gvim's gui menu. (But I personally never use gui version vim).
-set shortmess=atI "Disable the short message on vim start.
+set shortmess=atIc "Disable the short message on vim start.
 set noshowcmd "Don't show command in the last line of screeen.
 set showmode "If in Insert, Replace or Visual mode put a message on the last line.
 set nowrap "Lines longer than the width of window will wrap and displaying continues on the next line.
-set shortmess+=c "Don't give |ins-completion-menu| messages.
 set signcolumn=yes "Always show signcolumns
 set cmdheight=2 "Command-line height (number of screen lines).
 
@@ -141,7 +141,7 @@ set matchtime=1 "Tenths of a second to show the matching paren.
 set completeopt=longest,menu  "Use a popup menu to show possible completinos.
 set cpt=.,w,b  "Scan candidates from .(current buffer), w(buffers from other windows), b(other loaded buffers).
 
-"Indent
+"Indent (by default)
 set autoindent "Indent automatically. But notice that autoindent may make Cmd+V pastsing works wired,
                "so when pasting something from clipboard into vim, better to `:set paste` and then Cmd+V,
                "and rollback this setting via :set nopaste.
@@ -155,7 +155,7 @@ set shiftwidth=4 "Number of spaces to use for each step of (auto)indent.
 set list "Show tabs via listchars below, and display end sign after endo fline.
 set listchars=space:·,tab:▸\ ,eol:¬,extends:❯,precedes:❮ "Chars that to display list.
 
-"Tab settings for diferent language filetypes (forked from humiaozuzu's dotfile).
+"Tab settings for diferent language filetypes (overriding).
 autocmd FileType text setlocal textwidth=79
 autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4 textwidth=110
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=110
@@ -215,20 +215,6 @@ hi SignColumn ctermbg=NONE guibg=NONE
 
 "End Basic --------------------------------------------- }}}
 
-"Plugin :: windwp/nvim-autopairs ----------------------------------------- {{{
-lua << EOF
-  require'nvim-autopairs'.setup {}
-EOF
-"End Plug :: windwp/nvim-autopairs  ------ }}}
-
-"Plugin :: treesitter ----------------------------------------- {{{
-lua << EOF
-  require'nvim-treesitter.configs'.setup {
-    highlight = { enable = true, },
-  }
-EOF
-"End Plugin :: treesitter --------------------------------------- }}}
-
 "Plugin :: lightline.vim ----------------------------------------- {{{
 let g:lightline = { 'colorscheme': 'PaperColor' } "https://github.com/itchyny/lightline.vim/blob/master/colorscheme.md
 "End Plugin :: lightline.vim --------------------------- }}}
@@ -253,247 +239,6 @@ let NERDTreeShowHidden=1
 "User-defined custom command `:NT` to toggle nerdtree window
 :command NT :NERDTreeToggle
 " End Plugin :: scrooloose/nerdtree ----------------------------------------- }}}
-
-"Plugin :: w0rp/ale  ------------------------------------- {{{
-
-"Ale with foldmethod != indent, check:
-"https://github.com/dense-analysis/ale/issues/1829#issuecomment-475589289
-
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-  \   'python': ['black', 'mypy'],
-  \   'c': ['clang-format'],
-  \   'cpp': ['clang-format'],
-  \   'rust': ['analyzer'],
-  \   'go': ['gopls'],
-  \   'swift': ['apple-swift-format'],
-  \   'dart': ['dart-format'],
-  \   'javascript': ['eslint'],
-  \   'typescript': ['eslint'],
-  \   'typescriptreact': ['eslint'],
-\}
-let g:ale_fixers_explicit = 1
-let g:ale_fixers = {
-  \   'python': ['black', 'isort'],
-  \   'c': ['clang-format'],
-  \   'cpp': ['clang-format'],
-  \   'go': ['gofmt'],
-  \   'rust': ['rustfmt'],
-  \   'proto': ['clang-format'],
-  \   'swift': ['apple-swift-format'],
-  \   'dart': ['dart-format'],
-  \   'javascript': ['eslint', 'prettier'],
-  \   'typescript': ['eslint', 'prettier'],
-  \   'typescriptreact': ['eslint', 'prettier'],
-  \   'cmake': ['cmakeformat'],
-\}
-let g:ale_fix_on_save = 1
-let g:python_mypy_show_notes = 1
-let g:ale_python_isort_options = '--profile black --ca'
-let g:ale_rust_rls_toolchain = 'nightly'
-let g:c_clangformat_use_local_file = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_use_global = 0
-let g:ale_typescript_eslint_executable = 'eslint_d'
-let g:ale_typescript_eslint_use_global = 0
-"End Plugin :: w0rp/ale ----------------------------------- }}}
-
-"Plugin LSP hrsh7th/nvim-cmp, lspconfig, lsp_signature etc. ------------------ {{{
-
-function! NMapLspKeys()
-  "Split a horizontal window and Go to definition
-  nmap <silent> gd :split<cr> :lua vim.lsp.buf.definition()<CR>
-  "Split a vertical window and Go to definition
-  nmap <silent> gv :vsplit<cr> :lua vim.lsp.buf.definition()<CR>
-  "Split a horizontal window and Go to declaration (many lsp servers don't implement this, check gd instead)
-  nmap <silent> gD :split<cr> :lua vim.lsp.buf.declaration()<CR>
-  "Split a window and show all references to this symbol under the cursor in the quickfix window
-  nmap <silent> gr :split<cr> :lua vim.lsp.buf.references()<CR>
-  "Split a window and show all implementations of this symbol under the cursor in the quickfix window
-  nmap <silent> gi :split<cr> :lua vim.lsp.buf.implementation()<CR>
-  "Show the documentation of the signature help message of this symbol under the cursor.
-  nmap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
-  "Show symbol information under current cursor.
-  nmap <silent> K :lua vim.lsp.buf.hover()<CR>
-endfunction
-
-au FileType go,python,c,cpp,javascript,rust,lua,cs,swift,dart,typescript,typescriptreact :call NMapLspKeys()
-
-lua << EOF
-  local cmp = require'cmp'
-  local nvim_lsp = require'lspconfig'
-
-  cmp.setup({
-
-    preselect = cmp.PreselectMode.None,
-
-    snippet = {
-      expand = function(args)
-        vim.fn['vsnip#anonymous'](args.body)
-      end,
-    },
-
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' },
-      { name = 'buffer' },
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-  })
-
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-  -- Make a root_dir function, searching some files at first and then fallback to cwd.
-  function make_root_dir_function(...)
-    local patterns = {...}
-    return function(fname)
-      return nvim_lsp.util.root_pattern(unpack(patterns))(fname) or vim.fn.getcwd()
-    end
-  end
-
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['gopls'].setup {
-    capabilities = capabilities
-  }
-
-  -- Python lsp
-  require('lspconfig')['pyright'].setup {
-    capabilities = capabilities,
-    autostart = false,
-    settings = {
-      useLibraryCodeForTypes = false,
-      autoSearchPaths = true,
-      diagnosticMode = 'openFilesOnly',
-    }
-  }
-
-  require'lspconfig'.pylsp.setup{
-    settings = {
-      pylsp = {
-        configurationSources = {},
-        plugins = {
-          autopep8 = {enabled = false},
-          flake8 = {enabled = false},
-          yapf = {enabled = false},
-          mccabe = {enabled = false},
-          pycodestyle = {enabled = false},
-          preload = {enabled=false},
-          jedi_completion = {
-            enabled = true,
-          },
-        }
-      }
-    }
-  }
-
-  require('lspconfig')['clangd'].setup {
-    capabilities = capabilities,
-    cmd = {"clangd", "--offset-encoding=utf-16"}
-  }
-
-  require'lspconfig'.neocmake.setup{
-    capabilities = capabilities
-  }
-  require('lspconfig').sourcekit.setup { -- swift
-    capabilities = capabilities
-  }
-  require('lspconfig').dartls.setup{
-    capabilities = capabilities,
-    root_dir = make_root_dir_function('pubspec.yaml', '.git')
-  }
-  require('lspconfig')['csharp_ls'].setup {
-    capabilities = capabilities,
-    handlers = {
-      ["textDocument/definition"] = require('csharpls_extended').handler,
-    }
-  }
-  require('lspconfig')['tsserver'].setup {}
-  require('lspconfig')['rust_analyzer'].setup {
-    capabilities = capabilities
-  }
-
-  -- Plugin erhickey/sig-window-nvim
-  -- https://github.com/erhickey/sig-window-nvim
-
-  require('sig-window-nvim').setup({
-    window_config = function(label, config, width, height)
-      return {
-        relative = 'cursor',
-        anchor = 'SW',
-        width = width,
-        height = height,
-        row = -1,
-        col = 3,
-        focusable = false,
-        zindex = config.zindex,
-        style = 'minimal',
-        border = config.border,
-      }
-    end,
-    border='single',
-    hl_group = 'Visual',
-  })
-
-  -- Below the lsp_complete_configured_servers copies from nvim-lspconfig, lspconfig.lua.
-  local lspconfig_util = require('lspconfig.util')
-
-  local completion_sort = function(items)
-    table.sort(items)
-    return items
-  end
-
-  local lsp_complete_configured_servers = function(arg)
-    return completion_sort(vim.tbl_filter(function(s)
-      return s:sub(1, #arg) == arg
-    end, lspconfig_util.available_servers()))
-  end
-
-  -- Defines a custom command `LspSwitch`.
-  vim.api.nvim_create_user_command('LspSwitch', function(opts)
-    local target = opts.fargs[1]
-    vim.cmd{cmd = 'LspStop'}
-    vim.cmd{cmd = 'LspStart', args = { target }}
-    print("Switched to", target)
-  end, {
-    desc = 'Stop current attaching language servers and start a new one.',
-    nargs = 1,
-    complete = lsp_complete_configured_servers,
-  })
-
-EOF
-"}}}
-
-"Plugin seblj/nvim-echo-diagnostics ------------ {{
-
-"Display diagnostic on via echo messaage instead of virtual_text
-lua << EOF
-  vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-    float = { border = "none" },
-    underline = true,
-    update_in_insert = false,
-    severity_sort = false,
-  })
-
-  require("echo-diagnostics").setup{
-      show_diagnostic_number = true,
-      show_diagnostic_source = false,
-  }
-
-EOF
-
-autocmd CursorHold * lua require('echo-diagnostics').echo_line_diagnostic()
-
-"}}
 
 "Plugin :: mg979/vim-visual-multi ------------------------- {{{
 let g:VM_theme = 'iceblue' "https://github.com/mg979/vim-visual-multi/wiki/Highlight-colors
@@ -613,3 +358,11 @@ let g:cppinsights#extra_args = '-- -std=c++17'
 "since K is already taken by `vim.lsp.buf.hover`.
 au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
 "End Plugin.}}}
+
+"Plugin Transaltor
+"Map key `t` on visual mode to translate selected text.
+vmap <silent> t :'<,'>TranslateW<CR>
+"End Plugin
+
+"Load lua configs
+luafile ~/.config/nvim/conf.lua
