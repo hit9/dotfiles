@@ -364,17 +364,27 @@ require('godbolt').setup({
 -- end godbolt }}}
 
 --- Status Line {{{
-require('lsp-progress').setup({
-  format = function(client_messages)
-    local lsp_clients = vim.lsp.get_active_clients()
-    local lsp_client_names = {}
-    for _, client in pairs(lsp_clients) do
-      table.insert(lsp_client_names, client.name .. '(' .. client.id .. ')')
-    end
-    local sign = '[ LSP: ' .. table.concat(lsp_client_names, ',') .. ' ]'
-    return #client_messages > 0 and (sign .. ' ' .. table.concat(client_messages, ' ')) or sign
-  end,
-})
+
+-- A global-visible progress bar.
+-- ref: https://www.reddit.com/r/neovim/comments/uy3lnh/how_can_i_display_lsp_loading_in_my_statusline/
+function _G.lsp_progress()
+  local lsp_clients = vim.lsp.get_active_clients()
+  local lsp_client_names = {}
+  for _, client in pairs(lsp_clients) do
+    table.insert(lsp_client_names, client.name .. '(' .. client.id .. ')')
+  end
+  local lsp_msg = vim.lsp.util.get_progress_messages()[1]
+  if lsp_msg then
+    local name = lsp_msg.name or ''
+    local msg = lsp_msg.message or ''
+    local percentage = lsp_msg.percentage or 0
+    local title = lsp_msg.title or ''
+    return string.format(' %%<%s: %s %s (%s%%%%) ', name, title, msg, percentage)
+  else
+    return '[ LSP: ' .. table.concat(lsp_client_names, ' ') .. ' ]'
+  end
+end
+
 require('lualine').setup({
   options = {
     theme = 'papercolor_dark',
@@ -385,7 +395,7 @@ require('lualine').setup({
   sections = {
     lualine_c = {
       'filename',
-      "require('lsp-progress').progress()",
+      'lsp_progress()',
     },
   },
 })
