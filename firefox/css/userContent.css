@@ -1,4 +1,5 @@
-@-moz-document url(about:newtab), url(about:home), regexp("^moz-extension://.*/static/newtab.html$"), url(about:blank) {
+@-moz-document url(about:newtab), url(about:home), regexp("^moz-extension://.*/static/newtab.html$"), url(about:blank)
+{
   body {
     background-image: url(fx-dev-edition_wallpaper_2560x1440.jpg) !important; /* Image in chrome folder */
     background-size: cover !important;
