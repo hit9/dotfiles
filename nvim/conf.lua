@@ -100,6 +100,7 @@ require('lspconfig').neocmake.setup({
 -- Swift
 require('lspconfig').sourcekit.setup({
   capabilities = capabilities,
+  filetypes = { 'swift', 'objective-c', 'objective-cpp' },
 })
 
 -- Dart
