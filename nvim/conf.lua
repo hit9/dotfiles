@@ -287,6 +287,9 @@ null_ls.setup({
       extra_args = { '--profile', 'black', '--ca' },
       runtime_condition = python_null_ls_condition,
     }),
+    null_ls.builtins.diagnostics.ruff.with({
+      runtime_condition = python_null_ls_condition,
+    }),
     null_ls.builtins.diagnostics.mypy.with({
       extra_args = { '--follow-imports', 'silent' },
       runtime_condition = python_null_ls_condition,
