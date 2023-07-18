@@ -269,24 +269,18 @@ local null_ls = require('null-ls')
 
 -- Python run null-ls runtime_condition function.
 function python_null_ls_condition(params)
-  -- Dont run mypy on installed packages etc.
-  if string.find(params.bufname, 'site-packages') then
-    return false
-  elseif string.find(params.bufname, '.pyenv') then
-    return false
-  elseif string.find(params.bufname, 'Python.framework') then
-    return false
-  elseif string.find(params.bufname, 'pb2') then
-    return false
-  else
-    return true
-  end
+  return not (
+    params.bufname:match('site-packages')
+    or params.bufname:match('.pyenv')
+    or params.bufname:match('Python.framework')
+  )
 end
 
 null_ls.setup({
   sources = {
     -- Python
     null_ls.builtins.formatting.black.with({
+      extra_args = { '--fast' },
       runtime_condition = python_null_ls_condition,
     }),
     null_ls.builtins.formatting.isort.with({
