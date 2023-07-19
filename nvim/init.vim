@@ -356,10 +356,5 @@ let g:cppinsights#extra_args = '-- -std=c++17'
 au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
 "End Plugin.}}}
 
-"Plugin Transaltor
-"Map key `t` on visual mode to translate selected text.
-vmap <silent> t :'<,'>TranslateW<CR>
-"End Plugin
-
 "Load lua configs
 luafile ~/.config/nvim/conf.lua

@@ -89,7 +89,14 @@ require('lspconfig').pylsp.setup({
 -- C/C++
 require('lspconfig')['clangd'].setup({
   capabilities = capabilities,
-  cmd = { 'clangd', '--offset-encoding=utf-16' },
+  cmd = {
+    'clangd',
+    '--offset-encoding=utf-16',
+    -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+    -- to add more checks, create .clang-tidy file in the root directory
+    -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+    '--clang-tidy',
+  },
 })
 
 -- CMake
