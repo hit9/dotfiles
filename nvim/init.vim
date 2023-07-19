@@ -371,6 +371,11 @@ command! -range ToCamel :s/\%V_\([^_]\)/\u\1/e | s/\%V\<./\l&/e
 "Find the underscores and upper the following letter, also removing the underscore.
 "Then make sure the first letter is in upper case.
 command! -range ToPascal :s/\%V_\([^_]\)/\u\1/e | s/\%V\<./\u&/e
+
+"Convert selected text to UPPER_SNAKE_CASE style:
+"firstly insert a underscore between lower and upper letters.
+"and then makes the whole string upper.
+command! -range ToUpperSnake :s/\%V\(\l\)\(\u\)/\1_\2/e | s/\%V\w\+/\U&/e
 "--- }}}
 
 "Load lua configs
