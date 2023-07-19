@@ -356,5 +356,22 @@ let g:cppinsights#extra_args = '-- -std=c++17'
 au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
 "End Plugin.}}}
 
+"Word case converters (\%V runs substitute on visual selections). --- {{{
+"Convert selected text to snake_case style:
+"firstly lower the first letter, then make each upper letter lower
+"and insert a underscore in front of that.
+command! -range ToSnake :s/\%V\<./\l&/e | s/\%V\u/_\l&/e
+
+"Convert selected text to camelCase style:
+"Find the underscores and upper the following letter, also removing the underscore.
+"Then make sure the first letter is in lower case.
+command! -range ToCamel :s/\%V_\([^_]\)/\u\1/e | s/\%V\<./\l&/e
+
+"Convert selected text to PascalCase style:
+"Find the underscores and upper the following letter, also removing the underscore.
+"Then make sure the first letter is in upper case.
+command! -range ToPascal :s/\%V_\([^_]\)/\u\1/e | s/\%V\<./\u&/e
+"--- }}}
+
 "Load lua configs
 luafile ~/.config/nvim/conf.lua
