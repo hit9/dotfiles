@@ -296,6 +296,7 @@ null_ls.setup({
     }),
     null_ls.builtins.diagnostics.ruff.with({
       runtime_condition = python_null_ls_condition,
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
     null_ls.builtins.diagnostics.mypy.with({
       extra_args = { '--follow-imports', 'silent' },
