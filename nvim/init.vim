@@ -35,6 +35,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting
 Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
 Plug 'tpope/vim-fugitive' "Git plugin.
 Plug 'lukas-reineke/indent-blankline.nvim' "Indent guides for Neovim
+Plug 'dense-analysis/ale'
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
@@ -47,13 +48,9 @@ Plug 'seblj/nvim-echo-diagnostics'
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
-Plug 'jose-elias-alvarez/null-ls.nvim', { 'branch': 'main' }
-
+"Plug 'jose-elias-alvarez/null-ls.nvim', { 'branch': 'main' }
 Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
-
 "C/C++
-Plug 'gauteh/vim-cppman', { 'for': 'cpp' } " Man via cppreference.
-Plug 'Freed-Wu/cppinsights.vim', { 'for': 'cpp' } "C++ Insights - See your source code with the eyes of a compiler
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
 
 call plug#end()
@@ -302,6 +299,35 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 let g:winresizer_start_key = '<C-E>'
 "End Plugin ::  simeji/winresizer -------------------- }}}
 
+"Plugin :: w0rp/ale  ------------------------------------- {{{
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+  \   'javascript': ['eslint', 'prettier'],
+  \   'python': ['black', 'mypy', 'ruff'],
+  \   'c': ['clang-format', 'clang-check'],
+  \   'cpp': ['clang-format', 'clang-check'],
+\}
+let g:ale_fixers_explicit = 1
+let g:ale_fixers = {
+  \   'javascript': ['eslint', 'prettier'],
+  \   'python': ['black', "isort"],
+  \   'c': ['clang-format'],
+  \   'cpp': ['clang-format'],
+  \   'go': ['gofmt'],
+  \   'rust': ['rustfmt'],
+  \   'lua': ['stylua'],
+  \   'swift': ['apple-swift-format'],
+  \   'dart': ['dart-format'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_python_mypy_show_notes = 1
+let g:ale_python_isort_options = '--profile black --ca'
+let g:ale_python_mypy_options = '--follow-imports silent'
+let g:ale_python_black_options = '--fast'
+let g:ale_rust_rls_toolchain = 'nightly'
+let g:ale_lua_stylua_options = '--indent-type spaces --indent-width 2 --quote-style AutoPreferSingle'
+"End Plugin :: w0rp/ale ----------------------------------- }}}
+
 "Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
 
 "Highlight trailing whitespaces as red.
@@ -350,12 +376,6 @@ nmap z3 :set foldlevel=3<CR>
 "where cppinsights: https://github.com/andreasfertig/cppinsights
 let g:cppinsights#extra_args = '-- -std=c++17'
 "End Plugin :: Freed-Wu/cppinsights.vim  -------------------- }}}
-
-"For C++: https://github.com/gauteh/vim-cppman ------- {{{
-"Map to `M`.
-"since K is already taken by `vim.lsp.buf.hover`.
-au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
-"End Plugin.}}}
 
 "Word case converters (\%V runs substitute on visual selections). --- {{{
 "Convert selected text to snake_case style:
