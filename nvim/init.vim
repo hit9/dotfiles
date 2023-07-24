@@ -48,7 +48,6 @@ Plug 'seblj/nvim-echo-diagnostics'
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
-"Plug 'jose-elias-alvarez/null-ls.nvim', { 'branch': 'main' }
 Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 "C/C++
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
@@ -326,6 +325,8 @@ let g:ale_python_mypy_options = '--follow-imports silent'
 let g:ale_python_black_options = '--fast'
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:ale_lua_stylua_options = '--indent-type spaces --indent-width 2 --quote-style AutoPreferSingle'
+let g:ale_use_neovim_diagnostics_api = 1
+let g:ale_virtualtext_cursor = 0
 "End Plugin :: w0rp/ale ----------------------------------- }}}
 
 "Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
