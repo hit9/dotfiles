@@ -312,6 +312,7 @@ let g:ale_fixers = {
   \   'python': ['black', "isort"],
   \   'c': ['clang-format'],
   \   'cpp': ['clang-format'],
+  \   'proto': ['clang-format'],
   \   'go': ['gofmt'],
   \   'rust': ['rustfmt'],
   \   'lua': ['stylua'],
@@ -371,12 +372,6 @@ nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
 nmap z3 :set foldlevel=3<CR>
 "--------------------------------------------------- }}}
-
-
-"Plugin :: Freed-Wu/cppinsights.vim  ------------------------- {{{
-"where cppinsights: https://github.com/andreasfertig/cppinsights
-let g:cppinsights#extra_args = '-- -std=c++17'
-"End Plugin :: Freed-Wu/cppinsights.vim  -------------------- }}}
 
 "Word case converters (\%V runs substitute on visual selections). --- {{{
 "Convert selected text to snake_case style:
