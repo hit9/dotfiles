@@ -318,7 +318,10 @@ let g:ale_fixers = {
   \   'lua': ['stylua'],
   \   'swift': ['apple-swift-format'],
   \   'dart': ['dart-format'],
+  \   'cs': ["clang-format"],
 \}
+
+let g:ale_disable_lsp = 1
 let g:ale_fix_on_save = 1
 let g:ale_python_mypy_show_notes = 1
 let g:ale_python_isort_options = '--profile black --ca'
