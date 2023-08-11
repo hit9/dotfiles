@@ -21,7 +21,6 @@ Plug 'nvim-lualine/lualine.nvim' "lua version statusline.
 Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'windwp/nvim-autopairs' "Close pair ()[]{} etc. automatically.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
-Plug 'Konfekt/FastFold' "Speed up Vim by updating folds only when called-for.
 Plug 'wellle/targets.vim' "Vim plugin that provides additional text objects
 Plug 'tommcdo/vim-exchange' "Adding an operator to exchange regions: `cx{motion}`, `X` on visual, `cxc` to cancel, `cxx` for line quickshort.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
