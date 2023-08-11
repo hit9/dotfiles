@@ -182,6 +182,10 @@ function python_null_ls_condition(params)
   )
 end
 
+function clang_null_ls_condition(params)
+  return not (params.bufname:match('MacOSX.sdk') or params.bufname:match('Toolchains'))
+end
+
 null_ls.setup({
   -- add your sources / config options here
   sources = {
@@ -204,11 +208,14 @@ null_ls.setup({
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
     -- C/C++/CSharp
-    null_ls.builtins.formatting.clang_format.with({ filetypes = { 'c', 'cpp', 'proto', 'cs' } }),
-    null_ls.builtins.diagnostics.clang_check.with({
-      filetypes = { 'c', 'cpp' },
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    null_ls.builtins.formatting.clang_format.with({
+      filetypes = { 'c', 'cpp', 'proto', 'cs' },
+      runtime_condition = clang_null_ls_condition,
     }),
+    -- null_ls.builtins.diagnostics.clang_check.with({
+    --   filetypes = { 'c', 'cpp' },
+    --   runtime_condition = clang_null_ls_condition,
+    -- }),
     -- Golang
     null_ls.builtins.formatting.gofmt,
     -- Rust
