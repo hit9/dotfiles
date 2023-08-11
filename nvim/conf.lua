@@ -168,6 +168,79 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 -- End lsp key mapping }}}
 
+-- Plugin - jose-elias-alvarez/null-ls.nvim {{{
+
+local null_ls = require('null-ls')
+
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
+function python_null_ls_condition(params)
+  return not (
+    params.bufname:match('site-packages')
+    or params.bufname:match('.pyenv')
+    or params.bufname:match('Python.framework')
+  )
+end
+
+null_ls.setup({
+  -- add your sources / config options here
+  sources = {
+    -- Python
+    null_ls.builtins.formatting.black.with({
+      extra_args = { '--fast' },
+      runtime_condition = python_null_ls_condition,
+    }),
+    null_ls.builtins.formatting.isort.with({
+      extra_args = { '--profile', 'black', '--ca' },
+      runtime_condition = python_null_ls_condition,
+    }),
+    null_ls.builtins.diagnostics.ruff.with({
+      runtime_condition = python_null_ls_condition,
+    }),
+    null_ls.builtins.diagnostics.mypy.with({
+      extra_args = { '--follow-imports', 'silent' },
+      runtime_condition = python_null_ls_condition,
+      -- mypy runs slowly, we use it on-save instead of on-change.
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    }),
+    -- C/C++/CSharp
+    null_ls.builtins.formatting.clang_format.with({ filetypes = { 'c', 'cpp', 'proto', 'cs' } }),
+    null_ls.builtins.diagnostics.clang_check.with({ filetypes = { 'c', 'cpp' } }),
+    -- Golang
+    null_ls.builtins.formatting.gofmt,
+    -- Rust
+    null_ls.builtins.formatting.rustfmt,
+    -- Swift
+    null_ls.builtins.formatting.swift_format,
+    -- Dart
+    null_ls.builtins.formatting.dart_format,
+    -- Js/Ts
+    null_ls.builtins.formatting.eslint_d.with({ prefer_local = 'node_modules/.bin' }),
+    null_ls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
+    -- CMake
+    null_ls.builtins.formatting.cmake_format,
+    -- Lua
+    null_ls.builtins.formatting.stylua.with({
+      extra_args = { '--indent-type', 'spaces', '--indent-width', '2', '--quote-style', 'AutoPreferSingle' },
+    }),
+  },
+  debug = false,
+  on_attach = function(client, bufnr)
+    if client.supports_method('textDocument/formatting') then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ async = true })
+        end,
+      })
+    end
+  end,
+})
+
+-- }}}
+
 -- Lsp Hover & SignatureHelp {{{
 
 -- Single border for hover floating window.

@@ -34,7 +34,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting
 Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
 Plug 'tpope/vim-fugitive' "Git plugin.
 Plug 'lukas-reineke/indent-blankline.nvim' "Indent guides for Neovim
-Plug 'dense-analysis/ale'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-vsnip', { 'branch': 'main' }
@@ -50,6 +50,7 @@ Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
 Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 "C/C++
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
+Plug 'gauteh/vim-cppman'
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -297,40 +298,11 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 let g:winresizer_start_key = '<C-E>'
 "End Plugin ::  simeji/winresizer -------------------- }}}
 
-"Plugin :: w0rp/ale  ------------------------------------- {{{
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-  \   'javascript': ['eslint', 'prettier'],
-  \   'python': ['black', 'mypy', 'ruff'],
-  \   'c': ['clang-format', 'clang-check'],
-  \   'cpp': ['clang-format', 'clang-check'],
-\}
-let g:ale_fixers_explicit = 1
-let g:ale_fixers = {
-  \   'javascript': ['eslint', 'prettier'],
-  \   'python': ['black', "isort"],
-  \   'c': ['clang-format'],
-  \   'cpp': ['clang-format'],
-  \   'proto': ['clang-format'],
-  \   'go': ['gofmt'],
-  \   'rust': ['rustfmt'],
-  \   'lua': ['stylua'],
-  \   'swift': ['apple-swift-format'],
-  \   'dart': ['dart-format'],
-  \   'cs': ["clang-format"],
-\}
-
-let g:ale_disable_lsp = 1
-let g:ale_fix_on_save = 1
-let g:ale_python_mypy_show_notes = 1
-let g:ale_python_isort_options = '--profile black --ca'
-let g:ale_python_mypy_options = '--follow-imports silent'
-let g:ale_python_black_options = '--fast'
-let g:ale_rust_rls_toolchain = 'nightly'
-let g:ale_lua_stylua_options = '--indent-type spaces --indent-width 2 --quote-style AutoPreferSingle'
-let g:ale_use_neovim_diagnostics_api = 1
-let g:ale_virtualtext_cursor = 0
-"End Plugin :: w0rp/ale ----------------------------------- }}}
+"For C++: https://github.com/gauteh/vim-cppman ------- {{{
+"Map to `M`.
+"since K is already taken by `vim.lsp.buf.hover`.
+au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
+"End Plugin.}}}
 
 "Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
 
