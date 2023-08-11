@@ -205,7 +205,10 @@ null_ls.setup({
     }),
     -- C/C++/CSharp
     null_ls.builtins.formatting.clang_format.with({ filetypes = { 'c', 'cpp', 'proto', 'cs' } }),
-    null_ls.builtins.diagnostics.clang_check.with({ filetypes = { 'c', 'cpp' } }),
+    null_ls.builtins.diagnostics.clang_check.with({
+      filetypes = { 'c', 'cpp' },
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    }),
     -- Golang
     null_ls.builtins.formatting.gofmt,
     -- Rust
