@@ -211,7 +211,14 @@ null_ls.setup({
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
     -- C/C++
-    null_ls.builtins.diagnostics.cppcheck,
+    null_ls.builtins.diagnostics.cppcheck.with({
+      args = {
+        '--enable=warning,style,performance,portability',
+        '--inline-suppr',
+        '--template=gcc',
+        '$FILENAME',
+      },
+    }),
     -- C/C++/CSharp
     null_ls.builtins.formatting.clang_format.with({
       filetypes = { 'c', 'cpp', 'proto', 'cs' },
