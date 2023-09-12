@@ -66,6 +66,8 @@ require('lspconfig')['pyright'].setup({
 })
 
 require('lspconfig').pylsp.setup({
+  capabilities = capabilities,
+  autostart = true,
   settings = {
     pylsp = {
       configurationSources = {},
@@ -89,6 +91,7 @@ require('lspconfig').pylsp.setup({
 -- C/C++
 require('lspconfig')['clangd'].setup({
   capabilities = capabilities,
+  filetypes = { 'c', 'cpp' },
   cmd = {
     'clangd',
     '--offset-encoding=utf-16',
@@ -207,6 +210,8 @@ null_ls.setup({
       -- mypy runs slowly, we use it on-save instead of on-change.
       method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     }),
+    -- C/C++
+    null_ls.builtins.diagnostics.cppcheck,
     -- C/C++/CSharp
     null_ls.builtins.formatting.clang_format.with({
       filetypes = { 'c', 'cpp', 'proto', 'cs' },
@@ -226,7 +231,10 @@ null_ls.setup({
     null_ls.builtins.formatting.dart_format,
     -- Js/Ts
     null_ls.builtins.formatting.eslint_d.with({ prefer_local = 'node_modules/.bin' }),
-    null_ls.builtins.formatting.prettier.with({ prefer_local = 'node_modules/.bin' }),
+    null_ls.builtins.formatting.prettier.with({
+      prefer_local = 'node_modules/.bin',
+      filetypes = { 'javascript', 'typescript', 'typescriptreact', 'css' },
+    }),
     -- CMake
     null_ls.builtins.formatting.cmake_format,
     -- Lua
@@ -305,25 +313,70 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
--- }}}
 
--- Plugin seblj/nvim-echo-diagnostics ------------ {{{
--- Display diagnostic on via echo messaage instead of virtual_text
-local echo_diagnostics = require('echo-diagnostics')
+-- Add Diagnostics to Quickfix Window.
+-- https://github.com/neovim/nvim-lspconfig/issues/69
 
-echo_diagnostics.setup({
-  show_diagnostic_number = true,
-  show_diagnostic_source = false,
-})
+-- global switch:whether enable pushing diagnostics to quickfix window.
+vim.g._enable_push_diagnostics_to_quickfix = false
 
-vim.api.nvim_create_autocmd('CursorHold', {
-  pattern = '*',
-  callback = function()
-    echo_diagnostics.echo_line_diagnostic()
+-- Push diagnostics info to quickfix window.
+local push_diagnostics_to_quickfix = function(diagnostics)
+  local qflist = {}
+  for bufnr, diagnostic in pairs(diagnostics) do
+    for _, d in ipairs(diagnostic) do
+      d.bufnr = bufnr
+      d.lnum = d.range.start.line + 1
+      d.col = d.range.start.character + 1
+      d.text = d.message
+      table.insert(qflist, d)
+    end
+  end
+  -- setqflist to add all diagnostics to the quickfix list.
+  -- setloclist to add buffer diagnostics to the location list.
+  vim.diagnostic.setloclist(qflist)
+end
+
+-- Register a handler to push diagnostics to quickfix window if new diagnostics occurs.
+local publish_diagnostics_method = 'textDocument/publishDiagnostics'
+local default_diagnostics_handler = vim.lsp.handlers[publish_diagnostics_method]
+
+vim.lsp.handlers[publish_diagnostics_method] = function(err, method, result, client_id, bufnr, config)
+  default_diagnostics_handler(err, method, result, client_id, bufnr, config)
+  if vim.g._enable_push_diagnostics_to_quickfix then
+    local diagnostics = vim.diagnostic.get()
+    push_diagnostics_to_quickfix(diagnostics)
+  end
+end
+
+-- Disable push diagnostics to quickfix.
+local disable_push_diagnostics = function()
+  -- Quickfix window's id.
+  local qf_winid = vim.fn.getloclist(win, { winid = 0 }).winid
+  if qf_winid > 0 then
+    -- Disable quickfix automatically if quickwindow is closed.
+    vim.g._enable_push_diagnostics_to_quickfix = false
+  end
+end
+
+-- Disable push diagnostics to quickfix if Quickfix window disapper.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'qf',
+  callback = function(args)
+    vim.api.nvim_create_autocmd('BufWinLeave', { buffer = args.buf, callback = disable_push_diagnostics })
   end,
 })
 
--- end seblj/nvim-echo-diagnostics }}}
+vim.api.nvim_create_user_command('Quickfix', function(opts)
+  vim.g._enable_push_diagnostics_to_quickfix = true
+  -- Push at once if diagnostics is not empty.
+  local diagnostics = vim.diagnostic.get()
+  if next(diagnostics) ~= nil then
+    push_diagnostics_to_quickfix(diagnostics)
+  end
+end, {})
+
+-- }}}
 
 -- Plugin https://sr.ht/~p00f/godbolt.nvim/  for C++ {{{
 require('godbolt').setup({
