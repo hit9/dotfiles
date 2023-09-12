@@ -314,6 +314,21 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
+-- Show Diagnostics on the command line when hover cursor.
+local echo_diagnostics = require('echo-diagnostics')
+
+echo_diagnostics.setup({
+  show_diagnostic_number = true,
+  show_diagnostic_source = false,
+})
+
+vim.api.nvim_create_autocmd('CursorHold', {
+  pattern = '*',
+  callback = function()
+    echo_diagnostics.echo_line_diagnostic()
+  end,
+})
+
 -- Add Diagnostics to Quickfix Window.
 -- https://github.com/neovim/nvim-lspconfig/issues/69
 
