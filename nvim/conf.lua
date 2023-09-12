@@ -440,12 +440,21 @@ end
 
 require('lualine').setup({
   options = {
-    theme = 'papercolor_dark',
+    theme = 'onedark',
     icons_enabled = false,
     section_separators = '',
     component_separators = { left = '|', right = '|' },
   },
   sections = {
+    lualine_b = {
+      'branch',
+      'diff',
+      {
+        'diagnostics',
+        -- Show diagnostics even if there are none.
+        always_visible = true,
+      },
+    },
     lualine_c = {
       'filename',
       'lsp_progress()',
