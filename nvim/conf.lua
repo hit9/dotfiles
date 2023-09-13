@@ -95,11 +95,14 @@ require('lspconfig')['clangd'].setup({
   cmd = {
     'clangd',
     '--offset-encoding=utf-16',
+    '-j=4',
+    '--background-index',
+    '--pch-storage=memory',
     -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
     -- to add more checks, create .clang-tidy file in the root directory
     -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
     -- This is slow..
-    '--clang-tidy',
+    --    '--clang-tidy',
   },
 })
 
@@ -471,4 +474,68 @@ require('indent_blankline').setup({
   show_current_context = true,
   show_current_context_start = false,
 })
+-- }}}
+
+--  stevearc/aerial.nvim {{{
+require('aerial').setup({
+  lazy_load = true,
+  backends = { 'lsp', 'treesitter' },
+  layout = { default_direction = 'prefer_right' },
+  filter_kind = {
+    'Class',
+    'Enum',
+    'Function',
+    'Interface',
+    'Module',
+    'Method',
+    'Struct',
+  },
+  lsp = {
+    -- Fetch document symbols when LSP diagnostics update.
+    -- If false, will update on buffer changes.
+    diagnostics_trigger_update = true,
+  },
+  show_guides = true,
+  icons = {
+    Collapsed = '>',
+    ClassCollapsed = '> (class)',
+    EnumCollapsed = '> (enum)',
+    StructCollapsed = '> (struct)',
+    ModuleCollapsed = '> ()',
+    InterfaceCollapsed = '> (iface)',
+    FunctionCollapsed = '> (ƒ)',
+    MethodCollapsed = '> (*ƒ)',
+    Class = '(class)',
+    Enum = '(enum)',
+    Function = '(ƒ)',
+    Interface = '(iface)',
+    Method = '(*ƒ)',
+    Module = '()',
+    Struct = '(struct)',
+  },
+  get_highlight = function(symbol, is_icon, is_collapsed)
+    if is_icon and is_collapsed then
+      return 'Comment'
+    end
+  end,
+})
+
+vim.api.nvim_set_hl(0, 'AerialClass', { link = 'StorageClass' })
+vim.api.nvim_set_hl(0, 'AerialEnum', { link = 'Label' })
+vim.api.nvim_set_hl(0, 'AerialFunction', { link = 'Function' })
+vim.api.nvim_set_hl(0, 'AerialInterface', { link = 'Type' })
+vim.api.nvim_set_hl(0, 'AerialMethod', { link = 'Identifier' })
+vim.api.nvim_set_hl(0, 'AerialModule', { link = 'Include' })
+vim.api.nvim_set_hl(0, 'AerialStruct', { link = 'Structure' })
+
+vim.api.nvim_set_hl(0, 'AerialClassIcon', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialEnumIcon', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialFunctionIcon', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialInterfaceIcon', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialMethodIcon', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialModuleIcon', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialStructIcon', { link = 'Comment' })
+
+vim.api.nvim_set_hl(0, 'AerialGuide', { link = 'Comment' })
+vim.api.nvim_set_hl(0, 'AerialLine', { link = 'Visual' })
 -- }}}

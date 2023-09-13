@@ -43,6 +43,7 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
+Plug 'stevearc/aerial.nvim' " Neovim plugin for a code outline window.
 "ray-x/lsp_signature.nvim is slow, with poor performance...
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
