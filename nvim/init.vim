@@ -64,7 +64,6 @@ set nocompatible " be iMproved
 " set shell=/usr/local/bin/fish  "Vim's shell, defaults to `$SHELL`.
 set noeb "Disable bells.
 set ttyfast "Indicates a fast terminal connection. (see :help ttyfast).
-set lazyredraw "Same, faster vim.
 set title "Makes terminal title is set by vim.
 set titleold= "Restore old title after leaving vim.
 set autoread "Auto updates current file if this file is updated by outer.
