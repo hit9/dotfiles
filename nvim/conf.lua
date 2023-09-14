@@ -57,7 +57,7 @@ require('lspconfig')['gopls'].setup({
 -- Python pyright & pylsp
 require('lspconfig')['pyright'].setup({
   capabilities = capabilities,
-  autostart = true,
+  autostart = false,
   settings = {
     python = {
       useLibraryCodeForTypes = false,
@@ -69,7 +69,7 @@ require('lspconfig')['pyright'].setup({
 
 require('lspconfig').pylsp.setup({
   capabilities = capabilities,
-  autostart = false,
+  autostart = true,
   settings = {
     pylsp = {
       configurationSources = {},
