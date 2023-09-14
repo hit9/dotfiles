@@ -22,7 +22,6 @@ Plug 'jayflo/vim-skip' "Binary-search inline cursor movement.
 Plug 'windwp/nvim-autopairs' "Close pair ()[]{} etc. automatically.
 Plug 'mg979/vim-visual-multi' "Multiple cursors plugin for vim/neovim.
 Plug 'wellle/targets.vim' "Vim plugin that provides additional text objects
-Plug 'tommcdo/vim-exchange' "Adding an operator to exchange regions: `cx{motion}`, `X` on visual, `cxc` to cancel, `cxx` for line quickshort.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "Fuzzy search files/buffers etc, Ctrl-p.
 Plug 'junegunn/fzf.vim' "Fzf vim plugin.
 Plug 'mhinz/vim-signify' "Show diff signs for file changes under git/hg/svn control.
