@@ -57,17 +57,19 @@ require('lspconfig')['gopls'].setup({
 -- Python pyright & pylsp
 require('lspconfig')['pyright'].setup({
   capabilities = capabilities,
-  autostart = false,
+  autostart = true,
   settings = {
-    useLibraryCodeForTypes = false,
-    autoSearchPaths = true,
-    diagnosticMode = 'openFilesOnly',
+    python = {
+      useLibraryCodeForTypes = false,
+      autoSearchPaths = true,
+      diagnosticMode = 'openFilesOnly',
+    },
   },
 })
 
 require('lspconfig').pylsp.setup({
   capabilities = capabilities,
-  autostart = true,
+  autostart = false,
   settings = {
     pylsp = {
       configurationSources = {},
