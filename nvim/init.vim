@@ -42,7 +42,6 @@ Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
 Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
 Plug 'seblj/nvim-echo-diagnostics'
-Plug 'stevearc/aerial.nvim' " Neovim plugin for a code outline window.
 "ray-x/lsp_signature.nvim is slow, with poor performance...
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
@@ -69,7 +68,7 @@ set titleold= "Restore old title after leaving vim.
 set autoread "Auto updates current file if this file is updated by outer.
 set hidden "Opening a new file when the current buffer has unsaved changes causes files to be hidden instead of closed.
 set autochdir "Auto switch current working directory to current editing file's directory.
-set updatetime=300 "Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=750 "Smaller updatetime for CursorHold & CursorHoldI
 
 "Mouse
 set mouse=a "Enable mouse.
