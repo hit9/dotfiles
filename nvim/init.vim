@@ -46,7 +46,7 @@ Plug 'seblj/nvim-echo-diagnostics'
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
-Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
+"Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 "C/C++
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
 Plug 'gauteh/vim-cppman'
@@ -81,6 +81,8 @@ set mousemodel=popup "Right mouse button pops up a menu.
 syntax enable "Enable syntax.
 set synmaxcol=300 "Don't perform highlight on lines that are longer than 300 chars.
 syntax sync minlines=1000
+set re=1 "Using old regexp engine
+set redrawtime=1000  "Smaller redrawtime
 
 "Displayment
 set number  "Show line numbers.
