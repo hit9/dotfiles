@@ -11,6 +11,9 @@ set pure_show_jobs true
 set pure_color_jobs "blue"
 set pure_show_system_time false
 
+# Async prompt
+set -g async_prompt_functions _pure_prompt_git
+
 # Basic environments
 set -x SHELL fish
 set -x TERM screen-256color

@@ -10,6 +10,11 @@
 "Ref: https://github.com/neovim/neovim/issues/2437
 let g:python_host_prog  = '~/.pyenv/shims/python'
 let g:python3_host_prog = '~/.pyenv/shims/python'
+"Identing inside parentheses can be very slow, regardless of the searchpair()
+"timeout, so let the user disable this feature if he doesn't need it
+"Ref: https://github.com/neovim/neovim/issues/15299
+let g:pyindent_disable_parentheses_indenting = 1
+
 
 "Plugins ---------------------------------------------- {{{
 call plug#begin('~/.config/nvim/plugs')
@@ -80,8 +85,7 @@ set mousemodel=popup "Right mouse button pops up a menu.
 "Syntax
 syntax enable "Enable syntax.
 set synmaxcol=300 "Don't perform highlight on lines that are longer than 300 chars.
-syntax sync minlines=1000
-set re=1 "Using old regexp engine
+"syntax sync minlines=1000
 set redrawtime=1000  "Smaller redrawtime
 
 "Displayment
@@ -121,10 +125,6 @@ set foldcolumn=0 "number of columns showing the foldlevels on the left sidebar.
 set foldlevel=0
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo  "Which commands trigger auto-unfold
 set foldclose=all  "Close all folds (which level>foldlevel) automatically when cursor leaves.
-
-"Enable folding for programming purpose, and use treesitter folding.
-" autocmd FileType c,cpp,css,go,python,javascript,protobuf,ruby,rust,typescript
-"       \ setlocal foldenable foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 
 "Copy/Paste
 set clipboard=unnamed "Tmux copy issue: https://github.com/tmux/tmux/issues/543#issuecomment-248980734
