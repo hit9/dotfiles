@@ -297,12 +297,6 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 let g:winresizer_start_key = '<C-E>'
 "End Plugin ::  simeji/winresizer -------------------- }}}
 
-"For C++: https://github.com/gauteh/vim-cppman ------- {{{
-"Map to `M`.
-"since K is already taken by `vim.lsp.buf.hover`.
-au FileType cpp nmap M :execute ':Cppman ' . expand('<cword>') <CR>
-"End Plugin.}}}
-
 "Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
 
 "Highlight trailing whitespaces as red.
