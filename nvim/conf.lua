@@ -202,7 +202,7 @@ function python_null_ls_condition(params)
 end
 
 function clang_null_ls_condition(params)
-  return not (params.bufname:match('MacOSX.sdk') or params.bufname:match('Toolchains'))
+  return not (params.bufname:match('MacOSX.sdk') or params.bufname:match('Toolchains') or params.bufname:match('vcpkg'))
 end
 
 null_ls.setup({
@@ -237,6 +237,10 @@ null_ls.setup({
         '$FILENAME',
       },
       filetypes = { 'cpp' },
+      runtime_condition = clang_null_ls_condition,
+    }),
+    null_ls.builtins.diagnostics.cpplint.with({
+      runtime_condition = clang_null_ls_condition,
     }),
     -- C/C++/CSharp
     null_ls.builtins.formatting.clang_format.with({
