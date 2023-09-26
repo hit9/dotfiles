@@ -54,6 +54,7 @@ Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
 "Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 "C/C++
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
+Plug 'skywind3000/vim-cppman', { 'for': 'cpp' }
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
@@ -296,6 +297,12 @@ let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.5 } }
 "Ctrl-E to reset vin windows
 let g:winresizer_start_key = '<C-E>'
 "End Plugin ::  simeji/winresizer -------------------- }}}
+
+"Cppman ------------------------- {{{
+let g:cppman_open_mode = "vert botright"
+"Map to `M`, since K is already taken by `vim.lsp.buf.hover`.
+au FileType cpp nmap M :execute 'Cppman ' . expand('<cword>') <CR>
+"-------------------- }}}
 
 "Custom :: WhiteSpaces Cleaning -------------------------------------- {{{
 
