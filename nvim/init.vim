@@ -54,7 +54,6 @@ Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
 "Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 "C/C++
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
-Plug 'gauteh/vim-cppman'
 
 call plug#end()
 "End Plugins -----------------------------------------------  }}}
