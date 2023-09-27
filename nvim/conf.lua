@@ -241,6 +241,7 @@ null_ls.setup({
     }),
     null_ls.builtins.diagnostics.cpplint.with({
       runtime_condition = clang_null_ls_condition,
+      args = { '--filter=-runtime/references,-build/include_subdir', '$FILENAME' },
     }),
     -- C/C++/CSharp
     null_ls.builtins.formatting.clang_format.with({
