@@ -51,6 +51,7 @@ Plug 'seblj/nvim-echo-diagnostics'
 "I use another lightweight-but-fast alternative.
 Plug 'erhickey/sig-window-nvim'
 Plug 'Decodetalkers/csharpls-extended-lsp.nvim', { 'for': 'cs' }
+Plug 'Freed-Wu/cppinsights.vim', { 'for': 'cpp' }
 "Plug 'hit9/bitproto', { 'rtp': 'editors/vim', 'for': 'bitproto' }
 "C/C++
 Plug 'https://git.sr.ht/~p00f/godbolt.nvim' "Godbolt - CompilerExplorer
@@ -302,6 +303,10 @@ let g:winresizer_start_key = '<C-E>'
 let g:cppman_open_mode = "vert botright"
 "Map to `M`, since K is already taken by `vim.lsp.buf.hover`.
 au FileType cpp nmap M :execute 'Cppman ' . expand('<cword>') <CR>
+"-------------------- }}}
+
+"cppinsights ------------------------- {{{
+let g:cppinsights#extra_args = "-- -std=c++17"
 "-------------------- }}}
 
 "Custom :: WhiteSpaces Cleaning -------------------------------------- {{{

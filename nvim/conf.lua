@@ -68,7 +68,7 @@ require('lspconfig')['gopls'].setup({
 -- Python pyright & pylsp
 require('lspconfig')['pyright'].setup({
   capabilities = capabilities,
-  autostart = false,
+  autostart = true,
   settings = {
     python = {
       useLibraryCodeForTypes = false,
@@ -80,7 +80,7 @@ require('lspconfig')['pyright'].setup({
 
 require('lspconfig').pylsp.setup({
   capabilities = capabilities,
-  autostart = true,
+  autostart = false,
   settings = {
     pylsp = {
       configurationSources = {},
@@ -239,10 +239,10 @@ null_ls.setup({
       filetypes = { 'cpp' },
       runtime_condition = clang_null_ls_condition,
     }),
-    null_ls.builtins.diagnostics.cpplint.with({
-      runtime_condition = clang_null_ls_condition,
-      args = { '--filter=-runtime/references,-build/include_subdir', '$FILENAME' },
-    }),
+    --    null_ls.builtins.diagnostics.cpplint.with({
+    --      runtime_condition = clang_null_ls_condition,
+    --      args = { '--filter=-runtime/references,-build/include_subdir', '$FILENAME' },
+    --    }),
     -- C/C++/CSharp
     null_ls.builtins.formatting.clang_format.with({
       filetypes = { 'c', 'cpp', 'proto', 'cs' },
