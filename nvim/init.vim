@@ -37,7 +37,7 @@ Plug 'sindrets/diffview.nvim', { 'branch': 'main' } "Vimdiff with a files naviga
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "Syntax highlighting for variety filetypes.
 Plug 'dohsimpson/vim-macroeditor' "Edito macro => :MacroEdit a
 Plug 'tpope/vim-fugitive' "Git plugin.
-Plug 'lukas-reineke/indent-blankline.nvim' "Indent guides for Neovim
+Plug 'lukas-reineke/indent-blankline.nvim', { 'tag': 'v2.20.8' } "Indent guides for Neovim
 Plug 'jose-elias-alvarez/null-ls.nvim'
 "Completion & LSP (language protocol server).
 Plug 'neovim/nvim-lspconfig'
