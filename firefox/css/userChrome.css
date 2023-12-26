@@ -36,5 +36,11 @@
 
 /* Set maximum width of the sidebar */
 #sidebar-box {
-  max-width: 136px;
+  max-width: 88px;
+}
+
+/* Hide sidebar with only one tab open */
+#main-window[titlepreface^="[1] "]
+  #sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"] {
+  visibility: collapse;
 }
