@@ -1,0 +1,162 @@
+live_config_reload = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x686868"
+blue = "0x57c7ff"
+cyan = "0x9aedfe"
+green = "0x5af78e"
+magenta = "0xff6ac1"
+red = "0xff5c57"
+white = "0xf1f1f0"
+yellow = "0xf3f99d"
+
+[colors.cursor]
+background = "0x008ec4"
+foreground = "0xf1f1f1"
+
+[colors.normal]
+black = "0x282a36"
+blue = "0x57c7ff"
+cyan = "0x9aedfe"
+green = "0x5af78e"
+magenta = "0xff6ac1"
+red = "0xff5c57"
+white = "0xf1f1f0"
+yellow = "0xf3f99d"
+
+[colors.primary]
+background = "0x282a36"
+foreground = "0xeff0eb"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[debug]
+render_timer = false
+
+[font]
+size = 14.5
+
+[font.bold]
+family = "InconsolataLGC Nerd Font"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "InconsolataLGC Nerd Font"
+
+[font.normal]
+family = "InconsolataLGC Nerd Font"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Hide"
+key = "H"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u007F"
+key = "Back"
+
+[[keyboard.bindings]]
+chars = "\u001B[2~"
+key = "Insert"
+
+[[keyboard.bindings]]
+chars = "\u001B[3~"
+key = "Delete"
+
+[[keyboard.bindings]]
+chars = "\u001B[D"
+key = "Left"
+mode = "~AppCursor"
+
+[[keyboard.bindings]]
+chars = "\u001BOD"
+key = "Left"
+mode = "AppCursor"
+
+[[keyboard.bindings]]
+chars = "\u001B[C"
+key = "Right"
+mode = "~AppCursor"
+
+[[keyboard.bindings]]
+chars = "\u001BOC"
+key = "Right"
+mode = "AppCursor"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "F"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "B"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bd"
+key = "D"
+mods = "Alt"
+
+[mouse]
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[scrolling]
+history = 15000
+multiplier = 3
+
+[selection]
+save_to_clipboard = false
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[shell]
+program = "/usr/local/bin/fish"
+
+[window]
+decorations = "buttonless"
+dynamic_title = true
+opacity = 1.0
+startup_mode = "Maximized"
+
+[window.padding]
+x = 2
+y = 2
