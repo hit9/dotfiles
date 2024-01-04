@@ -29,10 +29,6 @@ set -x GO111MODULE on
 # Where node versions stores.
 set -x N_PREFIX $HOME/.n
 
-# vcpkg (c++ package manager)
-# VCPKG_ROOT is the path of vcpkg repo.
-set -x VCPKG_ROOT $HOME/dev/vcpkg
-
 # $PATH environment variables
 set -e fish_user_paths
 set -gx fish_user_paths \
@@ -41,7 +37,6 @@ set -gx fish_user_paths \
     $HOME/.cargo/bin \
     $HOME/.dotnet/tools \
     $N_PREFIX/bin \
-    $VCPKG_ROOT \
     $HOME/dev/src/flutter/bin \
     /usr/local/lib/ruby/gems/3.4.2/bin \
     /usr/local/opt/ruby/bin \
