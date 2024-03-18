@@ -168,6 +168,5 @@ bind n findnext 1
 bind N findnext 1 -?
 bind ,<Space> nohlsearch
 
-
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
