@@ -1,46 +1,7 @@
-/* Hide the horizontal tab strip */
+/* Hide vertical tabs */
 #TabsToolbar {
-  visibility: collapse;
+  visibility: collapse !important;
 }
 
-#tabbrowser-tabs {
-  visibility: collapse;
-}
-
-#TabsToolbar {
-  display: none !important;
-}
-#nav-bar {
-  width: 100vw !important;
-}
-
-/* Sidebar border improvements for dark theme */
-#sidebar-header {
-  background: #0c0c0d;
-  border-bottom: none !important;
-}
-#sidebar-splitter {
-  border-right-color: #0c0c0d !important;
-  border-left-color: #0c0c0d !important;
-}
-#sidebar-switcher-target,
-#sidebar-close {
-  filter: invert(100%);
-}
-
-/* Hide sidebar header for Tab center Reborn only */
-#sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"]
-  #sidebar-header {
-  visibility: collapse;
-}
-
-/* Set maximum width of the sidebar */
-#sidebar-box {
-  max-width: 88px;
-}
-
-/* Hide sidebar with only one tab open */
-#main-window[titlepreface^="[1] "]
-  #sidebar-box[sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"] {
-  visibility: collapse;
-}
+@import url("firefox-csshacks/autohide_sidebar.css");
+@import url("firefox-csshacks/autohide_main_toolbar.css");

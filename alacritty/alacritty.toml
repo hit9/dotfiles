@@ -154,7 +154,7 @@ program = "/usr/local/bin/fish"
 [window]
 decorations = "buttonless"
 dynamic_title = true
-opacity = 0.95
+opacity = 1
 startup_mode = "Maximized"
 
 [window.padding]

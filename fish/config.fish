@@ -41,6 +41,7 @@ set -gx fish_user_paths \
     /usr/local/lib/ruby/gems/3.4.2/bin \
     /usr/local/opt/ruby/bin \
     /usr/local/opt/llvm/bin \
+    /usr/local/opt/binutils/bin \
     /usr/local/sbin \
     /usr/local/bin \
     /usr/sbin \
