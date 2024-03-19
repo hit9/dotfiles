@@ -1,7 +1,7 @@
 @import url("firefox-csshacks/autohide_sidebar.css");
+@import url("firefox-csshacks/overlay_sidebar_header.css");
 
 /* Hide vertical tabs */
 #TabsToolbar {
   visibility: collapse !important;
 }
-
